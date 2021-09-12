@@ -54,6 +54,7 @@ public class RailGun {
 		final RailGun b = this;
 		
 		p.getWorld().playSound(p.getLocation(), Sound.BLAZE_HIT, 1, 1);
+		QuakePlayer.getFromPlayer(p).cooldown = 100;
 		
 		new BukkitRunnable(){
 			@Override
