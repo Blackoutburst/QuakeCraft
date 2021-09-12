@@ -64,8 +64,10 @@ public class RailGun {
 					
 					b.getNearbyPlayer();
 					b.trail();
-					if (!b.isAlive() || b.insideBlock())
+					if (!b.isAlive() || b.insideBlock()) {
 						this.cancel();
+						break;
+					}
 				}
 			}
 		}.runTaskTimer(Main.getPlugin(Main.class), 0L, 1L);
