@@ -1,4 +1,4 @@
-[![License](https://img.shields.io/github/license/Blackoutburst/Wally.svg)](LICENSE)
+[![License](https://img.shields.io/github/license/Blackoutburst/QuakeTest.svg)](LICENSE)
 # QuakeTest
 A test plugin where i re created quake
 
