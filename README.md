@@ -1,2 +1,5 @@
+[![License](https://img.shields.io/github/license/Blackoutburst/QuakeTest.svg)](LICENSE)
 # QuakeTest
-Literally just a test plugin
+A test plugin where i re created quake
+
+For now only the gun is implemented
