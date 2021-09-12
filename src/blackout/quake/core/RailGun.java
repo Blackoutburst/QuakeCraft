@@ -1,13 +1,12 @@
 package blackout.quake.core;
 
-import java.util.UUID;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.FireworkEffect.Type;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
@@ -32,11 +31,11 @@ import net.minecraft.server.v1_8_R3.PlayerConnection;
 public class RailGun {
 	protected Location location;
 	protected Vector direction;
-	protected UUID owner;
+	protected Player owner;
 	protected byte lifetime;
 	protected boolean alive;
 	
-	public RailGun(Location location, Vector direction, UUID owner) {
+	public RailGun(Location location, Vector direction, Player owner) {
 		this.location = location;
 		this.direction = direction;
 		this.owner = owner;
@@ -51,8 +50,10 @@ public class RailGun {
 		return (false);
 	}
 	
-	public void fire() {
+	public void fire(Player p) {
 		final RailGun b = this;
+		
+		p.getWorld().playSound(p.getLocation(), Sound.BLAZE_HIT, 1, 1);
 		
 		new BukkitRunnable(){
 			@Override
@@ -78,10 +79,11 @@ public class RailGun {
 						Math.pow((location.getY() - e.getLocation().getY()), 2) +
 						Math.pow((location.getZ() - e.getLocation().getZ()), 2));
 				
-				if (e.getUniqueId() != owner && distance <= 2) {
+				if (e.getUniqueId() != owner.getUniqueId() && distance <= 2) {
 					this.detonate();
 					((Player)e).setHealth(0);
 					this.alive = false;
+					owner.getWorld().playSound(owner.getLocation(), Sound.BLAZE_DEATH, 1, 2);
 				}
 			}
 		}
@@ -95,7 +97,6 @@ public class RailGun {
 	}
 	
 	public void detonate() {
-		if (!alive) return;
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			PlayerConnection connection = ((CraftPlayer) p).getHandle().playerConnection;
 			ItemStack stackFirework = new ItemStack(Material.FIREWORK);
@@ -111,7 +112,6 @@ public class RailGun {
 			connection.sendPacket(new PacketPlayOutEntityStatus(firework, (byte) 17));
 			connection.sendPacket(new PacketPlayOutEntityDestroy(firework.getId()));
 		}
-
 	}
 
 	public Location getLocation() {
@@ -130,11 +130,11 @@ public class RailGun {
 		this.direction = direction;
 	}
 
-	public UUID getOwner() {
+	public Player getOwner() {
 		return owner;
 	}
 
-	public void setOwner(UUID owner) {
+	public void setOwner(Player owner) {
 		this.owner = owner;
 	}
 
