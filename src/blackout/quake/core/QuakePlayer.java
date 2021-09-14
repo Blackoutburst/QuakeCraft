@@ -29,23 +29,23 @@ public class QuakePlayer {
 	public void displayCooldown() {
 		PlayerConnection connection = ((CraftPlayer) this.player).getHandle().playerConnection;
 		
-		String reload = cooldown == 0 ? reloadString() : reloadString()+" §c"+String.valueOf((float)(1*cooldown/100))+"s";
+		String reload = cooldown == 0 ? reloadString() : reloadString()+" §c"+String.format("%.2f", (float)(cooldown / 20))+"s";
 		
 		connection.sendPacket(new PacketPlayOutChat(new ChatComponentText(reload), (byte) 2));
 	}
 	
 	private String reloadString() {
 		if (cooldown <= 0) return "§8[§a▪▪▪▪▪▪▪▪▪▪§8]";
-		if (cooldown <= 10) return "§8[§a▪▪▪▪▪▪▪▪▪§c▪§8]";
-		if (cooldown <= 20) return "§8[§a▪▪▪▪▪▪▪▪§c▪▪§8]";
-		if (cooldown <= 30) return "§8[§a▪▪▪▪▪▪▪§c▪▪▪§8]";
-		if (cooldown <= 40) return "§8[§a▪▪▪▪▪▪§c▪▪▪▪§8]";
-		if (cooldown <= 50) return "§8[§a▪▪▪▪▪§c▪▪▪▪▪§8]";
-		if (cooldown <= 60) return "§8[§a▪▪▪▪§c▪▪▪▪▪▪§8]";
-		if (cooldown <= 70) return "§8[§a▪▪▪§c▪▪▪▪▪▪▪§8]";
-		if (cooldown <= 80) return "§8[§a▪▪§c▪▪▪▪▪▪▪▪§8]";
-		if (cooldown <= 90) return "§8[§a▪§c▪▪▪▪▪▪▪▪▪§8]";
-		if (cooldown <= 100) return "§8[§c▪▪▪▪▪▪▪▪▪▪§8]";
+		if (cooldown <= RailGun.FIRE_DELAY * 10 / 100) return "§8[§a▪▪▪▪▪▪▪▪▪§c▪§8]";
+		if (cooldown <= RailGun.FIRE_DELAY * 20 / 100) return "§8[§a▪▪▪▪▪▪▪▪§c▪▪§8]";
+		if (cooldown <= RailGun.FIRE_DELAY * 30 / 100) return "§8[§a▪▪▪▪▪▪▪§c▪▪▪§8]";
+		if (cooldown <= RailGun.FIRE_DELAY * 40 / 100) return "§8[§a▪▪▪▪▪▪§c▪▪▪▪§8]";
+		if (cooldown <= RailGun.FIRE_DELAY * 50 / 100) return "§8[§a▪▪▪▪▪§c▪▪▪▪▪§8]";
+		if (cooldown <= RailGun.FIRE_DELAY * 60 / 100) return "§8[§a▪▪▪▪§c▪▪▪▪▪▪§8]";
+		if (cooldown <= RailGun.FIRE_DELAY * 70 / 100) return "§8[§a▪▪▪§c▪▪▪▪▪▪▪§8]";
+		if (cooldown <= RailGun.FIRE_DELAY * 80 / 100) return "§8[§a▪▪§c▪▪▪▪▪▪▪▪§8]";
+		if (cooldown <= RailGun.FIRE_DELAY * 90 / 100) return "§8[§a▪§c▪▪▪▪▪▪▪▪▪§8]";
+		if (cooldown <= RailGun.FIRE_DELAY) return "§8[§c▪▪▪▪▪▪▪▪▪▪§8]";
 		
 		return "§8[§a▪▪▪▪▪▪▪▪▪▪§8]";
 	}

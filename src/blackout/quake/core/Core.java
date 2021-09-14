@@ -21,7 +21,7 @@ public class Core {
 		for (QuakePlayer p : Main.players) {
 			p.displayCooldown();
 			if (p.cooldown > 0)
-				p.cooldown -= 5;
+				p.cooldown--;
 		}
 	}
 	

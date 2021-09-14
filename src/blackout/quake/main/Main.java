@@ -16,6 +16,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import blackout.quake.core.Core;
 import blackout.quake.core.QuakePlayer;
 import blackout.quake.core.RailGun;
+import blackout.quake.core.ScoreboardManager;
 
 
 public class Main extends JavaPlugin implements Listener {
@@ -31,6 +32,7 @@ public class Main extends JavaPlugin implements Listener {
 	@EventHandler
  	public void onPlayerJoin(PlayerJoinEvent event) {
 		players.add(new QuakePlayer(event.getPlayer()));
+		ScoreboardManager.init(event.getPlayer());
 	}
 	
 	@EventHandler

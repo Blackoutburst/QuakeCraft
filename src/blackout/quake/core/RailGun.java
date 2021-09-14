@@ -29,6 +29,9 @@ import net.minecraft.server.v1_8_R3.PlayerConnection;
 
 
 public class RailGun {
+	
+	public static final float FIRE_DELAY = 18;
+	
 	protected Location location;
 	protected Vector direction;
 	protected Player owner;
@@ -54,7 +57,7 @@ public class RailGun {
 		final RailGun b = this;
 		
 		p.getWorld().playSound(p.getLocation(), Sound.BLAZE_HIT, 1, 1);
-		QuakePlayer.getFromPlayer(p).cooldown = 100;
+		QuakePlayer.getFromPlayer(p).cooldown = FIRE_DELAY;
 		
 		new BukkitRunnable(){
 			@Override
