@@ -30,7 +30,7 @@ import net.minecraft.server.v1_8_R3.PlayerConnection;
 
 public class RailGun {
 	
-	public static final float FIRE_DELAY = 18;
+	public static final float FIRE_DELAY = 17;
 	
 	protected Location location;
 	protected Vector direction;
@@ -58,7 +58,6 @@ public class RailGun {
 		
 		p.getWorld().playSound(p.getLocation(), Sound.BLAZE_HIT, 1, 1);
 		QuakePlayer.getFromPlayer(p).cooldown = FIRE_DELAY;
-		
 		new BukkitRunnable(){
 			@Override
 			public void run(){

@@ -29,7 +29,7 @@ public class QuakePlayer {
 	public void displayCooldown() {
 		PlayerConnection connection = ((CraftPlayer) this.player).getHandle().playerConnection;
 		
-		String reload = cooldown == 0 ? reloadString() : reloadString()+" §c"+String.format("%.2f", (float)(cooldown / 20))+"s";
+		String reload = cooldown == 0 ? "§a"+String.format("%.2f", (float)(RailGun.FIRE_DELAY / 20))+"s "+reloadString() : "§c"+String.format("%.2f", (float)(cooldown / 20))+"s "+reloadString();
 		
 		connection.sendPacket(new PacketPlayOutChat(new ChatComponentText(reload), (byte) 2));
 	}
