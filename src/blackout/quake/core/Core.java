@@ -17,6 +17,31 @@ public class Core {
 		}.runTaskTimerAsynchronously(Main.getPlugin(Main.class), 0L, 1L);
 	}
 	
+	public void gameTimer() {
+		new BukkitRunnable(){
+			@Override
+			public void run(){
+				try {
+					if (Main.gameRunning) {
+						gameTimerFunc();
+					}
+				} catch(Exception e) {}
+			}
+		}.runTaskTimerAsynchronously(Main.getPlugin(Main.class), 0L, 20L);
+	}
+	
+	private void gameTimerFunc() {
+		Main.gameTime++;
+		
+		int minutes = Main.gameTime / 60;
+		int seconds = Main.gameTime % 60;
+		String time = String.format("%d:%02d", minutes, seconds);
+		
+		for (QuakePlayer p : Main.players) {
+			ScoreboardManager.setLine(p, "Time: §a"+time, 14);
+		}
+	}
+	
 	private void timer() {
 		for (QuakePlayer p : Main.players) {
 			p.displayCooldown();

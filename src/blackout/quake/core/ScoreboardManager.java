@@ -25,15 +25,33 @@ public class ScoreboardManager {
 		ScoreboardObjective objective = board.getObjective("Score");
 		objective.setDisplayName("§6Quake");
 		board.setDisplaySlot(1, objective);
-		
-		ScoreboardScore score = new ScoreboardScore(board, objective, "§aTest");
-		score.setScore(5);
 
 		ScoreboardTeam team = new ScoreboardTeam(board, p.getName());
 		
 		connection.sendPacket(new PacketPlayOutScoreboardTeam(team, 0));
 		connection.sendPacket(new PacketPlayOutScoreboardObjective(objective, 0));
 		connection.sendPacket(new PacketPlayOutScoreboardDisplayObjective(1, objective));
-		connection.sendPacket(new PacketPlayOutScoreboardScore(score));
+		
+		QuakePlayer qp = QuakePlayer.getFromPlayer(p);
+		qp.setBoard(board);
+		
+		setLine(qp, "§a§m----------", 15); 
+		setLine(qp, "Time: §a0:00", 14);
+		setLine(qp, " ", 13); 
+		setLine(qp, "p1", 12); 
+		setLine(qp, "p2", 11); 
+		setLine(qp, "p3", 10); 
+		setLine(qp, "p4", 9); 
+		setLine(qp, "p5", 8); 
+		setLine(qp, "  ", 7);
+		setLine(qp, "§a§m---------- ", 6); 
+		
 	}
+	
+  	public static void setLine(QuakePlayer player, String name, int score) {
+  		ScoreboardScore packetScore = new ScoreboardScore(player.getBoard(), player.getBoard().getObjective("Score"), name);
+  		packetScore.setScore(score);
+  		
+  		((CraftPlayer) player.getPlayer()).getHandle().playerConnection.sendPacket(new PacketPlayOutScoreboardScore(packetScore));
+  	}
 }

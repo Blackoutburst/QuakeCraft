@@ -22,15 +22,19 @@ import blackout.quake.core.ScoreboardManager;
 public class Main extends JavaPlugin implements Listener {
 
 	public static List<QuakePlayer> players = new ArrayList<QuakePlayer>();
+	public static boolean gameRunning = false;
+	public static int gameTime = 0;
 	
 	@Override
 	public void onEnable() {
 		getServer().getPluginManager().registerEvents(this, this);
 		new Core().cooldownTimer();
+		new Core().gameTimer();
 	}
 	
 	@EventHandler
  	public void onPlayerJoin(PlayerJoinEvent event) {
+		event.getPlayer().teleport(new Location(event.getPlayer().getWorld(), 910.5f, 55, 1331.5f, 0, 0));
 		players.add(new QuakePlayer(event.getPlayer()));
 		ScoreboardManager.init(event.getPlayer());
 	}
