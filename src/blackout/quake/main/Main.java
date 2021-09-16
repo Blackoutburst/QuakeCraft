@@ -37,11 +37,13 @@ public class Main extends JavaPlugin implements Listener {
 		event.getPlayer().teleport(new Location(event.getPlayer().getWorld(), 910.5f, 55, 1331.5f, 0, 0));
 		players.add(new QuakePlayer(event.getPlayer()));
 		ScoreboardManager.init(event.getPlayer());
+		ScoreboardManager.updatePlayers();
 	}
 	
 	@EventHandler
  	public void onPlayerQuit(PlayerQuitEvent event) {
 		players.remove(QuakePlayer.getFromPlayer(event.getPlayer()));
+		ScoreboardManager.updatePlayers();
 	}
 	
 	@EventHandler

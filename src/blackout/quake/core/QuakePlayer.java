@@ -13,11 +13,13 @@ public class QuakePlayer {
 	protected Player player;
 	protected float cooldown;
 	protected Scoreboard board;
+	protected int score;
 	
 	public QuakePlayer(Player player) {
 		this.player = player;
 		this.cooldown = 0;
 		this.board = null;
+		this.score = 0;
 	}
 	
 	public static QuakePlayer getFromPlayer(Player p) {
@@ -75,6 +77,14 @@ public class QuakePlayer {
 
 	public void setBoard(Scoreboard board) {
 		this.board = board;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
 	}
 	
 }

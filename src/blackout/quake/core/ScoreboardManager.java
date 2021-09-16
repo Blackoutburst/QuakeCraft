@@ -1,8 +1,11 @@
 package blackout.quake.core;
 
+import java.util.Collections;
+
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
+import blackout.quake.main.Main;
 import net.minecraft.server.v1_8_R3.PacketPlayOutScoreboardDisplayObjective;
 import net.minecraft.server.v1_8_R3.PacketPlayOutScoreboardObjective;
 import net.minecraft.server.v1_8_R3.PacketPlayOutScoreboardScore;
@@ -38,11 +41,6 @@ public class ScoreboardManager {
 		setLine(qp, "§a§m----------", 15); 
 		setLine(qp, "Time: §a0:00", 14);
 		setLine(qp, " ", 13); 
-		setLine(qp, "p1", 12); 
-		setLine(qp, "p2", 11); 
-		setLine(qp, "p3", 10); 
-		setLine(qp, "p4", 9); 
-		setLine(qp, "p5", 8); 
 		setLine(qp, "  ", 7);
 		setLine(qp, "§a§m---------- ", 6); 
 		
@@ -54,4 +52,21 @@ public class ScoreboardManager {
   		
   		((CraftPlayer) player.getPlayer()).getHandle().playerConnection.sendPacket(new PacketPlayOutScoreboardScore(packetScore));
   	}
-}
+  	
+  	public static void updatePlayers() {
+  		Collections.sort(Main.players, new PlayerComparator());
+  		
+  		for (int i = 0; i < 5; i++) {
+  			if (i < Main.players.size()) {
+	  			for (QuakePlayer qp : Main.players) {
+	  				QuakePlayer q = Main.players.get(i);
+	  				setLine(qp, q.getPlayer().getName()+": §a"+q.getScore(), 12 - i);
+	  			}
+  			} else {
+  				for (QuakePlayer qp : Main.players) {
+  					setLine(qp, "   ", 12 - i); 
+  				}
+  			}
+  		}
+  	}
+} 

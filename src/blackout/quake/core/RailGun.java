@@ -102,6 +102,11 @@ public class RailGun {
 	}
 	
 	public void detonate() {
+		QuakePlayer qp = QuakePlayer.getFromPlayer(owner);
+		qp.score++;
+		
+		ScoreboardManager.updatePlayers();
+		
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			PlayerConnection connection = ((CraftPlayer) p).getHandle().playerConnection;
 			ItemStack stackFirework = new ItemStack(Material.FIREWORK);
