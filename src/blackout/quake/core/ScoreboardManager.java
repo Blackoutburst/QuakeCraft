@@ -43,12 +43,12 @@ public class ScoreboardManager {
 		setLine(qp, " ", 13); 
 		setLine(qp, "  ", 7);
 		setLine(qp, "§a§m---------- ", 6); 
-		
 	}
 	
   	public static void setLine(QuakePlayer player, String name, int score) {
   		ScoreboardScore packetScore = new ScoreboardScore(player.getBoard(), player.getBoard().getObjective("Score"), name);
   		packetScore.setScore(score);
+  		
   		
   		((CraftPlayer) player.getPlayer()).getHandle().playerConnection.sendPacket(new PacketPlayOutScoreboardScore(packetScore));
   	}

@@ -38,7 +38,7 @@ public class Core {
 		String time = String.format("%d:%02d", minutes, seconds);
 		
 		for (QuakePlayer p : Main.players) {
-			ScoreboardManager.updateLine(p, "Time: §a"+time, 14);
+			ScoreboardManager.setLine(p, "Time: §a"+time, 14);
 		}
 	}
 	
