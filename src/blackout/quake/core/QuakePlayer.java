@@ -7,12 +7,11 @@ import blackout.quake.main.Main;
 import net.minecraft.server.v1_8_R3.ChatComponentText;
 import net.minecraft.server.v1_8_R3.PacketPlayOutChat;
 import net.minecraft.server.v1_8_R3.PlayerConnection;
-import net.minecraft.server.v1_8_R3.Scoreboard;
 
 public class QuakePlayer {
 	protected Player player;
 	protected float cooldown;
-	protected Scoreboard board;
+	protected Board board;
 	protected int score;
 	
 	public QuakePlayer(Player player) {
@@ -71,11 +70,11 @@ public class QuakePlayer {
 		this.player = player;
 	}
 
-	public Scoreboard getBoard() {
+	public Board getBoard() {
 		return board;
 	}
 
-	public void setBoard(Scoreboard board) {
+	public void setBoard(Board board) {
 		this.board = board;
 	}
 
