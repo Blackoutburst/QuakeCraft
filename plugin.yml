@@ -4,3 +4,10 @@ version: 0.1
 api-version: 1.13
 author: Blackoutburst
 description: A quake test
+commands:
+  start:
+    description: Start the game
+    usage: /start
+  end:
+    description: End the game
+    usage: /end
