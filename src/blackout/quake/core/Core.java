@@ -24,6 +24,7 @@ public class Core {
 
 	public static void startGame() {
 		Main.gameRunning = true;
+		Main.gameTime = 0;
 		
 		ItemStack gun = new ItemStack(Material.IRON_HOE);
 		ItemMeta gunMeta = gun.getItemMeta();
@@ -34,7 +35,7 @@ public class Core {
 		
 		for (QuakePlayer p : Main.players) {
 			p.getPlayer().getInventory().setItem(0, gun);
-			p.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 100000, 3, false, false));
+			p.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 100000, 1, false, false));
 			teleportToRespawn(p.getPlayer());
 			p.cooldown = RailGun.FIRE_DELAY;
 		}
