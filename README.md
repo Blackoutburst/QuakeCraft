@@ -1,5 +1,8 @@
+![splash](https://user-images.githubusercontent.com/30992311/133886844-88899994-fcee-4850-af65-3d9aab4726cb.png)
+
 [![License](https://img.shields.io/github/license/Blackoutburst/QuakeCraft.svg)](LICENSE)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/a0e7c7d8e9b44594b5c8469ac6be0f21)](https://www.codacy.com/gh/Blackoutburst/QuakeCraft/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Blackoutburst/QuakeCraft&amp;utm_campaign=Badge_Grade)
+
 # QuakeCraft
 This plugin re create the base game of QuakeCraft from Hypixel for learning purpose, and will not get any new features.
 
