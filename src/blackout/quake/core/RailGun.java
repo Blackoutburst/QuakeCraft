@@ -86,9 +86,10 @@ public class RailGun {
 				
 				if (e.getUniqueId() != owner.getUniqueId() && distance <= 2) {
 					this.detonate();
-					((Player)e).setHealth(0);
 					this.alive = false;
+					Core.teleportToRespawn((Player) e);
 					owner.getWorld().playSound(owner.getLocation(), Sound.BLAZE_DEATH, 1, 2);
+					Bukkit.broadcastMessage(owner.getName()+" §egibbed§r "+e.getName());
 				}
 			}
 		}
@@ -104,14 +105,17 @@ public class RailGun {
 	public void detonate() {
 		QuakePlayer qp = QuakePlayer.getFromPlayer(owner);
 		qp.score++;
-		
 		ScoreboardManager.updatePlayers();
+		
+		if (qp.score >= 25) {
+			Core.endGame();
+		}
 		
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			PlayerConnection connection = ((CraftPlayer) p).getHandle().playerConnection;
 			ItemStack stackFirework = new ItemStack(Material.FIREWORK);
 			FireworkMeta fireworkMeta = (FireworkMeta) stackFirework.getItemMeta();
-			FireworkEffect effect = FireworkEffect.builder().flicker(false).withColor(Color.AQUA).with(Type.BALL_LARGE).build();
+			FireworkEffect effect = FireworkEffect.builder().flicker(false).withColor(Color.AQUA).with(Type.BURST).build();
 			fireworkMeta.addEffect(effect);
 			fireworkMeta.setPower(2);
 			stackFirework.setItemMeta(fireworkMeta);
