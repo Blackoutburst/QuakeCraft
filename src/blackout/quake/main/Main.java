@@ -6,15 +6,18 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.util.Vector;
 
 import blackout.quake.core.Core;
 import blackout.quake.core.QuakePlayer;
@@ -63,6 +66,23 @@ public class Main extends JavaPlugin implements Listener {
 		
 		QuakePlayer qp = QuakePlayer.getFromPlayer(event.getPlayer());
 		
+		if ((event.getAction().equals(Action.LEFT_CLICK_BLOCK) || 
+				event.getAction().equals(Action.LEFT_CLICK_AIR)) &&
+				event.getPlayer().getItemInHand().getType().equals(Material.IRON_HOE)) {
+			
+			if (qp.getDashCooldown() > 0) {
+				event.getPlayer().sendMessage("§cYou can only dash once every seconds");
+			} else {
+				qp.setDashCooldown(RailGun.DASH_DELAY);
+				
+				Vector dash = event.getPlayer().getLocation().getDirection();
+				dash.setY(0.2f);
+				
+				event.getPlayer().setVelocity(dash.multiply(2));
+				event.getPlayer().getWorld().playSound(event.getPlayer().getLocation(), Sound.BAT_TAKEOFF, 1, 1);
+			}
+		}
+		
 		if ((event.getAction().equals(Action.RIGHT_CLICK_BLOCK) || 
 			event.getAction().equals(Action.RIGHT_CLICK_AIR)) &&
 			event.getPlayer().getItemInHand().getType().equals(Material.IRON_HOE) &&
@@ -73,6 +93,11 @@ public class Main extends JavaPlugin implements Listener {
 			
 			new RailGun(loc, event.getPlayer().getLocation().getDirection().clone(), event.getPlayer()).fire(event.getPlayer());
 		}
+	}
+	
+	@EventHandler
+	public void onEntityDamage(EntityDamageEvent event) {
+		event.setCancelled(gameRunning);
 	}
 	
 	@Override

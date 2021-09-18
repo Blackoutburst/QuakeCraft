@@ -31,6 +31,7 @@ import net.minecraft.server.v1_8_R3.PlayerConnection;
 public class RailGun {
 	
 	public static final float FIRE_DELAY = 17;
+	public static final float DASH_DELAY = 20;
 	
 	protected Location location;
 	protected Vector direction;
@@ -85,9 +86,9 @@ public class RailGun {
 						Math.pow((location.getZ() - e.getLocation().getZ()), 2));
 				
 				if (e.getUniqueId() != owner.getUniqueId() && distance <= 2) {
+					Core.teleportToRespawn((Player) e);
 					this.detonate();
 					this.alive = false;
-					Core.teleportToRespawn((Player) e);
 					owner.getWorld().playSound(owner.getLocation(), Sound.BLAZE_DEATH, 1, 2);
 					Bukkit.broadcastMessage(owner.getName()+" §egibbed§r "+e.getName());
 				}

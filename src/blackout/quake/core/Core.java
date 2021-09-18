@@ -1,10 +1,13 @@
 package blackout.quake.core;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.Random;
 import java.util.Set;
 
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -60,6 +63,17 @@ public class Core {
 	
 	public static void endGame() {
 		Main.gameRunning = false;
+
+		Bukkit.broadcastMessage("§a==============================");
+		Bukkit.broadcastMessage(centerText("§6Quake"));
+		Bukkit.broadcastMessage("");
+		for (int i = 0; i < 3; i++) {
+			if (i < Main.players.size()) {
+				Bukkit.broadcastMessage(centerText(Main.players.get(i).getPlayer().getName()+": "+Main.players.get(i).getScore()));
+			}
+		}
+		Bukkit.broadcastMessage("§a==============================");
+		
 		
 		for (QuakePlayer p : Main.players) {
 			p.getPlayer().teleport(Main.spawn);
@@ -112,7 +126,16 @@ public class Core {
 			p.displayCooldown();
 			if (p.cooldown > 0)
 				p.cooldown--;
+			if (p.dashCooldown > 0)
+				p.dashCooldown--;
 		}
+	}
+	
+	public static String centerText(String text) {
+		int maxWidth = 60;
+		int spaces = (int) Math.round((maxWidth - 1.4 * ChatColor.stripColor(text).length()) / 2);
+		
+		return StringUtils.repeat(" ", spaces) + text;
 	}
 	
 }

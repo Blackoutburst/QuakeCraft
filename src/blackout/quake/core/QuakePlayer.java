@@ -11,12 +11,14 @@ import net.minecraft.server.v1_8_R3.PlayerConnection;
 public class QuakePlayer {
 	protected Player player;
 	protected float cooldown;
+	protected float dashCooldown;
 	protected Board board;
 	protected int score;
 	
 	public QuakePlayer(Player player) {
 		this.player = player;
 		this.cooldown = 0;
+		this.dashCooldown = 0;
 		this.board = null;
 		this.score = 0;
 	}
@@ -84,6 +86,14 @@ public class QuakePlayer {
 
 	public void setScore(int score) {
 		this.score = score;
+	}
+
+	public float getDashCooldown() {
+		return dashCooldown;
+	}
+
+	public void setDashCooldown(float dashCooldown) {
+		this.dashCooldown = dashCooldown;
 	}
 	
 }
