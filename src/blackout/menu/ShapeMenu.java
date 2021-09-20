@@ -67,15 +67,15 @@ public class ShapeMenu {
 		p.openInventory(inv);
 	}
 	
-	public static void click(int slot, Player p) {
+	public static void getValue(int slot, Player p, boolean open) {
 		QuakePlayer qp = QuakePlayer.getFromPlayer(p);
 		
 		switch (slot) {
-			case 11: qp.getGunProfile().setShape(Type.BALL); CustomMenu.open(p); break;
-			case 12: qp.getGunProfile().setShape(Type.BALL_LARGE); CustomMenu.open(p); break;
-			case 13: qp.getGunProfile().setShape(Type.BURST); CustomMenu.open(p); break;
-			case 14: qp.getGunProfile().setShape(Type.STAR); CustomMenu.open(p); break;
-			case 15: qp.getGunProfile().setShape(Type.CREEPER); CustomMenu.open(p); break;
+			case 11: qp.getGunProfile().setShape(Type.BALL); qp.savePlayerData("shape", slot); if (open) CustomMenu.open(p); break;
+			case 12: qp.getGunProfile().setShape(Type.BALL_LARGE); qp.savePlayerData("shape", slot); if (open) CustomMenu.open(p); break;
+			case 13: qp.getGunProfile().setShape(Type.BURST); qp.savePlayerData("shape", slot); if (open) CustomMenu.open(p); break;
+			case 14: qp.getGunProfile().setShape(Type.STAR); qp.savePlayerData("shape", slot); if (open) CustomMenu.open(p); break;
+			case 15: qp.getGunProfile().setShape(Type.CREEPER); qp.savePlayerData("shape", slot); if (open) CustomMenu.open(p); break;
 			default: return;
 		}
 	}

@@ -122,20 +122,20 @@ public class GunMenu {
 		p.openInventory(inv);
 	}
 	
-	public static void click(int slot, Player p) {
+	public static void getValue(int slot, Player p, boolean open) {
 		QuakePlayer qp = QuakePlayer.getFromPlayer(p);
 		
 		switch (slot) {
-			case 11: qp.getGunProfile().setGun(Material.WOOD_HOE).setSuperior(false); CustomMenu.open(p); break;
-			case 12: qp.getGunProfile().setGun(Material.STONE_HOE).setSuperior(false); CustomMenu.open(p); break;
-			case 13: qp.getGunProfile().setGun(Material.IRON_HOE).setSuperior(false); CustomMenu.open(p); break;
-			case 14: qp.getGunProfile().setGun(Material.GOLD_HOE).setSuperior(false); CustomMenu.open(p); break;
-			case 15: qp.getGunProfile().setGun(Material.DIAMOND_HOE).setSuperior(false); CustomMenu.open(p); break;
-			case 20: qp.getGunProfile().setGun(Material.WOOD_HOE).setSuperior(true); CustomMenu.open(p); break;
-			case 21: qp.getGunProfile().setGun(Material.STONE_HOE).setSuperior(true); CustomMenu.open(p); break;
-			case 22: qp.getGunProfile().setGun(Material.IRON_HOE).setSuperior(true); CustomMenu.open(p); break;
-			case 23: qp.getGunProfile().setGun(Material.GOLD_HOE).setSuperior(true); CustomMenu.open(p); break;
-			case 24: qp.getGunProfile().setGun(Material.DIAMOND_HOE).setSuperior(true); CustomMenu.open(p); break;
+			case 11: qp.getGunProfile().setGun(Material.WOOD_HOE).setSuperior(false); qp.savePlayerData("gun", slot); if (open) CustomMenu.open(p); break;
+			case 12: qp.getGunProfile().setGun(Material.STONE_HOE).setSuperior(false); qp.savePlayerData("gun", slot); if (open) CustomMenu.open(p); break;
+			case 13: qp.getGunProfile().setGun(Material.IRON_HOE).setSuperior(false); qp.savePlayerData("gun", slot); if (open) CustomMenu.open(p); break;
+			case 14: qp.getGunProfile().setGun(Material.GOLD_HOE).setSuperior(false); qp.savePlayerData("gun", slot); if (open) CustomMenu.open(p); break;
+			case 15: qp.getGunProfile().setGun(Material.DIAMOND_HOE).setSuperior(false); qp.savePlayerData("gun", slot); if (open) CustomMenu.open(p); break;
+			case 20: qp.getGunProfile().setGun(Material.WOOD_HOE).setSuperior(true); qp.savePlayerData("gun", slot); if (open) CustomMenu.open(p); break;
+			case 21: qp.getGunProfile().setGun(Material.STONE_HOE).setSuperior(true); qp.savePlayerData("gun", slot); if (open) CustomMenu.open(p); break;
+			case 22: qp.getGunProfile().setGun(Material.IRON_HOE).setSuperior(true); qp.savePlayerData("gun", slot); if (open) CustomMenu.open(p); break;
+			case 23: qp.getGunProfile().setGun(Material.GOLD_HOE).setSuperior(true); qp.savePlayerData("gun", slot); if (open) CustomMenu.open(p); break;
+			case 24: qp.getGunProfile().setGun(Material.DIAMOND_HOE).setSuperior(true); qp.savePlayerData("gun", slot); if (open) CustomMenu.open(p); break;
 			default: return;
 		}
 	}

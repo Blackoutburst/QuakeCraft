@@ -1,8 +1,15 @@
 package blackout.quake.core;
 
+import java.io.File;
+import java.io.IOException;
+
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
+import blackout.menu.ColorMenu;
+import blackout.menu.GunMenu;
+import blackout.menu.ShapeMenu;
 import blackout.quake.main.Main;
 import net.minecraft.server.v1_8_R3.ChatComponentText;
 import net.minecraft.server.v1_8_R3.PacketPlayOutChat;
@@ -105,5 +112,26 @@ public class QuakePlayer {
 	public void setGunProfile(GunProfile gunProfile) {
 		this.gunProfile = gunProfile;
 	}
+
+	public void savePlayerData(String field, int data) {
+		try {
+			File f = new File("./plugins/Quake/player data/"+this.player.getUniqueId().toString().replace("-", "")+".yml");
+			
+			if (!f.exists()) f.createNewFile();
+			
+			YamlConfiguration config = YamlConfiguration.loadConfiguration(f);
+			config.set(field, data);
+			config.save(f);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
+	public void readPlayerData() {
+		YamlConfiguration playerData = YamlConfiguration.loadConfiguration(new File("./plugins/HitW/player data/"+this.player.getUniqueId().toString().replace("-", "")+".yml"));
+
+		GunMenu.getValue(playerData.getInt("gun"), this.player, false);
+		ColorMenu.getValue(playerData.getInt("color"), this.player, false);
+		ShapeMenu.getValue(playerData.getInt("shape"), this.player, false);
+	}
 }

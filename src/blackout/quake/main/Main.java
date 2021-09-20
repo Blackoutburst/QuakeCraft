@@ -1,5 +1,6 @@
 package blackout.quake.main;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,6 +52,7 @@ public class Main extends JavaPlugin implements Listener {
 		getServer().getPluginManager().registerEvents(this, this);
 		new Core().cooldownTimer();
 		new Core().gameTimer();
+		new File("./plugins/Quake/player data/").mkdirs();
 		Core.loadRespawn();
 		
 		spawn = new Location(Bukkit.getWorld("world"), 910.5f, 55, 1331.5f, 0, 0);
@@ -63,12 +65,19 @@ public class Main extends JavaPlugin implements Listener {
 		event.getPlayer().setSaturation(10000);
 		event.getPlayer().setGameMode(GameMode.ADVENTURE);
 		event.getPlayer().getInventory().clear();
-		
 		event.getPlayer().teleport(spawn);
 		
 		GunProfile gunProfile = new GunProfile("§bWood gun", Material.WOOD_HOE, Type.BALL, Color.AQUA, false);
 		
-		players.add(new QuakePlayer(event.getPlayer(), gunProfile));
+		if (new File("./plugins/Quake/player data/"+event.getPlayer().getUniqueId().toString().replace("-", "")+".yml").exists()) {
+			QuakePlayer qp = new QuakePlayer(event.getPlayer(), gunProfile);
+			
+			qp.readPlayerData();
+			players.add(qp);
+		} else {
+			players.add(new QuakePlayer(event.getPlayer(), gunProfile));
+		}
+		
 		ScoreboardManager.init(event.getPlayer());
 		ScoreboardManager.updatePlayers();
 		CustomMenu.giveItem(event.getPlayer());
@@ -131,17 +140,17 @@ public class Main extends JavaPlugin implements Listener {
 			event.setCancelled(true);
 		}
 		if (event.getInventory().getName().equals("Gun Menu")) {
-			GunMenu.click(event.getSlot(), (Player) event.getWhoClicked());
+			GunMenu.getValue(event.getSlot(), (Player) event.getWhoClicked(), true);
 			event.setCancelled(true);
 		}
 		
 		if (event.getInventory().getName().equals("Shape Menu")) {
-			ShapeMenu.click(event.getSlot(), (Player) event.getWhoClicked());
+			ShapeMenu.getValue(event.getSlot(), (Player) event.getWhoClicked(), true);
 			event.setCancelled(true);
 		}
 		
 		if (event.getInventory().getName().equals("Color Menu")) {
-			ColorMenu.click(event.getSlot(), (Player) event.getWhoClicked());
+			ColorMenu.getValue(event.getSlot(), (Player) event.getWhoClicked(), true);
 			event.setCancelled(true);
 		}
 	}
