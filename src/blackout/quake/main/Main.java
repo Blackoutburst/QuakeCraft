@@ -72,10 +72,14 @@ public class Main extends JavaPlugin implements Listener {
 		if (new File("./plugins/Quake/player data/"+event.getPlayer().getUniqueId().toString().replace("-", "")+".yml").exists()) {
 			QuakePlayer qp = new QuakePlayer(event.getPlayer(), gunProfile);
 			
-			qp.readPlayerData();
 			players.add(qp);
+			qp.readPlayerData();
 		} else {
-			players.add(new QuakePlayer(event.getPlayer(), gunProfile));
+			QuakePlayer qp = new QuakePlayer(event.getPlayer(), gunProfile);
+			qp.savePlayerData("gun", 11);
+			qp.savePlayerData("shape", 11);
+			qp.savePlayerData("color", 31);
+			players.add(qp);
 		}
 		
 		ScoreboardManager.init(event.getPlayer());

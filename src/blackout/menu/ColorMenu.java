@@ -47,22 +47,22 @@ public class ColorMenu {
 		QuakePlayer qp = QuakePlayer.getFromPlayer(p);
 		
 		switch (slot) {
-			case 11: qp.getGunProfile().setColor(Color.BLACK); if (open) CustomMenu.open(p); break;
-			case 12: qp.getGunProfile().setColor(Color.RED); if (open) CustomMenu.open(p); break;
-			case 13: qp.getGunProfile().setColor(Color.GREEN); if (open) CustomMenu.open(p); break;
-			case 14: qp.getGunProfile().setColor(Color.MAROON); if (open) CustomMenu.open(p); break;
-			case 15: qp.getGunProfile().setColor(Color.NAVY); if (open) CustomMenu.open(p); break;
-			case 20: qp.getGunProfile().setColor(Color.PURPLE); if (open) CustomMenu.open(p); break;
-			case 21: qp.getGunProfile().setColor(Color.BLUE); if (open) CustomMenu.open(p); break;
-			case 22: qp.getGunProfile().setColor(Color.SILVER); if (open) CustomMenu.open(p); break;
-			case 23: qp.getGunProfile().setColor(Color.GRAY); if (open) CustomMenu.open(p); break;
-			case 24: qp.getGunProfile().setColor(Color.fromRGB(255, 130, 197)); if (open) CustomMenu.open(p); break;
-			case 29: qp.getGunProfile().setColor(Color.LIME); if (open) CustomMenu.open(p); break;
-			case 30: qp.getGunProfile().setColor(Color.YELLOW); if (open) CustomMenu.open(p); break;
-			case 31: qp.getGunProfile().setColor(Color.AQUA); if (open) CustomMenu.open(p); break;
-			case 32: qp.getGunProfile().setColor(Color.FUCHSIA); if (open) CustomMenu.open(p); break;
-			case 33: qp.getGunProfile().setColor(Color.ORANGE); if (open) CustomMenu.open(p); break;
-			case 40: qp.getGunProfile().setColor(Color.WHITE); if (open) CustomMenu.open(p); break;
+			case 11: qp.getGunProfile().setColor(Color.BLACK); qp.savePlayerData("color", slot); if (open) CustomMenu.open(p); break;
+			case 12: qp.getGunProfile().setColor(Color.RED); qp.savePlayerData("color", slot); if (open) CustomMenu.open(p); break;
+			case 13: qp.getGunProfile().setColor(Color.GREEN); qp.savePlayerData("color", slot); if (open) CustomMenu.open(p); break;
+			case 14: qp.getGunProfile().setColor(Color.fromRGB(89, 69, 13)); qp.savePlayerData("color", slot); if (open) CustomMenu.open(p); break;
+			case 15: qp.getGunProfile().setColor(Color.NAVY); qp.savePlayerData("color", slot); if (open) CustomMenu.open(p); break;
+			case 20: qp.getGunProfile().setColor(Color.PURPLE); qp.savePlayerData("color", slot); if (open) CustomMenu.open(p); break;
+			case 21: qp.getGunProfile().setColor(Color.fromRGB(66, 135, 245)); qp.savePlayerData("color", slot); if (open) CustomMenu.open(p); break;
+			case 22: qp.getGunProfile().setColor(Color.SILVER); qp.savePlayerData("color", slot); if (open) CustomMenu.open(p); break;
+			case 23: qp.getGunProfile().setColor(Color.GRAY); qp.savePlayerData("color", slot); if (open) CustomMenu.open(p); break;
+			case 24: qp.getGunProfile().setColor(Color.fromRGB(255, 130, 197)); qp.savePlayerData("color", slot); if (open) CustomMenu.open(p); break;
+			case 29: qp.getGunProfile().setColor(Color.LIME); qp.savePlayerData("color", slot); if (open) CustomMenu.open(p); break;
+			case 30: qp.getGunProfile().setColor(Color.YELLOW); qp.savePlayerData("color", slot); if (open) CustomMenu.open(p); break;
+			case 31: qp.getGunProfile().setColor(Color.AQUA); qp.savePlayerData("color", slot); if (open) CustomMenu.open(p); break;
+			case 32: qp.getGunProfile().setColor(Color.FUCHSIA); qp.savePlayerData("color", slot); if (open) CustomMenu.open(p); break;
+			case 33: qp.getGunProfile().setColor(Color.ORANGE); qp.savePlayerData("color", slot); if (open) CustomMenu.open(p); break;
+			case 40: qp.getGunProfile().setColor(Color.WHITE); qp.savePlayerData("color", slot); if (open) CustomMenu.open(p); break;
 			default: return;
 		}
 	}

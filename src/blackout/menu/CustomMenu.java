@@ -45,10 +45,10 @@ public class CustomMenu {
 		if (gp.getColor().equals(Color.BLACK)) return (0);
 		if (gp.getColor().equals(Color.RED)) return (1);
 		if (gp.getColor().equals(Color.GREEN)) return (2);
-		if (gp.getColor().equals(Color.MAROON)) return (3);
+		if (gp.getColor().equals(Color.fromRGB(89, 69, 13))) return (3);
 		if (gp.getColor().equals(Color.NAVY)) return (4);
 		if (gp.getColor().equals(Color.PURPLE)) return (5);
-		if (gp.getColor().equals(Color.BLUE)) return (6);
+		if (gp.getColor().equals(Color.fromRGB(66, 135, 245))) return (6);
 		if (gp.getColor().equals(Color.SILVER)) return (7);
 		if (gp.getColor().equals(Color.GRAY)) return (8);
 		if (gp.getColor().equals(Color.fromRGB(255, 130, 197))) return (9);

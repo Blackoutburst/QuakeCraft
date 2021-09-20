@@ -30,7 +30,7 @@ public class Core {
 		
 		
 		for (QuakePlayer p : Main.players) {
-			ItemStack gun = new ItemStack(Material.IRON_HOE);
+			ItemStack gun = new ItemStack(p.getGunProfile().getGun());
 			ItemMeta gunMeta = gun.getItemMeta();
 			
 			gunMeta.setDisplayName(p.getGunProfile().getName());

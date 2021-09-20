@@ -128,10 +128,10 @@ public class QuakePlayer {
 	}
 	
 	public void readPlayerData() {
-		YamlConfiguration playerData = YamlConfiguration.loadConfiguration(new File("./plugins/HitW/player data/"+this.player.getUniqueId().toString().replace("-", "")+".yml"));
+		YamlConfiguration playerData = YamlConfiguration.loadConfiguration(new File("./plugins/Quake/player data/"+this.player.getUniqueId().toString().replace("-", "")+".yml"));
 
 		GunMenu.getValue(playerData.getInt("gun"), this.player, false);
-		ColorMenu.getValue(playerData.getInt("color"), this.player, false);
 		ShapeMenu.getValue(playerData.getInt("shape"), this.player, false);
+		ColorMenu.getValue(playerData.getInt("color"), this.player, false);
 	}
 }
