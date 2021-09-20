@@ -88,6 +88,7 @@ public class Core {
 			p.getPlayer().getInventory().clear();
 			p.setScore(0);
 			p.getPlayer().removePotionEffect(PotionEffectType.SPEED);
+			CustomMenu.giveItem(p.getPlayer());
 		}
 	}
 	

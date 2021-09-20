@@ -4,8 +4,11 @@ import java.util.ArrayList;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import blackout.quake.main.Main;
 
 public class CustomMenu {
 
@@ -22,8 +25,10 @@ public class CustomMenu {
 		p.getInventory().setItem(0, menu);
 	}
 	
-	public static void open() {
+	public static void open(Player p) {
+		Inventory inv = Main.getPlugin(Main.class).getServer().createInventory(null, 27,  "Gun Menu");
 		
+		p.openInventory(inv);
 	}
 	
 }
