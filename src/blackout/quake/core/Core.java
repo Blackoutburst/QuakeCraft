@@ -61,6 +61,14 @@ public class Core {
 		}
 	}
 	
+	public static boolean clickHoe(Material mat) {
+		return (mat.equals(Material.WOOD_HOE) ||
+				mat.equals(Material.STONE_HOE) ||
+				mat.equals(Material.IRON_HOE) ||
+				mat.equals(Material.GOLD_HOE) ||
+				mat.equals(Material.DIAMOND_HOE));
+	}
+	
 	public static void endGame() {
 		Main.gameRunning = false;
 

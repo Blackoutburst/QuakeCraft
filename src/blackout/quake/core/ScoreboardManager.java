@@ -13,11 +13,11 @@ public class ScoreboardManager {
 		QuakePlayer qp = QuakePlayer.getFromPlayer(p);
 		
 		board.setTitle("§6Quake");
-		board.set(15, "§a§m----------"); 
+		board.set(15, "§b§m--------------------"); 
 		board.set(14, "Time: §a0:00");
 		board.set(13, " "); 
 		board.set(7, "  ");
-		board.set(6, "§a§m---------- "); 
+		board.set(6, "§b§m-------------------- "); 
 		qp.setBoard(board);
 	}
 	

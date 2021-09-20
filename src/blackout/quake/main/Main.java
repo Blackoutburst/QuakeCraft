@@ -6,7 +6,6 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -14,6 +13,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -22,6 +22,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 import blackout.quake.core.Core;
+import blackout.quake.core.CustomMenu;
 import blackout.quake.core.QuakePlayer;
 import blackout.quake.core.RailGun;
 import blackout.quake.core.ScoreboardManager;
@@ -58,12 +59,18 @@ public class Main extends JavaPlugin implements Listener {
 		players.add(new QuakePlayer(event.getPlayer()));
 		ScoreboardManager.init(event.getPlayer());
 		ScoreboardManager.updatePlayers();
+		CustomMenu.giveItem(event.getPlayer());
 	}
 	
 	@EventHandler
  	public void onPlayerQuit(PlayerQuitEvent event) {
 		players.remove(QuakePlayer.getFromPlayer(event.getPlayer()));
 		ScoreboardManager.updatePlayers();
+	}
+	
+	@EventHandler
+	public void onItemDrop(PlayerDropItemEvent event) {
+		event.setCancelled(true);
 	}
 	
 	@EventHandler
@@ -74,7 +81,7 @@ public class Main extends JavaPlugin implements Listener {
 		
 		if ((event.getAction().equals(Action.LEFT_CLICK_BLOCK) || 
 				event.getAction().equals(Action.LEFT_CLICK_AIR)) &&
-				event.getPlayer().getItemInHand().getType().equals(Material.IRON_HOE)) {
+				Core.clickHoe(event.getPlayer().getItemInHand().getType())) {
 			
 			if (qp.getDashCooldown() > 0) {
 				event.getPlayer().sendMessage("§cYou can only dash once every seconds");
@@ -91,7 +98,7 @@ public class Main extends JavaPlugin implements Listener {
 		
 		if ((event.getAction().equals(Action.RIGHT_CLICK_BLOCK) || 
 			event.getAction().equals(Action.RIGHT_CLICK_AIR)) &&
-			event.getPlayer().getItemInHand().getType().equals(Material.IRON_HOE) &&
+			Core.clickHoe(event.getPlayer().getItemInHand().getType()) &&
 			qp.getCooldown() <= 0) {
 			
 			Location loc = event.getPlayer().getLocation().clone();
