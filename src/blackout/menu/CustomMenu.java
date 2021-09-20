@@ -61,7 +61,7 @@ public class CustomMenu {
 	public static void click(int slot, Player p) {
 		switch (slot) {
 			case 12: GunMenu.open(p); break;
-			case 13: break;
+			case 13: ShapeMenu.open(p); break;
 			case 14: break;
 			default: return;
 		}

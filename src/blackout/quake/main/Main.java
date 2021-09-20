@@ -26,6 +26,7 @@ import org.bukkit.util.Vector;
 
 import blackout.menu.CustomMenu;
 import blackout.menu.GunMenu;
+import blackout.menu.ShapeMenu;
 import blackout.quake.core.Core;
 import blackout.quake.core.QuakePlayer;
 import blackout.quake.core.RailGun;
@@ -124,6 +125,10 @@ public class Main extends JavaPlugin implements Listener {
 		}
 		if (event.getInventory().getName().equals("Gun Menu")) {
 			GunMenu.click(event.getSlot(), (Player) event.getWhoClicked());
+			event.setCancelled(true);
+		}
+		if (event.getInventory().getName().equals("Shape Menu")) {
+			ShapeMenu.click(event.getSlot(), (Player) event.getWhoClicked());
 			event.setCancelled(true);
 		}
 	}

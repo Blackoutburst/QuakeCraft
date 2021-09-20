@@ -112,7 +112,7 @@ public class RailGun {
 			PlayerConnection connection = ((CraftPlayer) p).getHandle().playerConnection;
 			ItemStack stackFirework = new ItemStack(Material.FIREWORK);
 			FireworkMeta fireworkMeta = (FireworkMeta) stackFirework.getItemMeta();
-			FireworkEffect effect = FireworkEffect.builder().flicker(false).withColor(Color.AQUA).with(Type.BURST).build();
+			FireworkEffect effect = FireworkEffect.builder().flicker(false).withColor(Color.AQUA).with(Type.BALL).build();
 			fireworkMeta.addEffect(effect);
 			fireworkMeta.setPower(2);
 			stackFirework.setItemMeta(fireworkMeta);
