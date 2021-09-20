@@ -6,6 +6,7 @@ import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -63,6 +64,7 @@ public class GunMenu {
 
 		item = new ItemStack(Material.WOOD_HOE, 1);
 		meta = item.getItemMeta();
+		meta.addItemFlags(ItemFlag.values());
 		meta.addEnchant(Enchantment.ARROW_DAMAGE, 10, true);
 		meta.setDisplayName("§6Superior wood gun");
 		lore = new ArrayList<String>();
@@ -73,6 +75,7 @@ public class GunMenu {
 		
 		item = new ItemStack(Material.STONE_HOE, 1);
 		meta = item.getItemMeta();
+		meta.addItemFlags(ItemFlag.values());
 		meta.addEnchant(Enchantment.ARROW_DAMAGE, 10, true);
 		meta.setDisplayName("§6Superior stone gun");
 		lore = new ArrayList<String>();
@@ -83,6 +86,7 @@ public class GunMenu {
 		
 		item = new ItemStack(Material.IRON_HOE, 1);
 		meta = item.getItemMeta();
+		meta.addItemFlags(ItemFlag.values());
 		meta.addEnchant(Enchantment.ARROW_DAMAGE, 10, true);
 		meta.setDisplayName("§6Superior iron gun");
 		lore = new ArrayList<String>();
@@ -93,6 +97,7 @@ public class GunMenu {
 		
 		item = new ItemStack(Material.GOLD_HOE, 1);
 		meta = item.getItemMeta();
+		meta.addItemFlags(ItemFlag.values());
 		meta.addEnchant(Enchantment.ARROW_DAMAGE, 10, true);
 		meta.setDisplayName("§6Superior gold gun");
 		lore = new ArrayList<String>();
@@ -103,6 +108,7 @@ public class GunMenu {
 		
 		item = new ItemStack(Material.DIAMOND_HOE, 1);
 		meta = item.getItemMeta();
+		meta.addItemFlags(ItemFlag.values());
 		meta.addEnchant(Enchantment.ARROW_DAMAGE, 10, true);
 		meta.setDisplayName("§6Superior diamond gun");
 		lore = new ArrayList<String>();

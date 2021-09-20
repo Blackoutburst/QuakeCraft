@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -37,8 +38,9 @@ public class CustomMenu {
 		item.setItemMeta(meta);
 		inv.setItem(12, item);
 		
-		item = new ItemStack(Material.SULPHUR, 1);
+		item = new ItemStack(Material.FIREWORK_CHARGE, 1);
 		meta = item.getItemMeta();
+		meta.addItemFlags(ItemFlag.values());
 		meta.setDisplayName("§bExplosion shape");
 		lore = new ArrayList<String>();
 		lore.add("§6Open the explosion shape menu");
@@ -62,7 +64,7 @@ public class CustomMenu {
 		switch (slot) {
 			case 12: GunMenu.open(p); break;
 			case 13: ShapeMenu.open(p); break;
-			case 14: break;
+			case 14: ColorMenu.open(p); break;
 			default: return;
 		}
 	}

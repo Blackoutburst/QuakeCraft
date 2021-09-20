@@ -24,6 +24,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
+import blackout.menu.ColorMenu;
 import blackout.menu.CustomMenu;
 import blackout.menu.GunMenu;
 import blackout.menu.ShapeMenu;
@@ -127,8 +128,14 @@ public class Main extends JavaPlugin implements Listener {
 			GunMenu.click(event.getSlot(), (Player) event.getWhoClicked());
 			event.setCancelled(true);
 		}
+		
 		if (event.getInventory().getName().equals("Shape Menu")) {
 			ShapeMenu.click(event.getSlot(), (Player) event.getWhoClicked());
+			event.setCancelled(true);
+		}
+		
+		if (event.getInventory().getName().equals("Color Menu")) {
+			ColorMenu.click(event.getSlot(), (Player) event.getWhoClicked());
 			event.setCancelled(true);
 		}
 	}

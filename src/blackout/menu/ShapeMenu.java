@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -17,6 +18,7 @@ public class ShapeMenu {
 		
 		ItemStack item = new ItemStack(Material.FIREWORK_CHARGE, 1);
 		ItemMeta meta = item.getItemMeta();
+		meta.addItemFlags(ItemFlag.values());
 		meta.setDisplayName("§bSmall explosion");
 		ArrayList<String> lore = new ArrayList<String>();
 		lore.add("§7Click to select the small explosion");
