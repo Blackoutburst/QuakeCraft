@@ -25,3 +25,19 @@ The reloading bar show the progression as well as the reloading time (0.85s).\
 The game time is endless.\
 The first player who reach 25 point win the game.\
 ![image](https://user-images.githubusercontent.com/30992311/133885154-a6f098b3-111a-4f4c-a997-bbe1055e570c.png)
+
+### Gun customisation
+Let you customise your gun only 3 elements are customisable at the moment.\
+![image](https://user-images.githubusercontent.com/30992311/134068335-f25495f0-9818-42b2-a1ba-c73f4f1f383b.png)
+
+#### Guns
+Change your gun item.\
+![image](https://user-images.githubusercontent.com/30992311/134068406-9a8f8187-1437-49f1-a681-9e161686491d.png)
+
+#### Explosion shape
+Change the shape of the explosion when you make a kill, this is all possible firework shape.\
+![image](https://user-images.githubusercontent.com/30992311/134068543-6a72cef6-2668-47ae-9c84-2019f23d82c9.png)
+
+#### Explosion color
+Change the color of the explosion.\
+![image](https://user-images.githubusercontent.com/30992311/134068636-73fa2077-f11b-462b-82aa-b545f2725985.png)
