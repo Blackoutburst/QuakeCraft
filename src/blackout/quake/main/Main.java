@@ -10,6 +10,7 @@ import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -23,8 +24,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
+import blackout.menu.CustomMenu;
+import blackout.menu.GunMenu;
 import blackout.quake.core.Core;
-import blackout.quake.core.CustomMenu;
 import blackout.quake.core.QuakePlayer;
 import blackout.quake.core.RailGun;
 import blackout.quake.core.ScoreboardManager;
@@ -117,6 +119,11 @@ public class Main extends JavaPlugin implements Listener {
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent event) {
 		if (event.getInventory().getName().equals("Gun customisation Menu")) {
+			CustomMenu.click(event.getSlot(), (Player) event.getWhoClicked());
+			event.setCancelled(true);
+		}
+		if (event.getInventory().getName().equals("Gun Menu")) {
+			GunMenu.click(event.getSlot(), (Player) event.getWhoClicked());
 			event.setCancelled(true);
 		}
 	}

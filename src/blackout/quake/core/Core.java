@@ -18,6 +18,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import blackout.menu.CustomMenu;
 import blackout.quake.main.Main;
 
 public class Core {

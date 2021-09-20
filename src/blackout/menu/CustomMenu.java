@@ -1,4 +1,4 @@
-package blackout.quake.core;
+package blackout.menu;
 
 import java.util.ArrayList;
 
@@ -56,6 +56,15 @@ public class CustomMenu {
 		inv.setItem(14, item);
 		
 		p.openInventory(inv);
+	}
+	
+	public static void click(int slot, Player p) {
+		switch (slot) {
+			case 12: GunMenu.open(p); break;
+			case 13: break;
+			case 14: break;
+			default: return;
+		}
 	}
 	
 }
