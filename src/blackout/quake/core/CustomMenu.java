@@ -26,7 +26,7 @@ public class CustomMenu {
 	}
 	
 	public static void open(Player p) {
-		Inventory inv = Main.getPlugin(Main.class).getServer().createInventory(null, 27,  "Gun Menu");
+		Inventory inv = Main.getPlugin(Main.class).getServer().createInventory(null, 27, "Gun customisation Menu");
 		
 		ItemStack item = new ItemStack(Material.WOOD_HOE, 1);
 		ItemMeta meta = item.getItemMeta();
@@ -41,7 +41,7 @@ public class CustomMenu {
 		meta = item.getItemMeta();
 		meta.setDisplayName("§bExplosion shape");
 		lore = new ArrayList<String>();
-		lore.add("§6Open the eplosion shape menu");
+		lore.add("§6Open the explosion shape menu");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
 		inv.setItem(13, item);
@@ -50,7 +50,7 @@ public class CustomMenu {
 		meta = item.getItemMeta();
 		meta.setDisplayName("§bExplosion color");
 		lore = new ArrayList<String>();
-		lore.add("§6Open the eplosion color menu");
+		lore.add("§6Open the explosion color menu");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
 		inv.setItem(14, item);
