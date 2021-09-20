@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -17,6 +18,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 import blackout.quake.core.Core;
@@ -46,8 +48,12 @@ public class Main extends JavaPlugin implements Listener {
 	
 	@EventHandler
  	public void onPlayerJoin(PlayerJoinEvent event) {
+		event.getPlayer().removePotionEffect(PotionEffectType.SPEED);
 		event.getPlayer().setHealth(20);
 		event.getPlayer().setSaturation(10000);
+		event.getPlayer().setGameMode(GameMode.ADVENTURE);
+		event.getPlayer().getInventory().clear();
+		
 		event.getPlayer().teleport(spawn);
 		players.add(new QuakePlayer(event.getPlayer()));
 		ScoreboardManager.init(event.getPlayer());

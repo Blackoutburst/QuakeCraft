@@ -36,14 +36,14 @@ public class RailGun {
 	protected Location location;
 	protected Vector direction;
 	protected Player owner;
-	protected byte lifetime;
+	protected short lifetime;
 	protected boolean alive;
 	
 	public RailGun(Location location, Vector direction, Player owner) {
 		this.location = location;
 		this.direction = direction;
 		this.owner = owner;
-		this.lifetime = 100;
+		this.lifetime = 500;
 		this.alive = true;
 	}
 	
@@ -59,9 +59,9 @@ public class RailGun {
 		new BukkitRunnable(){
 			@Override
 			public void run(){
-				for (int i = 0; i < 10; i++) {
-					b.setLocation(b.getLocation().add(b.getDirection().normalize().multiply(1)));
-					b.setLifetime((byte) (b.getLifetime() - 1));
+				for (int i = 0; i < 50; i++) {
+					b.setLocation(b.getLocation().add(b.getDirection().normalize().multiply(0.25)));
+					b.setLifetime((short) (b.getLifetime() - 1));
 					
 					b.getNearbyPlayer();
 					b.trail();
@@ -85,7 +85,6 @@ public class RailGun {
 				if (e.getUniqueId() != owner.getUniqueId() && distance <= 2) {
 					Core.teleportToRespawn((Player) e);
 					this.detonate();
-					this.alive = false;
 					owner.getWorld().playSound(owner.getLocation(), Sound.BLAZE_DEATH, 1, 2);
 					Bukkit.broadcastMessage(owner.getName()+" §egibbed§r "+e.getName());
 				}
@@ -150,11 +149,11 @@ public class RailGun {
 		this.owner = owner;
 	}
 
-	public byte getLifetime() {
+	public short getLifetime() {
 		return lifetime;
 	}
 
-	public void setLifetime(byte lifetime) {
+	public void setLifetime(short lifetime) {
 		this.lifetime = lifetime;
 		if (this.lifetime <= 0) {
 			this.alive = false;
