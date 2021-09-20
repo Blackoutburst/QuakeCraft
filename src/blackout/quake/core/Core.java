@@ -12,6 +12,7 @@ import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
@@ -27,14 +28,18 @@ public class Core {
 		Main.gameRunning = true;
 		Main.gameTime = 0;
 		
-		ItemStack gun = new ItemStack(Material.IRON_HOE);
-		ItemMeta gunMeta = gun.getItemMeta();
-		
-		gunMeta.setDisplayName("§b§oRailGun");
-		gunMeta.addEnchant(Enchantment.ARROW_DAMAGE, 10, true);
-		gun.setItemMeta(gunMeta);
 		
 		for (QuakePlayer p : Main.players) {
+			ItemStack gun = new ItemStack(Material.IRON_HOE);
+			ItemMeta gunMeta = gun.getItemMeta();
+			
+			gunMeta.setDisplayName(p.getGunProfile().getName());
+			if (p.getGunProfile().isSuperior()) {
+				gunMeta.addItemFlags(ItemFlag.values());
+				gunMeta.addEnchant(Enchantment.ARROW_DAMAGE, 10, true);
+			}
+			gun.setItemMeta(gunMeta);
+			
 			p.getPlayer().getInventory().setItem(0, gun);
 			p.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 100000, 1, false, false));
 			teleportToRespawn(p.getPlayer());

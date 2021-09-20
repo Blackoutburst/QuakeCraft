@@ -14,13 +14,15 @@ public class QuakePlayer {
 	protected float dashCooldown;
 	protected Board board;
 	protected int score;
+	protected GunProfile gunProfile;
 	
-	public QuakePlayer(Player player) {
+	public QuakePlayer(Player player, GunProfile gunProfile) {
 		this.player = player;
 		this.cooldown = 0;
 		this.dashCooldown = 0;
 		this.board = null;
 		this.score = 0;
+		this.gunProfile = gunProfile;
 	}
 	
 	public static QuakePlayer getFromPlayer(Player p) {
@@ -94,6 +96,14 @@ public class QuakePlayer {
 
 	public void setDashCooldown(float dashCooldown) {
 		this.dashCooldown = dashCooldown;
+	}
+
+	public GunProfile getGunProfile() {
+		return gunProfile;
+	}
+
+	public void setGunProfile(GunProfile gunProfile) {
+		this.gunProfile = gunProfile;
 	}
 	
 }

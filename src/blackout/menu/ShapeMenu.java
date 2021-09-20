@@ -2,6 +2,7 @@ package blackout.menu;
 
 import java.util.ArrayList;
 
+import org.bukkit.FireworkEffect.Type;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -9,6 +10,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import blackout.quake.core.QuakePlayer;
 import blackout.quake.main.Main;
 
 public class ShapeMenu {
@@ -66,10 +68,14 @@ public class ShapeMenu {
 	}
 	
 	public static void click(int slot, Player p) {
+		QuakePlayer qp = QuakePlayer.getFromPlayer(p);
+		
 		switch (slot) {
-			case 12: break;
-			case 13: break;
-			case 14: break;
+			case 11: qp.getGunProfile().setShape(Type.BALL); CustomMenu.open(p); break;
+			case 12: qp.getGunProfile().setShape(Type.BALL_LARGE); CustomMenu.open(p); break;
+			case 13: qp.getGunProfile().setShape(Type.BURST); CustomMenu.open(p); break;
+			case 14: qp.getGunProfile().setShape(Type.STAR); CustomMenu.open(p); break;
+			case 15: qp.getGunProfile().setShape(Type.CREEPER); CustomMenu.open(p); break;
 			default: return;
 		}
 	}

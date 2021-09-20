@@ -1,11 +1,13 @@
 package blackout.menu;
 
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import blackout.quake.core.QuakePlayer;
 import blackout.quake.main.Main;
 
 public class ColorMenu {
@@ -42,10 +44,25 @@ public class ColorMenu {
 	}
 	
 	public static void click(int slot, Player p) {
+		QuakePlayer qp = QuakePlayer.getFromPlayer(p);
+		
 		switch (slot) {
-			case 12: break;
-			case 13: break;
-			case 14: break;
+			case 11: qp.getGunProfile().setColor(Color.BLACK); CustomMenu.open(p); break;
+			case 12: qp.getGunProfile().setColor(Color.RED); CustomMenu.open(p); break;
+			case 13: qp.getGunProfile().setColor(Color.GREEN); CustomMenu.open(p); break;
+			case 14: qp.getGunProfile().setColor(Color.MAROON); CustomMenu.open(p); break;
+			case 15: qp.getGunProfile().setColor(Color.NAVY); CustomMenu.open(p); break;
+			case 20: qp.getGunProfile().setColor(Color.PURPLE); CustomMenu.open(p); break;
+			case 21: qp.getGunProfile().setColor(Color.BLUE); CustomMenu.open(p); break;
+			case 22: qp.getGunProfile().setColor(Color.SILVER); CustomMenu.open(p); break;
+			case 23: qp.getGunProfile().setColor(Color.GRAY); CustomMenu.open(p); break;
+			case 24: qp.getGunProfile().setColor(Color.fromRGB(255, 130, 197)); CustomMenu.open(p); break;
+			case 29: qp.getGunProfile().setColor(Color.LIME); CustomMenu.open(p); break;
+			case 30: qp.getGunProfile().setColor(Color.YELLOW); CustomMenu.open(p); break;
+			case 31: qp.getGunProfile().setColor(Color.AQUA); CustomMenu.open(p); break;
+			case 32: qp.getGunProfile().setColor(Color.FUCHSIA); CustomMenu.open(p); break;
+			case 33: qp.getGunProfile().setColor(Color.ORANGE); CustomMenu.open(p); break;
+			case 40: qp.getGunProfile().setColor(Color.WHITE); CustomMenu.open(p); break;
 			default: return;
 		}
 	}

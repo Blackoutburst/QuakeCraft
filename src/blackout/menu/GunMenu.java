@@ -10,6 +10,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import blackout.quake.core.QuakePlayer;
 import blackout.quake.main.Main;
 
 public class GunMenu {
@@ -122,10 +123,19 @@ public class GunMenu {
 	}
 	
 	public static void click(int slot, Player p) {
+		QuakePlayer qp = QuakePlayer.getFromPlayer(p);
+		
 		switch (slot) {
-			case 12: break;
-			case 13: break;
-			case 14: break;
+			case 11: qp.getGunProfile().setGun(Material.WOOD_HOE).setSuperior(false); CustomMenu.open(p); break;
+			case 12: qp.getGunProfile().setGun(Material.STONE_HOE).setSuperior(false); CustomMenu.open(p); break;
+			case 13: qp.getGunProfile().setGun(Material.IRON_HOE).setSuperior(false); CustomMenu.open(p); break;
+			case 14: qp.getGunProfile().setGun(Material.GOLD_HOE).setSuperior(false); CustomMenu.open(p); break;
+			case 15: qp.getGunProfile().setGun(Material.DIAMOND_HOE).setSuperior(false); CustomMenu.open(p); break;
+			case 20: qp.getGunProfile().setGun(Material.WOOD_HOE).setSuperior(true); CustomMenu.open(p); break;
+			case 21: qp.getGunProfile().setGun(Material.STONE_HOE).setSuperior(true); CustomMenu.open(p); break;
+			case 22: qp.getGunProfile().setGun(Material.IRON_HOE).setSuperior(true); CustomMenu.open(p); break;
+			case 23: qp.getGunProfile().setGun(Material.GOLD_HOE).setSuperior(true); CustomMenu.open(p); break;
+			case 24: qp.getGunProfile().setGun(Material.DIAMOND_HOE).setSuperior(true); CustomMenu.open(p); break;
 			default: return;
 		}
 	}

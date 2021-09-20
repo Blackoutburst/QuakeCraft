@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Color;
+import org.bukkit.FireworkEffect.Type;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -29,6 +31,7 @@ import blackout.menu.CustomMenu;
 import blackout.menu.GunMenu;
 import blackout.menu.ShapeMenu;
 import blackout.quake.core.Core;
+import blackout.quake.core.GunProfile;
 import blackout.quake.core.QuakePlayer;
 import blackout.quake.core.RailGun;
 import blackout.quake.core.ScoreboardManager;
@@ -62,7 +65,10 @@ public class Main extends JavaPlugin implements Listener {
 		event.getPlayer().getInventory().clear();
 		
 		event.getPlayer().teleport(spawn);
-		players.add(new QuakePlayer(event.getPlayer()));
+		
+		GunProfile gunProfile = new GunProfile("§bWood gun", Material.WOOD_HOE, Type.BALL, Color.AQUA, false);
+		
+		players.add(new QuakePlayer(event.getPlayer(), gunProfile));
 		ScoreboardManager.init(event.getPlayer());
 		ScoreboardManager.updatePlayers();
 		CustomMenu.giveItem(event.getPlayer());
@@ -114,7 +120,7 @@ public class Main extends JavaPlugin implements Listener {
 			Location loc = event.getPlayer().getLocation().clone();
 			loc.setY(loc.getY() + event.getPlayer().getEyeHeight());
 			
-			new RailGun(loc, event.getPlayer().getLocation().getDirection().clone(), event.getPlayer()).fire(event.getPlayer());
+			new RailGun(loc, event.getPlayer().getLocation().getDirection().clone(), qp).fire(event.getPlayer());
 		}
 	}
 	
