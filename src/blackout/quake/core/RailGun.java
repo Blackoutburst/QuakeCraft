@@ -47,7 +47,7 @@ public class RailGun {
 	
 	public boolean insideBlock() {
 		return (!location.getWorld().getBlockAt(location).getType().equals(Material.AIR) && 
-				location.getWorld().getBlockAt(location).getType().equals(Material.TORCH));
+				!location.getWorld().getBlockAt(location).getType().equals(Material.TORCH));
 	}
 	
 	public void fire(Player p) {
