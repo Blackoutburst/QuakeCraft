@@ -24,7 +24,7 @@ public class CommandStart {
 		worldName = worldName.substring(0, worldName.length() - 1);
 		
 		if (!new File("./plugins/Quake/"+worldName+".yml").exists()) {
-			sender.sendMessage("§cThe world [§f"+worldName+"§c] doesn't exist!");
+			sender.sendMessage("§cThe world §f"+worldName+"§c doesn't exist!");
 			return;
 		}
 		

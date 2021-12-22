@@ -62,6 +62,7 @@ public class Main extends JavaPlugin implements Listener {
 		spawn = new Location(Bukkit.getWorld("world"), 8.5f, 5.0f, 8.5f, 0, 0);
 	}
 	
+	@EventHandler
  	public void onPlayerJoin(PlayerJoinEvent event) {
 		event.getPlayer().removePotionEffect(PotionEffectType.SPEED);
 		event.getPlayer().setHealth(20);
