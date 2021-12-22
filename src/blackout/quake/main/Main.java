@@ -122,7 +122,6 @@ public class Main extends JavaPlugin implements Listener {
 				qp.setDashCooldown(RailGun.DASH_DELAY);
 				
 				Vector dash = event.getPlayer().getLocation().getDirection();
-				dash.setY(0.2f);
 				
 				event.getPlayer().setVelocity(dash.multiply(2));
 				event.getPlayer().getWorld().playSound(event.getPlayer().getLocation(), Sound.BAT_TAKEOFF, 1, 1);

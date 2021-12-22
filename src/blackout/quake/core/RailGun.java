@@ -85,7 +85,7 @@ public class RailGun {
 					Core.teleportToRespawn((Player) e);
 					this.detonate();
 					owner.getPlayer().getWorld().playSound(owner.getPlayer().getLocation(), Sound.BLAZE_DEATH, 1, 2);
-					Bukkit.broadcastMessage(owner.getPlayer().getName()+" §egibbed§r "+e.getName());
+					Bukkit.broadcastMessage(owner.getPlayer().getDisplayName()+" §egibbed§r "+((Player)e).getDisplayName());
 				}
 			}
 		}
