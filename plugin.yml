@@ -7,7 +7,19 @@ description: A quake test
 commands:
   start:
     description: Start the game
-    usage: /start
+    usage: /start <world name>
   end:
     description: End the game
     usage: /end
+  scan:
+    description: Scan the world for gift spawnpoint (Debug command)
+    usage: /scan <x1> <y1> <z1> <x2> <y2> <z2>
+  loadSpawn:
+    description: Load spawn point from file
+    usage: /loadspawn
+  clean:
+    description: Clean spawn point
+    usage: /clean
+  showSpawn:
+    description: Clean spawn point
+    usage: /showspawn

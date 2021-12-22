@@ -4,9 +4,8 @@ import java.io.File;
 import java.util.Random;
 import java.util.Set;
 
-import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -24,16 +23,18 @@ import blackout.quake.main.Main;
 
 public class Core {
 
-	public static void startGame() {
+	public static void startGame(String worldName) {
 		Main.gameRunning = true;
 		Main.gameTime = 0;
 		
+		loadRespawn(worldName);
 		
 		for (QuakePlayer p : Main.players) {
 			ItemStack gun = new ItemStack(p.getGunProfile().getGun());
 			ItemMeta gunMeta = gun.getItemMeta();
 			
 			gunMeta.setDisplayName(p.getGunProfile().getName());
+			
 			if (p.getGunProfile().isSuperior()) {
 				gunMeta.addItemFlags(ItemFlag.values());
 				gunMeta.addEnchant(Enchantment.ARROW_DAMAGE, 10, true);
@@ -42,50 +43,27 @@ public class Core {
 			
 			p.getPlayer().getInventory().setItem(0, gun);
 			p.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 100000, 1, false, false));
+			p.setCooldown(RailGun.FIRE_DELAY);
+			
 			teleportToRespawn(p.getPlayer());
-			p.cooldown = RailGun.FIRE_DELAY;
+			
+			p.getPlayer().setHealth(20);
+			p.getPlayer().setSaturation(20);
+			p.getPlayer().setGameMode(GameMode.ADVENTURE);
 		}
-	}
-
-	public static void teleportToRespawn(Player p) {
-		p.teleport(Main.respawns.get(new Random().nextInt(Main.respawns.size())));
-	}
-	
-	public static void loadRespawn() {
-		YamlConfiguration config = YamlConfiguration.loadConfiguration(new File("./plugins/Quake/respawn.yml"));
-		
-		Set<String> respawns = config.getConfigurationSection("respawn").getKeys(false);
-		
-		for (String resp : respawns) {
-			String pos[] = config.getString("respawn."+resp).split(", ");
-			float x = Float.valueOf(pos[0]);
-			float y = Float.valueOf(pos[1]);
-			float z = Float.valueOf(pos[2]);
-			float yaw = Float.valueOf(pos[3]);
-			float pitch = Float.valueOf(pos[4]);
-			Main.respawns.add(new Location(Bukkit.getWorld("world"), x, y, z, yaw, pitch));
-		}
-	}
-	
-	public static boolean clickHoe(Material mat) {
-		return (mat.equals(Material.WOOD_HOE) ||
-				mat.equals(Material.STONE_HOE) ||
-				mat.equals(Material.IRON_HOE) ||
-				mat.equals(Material.GOLD_HOE) ||
-				mat.equals(Material.DIAMOND_HOE));
 	}
 	
 	public static void endGame() {
 		Main.gameRunning = false;
 
 		Bukkit.broadcastMessage("§a==============================");
-		Bukkit.broadcastMessage(centerText("§6Quake"));
+		Bukkit.broadcastMessage(Utils.centerText("§6"+Main.players.get(0).getPlayer().getLocation().getWorld().getName()));
 		Bukkit.broadcastMessage("");
-		for (int i = 0; i < 3; i++) {
-			if (i < Main.players.size()) {
-				Bukkit.broadcastMessage(centerText(Main.players.get(i).getPlayer().getName()+": "+Main.players.get(i).getScore()));
-			}
-		}
+		
+		for (int i = 0; i < 3; i++)
+			if (i < Main.players.size())
+				Bukkit.broadcastMessage(Utils.centerText(Main.players.get(i).getPlayer().getDisplayName()+": "+Main.players.get(i).getScore()));
+		
 		Bukkit.broadcastMessage("§a==============================");
 		
 		
@@ -96,6 +74,33 @@ public class Core {
 			p.getPlayer().removePotionEffect(PotionEffectType.SPEED);
 			CustomMenu.giveItem(p.getPlayer());
 		}
+	}
+	
+	public static void teleportToRespawn(Player p) {
+		p.teleport(Main.respawns.get(new Random().nextInt(Main.respawns.size())));
+	}
+	
+	public static void loadRespawn(String worldName) {
+		YamlConfiguration config = YamlConfiguration.loadConfiguration(new File("./plugins/Quake/"+worldName+".yml"));
+		
+		Main.respawns.clear();
+		Set<String> respawns = config.getConfigurationSection("loc").getKeys(false);
+		
+		for (String i : respawns) {
+            String world = config.getString("loc."+i+".world");
+            double x = config.getDouble("loc."+i+".x");
+            double y = config.getDouble("loc."+i+".y");
+            double z = config.getDouble("loc."+i+".z");
+			Main.respawns.add(new Location(Bukkit.getWorld(world), x, y, z, 0, 0));
+		}
+	}
+	
+	public static boolean clickHoe(Material mat) {
+		return (mat.equals(Material.WOOD_HOE) ||
+				mat.equals(Material.STONE_HOE) ||
+				mat.equals(Material.IRON_HOE) ||
+				mat.equals(Material.GOLD_HOE) ||
+				mat.equals(Material.DIAMOND_HOE));
 	}
 	
 	public void cooldownTimer() {
@@ -145,12 +150,4 @@ public class Core {
 				p.dashCooldown--;
 		}
 	}
-	
-	public static String centerText(String text) {
-		int maxWidth = 60;
-		int spaces = (int) Math.round((maxWidth - 1.4 * ChatColor.stripColor(text).length()) / 2);
-		
-		return StringUtils.repeat(" ", spaces) + text;
-	}
-	
 }

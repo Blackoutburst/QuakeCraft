@@ -27,6 +27,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
+import blackout.commands.CommandClean;
+import blackout.commands.CommandEnd;
+import blackout.commands.CommandScan;
+import blackout.commands.CommandShowSpawn;
+import blackout.commands.CommandStart;
 import blackout.menu.ColorMenu;
 import blackout.menu.CustomMenu;
 import blackout.menu.GunMenu;
@@ -53,16 +58,14 @@ public class Main extends JavaPlugin implements Listener {
 		new Core().cooldownTimer();
 		new Core().gameTimer();
 		new File("./plugins/Quake/player data/").mkdirs();
-		Core.loadRespawn();
 		
-		spawn = new Location(Bukkit.getWorld("world"), 910.5f, 55, 1331.5f, 0, 0);
+		spawn = new Location(Bukkit.getWorld("world"), 8.5f, 5.0f, 8.5f, 0, 0);
 	}
 	
-	@EventHandler
  	public void onPlayerJoin(PlayerJoinEvent event) {
 		event.getPlayer().removePotionEffect(PotionEffectType.SPEED);
 		event.getPlayer().setHealth(20);
-		event.getPlayer().setSaturation(10000);
+		event.getPlayer().setSaturation(20);
 		event.getPlayer().setGameMode(GameMode.ADVENTURE);
 		event.getPlayer().getInventory().clear();
 		event.getPlayer().teleport(spawn);
@@ -167,8 +170,11 @@ public class Main extends JavaPlugin implements Listener {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		switch(command.getName()) {
-			case "start": Core.startGame(); break;
-			case "end": Core.endGame(); break;
+			case "start": new CommandStart().execute(sender, args); break;
+			case "end": new CommandEnd().execute(); break;
+			case "scan": new CommandScan().execute(sender, args); break;
+			case "clean": new CommandClean().execute(args); break;
+			case "showspawn": new CommandShowSpawn().execute(args); break;
 			default: return true;
 		}
 		return true;

@@ -76,11 +76,11 @@ public class RailGun {
 		for (Entity e : location.getWorld().getEntities()) {
 			if (e instanceof Player) {
 				double distance = Math.sqrt(
-						Math.pow(((location.getX() - 0.8) - e.getLocation().getX()), 2) +
-						Math.pow(((location.getY() - 0.8) - e.getLocation().getY()), 2) +
-						Math.pow(((location.getZ() - 0.8) - e.getLocation().getZ()), 2));
+						Math.pow(((location.getX()) - e.getLocation().getX()), 2) +
+						Math.pow(((location.getY()) - e.getLocation().getY()), 2) +
+						Math.pow(((location.getZ()) - e.getLocation().getZ()), 2));
 				
-				if (e.getUniqueId() != owner.getPlayer().getUniqueId() && distance <= 1.5) {
+				if (e.getUniqueId() != owner.getPlayer().getUniqueId() && distance <= 2.0) {
 					Core.teleportToRespawn((Player) e);
 					this.detonate();
 					owner.getPlayer().getWorld().playSound(owner.getPlayer().getLocation(), Sound.BLAZE_DEATH, 1, 2);
