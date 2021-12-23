@@ -5,6 +5,7 @@ import java.util.Random;
 import java.util.Set;
 
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -45,6 +46,11 @@ public class Core {
 			p.setCooldown(RailGun.FIRE_DELAY);
 			
 			teleportToRespawn(p.getPlayer());
+			
+			p.getPlayer().setHealth(20);
+			p.getPlayer().setSaturation(20);
+			p.getPlayer().setGameMode(GameMode.ADVENTURE);
+			
 		}
 	}
 	

@@ -28,10 +28,12 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 import blackout.commands.CommandClean;
+import blackout.commands.CommandDashDelay;
 import blackout.commands.CommandEnd;
 import blackout.commands.CommandScan;
 import blackout.commands.CommandShowSpawn;
 import blackout.commands.CommandStart;
+import blackout.commands.CommandTriggerSpeed;
 import blackout.menu.ColorMenu;
 import blackout.menu.CustomMenu;
 import blackout.menu.GunMenu;
@@ -117,11 +119,12 @@ public class Main extends JavaPlugin implements Listener {
 				Core.clickHoe(event.getPlayer().getItemInHand().getType())) {
 			
 			if (qp.getDashCooldown() > 0) {
-				event.getPlayer().sendMessage("§cYou can only dash once every seconds");
+				event.getPlayer().sendMessage("§cYou can only dash once every "+(RailGun.DASH_DELAY/20)+" seconds");
 			} else {
 				qp.setDashCooldown(RailGun.DASH_DELAY);
 				
 				Vector dash = event.getPlayer().getLocation().getDirection();
+				dash.setY(0.0f);
 				
 				event.getPlayer().setVelocity(dash.multiply(2));
 				event.getPlayer().getWorld().playSound(event.getPlayer().getLocation(), Sound.BAT_TAKEOFF, 1, 1);
@@ -169,12 +172,14 @@ public class Main extends JavaPlugin implements Listener {
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-		switch(command.getName()) {
+		switch(command.getName().toLowerCase()) {
 			case "start": new CommandStart().execute(sender, args); break;
 			case "end": new CommandEnd().execute(); break;
 			case "scan": new CommandScan().execute(sender, args); break;
 			case "clean": new CommandClean().execute(args); break;
 			case "showspawn": new CommandShowSpawn().execute(args); break;
+			case "triggerspeed": new CommandTriggerSpeed().execute(sender, args); break;
+			case "dashdelay": new CommandDashDelay().execute(sender, args); break;
 			default: return true;
 		}
 		return true;

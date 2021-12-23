@@ -28,8 +28,8 @@ import net.minecraft.server.v1_8_R3.PlayerConnection;
 
 public class RailGun {
 	
-	public static final float FIRE_DELAY = 17;
-	public static final float DASH_DELAY = 20;
+	public static float FIRE_DELAY = 17;
+	public static float DASH_DELAY = 20;
 	
 	protected Location location;
 	protected Vector direction;
@@ -58,7 +58,7 @@ public class RailGun {
 		new BukkitRunnable(){
 			@Override
 			public void run(){
-				for (int i = 0; i < 50; i++) {
+				for (int i = 0; i < 500; i++) {
 					b.setLocation(b.getLocation().add(b.getDirection().normalize().multiply(0.25)));
 					b.setLifetime((short) (b.getLifetime() - 1));
 					

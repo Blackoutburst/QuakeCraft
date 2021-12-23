@@ -11,15 +11,29 @@ commands:
   end:
     description: End the game
     usage: /end
+  triggerSpeed:
+    description: Set the trigger speed
+    usage: /triggerspeed <value>
+  dashDelay:
+    description: Set the dash delay
+    usage: /dashdelay <value>
   scan:
+    permission: quake.debug
     description: Scan the world for gift spawnpoint (Debug command)
     usage: /scan <x1> <y1> <z1> <x2> <y2> <z2>
   loadSpawn:
+    permission: quake.debug
     description: Load spawn point from file
     usage: /loadspawn
   clean:
+    permission: quake.debug
     description: Clean spawn point
     usage: /clean
   showSpawn:
+    permission: quake.debug
     description: Clean spawn point
     usage: /showspawn
+    
+  permissions:
+    quake.debug:
+      default: op
