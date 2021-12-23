@@ -18,6 +18,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -69,6 +70,7 @@ public class Main extends JavaPlugin implements Listener {
 		event.getPlayer().removePotionEffect(PotionEffectType.SPEED);
 		event.getPlayer().setHealth(20);
 		event.getPlayer().setSaturation(20);
+		event.getPlayer().setFoodLevel(20);
 		event.getPlayer().setGameMode(GameMode.ADVENTURE);
 		event.getPlayer().getInventory().clear();
 		event.getPlayer().teleport(spawn);
@@ -169,6 +171,11 @@ public class Main extends JavaPlugin implements Listener {
 	public void onEntityDamage(EntityDamageEvent event) {
 		event.setCancelled(gameRunning);
 	}
+	
+    @EventHandler
+    public void onFoodLevelChange(FoodLevelChangeEvent event) {
+    	event.setCancelled(true);
+    }
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {

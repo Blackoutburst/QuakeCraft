@@ -16,8 +16,8 @@ public class ScoreboardManager {
 		board.set(15, "§b§m--------------------"); 
 		board.set(14, "Time: §a0:00");
 		board.set(13, " "); 
-		board.set(7, "  ");
-		board.set(6, "§b§m-------------------- "); 
+		board.set(2, "  ");
+		board.set(1, "§b§m-------------------- "); 
 		qp.setBoard(board);
 	}
 	
@@ -25,7 +25,7 @@ public class ScoreboardManager {
   	public static void updatePlayers() {
   		Collections.sort(Main.players, new PlayerComparator());
   		
-  		for (int i = 0; i < 5; i++) {
+  		for (int i = 0; i < 10; i++) {
   			if (i < Main.players.size()) {
 	  			for (QuakePlayer qp : Main.players) {
 	  				QuakePlayer q = Main.players.get(i);
