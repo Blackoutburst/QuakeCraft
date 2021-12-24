@@ -1,8 +1,10 @@
 package blackout.quake.core;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect.Type;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 
 public class GunProfile {
 	protected String name;
@@ -10,13 +12,19 @@ public class GunProfile {
 	protected Type shape;
 	protected Color color;
 	protected boolean superior;
+	protected Sound sound;
+	protected float pitch;
+	protected ChatColor nameColor;
 	
-	public GunProfile(String name, Material gun, Type shape, Color color, boolean superior) {
+	public GunProfile(String name, Material gun, Type shape, Color color, boolean superior, Sound sound, float pitch, ChatColor nameColor) {
 		this.name = name;
 		this.gun = gun;
 		this.shape = shape;
 		this.color = color;
 		this.superior = superior;
+		this.sound = sound;
+		this.pitch = pitch;
+		this.nameColor = nameColor;
 	}
 
 	public String getName() {
@@ -63,5 +71,30 @@ public class GunProfile {
 		this.superior = superior;
 		return (this);
 	}
-	
+
+	public Sound getSound() {
+		return sound;
+	}
+
+	public GunProfile setSound(Sound sound) {
+		this.sound = sound;
+		return (this);
+	}
+
+	public float getPitch() {
+		return pitch;
+	}
+
+	public GunProfile setPitch(float pitch) {
+		this.pitch = pitch;
+		return (this);
+	}
+
+	public ChatColor getNameColor() {
+		return nameColor;
+	}
+
+	public void setNameColor(ChatColor nameColor) {
+		this.nameColor = nameColor;
+	}
 }

@@ -9,7 +9,9 @@ import org.bukkit.entity.Player;
 
 import blackout.menu.ColorMenu;
 import blackout.menu.GunMenu;
+import blackout.menu.NameColorMenu;
 import blackout.menu.ShapeMenu;
+import blackout.menu.SoundsMenu;
 import blackout.quake.main.Main;
 import net.minecraft.server.v1_8_R3.ChatComponentText;
 import net.minecraft.server.v1_8_R3.PacketPlayOutChat;
@@ -133,5 +135,7 @@ public class QuakePlayer {
 		GunMenu.getValue(playerData.getInt("gun"), this.player, false);
 		ShapeMenu.getValue(playerData.getInt("shape"), this.player, false);
 		ColorMenu.getValue(playerData.getInt("color"), this.player, false);
+		SoundsMenu.getValue(playerData.getInt("sound"), this.player, false);
+		NameColorMenu.getValue(playerData.getInt("nameColor"), this.player, false);
 	}
 }

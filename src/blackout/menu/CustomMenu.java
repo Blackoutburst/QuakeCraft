@@ -41,6 +41,26 @@ public class CustomMenu {
 		}
 	}
 	
+	private static byte getNameColor(GunProfile gp) {
+		switch(gp.getNameColor()) {
+			case DARK_RED: return ((byte) 1);
+			case RED: return ((byte) 9);
+			case GOLD: return ((byte) 14);
+			case YELLOW: return ((byte) 11);
+			case DARK_GREEN: return ((byte) 2);
+			case GREEN: return ((byte) 10);
+			case DARK_AQUA: return ((byte) 6);
+			case DARK_BLUE: return ((byte) 4);
+			case BLUE: return ((byte) 12);
+			case LIGHT_PURPLE: return ((byte) 13);
+			case DARK_PURPLE: return ((byte) 5);
+			case WHITE: return ((byte) 15);
+			case GRAY: return ((byte) 7);
+			case DARK_GRAY: return ((byte) 8);
+			default: return ((byte) 15);
+		}
+	}
+	
 	private static byte getExplosionColor(GunProfile gp) {
 		if (gp.getColor().equals(Color.BLACK)) return (0);
 		if (gp.getColor().equals(Color.RED)) return (1);
@@ -71,40 +91,60 @@ public class CustomMenu {
 			meta.addItemFlags(ItemFlag.values());
 			meta.addEnchant(Enchantment.ARROW_DAMAGE, 10, true);
 		}
-		meta.setDisplayName("§bGun");
+		meta.setDisplayName("§aGun");
 		ArrayList<String> lore = new ArrayList<String>();
-		lore.add("§6Open the gun menu");
+		lore.add("§7Select your gun case");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
-		inv.setItem(12, item);
+		inv.setItem(11, item);
 		
 		item = new ItemStack(getExplosionIcon(qp.getGunProfile()), 1, (byte)(getExplosionIcon(qp.getGunProfile()).equals(Material.SKULL_ITEM) ? 4 : 0));
 		meta = item.getItemMeta();
 		meta.addItemFlags(ItemFlag.values());
-		meta.setDisplayName("§bExplosion shape");
+		meta.setDisplayName("§aExplosion shape");
 		lore = new ArrayList<String>();
-		lore.add("§6Open the explosion shape menu");
+		lore.add("§7Select the shape of your explosion!");
+		meta.setLore(lore);
+		item.setItemMeta(meta);
+		inv.setItem(12, item);
+		
+		item = new ItemStack(Material.INK_SACK, 1, getExplosionColor(qp.getGunProfile()));
+		meta = item.getItemMeta();
+		meta.setDisplayName("§aExplosion color");
+		lore = new ArrayList<String>();
+		lore.add("§7Select the color of your explosion!");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
 		inv.setItem(13, item);
 		
-		item = new ItemStack(Material.INK_SACK, 1, getExplosionColor(qp.getGunProfile()));
+		item = new ItemStack(Material.NOTE_BLOCK, 1);
 		meta = item.getItemMeta();
-		meta.setDisplayName("§bExplosion color");
+		meta.setDisplayName("§aKill Sounds");
 		lore = new ArrayList<String>();
-		lore.add("§6Open the explosion color menu");
+		lore.add("§7Pick your sound to play on kill!");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
 		inv.setItem(14, item);
+		
+		item = new ItemStack(Material.BANNER, 1, getNameColor(qp.getGunProfile()));
+		meta = item.getItemMeta();
+		meta.setDisplayName("§aName Color");
+		lore = new ArrayList<String>();
+		lore.add("§7Select you name color!");
+		meta.setLore(lore);
+		item.setItemMeta(meta);
+		inv.setItem(15, item);
 		
 		p.openInventory(inv);
 	}
 	
 	public static void click(int slot, Player p) {
 		switch (slot) {
-			case 12: GunMenu.open(p); break;
-			case 13: ShapeMenu.open(p); break;
-			case 14: ColorMenu.open(p); break;
+			case 11: GunMenu.open(p); break;
+			case 12: ShapeMenu.open(p); break;
+			case 13: ColorMenu.open(p); break;
+			case 14: SoundsMenu.open(p); break;
+			case 15: NameColorMenu.open(p); break;
 			default: return;
 		}
 	}

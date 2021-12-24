@@ -53,12 +53,12 @@ public class RailGun {
 	public void fire(Player p) {
 		final RailGun b = this;
 		
-		p.getWorld().playSound(p.getLocation(), Sound.BLAZE_HIT, 1, 1);
+		p.getWorld().playSound(p.getLocation(), Sound.BLAZE_HIT, 1, 2);
 		QuakePlayer.getFromPlayer(p).cooldown = FIRE_DELAY;
 		new BukkitRunnable(){
 			@Override
 			public void run(){
-				for (int i = 0; i < 500; i++) {
+				for (int i = 0; i < 1000; i++) {
 					b.setLocation(b.getLocation().add(b.getDirection().normalize().multiply(0.25)));
 					b.setLifetime((short) (b.getLifetime() - 1));
 					
@@ -70,7 +70,7 @@ public class RailGun {
 					}
 				}
 			}
-		}.runTaskTimer(Main.getPlugin(Main.class), 0L, 1L);
+		}.runTaskTimerAsynchronously(Main.getPlugin(Main.class), 0L, 0L);
 	}
 	
 	public void getNearbyPlayer() {
@@ -84,7 +84,7 @@ public class RailGun {
 				if (e.getUniqueId() != owner.getPlayer().getUniqueId() && distance <= 2.0) {
 					Core.teleportToRespawn((Player) e);
 					this.detonate();
-					owner.getPlayer().getWorld().playSound(owner.getPlayer().getLocation(), Sound.BLAZE_DEATH, 1, 2);
+					owner.getPlayer().getWorld().playSound(owner.getPlayer().getLocation(), owner.getGunProfile().getSound(), 1, owner.getGunProfile().getPitch());
 					Bukkit.broadcastMessage(owner.getPlayer().getDisplayName()+" §egibbed§r "+((Player)e).getDisplayName());
 				}
 			}

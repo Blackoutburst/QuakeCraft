@@ -29,7 +29,7 @@ public class ScoreboardManager {
   			if (i < Main.players.size()) {
 	  			for (QuakePlayer qp : Main.players) {
 	  				QuakePlayer q = Main.players.get(i);
-	  				qp.getBoard().set(12 - i, q.getPlayer().getName()+": §a"+q.getScore());
+	  				qp.getBoard().set(12 - i, q.getPlayer().getDisplayName()+": §a"+q.getScore());
 	  			}
   			} else {
   				for (QuakePlayer qp : Main.players) {

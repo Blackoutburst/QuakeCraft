@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect.Type;
 import org.bukkit.GameMode;
@@ -23,7 +24,9 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
@@ -38,7 +41,9 @@ import blackout.commands.CommandTriggerSpeed;
 import blackout.menu.ColorMenu;
 import blackout.menu.CustomMenu;
 import blackout.menu.GunMenu;
+import blackout.menu.NameColorMenu;
 import blackout.menu.ShapeMenu;
+import blackout.menu.SoundsMenu;
 import blackout.quake.core.Core;
 import blackout.quake.core.GunProfile;
 import blackout.quake.core.QuakePlayer;
@@ -75,24 +80,35 @@ public class Main extends JavaPlugin implements Listener {
 		event.getPlayer().getInventory().clear();
 		event.getPlayer().teleport(spawn);
 		
-		GunProfile gunProfile = new GunProfile("§bWood gun", Material.WOOD_HOE, Type.BALL, Color.AQUA, false);
+		GunProfile gunProfile = new GunProfile("§bWooden Case", Material.WOOD_HOE, Type.BALL, Color.AQUA, false, Sound.BLAZE_DEATH, 2, ChatColor.WHITE);
+		QuakePlayer qp;
 		
 		if (new File("./plugins/Quake/player data/"+event.getPlayer().getUniqueId().toString().replace("-", "")+".yml").exists()) {
-			QuakePlayer qp = new QuakePlayer(event.getPlayer(), gunProfile);
+			qp = new QuakePlayer(event.getPlayer(), gunProfile);
 			
 			players.add(qp);
 			qp.readPlayerData();
 		} else {
-			QuakePlayer qp = new QuakePlayer(event.getPlayer(), gunProfile);
+			qp = new QuakePlayer(event.getPlayer(), gunProfile);
 			qp.savePlayerData("gun", 11);
 			qp.savePlayerData("shape", 11);
 			qp.savePlayerData("color", 31);
+			qp.savePlayerData("sound", 11);
+			qp.savePlayerData("nameColor", 11);
 			players.add(qp);
 		}
 		
 		ScoreboardManager.init(event.getPlayer());
 		ScoreboardManager.updatePlayers();
 		CustomMenu.giveItem(event.getPlayer());
+		Core.updateName(qp);
+	}
+	
+	@EventHandler
+	public void onMove(PlayerMoveEvent event) {
+		if (event.getPlayer().getLocation().getY() < -10) {
+			event.getPlayer().teleport(spawn);
+		}
 	}
 	
 	@EventHandler
@@ -165,11 +181,26 @@ public class Main extends JavaPlugin implements Listener {
 			ColorMenu.getValue(event.getSlot(), (Player) event.getWhoClicked(), true);
 			event.setCancelled(true);
 		}
+		
+		if (event.getInventory().getName().equals("Kill Sounds")) {
+			SoundsMenu.getValue(event.getSlot(), (Player) event.getWhoClicked(), true);
+			event.setCancelled(true);
+		}
+		
+		if (event.getInventory().getName().equals("Name Color Menu")) {
+			NameColorMenu.getValue(event.getSlot(), (Player) event.getWhoClicked(), true);
+			event.setCancelled(true);
+		}
+	}
+	
+	@EventHandler
+	public void onSneak(PlayerToggleSneakEvent event) {
+		event.setCancelled(gameRunning);
 	}
 	
 	@EventHandler
 	public void onEntityDamage(EntityDamageEvent event) {
-		event.setCancelled(gameRunning);
+		event.setCancelled(true);
 	}
 	
     @EventHandler
