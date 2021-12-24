@@ -24,12 +24,13 @@ import blackout.quake.main.Main;
 public class Core {
 
 	public static void updateName(QuakePlayer qp) {
-		qp.getPlayer().setDisplayName(qp.getGunProfile().getNameColor()+qp.getPlayer().getName());
-		qp.getPlayer().setPlayerListName(qp.getGunProfile().getNameColor()+qp.getPlayer().getName());
+		qp.getPlayer().setDisplayName(qp.getGunProfile().getNameColor()+qp.getPlayer().getName()+"§r");
+		qp.getPlayer().setPlayerListName(qp.getGunProfile().getNameColor()+qp.getPlayer().getName()+"§r");
 		for (QuakePlayer hp : Main.players) {
 			hp.getBoard().addTeam(hp, qp);
 			qp.getBoard().addTeam(qp, hp);
 		}
+		ScoreboardManager.updatePlayers();
 	}
 	
 	public static void startGame(String worldName) {

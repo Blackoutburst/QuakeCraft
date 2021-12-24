@@ -20,6 +20,13 @@ public class Board {
 		this.objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 		this.objective.setDisplayName(player.getDisplayName());
 		player.setScoreboard(this.scoreboard);
+		
+		if (this.scoreboard.getTeam(player.getName()) == null) {
+			this.scoreboard.registerNewTeam(player.getName());
+		}
+		team = this.scoreboard.getTeam(player.getName());
+		team.setNameTagVisibility(NameTagVisibility.ALWAYS);
+		team.addEntry(player.getName());
 	}
  
 	public Scoreboard getScoreboard() {
@@ -69,7 +76,7 @@ public class Board {
 		}
 
 		team = player.getBoard().scoreboard.getTeam(newPlayer.getPlayer().getName());
-		team.setPrefix(newPlayer.gunProfile.nameColor.name());
+		team.setPrefix("§"+newPlayer.gunProfile.nameColor.getChar());
 		team.setNameTagVisibility(NameTagVisibility.ALWAYS);
 		team.addEntry(newPlayer.getPlayer().getName());
 	}

@@ -81,27 +81,24 @@ public class Main extends JavaPlugin implements Listener {
 		event.getPlayer().teleport(spawn);
 		
 		GunProfile gunProfile = new GunProfile("§bWooden Case", Material.WOOD_HOE, Type.BALL, Color.AQUA, false, Sound.BLAZE_DEATH, 2, ChatColor.WHITE);
-		QuakePlayer qp;
+		QuakePlayer qp = new QuakePlayer(event.getPlayer(), gunProfile);
+		
+		ScoreboardManager.init(qp);
+		CustomMenu.giveItem(event.getPlayer());
 		
 		if (new File("./plugins/Quake/player data/"+event.getPlayer().getUniqueId().toString().replace("-", "")+".yml").exists()) {
-			qp = new QuakePlayer(event.getPlayer(), gunProfile);
-			
 			players.add(qp);
 			qp.readPlayerData();
 		} else {
-			qp = new QuakePlayer(event.getPlayer(), gunProfile);
 			qp.savePlayerData("gun", 11);
 			qp.savePlayerData("shape", 11);
 			qp.savePlayerData("color", 31);
 			qp.savePlayerData("sound", 11);
-			qp.savePlayerData("nameColor", 11);
+			qp.savePlayerData("nameColor", 23);
 			players.add(qp);
 		}
 		
-		ScoreboardManager.init(event.getPlayer());
 		ScoreboardManager.updatePlayers();
-		CustomMenu.giveItem(event.getPlayer());
-		Core.updateName(qp);
 	}
 	
 	@EventHandler

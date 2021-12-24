@@ -2,15 +2,12 @@ package blackout.quake.core;
 
 import java.util.Collections;
 
-import org.bukkit.entity.Player;
-
 import blackout.quake.main.Main;
 
 public class ScoreboardManager {
 
-	public static void init(Player p) {
-		Board board = new Board(p);
-		QuakePlayer qp = QuakePlayer.getFromPlayer(p);
+	public static void init(QuakePlayer qp) {
+		Board board = new Board(qp.getPlayer());
 		
 		board.setTitle("§6Quake");
 		board.set(15, "§b§m--------------------"); 
