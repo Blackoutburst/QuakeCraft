@@ -60,9 +60,8 @@ public class RailGun {
 			@Override
 			public void run(){
 				for (int i = 0; i < 500; i++) {
-					b.location = b.getLocation().add(b.getDirection().normalize().multiply(0.25));
+					b.location.add(b.direction.normalize().multiply(0.25));
 					b.lifetime--;
-					
 					b.trail();
 					b.getNearbyPlayer();
 					if (!b.alive || b.insideBlock()) {
