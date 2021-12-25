@@ -55,33 +55,32 @@ public class RailGun {
 		
 		p.getWorld().playSound(p.getLocation(), Sound.BLAZE_HIT, 1, 2);
 		QuakePlayer.getFromPlayer(p).cooldown = FIRE_DELAY;
+		
 		new BukkitRunnable(){
 			@Override
 			public void run(){
-				for (int i = 0; i < 1000; i++) {
+				for (int i = 0; i < 500; i++) {
 					b.setLocation(b.getLocation().add(b.getDirection().normalize().multiply(0.25)));
 					b.setLifetime((short) (b.getLifetime() - 1));
-					
-					b.getNearbyPlayer();
 					b.trail();
+					b.getNearbyPlayer();
 					if (!b.isAlive() || b.insideBlock()) {
 						this.cancel();
 						break;
 					}
 				}
 			}
-		}.runTaskTimerAsynchronously(Main.getPlugin(Main.class), 0L, 0L);
+		}.runTaskTimer(Main.getPlugin(Main.class), 0L, 1L);
 	}
 	
 	public void getNearbyPlayer() {
 		for (Entity e : location.getWorld().getEntities()) {
 			if (e instanceof Player) {
-				double distance = Math.sqrt(
-						Math.pow(((location.getX()) - e.getLocation().getX()), 2) +
-						Math.pow(((location.getY()) - e.getLocation().getY()), 2) +
-						Math.pow(((location.getZ()) - e.getLocation().getZ()), 2));
+				final float x = (float) (location.getX() - e.getLocation().getX());
+				final float y = (float) (location.getY() - e.getLocation().getY());
+				final float z = (float) (location.getZ() - e.getLocation().getZ());
 				
-				if (e.getUniqueId() != owner.getPlayer().getUniqueId() && distance <= 2.0) {
+				if (e.getUniqueId() != owner.getPlayer().getUniqueId() && Math.sqrt((x * x) + (y * y) + (z * z)) <= 2.0) {
 					Core.teleportToRespawn((Player) e);
 					this.detonate();
 					owner.getPlayer().getWorld().playSound(owner.getPlayer().getLocation(), owner.getGunProfile().getSound(), 1, owner.getGunProfile().getPitch());

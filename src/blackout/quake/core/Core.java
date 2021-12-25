@@ -62,6 +62,7 @@ public class Core {
 			p.getPlayer().setGameMode(GameMode.ADVENTURE);
 			
 		}
+		ScoreboardManager.updatePlayers();
 	}
 	
 	public static void endGame() {
