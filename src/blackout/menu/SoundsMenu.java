@@ -52,7 +52,7 @@ public class SoundsMenu {
 			case 14: qp.getGunProfile().setSound(Sound.ENDERMAN_DEATH).setPitch(2); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
 			case 15: qp.getGunProfile().setSound(Sound.IRONGOLEM_DEATH).setPitch(2); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
 			case 20: qp.getGunProfile().setSound(Sound.PIG_DEATH).setPitch(2); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
-			case 21: qp.getGunProfile().setSound(Sound.COW_HURT).setPitch(2); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
+			case 21: qp.getGunProfile().setSound(Sound.COW_HURT).setPitch(1); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
 			case 22: qp.getGunProfile().setSound(Sound.CREEPER_DEATH).setPitch(1); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
 			case 23: qp.getGunProfile().setSound(Sound.ANVIL_LAND).setPitch(1); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
 			case 24: qp.getGunProfile().setSound(Sound.GHAST_DEATH).setPitch(2); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
