@@ -5,6 +5,7 @@ import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
@@ -34,20 +35,26 @@ public class RailGun {
 	protected Location location;
 	protected Vector direction;
 	protected QuakePlayer owner;
-	protected short lifetime;
-	protected boolean alive;
 	
 	public RailGun(Location location, Vector direction, QuakePlayer owner) {
 		this.location = location;
 		this.direction = direction;
 		this.owner = owner;
-		this.lifetime = 500;
-		this.alive = true;
 	}
 	
 	public boolean insideBlock() {
-		return (!location.getWorld().getBlockAt(location).getType().equals(Material.AIR) && 
-				!location.getWorld().getBlockAt(location).getType().equals(Material.TORCH));
+		final Block b = location.getWorld().getBlockAt(location);
+		
+		return (!b.getType().equals(Material.AIR) && 
+				!b.getType().equals(Material.TORCH) &&
+				!b.getType().equals(Material.STEP) &&
+				!b.getType().equals(Material.RED_ROSE) &&
+				!b.getType().equals(Material.LONG_GRASS) &&
+				!b.getType().equals(Material.DOUBLE_PLANT) &&
+				!b.getType().equals(Material.DEAD_BUSH) &&
+				!b.getType().equals(Material.RED_MUSHROOM) &&
+				!b.getType().equals(Material.BROWN_MUSHROOM) &&
+				!b.getType().equals(Material.VINE));
 	}
 	
 	public void fire(Player p) {
@@ -56,21 +63,12 @@ public class RailGun {
 		p.getWorld().playSound(p.getLocation(), Sound.BLAZE_HIT, 1, 2);
 		QuakePlayer.getFromPlayer(p).cooldown = FIRE_DELAY;
 		
-		new BukkitRunnable(){
-			@Override
-			public void run(){
-				for (int i = 0; i < 500; i++) {
-					b.location.add(b.direction.normalize().multiply(0.25));
-					b.decreaseLifetime();
-					b.trail();
-					b.getNearbyPlayer();
-					if (!b.alive || b.insideBlock()) {
-						this.cancel();
-						break;
-					}
-				}
-			}
-		}.runTaskTimer(Main.getPlugin(Main.class), 0L, 1L);
+		for (int i = 500; i > 0; i--) {
+			b.location.add(b.direction.normalize().multiply(0.25));
+			b.trail();
+			b.getNearbyPlayer();
+			if (b.insideBlock()) break;
+		}
 	}
 	
 	public void getNearbyPlayer() {
@@ -145,25 +143,6 @@ public class RailGun {
 
 	public void setOwner(QuakePlayer owner) {
 		this.owner = owner;
-	}
-
-	public short getLifetime() {
-		return lifetime;
-	}
-
-	public void decreaseLifetime() {
-		this.lifetime--;
-		if (this.lifetime <= 0) {
-			this.alive = false;
-		}
-	}
-
-	public boolean isAlive() {
-		return alive;
-	}
-
-	public void setAlive(boolean alive) {
-		this.alive = alive;
 	}
 	
 }
