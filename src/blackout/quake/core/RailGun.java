@@ -61,7 +61,7 @@ public class RailGun {
 			public void run(){
 				for (int i = 0; i < 500; i++) {
 					b.location.add(b.direction.normalize().multiply(0.25));
-					b.lifetime--;
+					b.decreaseLifetime();
 					b.trail();
 					b.getNearbyPlayer();
 					if (!b.alive || b.insideBlock()) {
@@ -151,8 +151,8 @@ public class RailGun {
 		return lifetime;
 	}
 
-	public void setLifetime(short lifetime) {
-		this.lifetime = lifetime;
+	public void decreaseLifetime() {
+		this.lifetime--;
 		if (this.lifetime <= 0) {
 			this.alive = false;
 		}
