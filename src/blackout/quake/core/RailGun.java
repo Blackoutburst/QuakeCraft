@@ -80,7 +80,7 @@ public class RailGun {
 				final float y = (float) (location.getY() - e.getLocation().getY());
 				final float z = (float) (location.getZ() - e.getLocation().getZ());
 				
-				if (e.getUniqueId() != owner.getPlayer().getUniqueId() && Math.sqrt((x * x) + (y * y) + (z * z)) <= 2.0) {
+				if (e.getUniqueId() != owner.getPlayer().getUniqueId() && ((x * x) + (y * y) + (z * z)) <= 4.0) {
 					Core.teleportToRespawn((Player) e);
 					this.detonate();
 					owner.getPlayer().getWorld().playSound(owner.getPlayer().getLocation(), owner.getGunProfile().getSound(), 1, owner.getGunProfile().getPitch());
