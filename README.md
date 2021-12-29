@@ -79,7 +79,7 @@ Change the sound played when you kill somone\
 Change the color of your name everywhere (chat, scoreboard, tab, nametag)\
 ![image](https://user-images.githubusercontent.com/30992311/147684386-19cb0e8d-181a-479d-a0d6-32f3b2e95178.png)
 
-## New Demo video
+### New Demo video
 Coming soon.
 
 ### Unedited gameplay footage
