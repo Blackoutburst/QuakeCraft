@@ -5,7 +5,29 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/a0e7c7d8e9b44594b5c8469ac6be0f21)](https://www.codacy.com/gh/Blackoutburst/QuakeCraft/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Blackoutburst/QuakeCraft&amp;utm_campaign=Badge_Grade)
 
 # QuakeCraft
-This plugin re create the base game of QuakeCraft from Hypixel for learning purpose, and will not get any new features.
+This plugin re-creates the base game of QuakeCraft from Hypixel for learning purposes, extra features got added due to community demands.
+
+Note this plugin is designed to have multiples map in different folder, test were effectued with [Multiverse-Core](https://dev.bukkit.org/projects/multiverse-core)
+
+And this plugin is made for spigot / paper 1.8.8 (V1_8_R3)
+
+## Commands
+`/start <world name>` start the game on the specified map.\
+`/end` end the game.\
+`/triggerSpeed <value>` change the trigger speed for everyone.\
+`/dashDelay <value>` change the dash delay for everyone.\
+`/scan <x1> <y1> <z1> <x2> <y2> <z2>` scan sponges block in a specific area and write the location in a file named after the world name (define the map spawnpoints).\
+`/loadSpawn <world name>` load the spawnpoint inside the memory (usually this should not be used).\
+`/clean <world name>` remove the sponge block from a map.\
+`/showSpawn <world name>` put back the sponge block on a map loaded from the file generated with the scan command.
+
+Commands such as:
+- scan
+- loadSpawn
+- clean
+- showSpawn
+
+Require the permission `quake.debug` or operator status to be used
 
 ## Features
 All features implemented so far are:
