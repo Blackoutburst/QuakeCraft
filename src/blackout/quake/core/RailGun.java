@@ -62,7 +62,7 @@ public class RailGun {
 		QuakePlayer.getFromPlayer(p).cooldown = FIRE_DELAY;
 		
 		for (int i = 500; i > 0; i--) {
-			b.location.add(b.direction.normalize().multiply(0.25));
+			b.location.add(b.direction.normalize().multiply(0.5));
 			b.trail();
 			b.getNearbyPlayer();
 			if (b.insideBlock()) break;
