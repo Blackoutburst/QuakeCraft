@@ -3,10 +3,8 @@ package blackout.commands;
 import java.io.File;
 import java.util.Set;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Player;
 
 import blackout.quake.main.Main;
 

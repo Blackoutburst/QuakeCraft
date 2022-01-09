@@ -37,6 +37,7 @@ import blackout.commands.CommandBoop;
 import blackout.commands.CommandClean;
 import blackout.commands.CommandDashDelay;
 import blackout.commands.CommandEnd;
+import blackout.commands.CommandListMap;
 import blackout.commands.CommandScan;
 import blackout.commands.CommandShowSpawn;
 import blackout.commands.CommandStart;
