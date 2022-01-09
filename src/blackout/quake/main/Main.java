@@ -21,6 +21,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -116,7 +117,12 @@ public class Main extends JavaPlugin implements Listener {
 	
 	@EventHandler
 	public void onItemDrop(PlayerDropItemEvent event) {
-		event.setCancelled(true);
+		event.setCancelled(gameRunning);
+	}
+	
+	@EventHandler
+	public void onPlayerChat(AsyncPlayerChatEvent event) {
+		event.setFormat("%s: %s");
 	}
 	
 	@EventHandler

@@ -100,9 +100,9 @@ public class Core {
 		
 		for (String i : respawns) {
             String world = config.getString("loc."+i+".world");
-            double x = config.getDouble("loc."+i+".x");
-            double y = config.getDouble("loc."+i+".y");
-            double z = config.getDouble("loc."+i+".z");
+            double x = config.getDouble("loc."+i+".x") + 0.5f;
+            double y = config.getDouble("loc."+i+".y") + 0.5f;
+            double z = config.getDouble("loc."+i+".z") + 0.5f;
 			Main.respawns.add(new Location(Bukkit.getWorld(world), x, y, z, 0, 0));
 		}
 	}
