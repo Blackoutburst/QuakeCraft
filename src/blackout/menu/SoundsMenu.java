@@ -74,21 +74,21 @@ public class SoundsMenu {
 	
 	public static void preview(int slot, Player p) {
 		switch (slot) {
-			case 11: p.playSound(p.getLocation(), Sound.BLAZE_DEATH, 1, 2);
-			case 12: p.playSound(p.getLocation(), Sound.HORSE_DEATH, 1, 2);
-			case 13: p.playSound(p.getLocation(), Sound.BAT_DEATH, 1, 2);
-			case 14: p.playSound(p.getLocation(), Sound.ENDERMAN_DEATH, 1, 2);
-			case 15: p.playSound(p.getLocation(), Sound.IRONGOLEM_DEATH, 1, 2);
-			case 20: p.playSound(p.getLocation(), Sound.PIG_DEATH, 1, 2);
-			case 21: p.playSound(p.getLocation(), Sound.COW_HURT, 1, 1);
-			case 22: p.playSound(p.getLocation(), Sound.CREEPER_DEATH, 1, 1);
-			case 23: p.playSound(p.getLocation(), Sound.ANVIL_LAND, 1, 1);
-			case 24: p.playSound(p.getLocation(), Sound.GHAST_DEATH, 1, 2);
-			case 29: p.playSound(p.getLocation(), Sound.ENDERDRAGON_GROWL, 1, 1);
-			case 30: p.playSound(p.getLocation(), Sound.VILLAGER_IDLE, 1, 1);
-			case 31: p.playSound(p.getLocation(), Sound.WITHER_IDLE, 1, 1);
-			case 32: p.playSound(p.getLocation(), Sound.LEVEL_UP, 1, 1);
-			case 33: p.playSound(p.getLocation(), Sound.ZOMBIE_WOODBREAK, 1, 1);
+			case 11: p.playSound(p.getLocation(), Sound.BLAZE_DEATH, 1, 2); break;
+			case 12: p.playSound(p.getLocation(), Sound.HORSE_DEATH, 1, 2); break;
+			case 13: p.playSound(p.getLocation(), Sound.BAT_DEATH, 1, 2); break;
+			case 14: p.playSound(p.getLocation(), Sound.ENDERMAN_DEATH, 1, 2); break;
+			case 15: p.playSound(p.getLocation(), Sound.IRONGOLEM_DEATH, 1, 2); break;
+			case 20: p.playSound(p.getLocation(), Sound.PIG_DEATH, 1, 2); break;
+			case 21: p.playSound(p.getLocation(), Sound.COW_HURT, 1, 1); break;
+			case 22: p.playSound(p.getLocation(), Sound.CREEPER_DEATH, 1, 1); break;
+			case 23: p.playSound(p.getLocation(), Sound.ANVIL_LAND, 1, 1); break;
+			case 24: p.playSound(p.getLocation(), Sound.GHAST_DEATH, 1, 2); break;
+			case 29: p.playSound(p.getLocation(), Sound.ENDERDRAGON_GROWL, 1, 1); break;
+			case 30: p.playSound(p.getLocation(), Sound.VILLAGER_IDLE, 1, 1); break;
+			case 31: p.playSound(p.getLocation(), Sound.WITHER_IDLE, 1, 1); break;
+			case 32: p.playSound(p.getLocation(), Sound.LEVEL_UP, 1, 1); break;
+			case 33: p.playSound(p.getLocation(), Sound.ZOMBIE_WOODBREAK, 1, 1); break;
 			default: return;
 		}
 	}
