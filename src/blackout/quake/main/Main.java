@@ -109,7 +109,11 @@ public class Main extends JavaPlugin implements Listener {
 	@EventHandler
 	public void onMove(PlayerMoveEvent event) {
 		if (event.getPlayer().getLocation().getY() < -10) {
-			event.getPlayer().teleport(spawn);
+			if (gameRunning) {
+				Core.teleportToRespawn(event.getPlayer());
+			} else {
+				event.getPlayer().teleport(spawn);
+			}
 		}
 	}
 	
@@ -223,6 +227,7 @@ public class Main extends JavaPlugin implements Listener {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		switch(command.getName().toLowerCase()) {
+			case "listmap": new CommandListMap().execute(sender, args); break;
 			case "start": new CommandStart().execute(sender, args); break;
 			case "boop": new CommandBoop().execute(sender, args); break;
 			case "end": new CommandEnd().execute(); break;

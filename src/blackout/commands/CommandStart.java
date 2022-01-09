@@ -29,7 +29,22 @@ public class CommandStart {
 		
 		worldName = worldName.substring(0, worldName.length() - 1).toLowerCase();
 		
-		if (!new File("./plugins/Quake/"+worldName+".yml").exists()) {
+		
+		File index = new File("./plugins/Quake/");
+		String[] entries = index.list();
+		String finalWorldName = null;
+		
+		if (entries == null) return;
+
+		for(String s: entries) {
+			File tmp = new File(index.getPath(), s);
+			
+			if (tmp.getName().toLowerCase().equals(worldName)) {
+				finalWorldName = tmp.getName();
+			}
+		}
+		
+		if (finalWorldName == null) {
 			sender.sendMessage("§cThe world §f"+worldName+"§c doesn't exist!");
 			return;
 		}

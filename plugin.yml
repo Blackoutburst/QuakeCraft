@@ -5,6 +5,9 @@ api-version: 1.13
 author: Blackoutburst
 description: A quake test
 commands:
+  listmap:
+    description: List worlds and number of spawns
+    usage: /listmap
   boop:
     description: Boop someone
     usage: /boop <player>
