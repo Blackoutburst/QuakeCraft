@@ -1,5 +1,8 @@
 package blackout.menu;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -38,6 +41,10 @@ public class SoundsMenu {
 		ItemStack item = new ItemStack(mat, 1);
 		ItemMeta meta = item.getItemMeta();
 		meta.setDisplayName(name);
+		List<String> lore = new ArrayList<>();
+		lore.add("§bLeft click to select");
+		lore.add("§bRight click to preview");
+		meta.setLore(lore);
         item.setItemMeta(meta);
 		inv.setItem(slot, item);
 	}
@@ -61,6 +68,27 @@ public class SoundsMenu {
 			case 31: qp.getGunProfile().setSound(Sound.WITHER_IDLE).setPitch(1); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
 			case 32: qp.getGunProfile().setSound(Sound.LEVEL_UP).setPitch(1); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
 			case 33: qp.getGunProfile().setSound(Sound.ZOMBIE_WOODBREAK).setPitch(1); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
+			default: return;
+		}
+	}
+	
+	public static void preview(int slot, Player p) {
+		switch (slot) {
+			case 11: p.playSound(p.getLocation(), Sound.BLAZE_DEATH, 1, 2);
+			case 12: p.playSound(p.getLocation(), Sound.HORSE_DEATH, 1, 2);
+			case 13: p.playSound(p.getLocation(), Sound.BAT_DEATH, 1, 2);
+			case 14: p.playSound(p.getLocation(), Sound.ENDERMAN_DEATH, 1, 2);
+			case 15: p.playSound(p.getLocation(), Sound.IRONGOLEM_DEATH, 1, 2);
+			case 20: p.playSound(p.getLocation(), Sound.PIG_DEATH, 1, 2);
+			case 21: p.playSound(p.getLocation(), Sound.COW_HURT, 1, 1);
+			case 22: p.playSound(p.getLocation(), Sound.CREEPER_DEATH, 1, 1);
+			case 23: p.playSound(p.getLocation(), Sound.ANVIL_LAND, 1, 1);
+			case 24: p.playSound(p.getLocation(), Sound.GHAST_DEATH, 1, 2);
+			case 29: p.playSound(p.getLocation(), Sound.ENDERDRAGON_GROWL, 1, 1);
+			case 30: p.playSound(p.getLocation(), Sound.VILLAGER_IDLE, 1, 1);
+			case 31: p.playSound(p.getLocation(), Sound.WITHER_IDLE, 1, 1);
+			case 32: p.playSound(p.getLocation(), Sound.LEVEL_UP, 1, 1);
+			case 33: p.playSound(p.getLocation(), Sound.ZOMBIE_WOODBREAK, 1, 1);
 			default: return;
 		}
 	}

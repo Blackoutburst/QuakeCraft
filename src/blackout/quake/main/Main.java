@@ -188,7 +188,10 @@ public class Main extends JavaPlugin implements Listener {
 		}
 		
 		if (event.getInventory().getName().equals("Kill Sounds")) {
-			SoundsMenu.getValue(event.getSlot(), (Player) event.getWhoClicked(), true);
+			if (event.isLeftClick())
+				SoundsMenu.getValue(event.getSlot(), (Player) event.getWhoClicked(), true);
+			if (event.isRightClick())
+				SoundsMenu.preview(event.getSlot(), (Player) event.getWhoClicked());
 			event.setCancelled(true);
 		}
 		

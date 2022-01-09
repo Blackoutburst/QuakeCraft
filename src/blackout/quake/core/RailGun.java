@@ -52,13 +52,20 @@ public class RailGun {
 				!b.getType().equals(Material.DEAD_BUSH) &&
 				!b.getType().equals(Material.RED_MUSHROOM) &&
 				!b.getType().equals(Material.BROWN_MUSHROOM) &&
-				!b.getType().equals(Material.VINE));
+				!b.getType().equals(Material.VINE) &&
+				!b.getType().equals(Material.WOOD_STEP) &&
+				!b.getType().equals(Material.STONE_PLATE) &&
+				!b.getType().equals(Material.WOOD_PLATE) &&
+				!b.getType().equals(Material.GOLD_PLATE) &&
+				!b.getType().equals(Material.IRON_PLATE) &&
+				!b.getType().equals(Material.TRAP_DOOR) &&
+				!b.getType().equals(Material.IRON_TRAPDOOR));
 	}
 	
 	public void fire(Player p) {
 		final RailGun b = this;
 		
-		p.getWorld().playSound(p.getLocation(), Sound.BLAZE_HIT, 1, 2);
+		p.getWorld().playSound(p.getLocation(), Sound.BLAZE_HIT, 2, 2);
 		QuakePlayer.getFromPlayer(p).cooldown = FIRE_DELAY;
 		
 		for (int i = 500; i > 0; i--) {
@@ -78,7 +85,7 @@ public class RailGun {
 				
 				if (e.getUniqueId() != owner.getPlayer().getUniqueId() && ((x * x) + (y * y) + (z * z)) <= 4.0) {
 					Core.teleportToRespawn((Player) e);
-					owner.getPlayer().getWorld().playSound(owner.getPlayer().getLocation(), owner.getGunProfile().getSound(), 1, owner.getGunProfile().getPitch());
+					owner.getPlayer().getWorld().playSound(owner.getPlayer().getLocation(), owner.getGunProfile().getSound(), 3, owner.getGunProfile().getPitch());
 					Bukkit.broadcastMessage(owner.getPlayer().getDisplayName()+" §egibbed§r "+((Player)e).getDisplayName());
 					this.detonate(owner);
 				}
