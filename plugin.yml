@@ -5,6 +5,9 @@ api-version: 1.13
 author: Blackoutburst
 description: A quake test
 commands:
+  boop:
+    description: Boop someone
+    usage: /boop <player>
   start:
     description: Start the game
     usage: /start <world name>
