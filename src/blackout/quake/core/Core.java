@@ -36,12 +36,14 @@ public class Core {
 	public static void startGame(String worldName) {
 		Main.gameWorld = Bukkit.getWorld(worldName);
 		
+		
 		Main.gameRunning = true;
 		Main.gameTime = 0;
 		
 		loadRespawn(worldName);
 		
 		for (QuakePlayer p : Main.players) {
+			p.board.set(14, "Map: §a"+Main.gameWorld.getName());
 			ItemStack gun = new ItemStack(p.getGunProfile().getGun());
 			ItemMeta gunMeta = gun.getItemMeta();
 			

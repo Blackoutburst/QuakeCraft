@@ -11,7 +11,7 @@ public class ScoreboardManager {
 		
 		board.setTitle("§6Quake");
 		board.set(15, "§b§m--------------------"); 
-		board.set(14, "Map: §a"+Main.gameWorld.getName());
+		board.set(14, "Map: §aSpawn");
 		board.set(13, "Time: §a0:00");
 		board.set(12, " "); 
 		board.set(2, "  ");

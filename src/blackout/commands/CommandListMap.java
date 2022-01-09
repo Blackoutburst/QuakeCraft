@@ -28,7 +28,7 @@ public class CommandListMap {
 			Main.respawns.clear();
 			Set<String> respawns = config.getConfigurationSection("loc").getKeys(false);
 			
-			sender.sendMessage("§6"+tmp.getName()+" §r|§e "+respawns.size());
+			sender.sendMessage("§6"+tmp.getName().replace(".yml", "")+" §r|§e "+respawns.size());
 		}
 		sender.sendMessage("§b-------------------");
 	}

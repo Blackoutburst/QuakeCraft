@@ -38,9 +38,10 @@ public class CommandStart {
 
 		for(String s: entries) {
 			File tmp = new File(index.getPath(), s);
+			if (tmp.isDirectory()) continue;
 			
-			if (tmp.getName().toLowerCase().equals(worldName)) {
-				finalWorldName = tmp.getName();
+			if (tmp.getName().replace(".yml", "").toLowerCase().equals(worldName)) {
+				finalWorldName = tmp.getName().replace(".yml", "");
 			}
 		}
 		
@@ -49,7 +50,7 @@ public class CommandStart {
 			return;
 		}
 		
-		Core.startGame(worldName);
+		Core.startGame(finalWorldName);
 
 	}
 	
