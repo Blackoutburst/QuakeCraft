@@ -59,7 +59,7 @@ public class CommandScan {
                 for (int z = z1; z <= z2; z++) {
                     Block b = world.getBlockAt(new Location(world, x, y, z));
                     if (b.getType().equals(Material.SPONGE)) {
-                        saveLocation(pos, world.getName(), x, y, z);
+                        saveLocation(pos, world.getName().toLowerCase(), x, y, z);
                         pos++;
                     }
                 }

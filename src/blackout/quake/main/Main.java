@@ -12,6 +12,7 @@ import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -59,6 +60,8 @@ public class Main extends JavaPlugin implements Listener {
 	public static boolean gameRunning = false;
 	public static int gameTime = 0;
 	public static List<Location> respawns = new ArrayList<Location>();
+	
+	public static World gameWorld = Bukkit.getWorld("world");
 	
 	public static Location spawn;
 	

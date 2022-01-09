@@ -34,6 +34,8 @@ public class Core {
 	}
 	
 	public static void startGame(String worldName) {
+		Main.gameWorld = Bukkit.getWorld(worldName);
+		
 		Main.gameRunning = true;
 		Main.gameTime = 0;
 		
@@ -67,9 +69,14 @@ public class Core {
 	
 	public static void endGame() {
 		Main.gameRunning = false;
+		
+		int minutes = Main.gameTime / 60;
+		int seconds = Main.gameTime % 60;
+		String time = String.format("%d:%02d", minutes, seconds);
 
 		Bukkit.broadcastMessage("§a==============================");
-		Bukkit.broadcastMessage(Utils.centerText("§6"+Main.players.get(0).getPlayer().getLocation().getWorld().getName()));
+		Bukkit.broadcastMessage(Utils.centerText("Map: §6"+Main.players.get(0).getPlayer().getLocation().getWorld().getName()));
+		Bukkit.broadcastMessage(Utils.centerText("Time: §e"+time));
 		Bukkit.broadcastMessage("");
 		
 		for (int i = 0; i < 3; i++)
