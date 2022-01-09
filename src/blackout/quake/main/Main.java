@@ -62,7 +62,7 @@ public class Main extends JavaPlugin implements Listener {
 	public static int gameTime = 0;
 	public static List<Location> respawns = new ArrayList<Location>();
 	
-	public static World gameWorld = Bukkit.getWorld("world");
+	public static World gameWorld;
 	
 	public static Location spawn;
 	
@@ -73,6 +73,7 @@ public class Main extends JavaPlugin implements Listener {
 		new Core().gameTimer();
 		new File("./plugins/Quake/player data/").mkdirs();
 		
+		gameWorld = Bukkit.getWorld("world");
 		spawn = new Location(Bukkit.getWorld("world"), 8.5f, 5.0f, 8.5f, 0, 0);
 	}
 	

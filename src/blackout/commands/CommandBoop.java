@@ -25,6 +25,7 @@ public class CommandBoop {
 		} else {
 			p.sendMessage("§5From "+sender.getName()+" §dBoop!");
 		}
+		sender.sendMessage("§5To "+p.getDisplayName()+" §dBoop!");
 		
 	}
 }
