@@ -123,6 +123,7 @@ public class Main extends JavaPlugin implements Listener {
 	
 	@EventHandler
 	public void onPlayerChat(AsyncPlayerChatEvent event) {
+		event.setMessage(event.getMessage().replace("&", "§"));
 		event.setFormat("%s: %s");
 	}
 	
@@ -199,7 +200,8 @@ public class Main extends JavaPlugin implements Listener {
 	
 	@EventHandler
 	public void onSneak(PlayerToggleSneakEvent event) {
-		event.setCancelled(gameRunning);
+		if (event.isSneaking())
+			event.setCancelled(gameRunning);
 	}
 	
 	@EventHandler
