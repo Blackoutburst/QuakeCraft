@@ -51,7 +51,7 @@ public class CommandScan {
         sender.sendMessage("§bStarting scan");
         int pos = 0;
 
-        File tmp = new File("plugins/Xmas-Event/spawnpoints.yml");
+        File tmp = new File("plugins/Quake/"+world.getName()+".yml");
         if (tmp.exists()) tmp.delete();
 
         for (int x = x1; x <= x2; x++) {
@@ -59,7 +59,7 @@ public class CommandScan {
                 for (int z = z1; z <= z2; z++) {
                     Block b = world.getBlockAt(new Location(world, x, y, z));
                     if (b.getType().equals(Material.SPONGE)) {
-                        saveLocation(pos, world.getName().toLowerCase(), x, y, z);
+                        saveLocation(pos, world.getName(), x, y, z);
                         pos++;
                     }
                 }
