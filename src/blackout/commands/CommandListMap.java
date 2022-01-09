@@ -21,6 +21,7 @@ public class CommandListMap {
 		sender.sendMessage(" ");
 		for(String s: entries) {
 			File tmp = new File(index.getPath(), s);
+			if (tmp.isDirectory()) continue;
 			
 			YamlConfiguration config = YamlConfiguration.loadConfiguration(tmp);
 			
