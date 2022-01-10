@@ -199,9 +199,10 @@ public class Main extends JavaPlugin implements Listener {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		switch(command.getName().toLowerCase()) {
-			case "spawn": new CommandSpawn().execute(sender); break;
-			case "lobby": new CommandSpawn().execute(sender); break;
-			case "l": new CommandSpawn().execute(sender); break;
+			case "spawn":
+			case "lobby":
+			case "l":
+				new CommandSpawn().execute(sender); break;
 			case "listmap": new CommandListMap().execute(sender); break;
 			case "start": new CommandStart().execute(sender, args); break;
 			case "boop": new CommandBoop().execute(sender, args); break;
