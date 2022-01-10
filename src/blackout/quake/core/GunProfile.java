@@ -49,18 +49,16 @@ public class GunProfile {
 		return shape;
 	}
 
-	public GunProfile setShape(Type shape) {
+	public void setShape(Type shape) {
 		this.shape = shape;
-		return (this);
 	}
 
 	public Color getColor() {
 		return color;
 	}
 
-	public GunProfile setColor(Color color) {
+	public void setColor(Color color) {
 		this.color = color;
-		return (this);
 	}
 
 	public boolean isSuperior() {
@@ -85,9 +83,8 @@ public class GunProfile {
 		return pitch;
 	}
 
-	public GunProfile setPitch(float pitch) {
+	public void setPitch(float pitch) {
 		this.pitch = pitch;
-		return (this);
 	}
 
 	public ChatColor getNameColor() {

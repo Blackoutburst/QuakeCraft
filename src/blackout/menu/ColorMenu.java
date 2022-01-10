@@ -36,7 +36,7 @@ public class ColorMenu {
 	}
 	
 	private static void setItem(Inventory inv, int slot, byte data, String name) {
-		ItemStack item = new ItemStack(Material.INK_SACK, 1, (short) data);
+		ItemStack item = new ItemStack(Material.INK_SACK, 1, data);
 		ItemMeta meta = item.getItemMeta();
 		meta.setDisplayName(name);
         item.setItemMeta(meta);
@@ -45,7 +45,8 @@ public class ColorMenu {
 	
 	public static void getValue(int slot, Player p, boolean open) {
 		QuakePlayer qp = QuakePlayer.getFromPlayer(p);
-		
+		if (qp == null) return;
+
 		switch (slot) {
 			case 11: qp.getGunProfile().setColor(Color.BLACK); qp.savePlayerData("color", slot); if (open) CustomMenu.open(p); break;
 			case 12: qp.getGunProfile().setColor(Color.RED); qp.savePlayerData("color", slot); if (open) CustomMenu.open(p); break;
@@ -63,7 +64,7 @@ public class ColorMenu {
 			case 32: qp.getGunProfile().setColor(Color.FUCHSIA); qp.savePlayerData("color", slot); if (open) CustomMenu.open(p); break;
 			case 33: qp.getGunProfile().setColor(Color.ORANGE); qp.savePlayerData("color", slot); if (open) CustomMenu.open(p); break;
 			case 40: qp.getGunProfile().setColor(Color.WHITE); qp.savePlayerData("color", slot); if (open) CustomMenu.open(p); break;
-			default: return;
+			default: break;
 		}
 	}
 	

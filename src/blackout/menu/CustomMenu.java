@@ -23,7 +23,7 @@ public class CustomMenu {
 		
 		p.getInventory().clear();
 		menuMeta.setDisplayName("§bGun customisation");
-		ArrayList<String> lore = new ArrayList<String>();
+		ArrayList<String> lore = new ArrayList<>();
 		lore.add("§6Open the gun customisation menu");
 		menuMeta.setLore(lore);
 		menu.setItemMeta(menuMeta);
@@ -32,7 +32,6 @@ public class CustomMenu {
 	
 	private static Material getExplosionIcon(GunProfile gp) {
 		switch(gp.getShape()) {
-			case BALL: return (Material.FIREWORK_CHARGE);
 			case BALL_LARGE: return (Material.FIREBALL);
 			case BURST: return (Material.FEATHER);
 			case STAR: return (Material.GOLD_NUGGET);
@@ -54,7 +53,6 @@ public class CustomMenu {
 			case BLUE: return ((byte) 12);
 			case LIGHT_PURPLE: return ((byte) 13);
 			case DARK_PURPLE: return ((byte) 5);
-			case WHITE: return ((byte) 15);
 			case GRAY: return ((byte) 7);
 			case DARK_GRAY: return ((byte) 8);
 			default: return ((byte) 15);
@@ -83,6 +81,8 @@ public class CustomMenu {
 	
 	public static void open(Player p) {
 		QuakePlayer qp = QuakePlayer.getFromPlayer(p);
+		if (qp == null) return;
+
 		Inventory inv = Main.getPlugin(Main.class).getServer().createInventory(null, 27, "Gun customisation Menu");
 		
 		ItemStack item = new ItemStack(qp.getGunProfile().getGun(), 1);
@@ -92,7 +92,7 @@ public class CustomMenu {
 			meta.addEnchant(Enchantment.ARROW_DAMAGE, 10, true);
 		}
 		meta.setDisplayName("§aGun");
-		ArrayList<String> lore = new ArrayList<String>();
+		ArrayList<String> lore = new ArrayList<>();
 		lore.add("§7Select your gun case");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
@@ -102,7 +102,7 @@ public class CustomMenu {
 		meta = item.getItemMeta();
 		meta.addItemFlags(ItemFlag.values());
 		meta.setDisplayName("§aExplosion shape");
-		lore = new ArrayList<String>();
+		lore = new ArrayList<>();
 		lore.add("§7Select the shape of your explosion!");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
@@ -111,7 +111,7 @@ public class CustomMenu {
 		item = new ItemStack(Material.INK_SACK, 1, getExplosionColor(qp.getGunProfile()));
 		meta = item.getItemMeta();
 		meta.setDisplayName("§aExplosion color");
-		lore = new ArrayList<String>();
+		lore = new ArrayList<>();
 		lore.add("§7Select the color of your explosion!");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
@@ -120,7 +120,7 @@ public class CustomMenu {
 		item = new ItemStack(Material.NOTE_BLOCK, 1);
 		meta = item.getItemMeta();
 		meta.setDisplayName("§aKill Sounds");
-		lore = new ArrayList<String>();
+		lore = new ArrayList<>();
 		lore.add("§7Pick your sound to play on kill!");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
@@ -129,7 +129,7 @@ public class CustomMenu {
 		item = new ItemStack(Material.BANNER, 1, getNameColor(qp.getGunProfile()));
 		meta = item.getItemMeta();
 		meta.setDisplayName("§aName Color");
-		lore = new ArrayList<String>();
+		lore = new ArrayList<>();
 		lore.add("§7Select you name color!");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
@@ -145,7 +145,7 @@ public class CustomMenu {
 			case 13: ColorMenu.open(p); break;
 			case 14: SoundsMenu.open(p); break;
 			case 15: NameColorMenu.open(p); break;
-			default: return;
+			default: break;
 		}
 	}
 	

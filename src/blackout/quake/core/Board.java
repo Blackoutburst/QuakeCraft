@@ -28,15 +28,7 @@ public class Board {
 		team.setNameTagVisibility(NameTagVisibility.ALWAYS);
 		team.addEntry(player.getName());
 	}
- 
-	public Scoreboard getScoreboard() {
-		return scoreboard;
-	}
- 
-	public String getTitle() {
-		return objective.getDisplayName();
-	}
- 
+
 	public void setTitle(String name) {
 		this.objective.setDisplayName(name);
 	}
@@ -51,25 +43,7 @@ public class Board {
 		}
 		this.objective.getScore(text).setScore(row);
 	}
-	
-	public String get(int row) {
-		for(String entry : this.scoreboard.getEntries()) {
-			if(this.objective.getScore(entry).getScore() == row) {
-				return (entry);
-			}
-		}
-		return (null);
-	}
- 
-	public void remove(int row) {
-		for(String entry : this.scoreboard.getEntries()) {
-			if(this.objective.getScore(entry).getScore() == row) {
-				this.scoreboard.resetScores(entry);
-				break;
-			}
-		}
-	}
-	
+
 	public void addTeam(QuakePlayer player, QuakePlayer newPlayer) {
 		if (player.getBoard().scoreboard.getTeam(newPlayer.getPlayer().getName()) == null) {
 			player.getBoard().scoreboard.registerNewTeam(newPlayer.getPlayer().getName());

@@ -21,13 +21,13 @@ public class CommandStart {
 			return;
 		}
 		
-		String worldName = "";
+		StringBuilder worldName = new StringBuilder();
 		
 		for (String s : args) {
-			worldName += s+" ";
+			worldName.append(s).append(" ");
 		}
 		
-		worldName = worldName.substring(0, worldName.length() - 1).toLowerCase();
+		worldName = new StringBuilder(worldName.substring(0, worldName.length() - 1).toLowerCase());
 		
 		
 		File index = new File("./plugins/Quake/");
@@ -40,7 +40,7 @@ public class CommandStart {
 			File tmp = new File(index.getPath(), s);
 			if (tmp.isDirectory()) continue;
 			
-			if (tmp.getName().replace(".yml", "").toLowerCase().equals(worldName)) {
+			if (tmp.getName().replace(".yml", "").toLowerCase().equals(worldName.toString())) {
 				finalWorldName = tmp.getName().replace(".yml", "");
 			}
 		}

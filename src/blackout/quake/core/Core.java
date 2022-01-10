@@ -132,7 +132,7 @@ public class Core {
 					if (Main.gameRunning) {
 						timer();
 					}
-				} catch(Exception e) {}
+				} catch(Exception ignored) {}
 			}
 		}.runTaskTimerAsynchronously(Main.getPlugin(Main.class), 0L, 1L);
 	}
@@ -145,7 +145,7 @@ public class Core {
 					if (Main.gameRunning) {
 						gameTimerFunc();
 					}
-				} catch(Exception e) {}
+				} catch(Exception ignored) {}
 			}
 		}.runTaskTimerAsynchronously(Main.getPlugin(Main.class), 0L, 20L);
 	}

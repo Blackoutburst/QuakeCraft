@@ -21,7 +21,7 @@ public class GunMenu {
 		ItemStack item = new ItemStack(Material.WOOD_HOE, 1);
 		ItemMeta meta = item.getItemMeta();
 		meta.setDisplayName("§bWooden Case");
-		ArrayList<String> lore = new ArrayList<String>();
+		ArrayList<String> lore = new ArrayList<>();
 		lore.add("§7Click to select the Wooden Case");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
@@ -30,7 +30,7 @@ public class GunMenu {
 		item = new ItemStack(Material.STONE_HOE, 1);
 		meta = item.getItemMeta();
 		meta.setDisplayName("§bMarbled Case");
-		lore = new ArrayList<String>();
+		lore = new ArrayList<>();
 		lore.add("§7Click to select the Marbled Case");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
@@ -39,7 +39,7 @@ public class GunMenu {
 		item = new ItemStack(Material.IRON_HOE, 1);
 		meta = item.getItemMeta();
 		meta.setDisplayName("§bReinforced Case");
-		lore = new ArrayList<String>();
+		lore = new ArrayList<>();
 		lore.add("§7Click to select the Reinforced Case");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
@@ -48,7 +48,7 @@ public class GunMenu {
 		item = new ItemStack(Material.GOLD_HOE, 1);
 		meta = item.getItemMeta();
 		meta.setDisplayName("§bPlated Case");
-		lore = new ArrayList<String>();
+		lore = new ArrayList<>();
 		lore.add("§7Click to select the Plated Case");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
@@ -57,7 +57,7 @@ public class GunMenu {
 		item = new ItemStack(Material.DIAMOND_HOE, 1);
 		meta = item.getItemMeta();
 		meta.setDisplayName("§bBling Case");
-		lore = new ArrayList<String>();
+		lore = new ArrayList<>();
 		lore.add("§7Click to select the Bling Case");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
@@ -68,7 +68,7 @@ public class GunMenu {
 		meta.addItemFlags(ItemFlag.values());
 		meta.addEnchant(Enchantment.ARROW_DAMAGE, 10, true);
 		meta.setDisplayName("§6Varnished Wooden Case");
-		lore = new ArrayList<String>();
+		lore = new ArrayList<>();
 		lore.add("§7Click to select the Varnished Wooden Case");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
@@ -79,7 +79,7 @@ public class GunMenu {
 		meta.addItemFlags(ItemFlag.values());
 		meta.addEnchant(Enchantment.ARROW_DAMAGE, 10, true);
 		meta.setDisplayName("§6Polished Marbled Case");
-		lore = new ArrayList<String>();
+		lore = new ArrayList<>();
 		lore.add("§7Click to select the Polished Marbled Case");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
@@ -90,7 +90,7 @@ public class GunMenu {
 		meta.addItemFlags(ItemFlag.values());
 		meta.addEnchant(Enchantment.ARROW_DAMAGE, 10, true);
 		meta.setDisplayName("§6Polished Reinforced Case");
-		lore = new ArrayList<String>();
+		lore = new ArrayList<>();
 		lore.add("§7Click to select the Polished Reinforced Case");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
@@ -101,7 +101,7 @@ public class GunMenu {
 		meta.addItemFlags(ItemFlag.values());
 		meta.addEnchant(Enchantment.ARROW_DAMAGE, 10, true);
 		meta.setDisplayName("§6Polished Plated Case");
-		lore = new ArrayList<String>();
+		lore = new ArrayList<>();
 		lore.add("§7Click to select the Polished Plated Case");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
@@ -112,7 +112,7 @@ public class GunMenu {
 		meta.addItemFlags(ItemFlag.values());
 		meta.addEnchant(Enchantment.ARROW_DAMAGE, 10, true);
 		meta.setDisplayName("§6Polished Bling Case");
-		lore = new ArrayList<String>();
+		lore = new ArrayList<>();
 		lore.add("§7Click to select the Polished Bling Case");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
@@ -124,7 +124,8 @@ public class GunMenu {
 	
 	public static void getValue(int slot, Player p, boolean open) {
 		QuakePlayer qp = QuakePlayer.getFromPlayer(p);
-		
+		if (qp == null) return;
+
 		switch (slot) {
 			case 11: qp.getGunProfile().setGun(Material.WOOD_HOE).setSuperior(false).setName("§bWooden Case"); qp.savePlayerData("gun", slot); if (open) CustomMenu.open(p); break;
 			case 12: qp.getGunProfile().setGun(Material.STONE_HOE).setSuperior(false).setName("§bMarbled Case"); qp.savePlayerData("gun", slot); if (open) CustomMenu.open(p); break;
@@ -136,7 +137,7 @@ public class GunMenu {
 			case 22: qp.getGunProfile().setGun(Material.IRON_HOE).setSuperior(true).setName("§6Polished Reinforced Case"); qp.savePlayerData("gun", slot); if (open) CustomMenu.open(p); break;
 			case 23: qp.getGunProfile().setGun(Material.GOLD_HOE).setSuperior(true).setName("§6Polished Plated Case"); qp.savePlayerData("gun", slot); if (open) CustomMenu.open(p); break;
 			case 24: qp.getGunProfile().setGun(Material.DIAMOND_HOE).setSuperior(true).setName("§6Polished Bling Case"); qp.savePlayerData("gun", slot); if (open) CustomMenu.open(p); break;
-			default: return;
+			default: break;
 		}
 	}
 	

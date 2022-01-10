@@ -35,7 +35,7 @@ public class NameColorMenu {
 	}
 	
 	private static void setItem(Inventory inv, int slot, byte data, String name) {
-		ItemStack item = new ItemStack(Material.BANNER, 1, (short) data);
+		ItemStack item = new ItemStack(Material.BANNER, 1, data);
 		ItemMeta meta = item.getItemMeta();
 		meta.setDisplayName(name);
         item.setItemMeta(meta);
@@ -44,7 +44,8 @@ public class NameColorMenu {
 	
 	public static void getValue(int slot, Player p, boolean open) {
 		QuakePlayer qp = QuakePlayer.getFromPlayer(p);
-		
+		if (qp == null) return;
+
 		switch (slot) {
 			case 10: qp.getGunProfile().setNameColor(ChatColor.DARK_RED); qp.savePlayerData("nameColor", slot); Core.updateName(qp); if (open) CustomMenu.open(p); break;
 			case 11: qp.getGunProfile().setNameColor(ChatColor.RED); qp.savePlayerData("nameColor", slot); Core.updateName(qp); if (open) CustomMenu.open(p); break;
@@ -60,7 +61,7 @@ public class NameColorMenu {
 			case 23: qp.getGunProfile().setNameColor(ChatColor.WHITE); qp.savePlayerData("nameColor", slot); Core.updateName(qp); if (open) CustomMenu.open(p); break;
 			case 24: qp.getGunProfile().setNameColor(ChatColor.GRAY); qp.savePlayerData("nameColor", slot); Core.updateName(qp); if (open) CustomMenu.open(p); break;
 			case 25: qp.getGunProfile().setNameColor(ChatColor.DARK_GRAY); qp.savePlayerData("nameColor", slot); Core.updateName(qp); if (open) CustomMenu.open(p); break;
-			default: return;
+			default: break;
 		}
 	}
 	

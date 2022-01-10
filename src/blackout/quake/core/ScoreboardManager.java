@@ -1,7 +1,5 @@
 package blackout.quake.core;
 
-import java.util.Collections;
-
 import blackout.quake.main.Main;
 
 public class ScoreboardManager {
@@ -21,7 +19,7 @@ public class ScoreboardManager {
 	
   	
   	public static void updatePlayers() {
-  		Collections.sort(Main.players, new PlayerComparator());
+  		Main.players.sort(new PlayerComparator());
   		
   		for (int i = 0; i < 9; i++) {
   			if (i < Main.players.size()) {

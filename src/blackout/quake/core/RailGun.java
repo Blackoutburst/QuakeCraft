@@ -28,7 +28,7 @@ import net.minecraft.server.v1_8_R3.PlayerConnection;
 public class RailGun {
 	
 	public static float FIRE_DELAY = 17;
-	public static float DASH_DELAY = 20;
+	public static float DASH_DELAY = 40;
 	
 	protected Location location;
 	protected Vector direction;
@@ -62,11 +62,11 @@ public class RailGun {
 				!b.getType().equals(Material.IRON_TRAPDOOR));
 	}
 	
-	public void fire(Player p) {
+	public void fire(QuakePlayer p) {
 		final RailGun b = this;
-		
-		p.getWorld().playSound(p.getLocation(), Sound.BLAZE_HIT, 2, 2);
-		QuakePlayer.getFromPlayer(p).cooldown = FIRE_DELAY;
+
+		p.getPlayer().getWorld().playSound(p.getPlayer().getLocation(), Sound.BLAZE_HIT, 2, 2);
+		p.cooldown = FIRE_DELAY;
 		
 		for (int i = 500; i > 0; i--) {
 			b.location.add(b.direction.normalize().multiply(0.5));
@@ -96,16 +96,15 @@ public class RailGun {
 	public void trail() {
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			PlayerConnection connection = ((CraftPlayer) p).getHandle().playerConnection;
-			connection.sendPacket(new PacketPlayOutWorldParticles(EnumParticle.FIREWORKS_SPARK, true, (float) location.getX(), (float) location.getY(), (float) location.getZ(), 0, 0, 0, 0, 1, null));
+			connection.sendPacket(new PacketPlayOutWorldParticles(EnumParticle.FIREWORKS_SPARK, true, (float) location.getX(), (float) location.getY(), (float) location.getZ(), 0, 0, 0, 0, 1, 0));
 		}
 	}
 	
 	public void detonate(QuakePlayer owner) {
-		QuakePlayer qp = QuakePlayer.getFromPlayer(owner.getPlayer());
-		qp.score++;
+		owner.score++;
 		ScoreboardManager.updatePlayers();
 		
-		if (qp.score >= 25) {
+		if (owner.score >= 25) {
 			Core.endGame();
 		}
 		
@@ -127,29 +126,4 @@ public class RailGun {
 			connection.sendPacket(new PacketPlayOutEntityDestroy(firework.getId()));
 		}
 	}
-
-	public Location getLocation() {
-		return location;
-	}
-
-	public void setLocation(Location location) {
-		this.location = location;
-	}
-
-	public Vector getDirection() {
-		return direction;
-	}
-
-	public void setDirection(Vector direction) {
-		this.direction = direction;
-	}
-
-	public QuakePlayer getOwner() {
-		return owner;
-	}
-
-	public void setOwner(QuakePlayer owner) {
-		this.owner = owner;
-	}
-	
 }

@@ -10,7 +10,7 @@ import blackout.quake.main.Main;
 
 public class CommandListMap {
 
-	public void execute(CommandSender sender, String[] args) {
+	public void execute(CommandSender sender) {
 		File index = new File("./plugins/Quake/");
 		String[] entries = index.list();
 		

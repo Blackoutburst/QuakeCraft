@@ -51,7 +51,8 @@ public class SoundsMenu {
 	
 	public static void getValue(int slot, Player p, boolean open) {
 		QuakePlayer qp = QuakePlayer.getFromPlayer(p);
-		
+		if (qp == null) return;
+
 		switch (slot) {
 			case 11: qp.getGunProfile().setSound(Sound.BLAZE_DEATH).setPitch(2); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
 			case 12: qp.getGunProfile().setSound(Sound.HORSE_DEATH).setPitch(2); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
@@ -68,7 +69,7 @@ public class SoundsMenu {
 			case 31: qp.getGunProfile().setSound(Sound.WITHER_IDLE).setPitch(1); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
 			case 32: qp.getGunProfile().setSound(Sound.LEVEL_UP).setPitch(1); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
 			case 33: qp.getGunProfile().setSound(Sound.ZOMBIE_WOODBREAK).setPitch(1); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
-			default: return;
+			default: break;
 		}
 	}
 	
@@ -89,7 +90,7 @@ public class SoundsMenu {
 			case 31: p.playSound(p.getLocation(), Sound.WITHER_IDLE, 1, 1); break;
 			case 32: p.playSound(p.getLocation(), Sound.LEVEL_UP, 1, 1); break;
 			case 33: p.playSound(p.getLocation(), Sound.ZOMBIE_WOODBREAK, 1, 1); break;
-			default: return;
+			default: break;
 		}
 	}
 	

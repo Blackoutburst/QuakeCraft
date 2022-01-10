@@ -12,15 +12,15 @@ public class CommandClean {
 	public void execute(String[] args) {
 		if (args.length == 0) return;
 		
-		String worldName = "";
+		StringBuilder worldName = new StringBuilder();
 		
 		for (String s : args) {
-			worldName += s+" ";
+			worldName.append(s).append(" ");
 		}
 		
-		worldName = worldName.substring(0, worldName.length() - 1);
+		worldName = new StringBuilder(worldName.substring(0, worldName.length() - 1));
 		
-		Core.loadRespawn(worldName);
+		Core.loadRespawn(worldName.toString());
 		
 		for (Location l : Main.respawns) {
             Block b = l.getWorld().getBlockAt(l);

@@ -22,7 +22,7 @@ public class ShapeMenu {
 		ItemMeta meta = item.getItemMeta();
 		meta.addItemFlags(ItemFlag.values());
 		meta.setDisplayName("§bSmall explosion");
-		ArrayList<String> lore = new ArrayList<String>();
+		ArrayList<String> lore = new ArrayList<>();
 		lore.add("§7Click to select the small explosion");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
@@ -31,7 +31,7 @@ public class ShapeMenu {
 		item = new ItemStack(Material.FIREBALL, 1);
 		meta = item.getItemMeta();
 		meta.setDisplayName("§bLarge explosion");
-		lore = new ArrayList<String>();
+		lore = new ArrayList<>();
 		lore.add("§7Click to select the lage explosion");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
@@ -40,7 +40,7 @@ public class ShapeMenu {
 		item = new ItemStack(Material.FEATHER, 1);
 		meta = item.getItemMeta();
 		meta.setDisplayName("§bBurst explosion");
-		lore = new ArrayList<String>();
+		lore = new ArrayList<>();
 		lore.add("§7Click to select the burst explosion");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
@@ -49,7 +49,7 @@ public class ShapeMenu {
 		item = new ItemStack(Material.GOLD_NUGGET, 1);
 		meta = item.getItemMeta();
 		meta.setDisplayName("§bStar explosion");
-		lore = new ArrayList<String>();
+		lore = new ArrayList<>();
 		lore.add("§7Click to select the star explosion");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
@@ -58,7 +58,7 @@ public class ShapeMenu {
 		item = new ItemStack(Material.SKULL_ITEM, 1, (byte)4);
 		meta = item.getItemMeta();
 		meta.setDisplayName("§bCreeper explosion");
-		lore = new ArrayList<String>();
+		lore = new ArrayList<>();
 		lore.add("§7Click to select the creeper explosion");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
@@ -69,14 +69,15 @@ public class ShapeMenu {
 	
 	public static void getValue(int slot, Player p, boolean open) {
 		QuakePlayer qp = QuakePlayer.getFromPlayer(p);
-		
+		if (qp == null) return;
+
 		switch (slot) {
 			case 11: qp.getGunProfile().setShape(Type.BALL); qp.savePlayerData("shape", slot); if (open) CustomMenu.open(p); break;
 			case 12: qp.getGunProfile().setShape(Type.BALL_LARGE); qp.savePlayerData("shape", slot); if (open) CustomMenu.open(p); break;
 			case 13: qp.getGunProfile().setShape(Type.BURST); qp.savePlayerData("shape", slot); if (open) CustomMenu.open(p); break;
 			case 14: qp.getGunProfile().setShape(Type.STAR); qp.savePlayerData("shape", slot); if (open) CustomMenu.open(p); break;
 			case 15: qp.getGunProfile().setShape(Type.CREEPER); qp.savePlayerData("shape", slot); if (open) CustomMenu.open(p); break;
-			default: return;
+			default: break;
 		}
 	}
 	

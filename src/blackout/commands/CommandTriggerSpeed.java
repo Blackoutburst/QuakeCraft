@@ -17,7 +17,7 @@ public class CommandTriggerSpeed {
 		float delay = 0.85f;
 		
 		try {
-			delay = Float.valueOf(args[0]);
+			delay = Float.parseFloat(args[0]);
 		} catch (Exception e) {
 			sender.sendMessage("§cThe value must be a valid number");
 		}

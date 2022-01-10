@@ -17,7 +17,7 @@ public class CommandDashDelay {
 		float delay = 1;
 		
 		try {
-			delay = Float.valueOf(args[0]);
+			delay = Float.parseFloat(args[0]);
 		} catch (Exception e) {
 			sender.sendMessage("§cThe value must be a valid number");
 		}

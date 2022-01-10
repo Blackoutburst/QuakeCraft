@@ -6,7 +6,6 @@ import org.bukkit.entity.Player;
 
 public class CommandBoop {
 
-	@SuppressWarnings("deprecation")
 	public void execute(CommandSender sender, String[] args) {
 		if (args.length == 0) {
 			sender.sendMessage("§cInvlid usage !");

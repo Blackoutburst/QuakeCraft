@@ -57,10 +57,10 @@ import blackout.quake.core.ScoreboardManager;
 
 public class Main extends JavaPlugin implements Listener {
 
-	public static List<QuakePlayer> players = new ArrayList<QuakePlayer>();
+	public static List<QuakePlayer> players = new ArrayList<>();
 	public static boolean gameRunning = false;
 	public static int gameTime = 0;
-	public static List<Location> respawns = new ArrayList<Location>();
+	public static List<Location> respawns = new ArrayList<>();
 	
 	public static World gameWorld;
 	
@@ -139,6 +139,7 @@ public class Main extends JavaPlugin implements Listener {
 	@EventHandler
 	public void onPlayerInteract(PlayerInteractEvent event) {
 		QuakePlayer qp = QuakePlayer.getFromPlayer(event.getPlayer());
+		if (qp == null) return;
 		
 		if (event.getPlayer().getItemInHand().getType().equals(Material.NETHER_STAR)) {
 			CustomMenu.open(event.getPlayer());
@@ -171,7 +172,7 @@ public class Main extends JavaPlugin implements Listener {
 			Location loc = event.getPlayer().getLocation().clone();
 			loc.setY(loc.getY() + event.getPlayer().getEyeHeight());
 			
-			new RailGun(loc, event.getPlayer().getLocation().getDirection().clone(), qp).fire(event.getPlayer());
+			new RailGun(loc, event.getPlayer().getLocation().getDirection().clone(), qp).fire(qp);
 		}
 	}
 	
@@ -229,7 +230,7 @@ public class Main extends JavaPlugin implements Listener {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		switch(command.getName().toLowerCase()) {
-			case "listmap": new CommandListMap().execute(sender, args); break;
+			case "listmap": new CommandListMap().execute(sender); break;
 			case "start": new CommandStart().execute(sender, args); break;
 			case "boop": new CommandBoop().execute(sender, args); break;
 			case "end": new CommandEnd().execute(); break;
