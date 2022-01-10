@@ -7,13 +7,13 @@ public class ScoreboardManager {
 	public static void init(QuakePlayer qp) {
 		Board board = new Board(qp.getPlayer());
 		
-		board.setTitle("Â§6Quake");
-		board.set(15, "Â§bÂ§m--------------------"); 
-		board.set(14, "Map: Â§aSpawn");
-		board.set(13, "Time: Â§a0:00");
+		board.setTitle("§6Quake");
+		board.set(15, "§b§m--------------------"); 
+		board.set(14, "Map: §aSpawn");
+		board.set(13, "Time: §a0:00");
 		board.set(12, " "); 
 		board.set(2, "  ");
-		board.set(1, "Â§bÂ§m-------------------- "); 
+		board.set(1, "§b§m-------------------- "); 
 		qp.setBoard(board);
 	}
 	
@@ -25,7 +25,7 @@ public class ScoreboardManager {
   			if (i < Main.players.size()) {
 	  			for (QuakePlayer qp : Main.players) {
 	  				QuakePlayer q = Main.players.get(i);
-	  				qp.getBoard().set(11 - i, q.getPlayer().getDisplayName()+": Â§a"+q.getScore());
+	  				qp.getBoard().set(11 - i, q.getPlayer().getDisplayName()+": §a"+q.getScore());
 	  			}
   			} else {
   				for (QuakePlayer qp : Main.players) {

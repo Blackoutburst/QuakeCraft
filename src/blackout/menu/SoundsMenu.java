@@ -18,21 +18,21 @@ public class SoundsMenu {
 	public static void open(Player p) {
 		Inventory inv = Main.getPlugin(Main.class).getServer().createInventory(null, 54, "Kill Sounds");
 		
-		setItem(inv, 11, "Â§aBlaze Death", Material.BLAZE_ROD);
-		setItem(inv, 12, "Â§aHorse Death", Material.SADDLE);
-		setItem(inv, 13, "Â§aBat Death", Material.FEATHER);
-		setItem(inv, 14, "Â§aEnderman Death", Material.ENDER_PEARL);
-		setItem(inv, 15, "Â§aGolem Death", Material.IRON_BLOCK);
-		setItem(inv, 20, "Â§aPig Death", Material.PORK);
-		setItem(inv, 21, "Â§aCow Hurt", Material.LEATHER);
-		setItem(inv, 22, "Â§aCreeper Death", Material.SULPHUR);
-		setItem(inv, 23, "Â§aAnvil Land", Material.ANVIL);
-		setItem(inv, 24, "Â§aGhast Death", Material.GHAST_TEAR);
-		setItem(inv, 29, "Â§aDragon Growl", Material.DRAGON_EGG);
-		setItem(inv, 30, "Â§aVillager MHM", Material.EMERALD);
-		setItem(inv, 31, "Â§aWither", Material.ENDER_PORTAL_FRAME);
-		setItem(inv, 32, "Â§aLevel Up", Material.EXP_BOTTLE);
-		setItem(inv, 33, "Â§aZombie Destroy", Material.ROTTEN_FLESH);
+		setItem(inv, 11, "§aBlaze Death", Material.BLAZE_ROD);
+		setItem(inv, 12, "§aHorse Death", Material.SADDLE);
+		setItem(inv, 13, "§aBat Death", Material.FEATHER);
+		setItem(inv, 14, "§aEnderman Death", Material.ENDER_PEARL);
+		setItem(inv, 15, "§aGolem Death", Material.IRON_BLOCK);
+		setItem(inv, 20, "§aPig Death", Material.PORK);
+		setItem(inv, 21, "§aCow Hurt", Material.LEATHER);
+		setItem(inv, 22, "§aCreeper Death", Material.SULPHUR);
+		setItem(inv, 23, "§aAnvil Land", Material.ANVIL);
+		setItem(inv, 24, "§aGhast Death", Material.GHAST_TEAR);
+		setItem(inv, 29, "§aDragon Growl", Material.DRAGON_EGG);
+		setItem(inv, 30, "§aVillager MHM", Material.EMERALD);
+		setItem(inv, 31, "§aWither", Material.ENDER_PORTAL_FRAME);
+		setItem(inv, 32, "§aLevel Up", Material.EXP_BOTTLE);
+		setItem(inv, 33, "§aZombie Destroy", Material.ROTTEN_FLESH);
 		
 		p.openInventory(inv);
 	}
@@ -42,8 +42,8 @@ public class SoundsMenu {
 		ItemMeta meta = item.getItemMeta();
 		meta.setDisplayName(name);
 		List<String> lore = new ArrayList<>();
-		lore.add("Â§bLeft click to select");
-		lore.add("Â§bRight click to preview");
+		lore.add("§bLeft click to select");
+		lore.add("§bRight click to preview");
 		meta.setLore(lore);
         item.setItemMeta(meta);
 		inv.setItem(slot, item);

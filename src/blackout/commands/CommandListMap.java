@@ -16,7 +16,7 @@ public class CommandListMap {
 		
 		if (entries == null) return;
 
-		sender.sendMessage("Â§b-------------------");
+		sender.sendMessage("§b-------------------");
 		sender.sendMessage("World name | Number of spawns");
 		sender.sendMessage(" ");
 		for(String s: entries) {
@@ -28,8 +28,8 @@ public class CommandListMap {
 			Main.respawns.clear();
 			Set<String> respawns = config.getConfigurationSection("loc").getKeys(false);
 			
-			sender.sendMessage("Â§6"+tmp.getName().replace(".yml", "")+" Â§r|Â§e "+respawns.size());
+			sender.sendMessage("§6"+tmp.getName().replace(".yml", "")+" §r|§e "+respawns.size());
 		}
-		sender.sendMessage("Â§b-------------------");
+		sender.sendMessage("§b-------------------");
 	}
 }

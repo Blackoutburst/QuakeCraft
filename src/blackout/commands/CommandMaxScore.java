@@ -1,6 +1,5 @@
 package blackout.commands;
 
-import blackout.quake.core.RailGun;
 import blackout.quake.main.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -10,7 +9,7 @@ public class CommandMaxScore {
 
 	public void execute(CommandSender sender, String[] args) {
 		if (args.length == 0) {
-			sender.sendMessage("Â§cSpecifie a score");
+			sender.sendMessage("§cSpecifie a score");
 			return;
 		}
 		
@@ -19,12 +18,12 @@ public class CommandMaxScore {
 		try {
 			score = Integer.parseInt(args[0]);
 		} catch (Exception e) {
-			sender.sendMessage("Â§cThe value must be a valid number");
+			sender.sendMessage("§cThe value must be a valid number");
 		}
 		Main.maxScore = score;
 		
 		Player p = (Player) sender;
 		
-		Bukkit.broadcastMessage(p.getDisplayName()+" Â§bhas set the max score to Â§6"+score+"s");
+		Bukkit.broadcastMessage(p.getDisplayName()+" §bhas set the max score to §6"+score);
 	}
 }

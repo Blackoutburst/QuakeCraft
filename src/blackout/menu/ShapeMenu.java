@@ -21,45 +21,45 @@ public class ShapeMenu {
 		ItemStack item = new ItemStack(Material.FIREWORK_CHARGE, 1);
 		ItemMeta meta = item.getItemMeta();
 		meta.addItemFlags(ItemFlag.values());
-		meta.setDisplayName("Â§bSmall explosion");
+		meta.setDisplayName("§bSmall explosion");
 		ArrayList<String> lore = new ArrayList<>();
-		lore.add("Â§7Click to select the small explosion");
+		lore.add("§7Click to select the small explosion");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
 		inv.setItem(11, item);
 		
 		item = new ItemStack(Material.FIREBALL, 1);
 		meta = item.getItemMeta();
-		meta.setDisplayName("Â§bLarge explosion");
+		meta.setDisplayName("§bLarge explosion");
 		lore = new ArrayList<>();
-		lore.add("Â§7Click to select the lage explosion");
+		lore.add("§7Click to select the lage explosion");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
 		inv.setItem(12, item);
 		
 		item = new ItemStack(Material.FEATHER, 1);
 		meta = item.getItemMeta();
-		meta.setDisplayName("Â§bBurst explosion");
+		meta.setDisplayName("§bBurst explosion");
 		lore = new ArrayList<>();
-		lore.add("Â§7Click to select the burst explosion");
+		lore.add("§7Click to select the burst explosion");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
 		inv.setItem(13, item);
 		
 		item = new ItemStack(Material.GOLD_NUGGET, 1);
 		meta = item.getItemMeta();
-		meta.setDisplayName("Â§bStar explosion");
+		meta.setDisplayName("§bStar explosion");
 		lore = new ArrayList<>();
-		lore.add("Â§7Click to select the star explosion");
+		lore.add("§7Click to select the star explosion");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
 		inv.setItem(14, item);
 		
 		item = new ItemStack(Material.SKULL_ITEM, 1, (byte)4);
 		meta = item.getItemMeta();
-		meta.setDisplayName("Â§bCreeper explosion");
+		meta.setDisplayName("§bCreeper explosion");
 		lore = new ArrayList<>();
-		lore.add("Â§7Click to select the creeper explosion");
+		lore.add("§7Click to select the creeper explosion");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
 		inv.setItem(15, item);		

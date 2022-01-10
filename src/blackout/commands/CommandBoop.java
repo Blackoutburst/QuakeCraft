@@ -8,23 +8,23 @@ public class CommandBoop {
 
 	public void execute(CommandSender sender, String[] args) {
 		if (args.length == 0) {
-			sender.sendMessage("Â§cInvalid usage !");
+			sender.sendMessage("§cInvalid usage !");
 			return;
 		}
 		
 		Player p = Bukkit.getPlayer(args[0]);
 		
 		if (p == null) {
-			sender.sendMessage("Â§cThis player doesn't exist !");
+			sender.sendMessage("§cThis player doesn't exist !");
 			return;
 		}
 		
 		if (sender instanceof Player) {
-			p.sendMessage("Â§5From "+((Player)sender).getDisplayName()+" Â§dBoop!");
+			p.sendMessage("§5From "+((Player)sender).getDisplayName()+" §dBoop!");
 		} else {
-			p.sendMessage("Â§5From "+sender.getName()+" Â§dBoop!");
+			p.sendMessage("§5From "+sender.getName()+" §dBoop!");
 		}
-		sender.sendMessage("Â§5To "+p.getDisplayName()+" Â§dBoop!");
+		sender.sendMessage("§5To "+p.getDisplayName()+" §dBoop!");
 		
 	}
 }

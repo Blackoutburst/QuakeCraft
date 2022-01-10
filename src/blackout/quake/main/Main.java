@@ -57,7 +57,7 @@ public class Main extends JavaPlugin implements Listener {
 		event.getPlayer().getInventory().clear();
 		event.getPlayer().teleport(spawn);
 		
-		GunProfile gunProfile = new GunProfile("Â§bWooden Case", Material.WOOD_HOE, Type.BALL, Color.AQUA, false, Sound.BLAZE_DEATH, 2, ChatColor.WHITE);
+		GunProfile gunProfile = new GunProfile("§bWooden Case", Material.WOOD_HOE, Type.BALL, Color.AQUA, false, Sound.BLAZE_DEATH, 2, ChatColor.WHITE);
 		QuakePlayer qp = new QuakePlayer(event.getPlayer(), gunProfile);
 		
 		ScoreboardManager.init(qp);
@@ -102,7 +102,7 @@ public class Main extends JavaPlugin implements Listener {
 	
 	@EventHandler
 	public void onPlayerChat(AsyncPlayerChatEvent event) {
-		event.setMessage(event.getMessage().replace("&", "Â§"));
+		event.setMessage(event.getMessage().replace("&", "§"));
 		event.setFormat("%s: %s");
 	}
 	
@@ -122,7 +122,7 @@ public class Main extends JavaPlugin implements Listener {
 				Core.clickHoe(event.getPlayer().getItemInHand().getType())) {
 			
 			if (qp.getDashCooldown() > 0) {
-				event.getPlayer().sendMessage("Â§cYou can only dash once every "+(RailGun.DASH_DELAY/20)+" seconds");
+				event.getPlayer().sendMessage("§cYou can only dash once every "+(RailGun.DASH_DELAY/20)+" seconds");
 			} else {
 				qp.setDashCooldown(RailGun.DASH_DELAY);
 				
