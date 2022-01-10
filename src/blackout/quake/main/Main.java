@@ -29,6 +29,7 @@ public class Main extends JavaPlugin implements Listener {
 	public static List<QuakePlayer> players = new ArrayList<>();
 	public static boolean gameRunning = false;
 	public static int gameTime = 0;
+	public static int maxScore = 25;
 	public static List<Location> respawns = new ArrayList<>();
 	
 	public static World gameWorld;
@@ -203,6 +204,7 @@ public class Main extends JavaPlugin implements Listener {
 			case "lobby":
 			case "l":
 				new CommandSpawn().execute(sender); break;
+			case "maxscore": new CommandMaxScore().execute(sender, args);
 			case "listmap": new CommandListMap().execute(sender); break;
 			case "start": new CommandStart().execute(sender, args); break;
 			case "boop": new CommandBoop().execute(sender, args); break;

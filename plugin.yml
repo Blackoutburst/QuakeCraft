@@ -29,6 +29,9 @@ commands:
   triggerSpeed:
     description: Set the trigger speed
     usage: /triggerspeed <value>
+  maxScore:
+    description: Set the max score
+    usage: /maxscore <value>
   dashDelay:
     description: Set the dash delay
     usage: /dashdelay <value>

@@ -1,5 +1,6 @@
 package blackout.quake.core;
 
+import blackout.quake.main.Main;
 import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.Material;
 import org.bukkit.*;
@@ -100,7 +101,7 @@ public class RailGun {
 		owner.score++;
 		ScoreboardManager.updatePlayers();
 		
-		if (owner.score >= 25) {
+		if (owner.score >= Main.maxScore) {
 			Core.endGame();
 		}
 		
