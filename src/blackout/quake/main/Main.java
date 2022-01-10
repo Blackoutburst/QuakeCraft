@@ -204,7 +204,7 @@ public class Main extends JavaPlugin implements Listener {
 			case "lobby":
 			case "l":
 				new CommandSpawn().execute(sender); break;
-			case "maxscore": new CommandMaxScore().execute(sender, args);
+			case "maxscore": new CommandMaxScore().execute(sender, args); break;
 			case "listmap": new CommandListMap().execute(sender); break;
 			case "start": new CommandStart().execute(sender, args); break;
 			case "boop": new CommandBoop().execute(sender, args); break;
