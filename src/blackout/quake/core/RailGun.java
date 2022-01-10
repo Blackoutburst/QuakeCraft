@@ -81,12 +81,12 @@ public class RailGun {
 				if (e.getUniqueId() != owner.getPlayer().getUniqueId() && dist) {
 					Core.teleportToRespawn((Player) e);
 					owner.getPlayer().getWorld().playSound(owner.getPlayer().getLocation(), owner.getGunProfile().getSound(), 3, owner.getGunProfile().getPitch());
-					Bukkit.broadcastMessage(owner.getPlayer().getDisplayName()+" §egibbed§r "+((Player)e).getDisplayName());
+					Bukkit.broadcastMessage(owner.getPlayer().getDisplayName()+" Â§egibbedÂ§r "+((Player)e).getDisplayName());
 					this.detonate(owner);
 				}
 			} else if (e instanceof LivingEntity) {
 				if (dist && ((LivingEntity) e).getHealth() > 0) {
-					Bukkit.broadcastMessage(owner.getPlayer().getDisplayName()+" §egibbed a§r "+e.getName()+" ??");
+					Bukkit.broadcastMessage(owner.getPlayer().getDisplayName()+" Â§egibbed aÂ§r "+e.getName()+" ??");
 					((LivingEntity) e).setHealth(0);
 				}
 			}

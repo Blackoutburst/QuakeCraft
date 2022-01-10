@@ -48,7 +48,7 @@ public class CommandScan {
         Player player = (Player) sender;
         World world = player.getWorld();
 
-        sender.sendMessage("§bStarting scan");
+        sender.sendMessage("Â§bStarting scan");
         int pos = 0;
 
         File tmp = new File("plugins/Quake/"+world.getName()+".yml");
@@ -65,7 +65,7 @@ public class CommandScan {
                 }
             }
         }
-        sender.sendMessage("§bScan complete found §6"+pos+" §blocation");
+        sender.sendMessage("Â§bScan complete found Â§6"+pos+" Â§blocation");
 
         return (true);
     }

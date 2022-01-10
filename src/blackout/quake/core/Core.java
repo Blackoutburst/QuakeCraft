@@ -24,8 +24,8 @@ import blackout.quake.main.Main;
 public class Core {
 
 	public static void updateName(QuakePlayer qp) {
-		qp.getPlayer().setDisplayName(qp.getGunProfile().getNameColor()+qp.getPlayer().getName()+"§r");
-		qp.getPlayer().setPlayerListName(qp.getGunProfile().getNameColor()+qp.getPlayer().getName()+"§r");
+		qp.getPlayer().setDisplayName(qp.getGunProfile().getNameColor()+qp.getPlayer().getName()+"Â§r");
+		qp.getPlayer().setPlayerListName(qp.getGunProfile().getNameColor()+qp.getPlayer().getName()+"Â§r");
 		for (QuakePlayer hp : Main.players) {
 			hp.getBoard().addTeam(hp, qp);
 			qp.getBoard().addTeam(qp, hp);
@@ -43,7 +43,7 @@ public class Core {
 		loadRespawn(worldName);
 		
 		for (QuakePlayer p : Main.players) {
-			p.board.set(14, "Map: §a"+Main.gameWorld.getName());
+			p.board.set(14, "Map: Â§a"+Main.gameWorld.getName());
 			ItemStack gun = new ItemStack(p.getGunProfile().getGun());
 			ItemMeta gunMeta = gun.getItemMeta();
 			
@@ -76,16 +76,16 @@ public class Core {
 		int seconds = Main.gameTime % 60;
 		String time = String.format("%d:%02d", minutes, seconds);
 
-		Bukkit.broadcastMessage("§a==============================");
-		Bukkit.broadcastMessage(Utils.centerText("Map: §6"+Main.players.get(0).getPlayer().getLocation().getWorld().getName()));
-		Bukkit.broadcastMessage(Utils.centerText("Time: §e"+time));
+		Bukkit.broadcastMessage("Â§a==============================");
+		Bukkit.broadcastMessage(Utils.centerText("Map: Â§6"+Main.players.get(0).getPlayer().getLocation().getWorld().getName()));
+		Bukkit.broadcastMessage(Utils.centerText("Time: Â§e"+time));
 		Bukkit.broadcastMessage("");
 		
 		for (int i = 0; i < 3; i++)
 			if (i < Main.players.size())
 				Bukkit.broadcastMessage(Utils.centerText(Main.players.get(i).getPlayer().getDisplayName()+": "+Main.players.get(i).getScore()));
 		
-		Bukkit.broadcastMessage("§a==============================");
+		Bukkit.broadcastMessage("Â§a==============================");
 		
 		
 		for (QuakePlayer p : Main.players) {
@@ -158,7 +158,7 @@ public class Core {
 		String time = String.format("%d:%02d", minutes, seconds);
 		
 		for (QuakePlayer p : Main.players) {
-			p.getBoard().set(13, "Time: §a"+time);
+			p.getBoard().set(13, "Time: Â§a"+time);
 		}
 	}
 	

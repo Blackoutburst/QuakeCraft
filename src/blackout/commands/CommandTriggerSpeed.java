@@ -10,7 +10,7 @@ public class CommandTriggerSpeed {
 
 	public void execute(CommandSender sender, String[] args) {
 		if (args.length == 0) {
-			sender.sendMessage("§cSpecifie a value in seconds");
+			sender.sendMessage("Â§cSpecifie a value in seconds");
 			return;
 		}
 		
@@ -19,12 +19,12 @@ public class CommandTriggerSpeed {
 		try {
 			delay = Float.parseFloat(args[0]);
 		} catch (Exception e) {
-			sender.sendMessage("§cThe value must be a valid number");
+			sender.sendMessage("Â§cThe value must be a valid number");
 		}
 		RailGun.FIRE_DELAY = 20 * delay;
 		
 		Player p = (Player) sender;
 		
-		Bukkit.broadcastMessage(p.getDisplayName()+" §bhas set the trigger speed to §6"+delay+"s");
+		Bukkit.broadcastMessage(p.getDisplayName()+" Â§bhas set the trigger speed to Â§6"+delay+"s");
 	}
 }

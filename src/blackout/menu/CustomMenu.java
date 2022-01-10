@@ -22,9 +22,9 @@ public class CustomMenu {
 		ItemMeta menuMeta = menu.getItemMeta();
 		
 		p.getInventory().clear();
-		menuMeta.setDisplayName("§bGun customisation");
+		menuMeta.setDisplayName("Â§bGun customisation");
 		ArrayList<String> lore = new ArrayList<>();
-		lore.add("§6Open the gun customisation menu");
+		lore.add("Â§6Open the gun customisation menu");
 		menuMeta.setLore(lore);
 		menu.setItemMeta(menuMeta);
 		p.getInventory().setItem(0, menu);
@@ -91,9 +91,9 @@ public class CustomMenu {
 			meta.addItemFlags(ItemFlag.values());
 			meta.addEnchant(Enchantment.ARROW_DAMAGE, 10, true);
 		}
-		meta.setDisplayName("§aGun");
+		meta.setDisplayName("Â§aGun");
 		ArrayList<String> lore = new ArrayList<>();
-		lore.add("§7Select your gun case");
+		lore.add("Â§7Select your gun case");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
 		inv.setItem(11, item);
@@ -101,36 +101,36 @@ public class CustomMenu {
 		item = new ItemStack(getExplosionIcon(qp.getGunProfile()), 1, (byte)(getExplosionIcon(qp.getGunProfile()).equals(Material.SKULL_ITEM) ? 4 : 0));
 		meta = item.getItemMeta();
 		meta.addItemFlags(ItemFlag.values());
-		meta.setDisplayName("§aExplosion shape");
+		meta.setDisplayName("Â§aExplosion shape");
 		lore = new ArrayList<>();
-		lore.add("§7Select the shape of your explosion!");
+		lore.add("Â§7Select the shape of your explosion!");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
 		inv.setItem(12, item);
 		
 		item = new ItemStack(Material.INK_SACK, 1, getExplosionColor(qp.getGunProfile()));
 		meta = item.getItemMeta();
-		meta.setDisplayName("§aExplosion color");
+		meta.setDisplayName("Â§aExplosion color");
 		lore = new ArrayList<>();
-		lore.add("§7Select the color of your explosion!");
+		lore.add("Â§7Select the color of your explosion!");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
 		inv.setItem(13, item);
 		
 		item = new ItemStack(Material.NOTE_BLOCK, 1);
 		meta = item.getItemMeta();
-		meta.setDisplayName("§aKill Sounds");
+		meta.setDisplayName("Â§aKill Sounds");
 		lore = new ArrayList<>();
-		lore.add("§7Pick your sound to play on kill!");
+		lore.add("Â§7Pick your sound to play on kill!");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
 		inv.setItem(14, item);
 		
 		item = new ItemStack(Material.BANNER, 1, getNameColor(qp.getGunProfile()));
 		meta = item.getItemMeta();
-		meta.setDisplayName("§aName Color");
+		meta.setDisplayName("Â§aName Color");
 		lore = new ArrayList<>();
-		lore.add("§7Select you name color!");
+		lore.add("Â§7Select you name color!");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
 		inv.setItem(15, item);
