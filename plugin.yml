@@ -5,6 +5,15 @@ api-version: 1.13
 author: Blackoutburst
 description: A quake test
 commands:
+  lobby:
+    description: Teleport you to spawn
+    usage: /lobby
+  l:
+    description: Teleport you to spawn
+    usage: /l
+  spawn:
+    description: Teleport you to spawn
+    usage: /spawn
   listmap:
     description: List worlds and number of spawns
     usage: /listmap

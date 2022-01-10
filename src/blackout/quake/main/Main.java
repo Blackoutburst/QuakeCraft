@@ -1,18 +1,10 @@
 package blackout.quake.main;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Color;
+import blackout.commands.*;
+import blackout.menu.*;
+import blackout.quake.core.*;
+import org.bukkit.*;
 import org.bukkit.FireworkEffect.Type;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
-import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -22,37 +14,14 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.player.PlayerToggleSneakEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
-import blackout.commands.CommandBoop;
-import blackout.commands.CommandClean;
-import blackout.commands.CommandDashDelay;
-import blackout.commands.CommandEnd;
-import blackout.commands.CommandListMap;
-import blackout.commands.CommandScan;
-import blackout.commands.CommandShowSpawn;
-import blackout.commands.CommandStart;
-import blackout.commands.CommandTriggerSpeed;
-import blackout.menu.ColorMenu;
-import blackout.menu.CustomMenu;
-import blackout.menu.GunMenu;
-import blackout.menu.NameColorMenu;
-import blackout.menu.ShapeMenu;
-import blackout.menu.SoundsMenu;
-import blackout.quake.core.Core;
-import blackout.quake.core.GunProfile;
-import blackout.quake.core.QuakePlayer;
-import blackout.quake.core.RailGun;
-import blackout.quake.core.ScoreboardManager;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Main extends JavaPlugin implements Listener {
@@ -230,6 +199,9 @@ public class Main extends JavaPlugin implements Listener {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		switch(command.getName().toLowerCase()) {
+			case "spawn": new CommandSpawn().execute(sender); break;
+			case "lobby": new CommandSpawn().execute(sender); break;
+			case "l": new CommandSpawn().execute(sender); break;
 			case "listmap": new CommandListMap().execute(sender); break;
 			case "start": new CommandStart().execute(sender, args); break;
 			case "boop": new CommandBoop().execute(sender, args); break;

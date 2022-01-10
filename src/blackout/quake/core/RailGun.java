@@ -1,5 +1,6 @@
 package blackout.quake.core;
 
+import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.Bukkit;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
@@ -10,19 +11,12 @@ import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Zombie;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.util.Vector;
-
-import net.minecraft.server.v1_8_R3.EntityFireworks;
-import net.minecraft.server.v1_8_R3.EnumParticle;
-import net.minecraft.server.v1_8_R3.PacketPlayOutEntityDestroy;
-import net.minecraft.server.v1_8_R3.PacketPlayOutEntityMetadata;
-import net.minecraft.server.v1_8_R3.PacketPlayOutEntityStatus;
-import net.minecraft.server.v1_8_R3.PacketPlayOutSpawnEntity;
-import net.minecraft.server.v1_8_R3.PacketPlayOutWorldParticles;
-import net.minecraft.server.v1_8_R3.PlayerConnection;
 
 
 public class RailGun {
@@ -78,16 +72,22 @@ public class RailGun {
 	
 	public void getNearbyPlayer() {
 		for (Entity e : location.getWorld().getEntities()) {
+			final float x = (float) (location.getX() - e.getLocation().getX());
+			final float y = (float) (location.getY() - e.getLocation().getY());
+			final float z = (float) (location.getZ() - e.getLocation().getZ());
+			final boolean dist = ((x * x) + (y * y) + (z * z)) <= 4.0;
 			if (e instanceof Player) {
-				final float x = (float) (location.getX() - e.getLocation().getX());
-				final float y = (float) (location.getY() - e.getLocation().getY());
-				final float z = (float) (location.getZ() - e.getLocation().getZ());
-				
-				if (e.getUniqueId() != owner.getPlayer().getUniqueId() && ((x * x) + (y * y) + (z * z)) <= 4.0) {
+
+				if (e.getUniqueId() != owner.getPlayer().getUniqueId() && dist) {
 					Core.teleportToRespawn((Player) e);
 					owner.getPlayer().getWorld().playSound(owner.getPlayer().getLocation(), owner.getGunProfile().getSound(), 3, owner.getGunProfile().getPitch());
 					Bukkit.broadcastMessage(owner.getPlayer().getDisplayName()+" §egibbed§r "+((Player)e).getDisplayName());
 					this.detonate(owner);
+				}
+			} else if (e instanceof LivingEntity) {
+				if (dist && ((LivingEntity) e).getHealth() > 0) {
+					Bukkit.broadcastMessage(owner.getPlayer().getDisplayName()+" §egibbed a§r "+e.getName()+" ??");
+					((LivingEntity) e).setHealth(0);
 				}
 			}
 		}
