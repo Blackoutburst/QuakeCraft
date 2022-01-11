@@ -92,7 +92,7 @@ public class Main extends JavaPlugin implements Listener {
 			
 			dash.setY(0.1f);
 			
-			player.setVelocity(dash.multiply(5));
+			player.setVelocity(dash.multiply(6));
 		}
 		
 		if (qp.getJumpPadCooldown() <= 0 && world.getBlockAt(belowPlayer).getType().equals(Material.LAPIS_BLOCK)) {
