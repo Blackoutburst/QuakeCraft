@@ -6,8 +6,6 @@ import java.util.Set;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import blackout.quake.main.Main;
-
 public class CommandListMap {
 
 	public void execute(CommandSender sender) {
