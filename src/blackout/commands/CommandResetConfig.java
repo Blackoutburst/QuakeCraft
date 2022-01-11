@@ -14,7 +14,7 @@ public class CommandResetConfig {
 	}
 	
 	public static void run(Player p) {
-		Bukkit.broadcastMessage(p.getDisplayName()+" §bhas restaured the default configuration");
+		Bukkit.broadcastMessage(p.getDisplayName()+" §bhas restored the default configuration");
 		GameOption.restoreConfiguration();
 	}
 }

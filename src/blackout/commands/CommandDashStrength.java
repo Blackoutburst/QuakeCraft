@@ -25,6 +25,6 @@ public class CommandDashStrength {
 		
 		Player p = (Player) sender;
 		
-		Bukkit.broadcastMessage(p.getDisplayName()+" §bhas set the dash delay to §6"+value);
+		Bukkit.broadcastMessage(p.getDisplayName()+" §bhas set the dash strength to §6"+value);
 	}
 }
