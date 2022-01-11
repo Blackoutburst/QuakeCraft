@@ -105,6 +105,13 @@ public class Main extends JavaPlugin implements Listener {
 					player.setVelocity(dash.multiply(5));
 				}
 			}.runTaskLater(Main.getPlugin(Main.class), 1L);
+			
+			new BukkitRunnable(){
+				@Override
+				public void run(){
+					qp.setJumpPadCooldown(0);
+				}
+			}.runTaskLater(Main.getPlugin(Main.class), 5L);
 		}
 		
 		if (qp.getJumpPadCooldown() <= 0 && world.getBlockAt(belowPlayer).getType().equals(Material.LAPIS_BLOCK)) {
@@ -128,6 +135,13 @@ public class Main extends JavaPlugin implements Listener {
 					player.setVelocity(dash.multiply(2.1f));
 				}
 			}.runTaskLater(Main.getPlugin(Main.class), 1L);
+			
+			new BukkitRunnable(){
+				@Override
+				public void run(){
+					qp.setJumpPadCooldown(0);
+				}
+			}.runTaskLater(Main.getPlugin(Main.class), 5L);
 		}
 		
 		if (event.getPlayer().getLocation().getY() < -10) {
