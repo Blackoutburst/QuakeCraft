@@ -17,6 +17,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 import java.io.File;
@@ -87,23 +88,44 @@ public class Main extends JavaPlugin implements Listener {
 		
 		if (qp.getJumpPadCooldown() <= 0 && world.getBlockAt(belowPlayer).getType().equals(Material.REDSTONE_BLOCK)) {
 			qp.setJumpPadCooldown(2);
-			Vector dash = player.getLocation().getDirection();
-			world.playSound(player.getLocation(), Sound.PISTON_EXTEND, 4, 1);
+			Vector dash = player.getLocation().getDirection().clone();
+			world.playSound(player.getLocation(), Sound.PISTON_EXTEND, 4, 0.5f);
 			
-			dash.setY(0.1f);
+			dash.setY(0.05f);
+			dash.setX(0.0f);
+			dash.setZ(0.0f);
 			
-			player.setVelocity(dash.multiply(6));
+			player.setVelocity(dash.multiply(5));
+			
+			new BukkitRunnable(){
+				@Override
+				public void run(){
+					Vector dash = player.getLocation().getDirection().clone();
+					dash.setY(0.1f);
+					player.setVelocity(dash.multiply(5));
+				}
+			}.runTaskLater(Main.getPlugin(Main.class), 1L);
 		}
 		
 		if (qp.getJumpPadCooldown() <= 0 && world.getBlockAt(belowPlayer).getType().equals(Material.LAPIS_BLOCK)) {
 			qp.setJumpPadCooldown(2);
-			Vector dash = player.getLocation().getDirection();
+			Vector dash = player.getLocation().getDirection().clone();
 			world.playSound(player.getLocation(), Sound.PISTON_EXTEND, 4, 1);
 			
-			dash.setY(1.0f);
+			dash.setY(0.05f);
 			dash.setX(0.0f);
+			dash.setZ(0.0f);
 			
-			player.setVelocity(dash.multiply(2));
+			player.setVelocity(dash.multiply(2.5f));
+			
+			new BukkitRunnable(){
+				@Override
+				public void run(){
+					Vector dash = player.getLocation().getDirection().clone();
+					dash.setY(1.0f);
+					player.setVelocity(dash.multiply(2.1f));
+				}
+			}.runTaskLater(Main.getPlugin(Main.class), 1L);
 		}
 		
 		if (event.getPlayer().getLocation().getY() < -10) {
@@ -153,7 +175,7 @@ public class Main extends JavaPlugin implements Listener {
 				} else {
 					qp.setDashCooldown(GameOption.DASH_DELAY);
 					
-					Vector dash = event.getPlayer().getLocation().getDirection();
+					Vector dash = event.getPlayer().getLocation().getDirection().clone();
 					
 					if (!GameOption.VERTICAL_DASH)
 						dash.setY(0.0f);
