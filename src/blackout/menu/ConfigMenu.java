@@ -276,7 +276,7 @@ public class ConfigMenu {
 		lore.add("§7You can also use §e/resetconfig");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
-		inv.setItem(48, item);	
+		inv.setItem(49, item);	
 		
 		item = new ItemStack(Material.BARRIER, 1);
 		meta = item.getItemMeta();

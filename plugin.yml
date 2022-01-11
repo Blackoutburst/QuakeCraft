@@ -35,6 +35,39 @@ commands:
   dashDelay:
     description: Set the dash delay
     usage: /dashdelay <value>
+  playerSpeed:
+    description: Set the player speed
+    usage: /playerspeed <value>
+  playerJump:
+    description: Set the player jump
+    usage: /playerjump <value>
+  playerSlow:
+    description: Set the player slowness
+    usage: /playerslow <value>
+  toggleBlindness:
+    description: Toggle blindness
+    usage: /toggleblindness
+  toggleInvisibility:
+    description: Toggle invisibility
+    usage: /toggleinvisibility
+  toggleNametag:
+    description: Toggle nametag
+    usage: /togglenametag
+  toggleDash:
+    description: Toggle dash
+    usage: /toggledash
+  toggleWlk:
+    description: Toggle walk
+    usage: /togglewalk
+  toggleJump:
+    description: Toggle jump
+    usage: /togglejump
+  resetConfig:
+    description: Reset configuration
+    usage: /resetconfig
+  showConfig:
+    description: Show configuration
+    usage: /showconfig
   scan:
     permission: quake.debug
     description: Scan the world for gift spawnpoint (Debug command)
