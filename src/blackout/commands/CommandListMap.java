@@ -16,7 +16,9 @@ public class CommandListMap {
 		Arrays.sort(entries);
 
 		sender.sendMessage("§b-------------------");
-		sender.sendMessage("World name | Number of spawns");
+		sender.sendMessage("§6World name §r|§e Number of spawns");
+		sender.sendMessage(" ");
+		sender.sendMessage("§e"+entries.length+" §6worlds found");
 		sender.sendMessage(" ");
 		for(String s: entries) {
 			File tmp = new File(index.getPath(), s);
