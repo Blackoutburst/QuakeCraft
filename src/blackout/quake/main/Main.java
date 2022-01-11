@@ -29,7 +29,6 @@ public class Main extends JavaPlugin implements Listener {
 	public static List<QuakePlayer> players = new ArrayList<>();
 	public static boolean gameRunning = false;
 	public static int gameTime = 0;
-	public static int maxScore = 25;
 	public static List<Location> respawns = new ArrayList<>();
 	
 	public static World gameWorld;
@@ -122,9 +121,9 @@ public class Main extends JavaPlugin implements Listener {
 				Core.clickHoe(event.getPlayer().getItemInHand().getType())) {
 			
 			if (qp.getDashCooldown() > 0) {
-				event.getPlayer().sendMessage("§cYou can only dash once every "+(RailGun.DASH_DELAY/20)+" seconds");
+				event.getPlayer().sendMessage("§cYou can only dash once every "+(GameOption.DASH_DELAY/20)+" seconds");
 			} else {
-				qp.setDashCooldown(RailGun.DASH_DELAY);
+				qp.setDashCooldown(GameOption.DASH_DELAY);
 				
 				Vector dash = event.getPlayer().getLocation().getDirection();
 				dash.setY(0.0f);

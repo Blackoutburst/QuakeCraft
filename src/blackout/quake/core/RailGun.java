@@ -1,6 +1,5 @@
 package blackout.quake.core;
 
-import blackout.quake.main.Main;
 import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.Material;
 import org.bukkit.*;
@@ -17,9 +16,6 @@ import org.bukkit.util.Vector;
 
 
 public class RailGun {
-	
-	public static float FIRE_DELAY = 17;
-	public static float DASH_DELAY = 40;
 	
 	protected Location location;
 	protected Vector direction;
@@ -57,7 +53,7 @@ public class RailGun {
 		final RailGun b = this;
 
 		p.getPlayer().getWorld().playSound(p.getPlayer().getLocation(), Sound.BLAZE_HIT, 2, 2);
-		p.cooldown = FIRE_DELAY;
+		p.cooldown = GameOption.FIRE_DELAY;
 		
 		for (int i = 500; i > 0; i--) {
 			b.location.add(b.direction.normalize().multiply(0.5));
@@ -101,7 +97,7 @@ public class RailGun {
 		owner.score++;
 		ScoreboardManager.updatePlayers();
 		
-		if (owner.score >= Main.maxScore) {
+		if (owner.score >= GameOption.MAX_SCORE) {
 			Core.endGame();
 		}
 		

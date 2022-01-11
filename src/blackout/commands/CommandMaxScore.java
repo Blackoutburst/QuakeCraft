@@ -1,9 +1,10 @@
 package blackout.commands;
 
-import blackout.quake.main.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import blackout.quake.core.GameOption;
 
 public class CommandMaxScore {
 
@@ -20,7 +21,7 @@ public class CommandMaxScore {
 		} catch (Exception e) {
 			sender.sendMessage("§cThe value must be a valid number");
 		}
-		Main.maxScore = score;
+		GameOption.MAX_SCORE = score;
 		
 		Player p = (Player) sender;
 		

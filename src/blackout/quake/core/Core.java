@@ -56,8 +56,8 @@ public class Core {
 			gun.setItemMeta(gunMeta);
 			
 			p.getPlayer().getInventory().setItem(0, gun);
-			p.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 100000, 1, false, false));
-			p.setCooldown(RailGun.FIRE_DELAY);
+			p.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 100000, GameOption.PLAYER_SPEED - 1, false, false));
+			p.setCooldown(GameOption.FIRE_DELAY);
 			
 			teleportToRespawn(p.getPlayer());
 			

@@ -4,7 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import blackout.quake.core.RailGun;
+import blackout.quake.core.GameOption;
 
 public class CommandDashDelay {
 
@@ -21,7 +21,7 @@ public class CommandDashDelay {
 		} catch (Exception e) {
 			sender.sendMessage("§cThe value must be a valid number");
 		}
-		RailGun.DASH_DELAY = 20 * delay;
+		GameOption.DASH_DELAY = 20 * delay;
 		
 		Player p = (Player) sender;
 		
