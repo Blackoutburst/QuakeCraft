@@ -10,6 +10,10 @@ public class CommandToggleInvisibility {
 
 	public void execute(CommandSender sender) {
 		Player p = (Player) sender;
+		run(p);
+	}
+	
+	public static void run(Player p) {
 		GameOption.INVISIBILITY = GameOption.INVISIBILITY ? false : true;
 		Bukkit.broadcastMessage(p.getDisplayName()+" §bhas "+(GameOption.INVISIBILITY ? "§aEnabled" : "§cDisabled")+" §6Invisibility");
 	}

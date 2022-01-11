@@ -1,6 +1,7 @@
 package blackout.menu;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -9,9 +10,18 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import blackout.commands.CommandResetConfig;
+import blackout.commands.CommandToggleBlindness;
+import blackout.commands.CommandToggleDash;
+import blackout.commands.CommandToggleInvisibility;
+import blackout.commands.CommandToggleJump;
+import blackout.commands.CommandToggleNametag;
+import blackout.commands.CommandToggleWalk;
 import blackout.quake.core.GameOption;
-import blackout.quake.core.QuakePlayer;
+import blackout.quake.core.Utils;
 import blackout.quake.main.Main;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.TextComponent;
 
 public class ConfigMenu {
 	
@@ -65,7 +75,6 @@ public class ConfigMenu {
 		lore = new ArrayList<>();
 		lore.add("§7Click to change the player speed");
 		lore.add("§aCurrent player speed: §6"+GameOption.PLAYER_SPEED);
-		lore.add("§70 means disabled");
 		lore.add("");
 		lore.add("§7You can also use §e/playerspeed");
 		meta.setLore(lore);
@@ -78,7 +87,6 @@ public class ConfigMenu {
 		lore = new ArrayList<>();
 		lore.add("§7Click to change the jump boost");
 		lore.add("§aCurrent player jump boost: §6"+GameOption.JUMP_BOOST);
-		lore.add("§70 means disabled");
 		lore.add("");
 		lore.add("§7You can also use §e/playerjump");
 		meta.setLore(lore);
@@ -91,7 +99,6 @@ public class ConfigMenu {
 		lore = new ArrayList<>();
 		lore.add("§7Click to change the slowness");
 		lore.add("§aCurrent player slowness: §6"+GameOption.SLOWNESS);
-		lore.add("§70 means disabled");
 		lore.add("");
 		lore.add("§7You can also use §e/playerslow");
 		meta.setLore(lore);
@@ -287,12 +294,82 @@ public class ConfigMenu {
 		p.openInventory(inv);
 	}
 	
+	private static void toggle(boolean isEnabled, Inventory inv, List<String> lore, String name, int slot) {
+		ItemStack item = new ItemStack(Material.INK_SACK, 1, (byte) (isEnabled ? 10 : 8));
+		ItemMeta meta = item.getItemMeta();
+		meta.setDisplayName(name);
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+        inv.setItem(slot, item);
+	}
+	
+	private static void commandMessage(String commandName, float value, Player p) {
+		TextComponent msg = new TextComponent(Utils.centerText("§6Use §b/" + commandName + " §r[value]"));
+		msg.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/" + commandName + " " + value));
+		
+		p.closeInventory();
+		p.sendMessage("§a§l§m---------------------------------------------");
+		p.sendMessage(" ");
+		p.spigot().sendMessage(msg);
+		msg = new TextComponent(Utils.centerText("§e(Click me to copy the command)"));
+		msg.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/" + commandName + " " + value));
+		p.spigot().sendMessage(msg);
+		p.sendMessage(" ");
+		p.sendMessage("§a§l§m---------------------------------------------");
+	}
+	
 	public static void getValue(int slot, Player p) {
-		QuakePlayer qp = QuakePlayer.getFromPlayer(p);
-		if (qp == null) return;
-
 		switch (slot) {
-			case 11: break;
+			case 10: commandMessage("triggerspeed", GameOption.FIRE_DELAY/20, p); break;
+			case 11: commandMessage("dashdelay", GameOption.DASH_DELAY/20, p); break;
+			case 12: commandMessage("maxscore", GameOption.MAX_SCORE, p); break;
+			case 14: commandMessage("playerspeed", GameOption.PLAYER_SPEED, p); break;
+			case 15: commandMessage("playerjump", GameOption.JUMP_BOOST, p); break;
+			case 16: commandMessage("playerslow", GameOption.SLOWNESS, p); break;
+			case 37: case 28: CommandToggleBlindness.run(p); 
+				List<String> lore = new ArrayList<>();
+				lore.add("§7Toggle blindness");
+				lore.add("");
+				lore.add("§7You can also use §e/toggleblindness");
+				toggle(GameOption.BLINDNESS, p.getInventory(), lore, "§bBlindness", 37);
+			break;
+			case 38: case 29: CommandToggleInvisibility.run(p); 
+				lore = new ArrayList<>();
+				lore.add("§7Toggle invisibility");
+				lore.add("");
+				lore.add("§7You can also use §e/toggleinvisibility");
+				toggle(GameOption.INVISIBILITY, p.getInventory(), lore, "§bInvisibility", 38);
+			break;
+			case 39: case 30: CommandToggleNametag.run(p); 
+				lore = new ArrayList<>();
+				lore.add("§7Toggle nametag");
+				lore.add("");
+				lore.add("§7You can also use §e/togglenametag");
+				toggle(GameOption.NAMETAG, p.getInventory(), lore, "§bNametag", 39);
+			break;
+			case 41: case 32: CommandToggleDash.run(p); 
+				lore = new ArrayList<>();
+				lore.add("§7Toggle dash");
+				lore.add("");
+				lore.add("§7You can also use §e/toggledash");
+				toggle(GameOption.DASH, p.getInventory(), lore, "§bDash", 41);
+			break;
+			case 42: case 33: CommandToggleWalk.run(p); 
+				lore = new ArrayList<>();
+				lore.add("§7Toggle walk");
+				lore.add("");
+				lore.add("§7You can also use §e/togglewalk");
+				toggle(GameOption.WALK, p.getInventory(), lore, "§bDash", 42);
+			break;
+			case 43: case 34: CommandToggleJump.run(p); 
+				lore = new ArrayList<>();
+				lore.add("§7Toggle jump");
+				lore.add("");
+				lore.add("§7You can also use §e/togglejump");
+				toggle(GameOption.WALK, p.getInventory(), lore, "§bJump", 43);
+			break;
+			case 49: CommandResetConfig.run(p); break;
+			case 53: p.closeInventory(); break;
 			default: break;
 		}
 	}

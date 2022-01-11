@@ -10,6 +10,10 @@ public class CommandToggleBlindness {
 
 	public void execute(CommandSender sender) {
 		Player p = (Player) sender;
+		run(p);
+	}
+	
+	public static void run(Player p) {
 		GameOption.BLINDNESS = GameOption.BLINDNESS ? false : true;
 		Bukkit.broadcastMessage(p.getDisplayName()+" §bhas "+(GameOption.BLINDNESS ? "§aEnabled" : "§cDisabled")+" §6Blindness");
 	}

@@ -10,6 +10,10 @@ public class CommandToggleNametag {
 
 	public void execute(CommandSender sender) {
 		Player p = (Player) sender;
+		run(p);
+	}
+	
+	public static void run(Player p) {
 		GameOption.NAMETAG = GameOption.NAMETAG ? false : true;
 		Bukkit.broadcastMessage(p.getDisplayName()+" §bhas "+(GameOption.NAMETAG ? "§aEnabled" : "§cDisabled")+" §6Nametag");
 	}

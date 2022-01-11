@@ -10,6 +10,10 @@ public class CommandResetConfig {
 
 	public void execute(CommandSender sender) {
 		Player p = (Player) sender;
+		run(p);
+	}
+	
+	public static void run(Player p) {
 		Bukkit.broadcastMessage(p.getDisplayName()+" §bhas restaured the default configuration");
 		GameOption.restoreConfiguration();
 	}

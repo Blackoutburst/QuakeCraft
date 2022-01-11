@@ -43,8 +43,10 @@ public class Core {
 		
 		loadRespawn(worldName);
 		
+		for (int i = 0; i < Main.players.size(); i++)
+			Core.updateName(Main.players.get(i), GameOption.NAMETAG ? NameTagVisibility.ALWAYS : NameTagVisibility.NEVER);
+		
 		for (QuakePlayer p : Main.players) {
-			Core.updateName(p, GameOption.NAMETAG ? NameTagVisibility.ALWAYS : NameTagVisibility.NEVER);
 			
 			p.board.set(14, "Map: §a"+Main.gameWorld.getName());
 			ItemStack gun = new ItemStack(p.getGunProfile().getGun());
@@ -108,9 +110,10 @@ public class Core {
 		
 		Bukkit.broadcastMessage("§a==============================");
 		
+		for (int i = 0; i < Main.players.size(); i++)
+			Core.updateName(Main.players.get(i), NameTagVisibility.ALWAYS);
 		
 		for (QuakePlayer p : Main.players) {
-			Core.updateName(p, NameTagVisibility.ALWAYS);
 			p.getPlayer().teleport(Main.spawn);
 			p.getPlayer().getInventory().clear();
 			p.setScore(0);

@@ -11,7 +11,7 @@ public class GameOption {
 	
 	public static boolean BLINDNESS = false;
 	public static boolean INVISIBILITY = false;
-	public static boolean NAMETAG = false;
+	public static boolean NAMETAG = true;
 	public static boolean DASH = true;
 	public static boolean WALK = true;
 	public static boolean JUMP = true;
@@ -26,7 +26,7 @@ public class GameOption {
 		
 		BLINDNESS = false;
 		INVISIBILITY = false;
-		NAMETAG = false;
+		NAMETAG = true;
 		DASH = true;
 		JUMP = true;
 		WALK = true;
