@@ -1,6 +1,7 @@
 package blackout.commands;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.Set;
 
 import org.bukkit.command.CommandSender;
@@ -11,8 +12,8 @@ public class CommandListMap {
 	public void execute(CommandSender sender) {
 		File index = new File("./plugins/Quake/");
 		String[] entries = index.list();
-		
 		if (entries == null) return;
+		Arrays.sort(entries);
 
 		sender.sendMessage("§b-------------------");
 		sender.sendMessage("World name | Number of spawns");
