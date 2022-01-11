@@ -18,7 +18,7 @@ public class CommandClean {
 			return;
 		}
 		
-StringBuilder worldName = new StringBuilder();
+		StringBuilder worldName = new StringBuilder();
 		
 		for (String s : args) {
 			worldName.append(s).append(" ");

@@ -216,7 +216,7 @@ public class Main extends JavaPlugin implements Listener {
 			case "listmap": new CommandListMap().execute(sender); break;
 			case "start": new CommandStart().execute(sender, args); break;
 			case "boop": new CommandBoop().execute(sender, args); break;
-			case "end": new CommandEnd().execute(); break;
+			case "end": new CommandEnd().execute(sender); break;
 			case "scan": new CommandScan().execute(sender, args); break;
 			case "clean": new CommandClean().execute(sender, args); break;
 			case "showspawn": new CommandShowSpawn().execute(sender, args); break;
