@@ -184,7 +184,7 @@ public class Main extends JavaPlugin implements Listener {
 		}
 		
 		if (event.getInventory().getName().equals("Game Configuration")) {
-			ConfigMenu.getValue(event.getSlot(), (Player) event.getWhoClicked());
+			ConfigMenu.getValue(event.getSlot(), (Player) event.getWhoClicked(), event.getClickedInventory());
 			event.setCancelled(true);
 		}
 	}

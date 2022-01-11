@@ -318,7 +318,7 @@ public class ConfigMenu {
 		p.sendMessage("§a§l§m---------------------------------------------");
 	}
 	
-	public static void getValue(int slot, Player p) {
+	public static void getValue(int slot, Player p, Inventory inv) {
 		switch (slot) {
 			case 10: commandMessage("triggerspeed", GameOption.FIRE_DELAY/20, p); break;
 			case 11: commandMessage("dashdelay", GameOption.DASH_DELAY/20, p); break;
@@ -331,42 +331,42 @@ public class ConfigMenu {
 				lore.add("§7Toggle blindness");
 				lore.add("");
 				lore.add("§7You can also use §e/toggleblindness");
-				toggle(GameOption.BLINDNESS, p.getInventory(), lore, "§bBlindness", 37);
+				toggle(GameOption.BLINDNESS, inv, lore, "§bBlindness", 37);
 			break;
 			case 38: case 29: CommandToggleInvisibility.run(p); 
 				lore = new ArrayList<>();
 				lore.add("§7Toggle invisibility");
 				lore.add("");
 				lore.add("§7You can also use §e/toggleinvisibility");
-				toggle(GameOption.INVISIBILITY, p.getInventory(), lore, "§bInvisibility", 38);
+				toggle(GameOption.INVISIBILITY, inv, lore, "§bInvisibility", 38);
 			break;
 			case 39: case 30: CommandToggleNametag.run(p); 
 				lore = new ArrayList<>();
 				lore.add("§7Toggle nametag");
 				lore.add("");
 				lore.add("§7You can also use §e/togglenametag");
-				toggle(GameOption.NAMETAG, p.getInventory(), lore, "§bNametag", 39);
+				toggle(GameOption.NAMETAG, inv, lore, "§bNametag", 39);
 			break;
 			case 41: case 32: CommandToggleDash.run(p); 
 				lore = new ArrayList<>();
 				lore.add("§7Toggle dash");
 				lore.add("");
 				lore.add("§7You can also use §e/toggledash");
-				toggle(GameOption.DASH, p.getInventory(), lore, "§bDash", 41);
+				toggle(GameOption.DASH, inv, lore, "§bDash", 41);
 			break;
 			case 42: case 33: CommandToggleWalk.run(p); 
 				lore = new ArrayList<>();
 				lore.add("§7Toggle walk");
 				lore.add("");
 				lore.add("§7You can also use §e/togglewalk");
-				toggle(GameOption.WALK, p.getInventory(), lore, "§bDash", 42);
+				toggle(GameOption.WALK, inv, lore, "§bDash", 42);
 			break;
 			case 43: case 34: CommandToggleJump.run(p); 
 				lore = new ArrayList<>();
 				lore.add("§7Toggle jump");
 				lore.add("");
 				lore.add("§7You can also use §e/togglejump");
-				toggle(GameOption.WALK, p.getInventory(), lore, "§bJump", 43);
+				toggle(GameOption.JUMP, inv, lore, "§bJump", 43);
 			break;
 			case 49: CommandResetConfig.run(p); break;
 			case 53: p.closeInventory(); break;
