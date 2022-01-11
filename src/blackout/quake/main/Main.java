@@ -222,6 +222,18 @@ public class Main extends JavaPlugin implements Listener {
 			case "showspawn": new CommandShowSpawn().execute(args); break;
 			case "triggerspeed": new CommandTriggerSpeed().execute(sender, args); break;
 			case "dashdelay": new CommandDashDelay().execute(sender, args); break;
+			case "config": new CommandConfig().execute(sender); break;
+			case "showconfig": new CommandShowConfig().execute(sender); break;
+			case "resetconfig": new CommandResetConfig().execute(sender); break;
+			case "togglejump": new CommandToggleJump().execute(sender); break;
+			case "togglewalk": new CommandToggleWalk().execute(sender); break;
+			case "toggledash": new CommandToggleDash().execute(sender); break;
+			case "togglenametag": new CommandToggleNametag().execute(sender); break;
+			case "toggleinvisibility": new CommandToggleInvisibility().execute(sender); break;
+			case "toggleblindness": new CommandToggleBlindness().execute(sender); break;
+			case "playerslow": new CommandPlayerSlow().execute(sender, args); break;
+			case "playerspeed": new CommandPlayerSpeed().execute(sender, args); break;
+			case "playerjump": new CommandPlayerJump().execute(sender, args); break;
 			default: return true;
 		}
 		return true;

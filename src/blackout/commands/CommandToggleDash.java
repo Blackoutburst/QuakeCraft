@@ -1,0 +1,16 @@
+package blackout.commands;
+
+import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
+import blackout.quake.core.GameOption;
+
+public class CommandToggleDash {
+
+	public void execute(CommandSender sender) {
+		Player p = (Player) sender;
+		GameOption.DASH = GameOption.DASH ? false : true;
+		Bukkit.broadcastMessage(p.getDisplayName()+" §bhas "+(GameOption.DASH ? "§aEnabled" : "§cDisabled")+" §6Dash");
+	}
+}

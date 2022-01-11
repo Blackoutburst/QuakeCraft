@@ -56,7 +56,7 @@ commands:
   toggleDash:
     description: Toggle dash
     usage: /toggledash
-  toggleWlk:
+  toggleWalk:
     description: Toggle walk
     usage: /togglewalk
   toggleJump:
@@ -68,6 +68,9 @@ commands:
   showConfig:
     description: Show configuration
     usage: /showconfig
+  config:
+    description: Show configuration menu
+    usage: /config
   scan:
     permission: quake.debug
     description: Scan the world for gift spawnpoint (Debug command)
