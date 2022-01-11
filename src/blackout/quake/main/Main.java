@@ -127,9 +127,11 @@ public class Main extends JavaPlugin implements Listener {
 					qp.setDashCooldown(GameOption.DASH_DELAY);
 					
 					Vector dash = event.getPlayer().getLocation().getDirection();
-					dash.setY(0.0f);
 					
-					event.getPlayer().setVelocity(dash.multiply(2));
+					if (!GameOption.VERTICAL_DASH)
+						dash.setY(0.0f);
+					
+					event.getPlayer().setVelocity(dash.multiply(GameOption.DASH_STRENGTH));
 					event.getPlayer().getWorld().playSound(event.getPlayer().getLocation(), Sound.BAT_TAKEOFF, 1, 1);
 				}
 			} else {
@@ -228,12 +230,14 @@ public class Main extends JavaPlugin implements Listener {
 			case "togglejump": new CommandToggleJump().execute(sender); break;
 			case "togglewalk": new CommandToggleWalk().execute(sender); break;
 			case "toggledash": new CommandToggleDash().execute(sender); break;
+			case "toggleverticaldash": new CommandToggleVerticalDash().execute(sender); break;
 			case "togglenametag": new CommandToggleNametag().execute(sender); break;
 			case "toggleinvisibility": new CommandToggleInvisibility().execute(sender); break;
 			case "toggleblindness": new CommandToggleBlindness().execute(sender); break;
 			case "playerslow": new CommandPlayerSlow().execute(sender, args); break;
 			case "playerspeed": new CommandPlayerSpeed().execute(sender, args); break;
 			case "playerjump": new CommandPlayerJump().execute(sender, args); break;
+			case "dashstrength": new CommandDashStrength().execute(sender, args); break;
 			default: return true;
 		}
 		return true;

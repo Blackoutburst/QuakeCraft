@@ -16,6 +16,7 @@ import blackout.commands.CommandToggleDash;
 import blackout.commands.CommandToggleInvisibility;
 import blackout.commands.CommandToggleJump;
 import blackout.commands.CommandToggleNametag;
+import blackout.commands.CommandToggleVerticalDash;
 import blackout.commands.CommandToggleWalk;
 import blackout.quake.core.GameOption;
 import blackout.quake.core.Utils;
@@ -68,6 +69,18 @@ public class ConfigMenu {
 		meta.setLore(lore);
 		item.setItemMeta(meta);
 		inv.setItem(12, item);
+		
+		item = new ItemStack(Material.FIRE, 1);
+		meta = item.getItemMeta();
+		meta.setDisplayName("§bDash strength");
+		lore = new ArrayList<>();
+		lore.add("§7Click to change the dash strength");
+		lore.add("§aCurrent dash strength: §6"+GameOption.DASH_STRENGTH);
+		lore.add("");
+		lore.add("§7You can also use §e/dashstrength");
+		meta.setLore(lore);
+		item.setItemMeta(meta);
+		inv.setItem(13, item);
 		
 		item = new ItemStack(Material.SUGAR, 1);
 		meta = item.getItemMeta();
@@ -142,6 +155,17 @@ public class ConfigMenu {
 		item.setItemMeta(meta);
 		inv.setItem(30, item);	
 		
+		item = new ItemStack(Material.STRING, 1);
+		meta = item.getItemMeta();
+		meta.setDisplayName("§bVertical dash");
+		lore = new ArrayList<>();
+		lore.add("§7Toggle vertical dash");
+		lore.add("");
+		lore.add("§7You can also use §e/toggleverticaldash");
+		meta.setLore(lore);
+		item.setItemMeta(meta);
+		inv.setItem(32, item);	
+		
 		item = new ItemStack(Material.FEATHER, 1);
 		meta = item.getItemMeta();
 		meta.setDisplayName("§bDash");
@@ -212,6 +236,17 @@ public class ConfigMenu {
 		item.setItemMeta(meta);
 		inv.setItem(39, item);	
 		
+		item = new ItemStack(Material.INK_SACK, 1, (byte) (GameOption.VERTICAL_DASH ? 10 : 8));
+		meta = item.getItemMeta();
+		meta.setDisplayName("§bVertical dash");
+		lore = new ArrayList<>();
+		lore.add("§7Toggle vertical dash");
+		lore.add("");
+		lore.add("§7You can also use §e/toggleverticaldash");
+		meta.setLore(lore);
+		item.setItemMeta(meta);
+		inv.setItem(41, item);	
+		
 		item = new ItemStack(Material.INK_SACK, 1, (byte) (GameOption.DASH ? 10 : 8));
 		meta = item.getItemMeta();
 		meta.setDisplayName("§bDash");
@@ -256,7 +291,7 @@ public class ConfigMenu {
 		lore.add("§6Trigger: §e"+GameOption.FIRE_DELAY/20+"s");
 		lore.add("§6Dash: §e"+GameOption.DASH_DELAY/20+"s");
 		lore.add("§6Max score: §e"+GameOption.MAX_SCORE);
-		lore.add("");
+		lore.add("§6Dash strength: §e"+GameOption.DASH_STRENGTH);
 		lore.add("§6Speed: §e"+GameOption.PLAYER_SPEED);
 		lore.add("§6Jump: §e"+GameOption.JUMP_BOOST);
 		lore.add("§6Slow: §e"+GameOption.SLOWNESS);
@@ -264,7 +299,7 @@ public class ConfigMenu {
 		lore.add("§6Blindness: "+(GameOption.BLINDNESS ? "§aYes" : "§cNo"));
 		lore.add("§6Invisibility: "+(GameOption.INVISIBILITY ? "§aYes" : "§cNo"));
 		lore.add("§6NameTag: "+(GameOption.NAMETAG ? "§aYes" : "§cNo"));
-		lore.add("");
+		lore.add("§6Vertical dash: §e"+(GameOption.VERTICAL_DASH ? "§aYes" : "§cNo"));
 		lore.add("§6Dash: "+(GameOption.DASH ? "§aYes" : "§cNo"));
 		lore.add("§6Walk: "+(GameOption.WALK ? "§aYes" : "§cNo"));
 		lore.add("§6Jump: "+(GameOption.JUMP ? "§aYes" : "§cNo"));
@@ -348,6 +383,7 @@ public class ConfigMenu {
 			case 10: commandMessage("triggerspeed", GameOption.FIRE_DELAY/20, p); break;
 			case 11: commandMessage("dashdelay", GameOption.DASH_DELAY/20, p); break;
 			case 12: commandMessage("maxscore", GameOption.MAX_SCORE, p); break;
+			case 13: commandMessage("dashstrength", GameOption.DASH_STRENGTH, p); break;
 			case 14: commandMessage("playerspeed", GameOption.PLAYER_SPEED, p); break;
 			case 15: commandMessage("playerjump", GameOption.JUMP_BOOST, p); break;
 			case 16: commandMessage("playerslow", GameOption.SLOWNESS, p); break;
@@ -372,6 +408,13 @@ public class ConfigMenu {
 				lore.add("§7You can also use §e/togglenametag");
 				toggle(GameOption.NAMETAG, inv, lore, "§bNametag", 39);
 			break;
+				case 40: case 31: CommandToggleVerticalDash.run(p); 
+				lore = new ArrayList<>();
+				lore.add("§7Toggle vertical dash");
+				lore.add("");
+				lore.add("§7You can also use §e/toggleverticaldash");
+				toggle(GameOption.VERTICAL_DASH, inv, lore, "§bVertical dash", 39);
+			break;
 			case 41: case 32: CommandToggleDash.run(p); 
 				lore = new ArrayList<>();
 				lore.add("§7Toggle dash");
@@ -384,7 +427,7 @@ public class ConfigMenu {
 				lore.add("§7Toggle walk");
 				lore.add("");
 				lore.add("§7You can also use §e/togglewalk");
-				toggle(GameOption.WALK, inv, lore, "§bDash", 42);
+				toggle(GameOption.WALK, inv, lore, "§bWalk", 42);
 			break;
 			case 43: case 34: CommandToggleJump.run(p); 
 				lore = new ArrayList<>();
