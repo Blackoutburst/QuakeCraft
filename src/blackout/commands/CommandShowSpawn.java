@@ -1,16 +1,22 @@
 package blackout.commands;
 
+import java.io.File;
+
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.command.CommandSender;
 
 import blackout.quake.core.Core;
 import blackout.quake.main.Main;
 
 public class CommandShowSpawn {
 
-	public void execute(String[] args) {
-		if (args.length == 0) return;
+	public void execute(CommandSender sender, String[] args) {
+		if (args.length == 0) {
+			sender.sendMessage("§cInvalid usage try §e/showspawn <worldName>");
+			return;
+		}
 		
 		StringBuilder worldName = new StringBuilder();
 		
@@ -18,13 +24,34 @@ public class CommandShowSpawn {
 			worldName.append(s).append(" ");
 		}
 		
-		worldName = new StringBuilder(worldName.substring(0, worldName.length() - 1));
+		worldName = new StringBuilder(worldName.substring(0, worldName.length() - 1).toLowerCase());
 		
-		Core.loadRespawn(worldName.toString());
+		
+		File index = new File("./plugins/Quake/");
+		String[] entries = index.list();
+		String finalWorldName = null;
+		
+		if (entries == null) return;
+
+		for(String s: entries) {
+			File tmp = new File(index.getPath(), s);
+			if (tmp.isDirectory()) continue;
+			
+			if (tmp.getName().replace(".yml", "").toLowerCase().equals(worldName.toString())) {
+				finalWorldName = tmp.getName().replace(".yml", "");
+			}
+		}
+		
+		if (finalWorldName == null) {
+			sender.sendMessage("§cThe world §f"+worldName+"§c doesn't exist!");
+			return;
+		}
+		Core.loadRespawn(finalWorldName);
 		
 		for (Location l : Main.respawns) {
             Block b = l.getWorld().getBlockAt(l);
             b.setType(Material.SPONGE);
         }
+		sender.sendMessage("§bAdded sponges on the §6"+Main.respawns.size()+" §bspawnpoints found in §6"+finalWorldName);
 	}
 }
