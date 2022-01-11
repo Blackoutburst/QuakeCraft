@@ -103,7 +103,7 @@ public class Main extends JavaPlugin implements Listener {
 			dash.setY(1.0f);
 			dash.setX(0.0f);
 			
-			player.setVelocity(dash.multiply(3));
+			player.setVelocity(dash.multiply(2));
 		}
 		
 		if (event.getPlayer().getLocation().getY() < -10) {
