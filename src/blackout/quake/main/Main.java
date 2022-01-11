@@ -120,16 +120,20 @@ public class Main extends JavaPlugin implements Listener {
 				event.getAction().equals(Action.LEFT_CLICK_AIR)) &&
 				Core.clickHoe(event.getPlayer().getItemInHand().getType())) {
 			
-			if (qp.getDashCooldown() > 0) {
-				event.getPlayer().sendMessage("§cYou can only dash once every "+(GameOption.DASH_DELAY/20)+" seconds");
+			if (GameOption.DASH) {
+				if (qp.getDashCooldown() > 0) {
+					event.getPlayer().sendMessage("§cYou can only dash once every "+(GameOption.DASH_DELAY/20)+" seconds");
+				} else {
+					qp.setDashCooldown(GameOption.DASH_DELAY);
+					
+					Vector dash = event.getPlayer().getLocation().getDirection();
+					dash.setY(0.0f);
+					
+					event.getPlayer().setVelocity(dash.multiply(2));
+					event.getPlayer().getWorld().playSound(event.getPlayer().getLocation(), Sound.BAT_TAKEOFF, 1, 1);
+				}
 			} else {
-				qp.setDashCooldown(GameOption.DASH_DELAY);
-				
-				Vector dash = event.getPlayer().getLocation().getDirection();
-				dash.setY(0.0f);
-				
-				event.getPlayer().setVelocity(dash.multiply(2));
-				event.getPlayer().getWorld().playSound(event.getPlayer().getLocation(), Sound.BAT_TAKEOFF, 1, 1);
+				event.getPlayer().sendMessage("§cDash is disabled in this game !");
 			}
 		}
 		
@@ -176,6 +180,11 @@ public class Main extends JavaPlugin implements Listener {
 		
 		if (event.getInventory().getName().equals("Name Color Menu")) {
 			NameColorMenu.getValue(event.getSlot(), (Player) event.getWhoClicked(), true);
+			event.setCancelled(true);
+		}
+		
+		if (event.getInventory().getName().equals("Game Configuration")) {
+			ConfigMenu.getValue(event.getSlot(), (Player) event.getWhoClicked());
 			event.setCancelled(true);
 		}
 	}

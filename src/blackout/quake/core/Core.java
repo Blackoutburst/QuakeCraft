@@ -17,18 +17,19 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scoreboard.NameTagVisibility;
 
 import blackout.menu.CustomMenu;
 import blackout.quake.main.Main;
 
 public class Core {
 
-	public static void updateName(QuakePlayer qp) {
+	public static void updateName(QuakePlayer qp, NameTagVisibility tagVisible) {
 		qp.getPlayer().setDisplayName(qp.getGunProfile().getNameColor()+qp.getPlayer().getName()+"§r");
 		qp.getPlayer().setPlayerListName(qp.getGunProfile().getNameColor()+qp.getPlayer().getName()+"§r");
 		for (QuakePlayer hp : Main.players) {
-			hp.getBoard().addTeam(hp, qp);
-			qp.getBoard().addTeam(qp, hp);
+			hp.getBoard().addTeam(hp, qp, tagVisible);
+			qp.getBoard().addTeam(qp, hp, tagVisible);
 		}
 		ScoreboardManager.updatePlayers();
 	}
@@ -43,6 +44,8 @@ public class Core {
 		loadRespawn(worldName);
 		
 		for (QuakePlayer p : Main.players) {
+			Core.updateName(p, GameOption.NAMETAG ? NameTagVisibility.ALWAYS : NameTagVisibility.NEVER);
+			
 			p.board.set(14, "Map: §a"+Main.gameWorld.getName());
 			ItemStack gun = new ItemStack(p.getGunProfile().getGun());
 			ItemMeta gunMeta = gun.getItemMeta();
@@ -56,7 +59,25 @@ public class Core {
 			gun.setItemMeta(gunMeta);
 			
 			p.getPlayer().getInventory().setItem(0, gun);
-			p.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 100000, GameOption.PLAYER_SPEED - 1, false, false));
+			
+			
+			if (GameOption.WALK && GameOption.PLAYER_SPEED > 0)
+				p.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 100000, GameOption.PLAYER_SPEED - 1, false, false));
+			if (GameOption.JUMP && GameOption.JUMP_BOOST > 0)
+				p.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 100000, GameOption.JUMP_BOOST - 1, false, false));
+			if (GameOption.WALK && GameOption.SLOWNESS > 0)
+				p.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100000, GameOption.SLOWNESS - 1, false, false));
+			
+			if (GameOption.BLINDNESS)
+				p.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 100000, 0, false, false));
+			if (GameOption.INVISIBILITY)
+				p.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 100000, 0, false, false));
+			if (!GameOption.JUMP)
+				p.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 100000, 199, false, false));
+			if (!GameOption.WALK)
+				p.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100000, 254, false, false));
+				
+			
 			p.setCooldown(GameOption.FIRE_DELAY);
 			
 			teleportToRespawn(p.getPlayer());
@@ -89,10 +110,15 @@ public class Core {
 		
 		
 		for (QuakePlayer p : Main.players) {
+			Core.updateName(p, NameTagVisibility.ALWAYS);
 			p.getPlayer().teleport(Main.spawn);
 			p.getPlayer().getInventory().clear();
 			p.setScore(0);
 			p.getPlayer().removePotionEffect(PotionEffectType.SPEED);
+			p.getPlayer().removePotionEffect(PotionEffectType.JUMP);
+			p.getPlayer().removePotionEffect(PotionEffectType.SLOW);
+			p.getPlayer().removePotionEffect(PotionEffectType.BLINDNESS);
+			p.getPlayer().removePotionEffect(PotionEffectType.INVISIBILITY);
 			CustomMenu.giveItem(p.getPlayer());
 		}
 	}

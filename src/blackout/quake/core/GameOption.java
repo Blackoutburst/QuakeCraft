@@ -13,9 +13,8 @@ public class GameOption {
 	public static boolean INVISIBILITY = false;
 	public static boolean NAMETAG = false;
 	public static boolean DASH = true;
-	public static boolean JUMP = true;
 	public static boolean WALK = true;
-	public static boolean TRIPLE_SHOT = false;
+	public static boolean JUMP = true;
 	
 	public static void restoreConfiguration() {
 		FIRE_DELAY = 17;
@@ -31,7 +30,6 @@ public class GameOption {
 		DASH = true;
 		JUMP = true;
 		WALK = true;
-		TRIPLE_SHOT = false;
 	}
 	
 }

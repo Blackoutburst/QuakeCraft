@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.scoreboard.NameTagVisibility;
 
 import blackout.quake.core.Core;
 import blackout.quake.core.QuakePlayer;
@@ -47,20 +48,20 @@ public class NameColorMenu {
 		if (qp == null) return;
 
 		switch (slot) {
-			case 10: qp.getGunProfile().setNameColor(ChatColor.DARK_RED); qp.savePlayerData("nameColor", slot); Core.updateName(qp); if (open) CustomMenu.open(p); break;
-			case 11: qp.getGunProfile().setNameColor(ChatColor.RED); qp.savePlayerData("nameColor", slot); Core.updateName(qp); if (open) CustomMenu.open(p); break;
-			case 12: qp.getGunProfile().setNameColor(ChatColor.GOLD); qp.savePlayerData("nameColor", slot); Core.updateName(qp); if (open) CustomMenu.open(p); break;
-			case 13: qp.getGunProfile().setNameColor(ChatColor.YELLOW); qp.savePlayerData("nameColor", slot); Core.updateName(qp); if (open) CustomMenu.open(p); break;
-			case 14: qp.getGunProfile().setNameColor(ChatColor.DARK_GREEN); qp.savePlayerData("nameColor", slot); Core.updateName(qp); if (open) CustomMenu.open(p); break;
-			case 15: qp.getGunProfile().setNameColor(ChatColor.GREEN); qp.savePlayerData("nameColor", slot); Core.updateName(qp); if (open) CustomMenu.open(p); break;
-			case 16: qp.getGunProfile().setNameColor(ChatColor.DARK_AQUA); qp.savePlayerData("nameColor", slot); Core.updateName(qp); if (open) CustomMenu.open(p); break;
-			case 19: qp.getGunProfile().setNameColor(ChatColor.DARK_BLUE); qp.savePlayerData("nameColor", slot); Core.updateName(qp); if (open) CustomMenu.open(p); break;
-			case 20: qp.getGunProfile().setNameColor(ChatColor.BLUE); qp.savePlayerData("nameColor", slot); Core.updateName(qp); if (open) CustomMenu.open(p); break;
-			case 21: qp.getGunProfile().setNameColor(ChatColor.LIGHT_PURPLE); qp.savePlayerData("nameColor", slot); Core.updateName(qp); if (open) CustomMenu.open(p); break;
-			case 22: qp.getGunProfile().setNameColor(ChatColor.DARK_PURPLE); qp.savePlayerData("nameColor", slot); Core.updateName(qp); if (open) CustomMenu.open(p); break;
-			case 23: qp.getGunProfile().setNameColor(ChatColor.WHITE); qp.savePlayerData("nameColor", slot); Core.updateName(qp); if (open) CustomMenu.open(p); break;
-			case 24: qp.getGunProfile().setNameColor(ChatColor.GRAY); qp.savePlayerData("nameColor", slot); Core.updateName(qp); if (open) CustomMenu.open(p); break;
-			case 25: qp.getGunProfile().setNameColor(ChatColor.DARK_GRAY); qp.savePlayerData("nameColor", slot); Core.updateName(qp); if (open) CustomMenu.open(p); break;
+			case 10: qp.getGunProfile().setNameColor(ChatColor.DARK_RED); qp.savePlayerData("nameColor", slot); Core.updateName(qp, NameTagVisibility.ALWAYS); if (open) CustomMenu.open(p); break;
+			case 11: qp.getGunProfile().setNameColor(ChatColor.RED); qp.savePlayerData("nameColor", slot); Core.updateName(qp, NameTagVisibility.ALWAYS); if (open) CustomMenu.open(p); break;
+			case 12: qp.getGunProfile().setNameColor(ChatColor.GOLD); qp.savePlayerData("nameColor", slot); Core.updateName(qp, NameTagVisibility.ALWAYS); if (open) CustomMenu.open(p); break;
+			case 13: qp.getGunProfile().setNameColor(ChatColor.YELLOW); qp.savePlayerData("nameColor", slot); Core.updateName(qp, NameTagVisibility.ALWAYS); if (open) CustomMenu.open(p); break;
+			case 14: qp.getGunProfile().setNameColor(ChatColor.DARK_GREEN); qp.savePlayerData("nameColor", slot); Core.updateName(qp, NameTagVisibility.ALWAYS); if (open) CustomMenu.open(p); break;
+			case 15: qp.getGunProfile().setNameColor(ChatColor.GREEN); qp.savePlayerData("nameColor", slot); Core.updateName(qp, NameTagVisibility.ALWAYS); if (open) CustomMenu.open(p); break;
+			case 16: qp.getGunProfile().setNameColor(ChatColor.DARK_AQUA); qp.savePlayerData("nameColor", slot); Core.updateName(qp, NameTagVisibility.ALWAYS); if (open) CustomMenu.open(p); break;
+			case 19: qp.getGunProfile().setNameColor(ChatColor.DARK_BLUE); qp.savePlayerData("nameColor", slot); Core.updateName(qp, NameTagVisibility.ALWAYS); if (open) CustomMenu.open(p); break;
+			case 20: qp.getGunProfile().setNameColor(ChatColor.BLUE); qp.savePlayerData("nameColor", slot); Core.updateName(qp, NameTagVisibility.ALWAYS); if (open) CustomMenu.open(p); break;
+			case 21: qp.getGunProfile().setNameColor(ChatColor.LIGHT_PURPLE); qp.savePlayerData("nameColor", slot); Core.updateName(qp, NameTagVisibility.ALWAYS); if (open) CustomMenu.open(p); break;
+			case 22: qp.getGunProfile().setNameColor(ChatColor.DARK_PURPLE); qp.savePlayerData("nameColor", slot); Core.updateName(qp, NameTagVisibility.ALWAYS); if (open) CustomMenu.open(p); break;
+			case 23: qp.getGunProfile().setNameColor(ChatColor.WHITE); qp.savePlayerData("nameColor", slot); Core.updateName(qp, NameTagVisibility.ALWAYS); if (open) CustomMenu.open(p); break;
+			case 24: qp.getGunProfile().setNameColor(ChatColor.GRAY); qp.savePlayerData("nameColor", slot); Core.updateName(qp, NameTagVisibility.ALWAYS); if (open) CustomMenu.open(p); break;
+			case 25: qp.getGunProfile().setNameColor(ChatColor.DARK_GRAY); qp.savePlayerData("nameColor", slot); Core.updateName(qp, NameTagVisibility.ALWAYS); if (open) CustomMenu.open(p); break;
 			default: break;
 		}
 	}

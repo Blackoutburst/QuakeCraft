@@ -44,14 +44,14 @@ public class Board {
 		this.objective.getScore(text).setScore(row);
 	}
 
-	public void addTeam(QuakePlayer player, QuakePlayer newPlayer) {
+	public void addTeam(QuakePlayer player, QuakePlayer newPlayer, NameTagVisibility tagVisible) {
 		if (player.getBoard().scoreboard.getTeam(newPlayer.getPlayer().getName()) == null) {
 			player.getBoard().scoreboard.registerNewTeam(newPlayer.getPlayer().getName());
 		}
 
 		team = player.getBoard().scoreboard.getTeam(newPlayer.getPlayer().getName());
 		team.setPrefix("§"+newPlayer.gunProfile.nameColor.getChar());
-		team.setNameTagVisibility(NameTagVisibility.ALWAYS);
+		team.setNameTagVisibility(tagVisible);
 		team.addEntry(newPlayer.getPlayer().getName());
 	}
 }
