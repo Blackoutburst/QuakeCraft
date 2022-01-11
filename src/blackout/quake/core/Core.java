@@ -188,6 +188,8 @@ public class Core {
 		
 		for (QuakePlayer p : Main.players) {
 			p.getBoard().set(13, "Time: §a"+time);
+			if (p.jumpPadCooldown > 0)
+				p.jumpPadCooldown--;
 		}
 	}
 	

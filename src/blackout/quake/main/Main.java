@@ -79,6 +79,33 @@ public class Main extends JavaPlugin implements Listener {
 	
 	@EventHandler
 	public void onMove(PlayerMoveEvent event) {
+		final Player player = event.getPlayer();
+		final QuakePlayer qp = QuakePlayer.getFromPlayer(event.getPlayer());
+		final World world = player.getWorld();
+		final Location belowPlayer = player.getLocation();
+		belowPlayer.setY(belowPlayer.getY() - 1);
+		
+		if (qp.getJumpPadCooldown() <= 0 && world.getBlockAt(belowPlayer).getType().equals(Material.REDSTONE_BLOCK)) {
+			qp.setJumpPadCooldown(2);
+			Vector dash = player.getLocation().getDirection();
+			world.playSound(player.getLocation(), Sound.PISTON_EXTEND, 4, 1);
+			
+			dash.setY(0.1f);
+			
+			player.setVelocity(dash.multiply(5));
+		}
+		
+		if (qp.getJumpPadCooldown() <= 0 && world.getBlockAt(belowPlayer).getType().equals(Material.LAPIS_BLOCK)) {
+			qp.setJumpPadCooldown(2);
+			Vector dash = player.getLocation().getDirection();
+			world.playSound(player.getLocation(), Sound.PISTON_EXTEND, 4, 1);
+			
+			dash.setY(1.0f);
+			dash.setX(0.0f);
+			
+			player.setVelocity(dash.multiply(3));
+		}
+		
 		if (event.getPlayer().getLocation().getY() < -10) {
 			if (gameRunning) {
 				Core.teleportToRespawn(event.getPlayer());

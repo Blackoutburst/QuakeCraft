@@ -24,6 +24,7 @@ public class QuakePlayer {
 	protected Board board;
 	protected int score;
 	protected GunProfile gunProfile;
+	protected int jumpPadCooldown;
 	
 	public QuakePlayer(Player player, GunProfile gunProfile) {
 		this.player = player;
@@ -32,6 +33,7 @@ public class QuakePlayer {
 		this.board = null;
 		this.score = 0;
 		this.gunProfile = gunProfile;
+		this.jumpPadCooldown = 0;
 	}
 	
 	public static QuakePlayer getFromPlayer(Player p) {
@@ -109,6 +111,14 @@ public class QuakePlayer {
 
 	public GunProfile getGunProfile() {
 		return gunProfile;
+	}
+	
+	public int getJumpPadCooldown() {
+		return jumpPadCooldown;
+	}
+
+	public void setJumpPadCooldown(int jumpPadCooldown) {
+		this.jumpPadCooldown = jumpPadCooldown;
 	}
 
 	public void savePlayerData(String field, int data) {
