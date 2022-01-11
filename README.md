@@ -19,7 +19,27 @@ And this plugin is made for spigot / paper 1.8.8 (V1_8_R3)
 `/scan <x1> <y1> <z1> <x2> <y2> <z2>` scan sponges block in a specific area and write the location in a file named after the world name (define the map spawnpoints).\
 `/loadSpawn <world name>` load the spawnpoint inside the memory (usually this should not be used).\
 `/clean <world name>` remove the sponge block from a map.\
-`/showSpawn <world name>` put back the sponge block on a map loaded from the file generated with the scan command.
+`/showSpawn <world name>` put back the sponge block on a map loaded from the file generated with the scan command.\
+`/lobby` Teleport the player back to the lobby\
+`/l` Teleport the player back to the lobby\
+`/spawn` Teleport the player back to the lobby\
+`/listmap` List all the map and number of spawnpoints\
+`/boop` Yes\
+`/maxScore` set the score limit for a game (default is 25)\
+`/playerSpeed <value>` Change every player speed\
+`/playerJump <value>` Give player jump boost
+`/playerSlow <value>` Give player slowness\
+`/toggleBlindness` Toggle blindness effect in game\
+`/toggleInvisibility` Toggle invisibility in game\
+`/toggleNametag` Toggle nametag visibility\
+`/toggleDash` Toggle dash usage\
+`/toggleVerticalDash` Toggle vertical dash (allow the player to dash vertically)\
+`/dashStrength` Change the dash strength\
+`/toggleWalk` Toggle the ability to walk\
+`/toggleJump` Toggle the ability to jump\
+`/resetConfig` Restore the default game configuration\
+`/showConfig` Show the current game configuration\
+`/config` Open the configuration menu
 
 Commands such as:
 - scan
@@ -78,6 +98,16 @@ Change the sound played when you kill somone\
 #### Name color
 Change the color of your name everywhere (chat, scoreboard, tab, nametag)\
 ![image](https://user-images.githubusercontent.com/30992311/147684386-19cb0e8d-181a-479d-a0d6-32f3b2e95178.png)
+
+### Launch Pad
+The two type are here, blue and red\
+Blue pad launch the player in the sky while red launch the player in the direction they are facing\
+![2022-01-11_16 40 25](https://user-images.githubusercontent.com/30992311/148974020-e89d8ea3-f5b8-4f2f-9a2c-036b9830e9a5.png)
+
+### Configuration menu
+In this menu you can pretty much change everything and create custom quake game\
+![image](https://user-images.githubusercontent.com/30992311/148975116-a890f694-b668-49ff-b170-88fad846d049.png)
+
 
 ### New Demo video
 Coming soon.
