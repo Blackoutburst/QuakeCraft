@@ -87,7 +87,7 @@ public class Main extends JavaPlugin implements Listener {
 		belowPlayer.setY(belowPlayer.getY() - 1);
 		
 		if (qp.getJumpPadCooldown() <= 0 && world.getBlockAt(belowPlayer).getType().equals(Material.REDSTONE_BLOCK)) {
-			qp.setJumpPadCooldown(2);
+			qp.setJumpPadCooldown(1);
 			Vector dash = player.getLocation().getDirection().clone();
 			world.playSound(player.getLocation(), Sound.PISTON_EXTEND, 4, 0.5f);
 			
@@ -108,7 +108,7 @@ public class Main extends JavaPlugin implements Listener {
 		}
 		
 		if (qp.getJumpPadCooldown() <= 0 && world.getBlockAt(belowPlayer).getType().equals(Material.LAPIS_BLOCK)) {
-			qp.setJumpPadCooldown(2);
+			qp.setJumpPadCooldown(1);
 			Vector dash = player.getLocation().getDirection().clone();
 			world.playSound(player.getLocation(), Sound.PISTON_EXTEND, 4, 1);
 			
@@ -123,6 +123,8 @@ public class Main extends JavaPlugin implements Listener {
 				public void run(){
 					Vector dash = player.getLocation().getDirection().clone();
 					dash.setY(1.0f);
+					dash.setX(0.0f);
+					dash.setZ(0.0f);
 					player.setVelocity(dash.multiply(2.1f));
 				}
 			}.runTaskLater(Main.getPlugin(Main.class), 1L);
