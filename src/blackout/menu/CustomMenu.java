@@ -130,7 +130,7 @@ public class CustomMenu {
 		meta = item.getItemMeta();
 		meta.setDisplayName("§aName Color");
 		lore = new ArrayList<>();
-		lore.add("§7Select you name color!");
+		lore.add("§7Select your name color!");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
 		inv.setItem(15, item);

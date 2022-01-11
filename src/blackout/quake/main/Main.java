@@ -111,7 +111,7 @@ public class Main extends JavaPlugin implements Listener {
 				public void run(){
 					qp.setJumpPadCooldown(0);
 				}
-			}.runTaskLater(Main.getPlugin(Main.class), 5L);
+			}.runTaskLater(Main.getPlugin(Main.class), 10L);
 		}
 		
 		if (qp.getJumpPadCooldown() <= 0 && world.getBlockAt(belowPlayer).getType().equals(Material.LAPIS_BLOCK)) {
@@ -141,7 +141,7 @@ public class Main extends JavaPlugin implements Listener {
 				public void run(){
 					qp.setJumpPadCooldown(0);
 				}
-			}.runTaskLater(Main.getPlugin(Main.class), 5L);
+			}.runTaskLater(Main.getPlugin(Main.class), 10L);
 		}
 		
 		if (event.getPlayer().getLocation().getY() < -10) {
@@ -193,10 +193,21 @@ public class Main extends JavaPlugin implements Listener {
 					
 					Vector dash = event.getPlayer().getLocation().getDirection().clone();
 					
-					if (!GameOption.VERTICAL_DASH)
-						dash.setY(0.0f);
+					dash.setY(0.05f);
+					dash.setX(0.0f);
+					dash.setZ(0.0f);
 					
-					event.getPlayer().setVelocity(dash.multiply(GameOption.DASH_STRENGTH));
+					event.getPlayer().setVelocity(dash.multiply(5));
+					
+					new BukkitRunnable(){
+						@Override
+						public void run(){
+							Vector dash = event.getPlayer().getLocation().getDirection().clone();
+							if (!GameOption.VERTICAL_DASH)
+								dash.setY(0.0f);
+							event.getPlayer().setVelocity(dash.multiply(GameOption.DASH_STRENGTH));
+						}
+					}.runTaskLater(Main.getPlugin(Main.class), 1L);
 					event.getPlayer().getWorld().playSound(event.getPlayer().getLocation(), Sound.BAT_TAKEOFF, 1, 1);
 				}
 			} else {
