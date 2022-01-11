@@ -344,7 +344,7 @@ public class ConfigMenu {
 		lore.add("§6Trigger: §e"+GameOption.FIRE_DELAY/20+"s");
 		lore.add("§6Dash: §e"+GameOption.DASH_DELAY/20+"s");
 		lore.add("§6Max score: §e"+GameOption.MAX_SCORE);
-		lore.add("");
+		lore.add("§6Dash strength: §e"+GameOption.DASH_STRENGTH);
 		lore.add("§6Speed: §e"+GameOption.PLAYER_SPEED);
 		lore.add("§6Jump: §e"+GameOption.JUMP_BOOST);
 		lore.add("§6Slow: §e"+GameOption.SLOWNESS);
@@ -352,7 +352,7 @@ public class ConfigMenu {
 		lore.add("§6Blindness: "+(GameOption.BLINDNESS ? "§aYes" : "§cNo"));
 		lore.add("§6Invisibility: "+(GameOption.INVISIBILITY ? "§aYes" : "§cNo"));
 		lore.add("§6NameTag: "+(GameOption.NAMETAG ? "§aYes" : "§cNo"));
-		lore.add("");
+		lore.add("§6Vertical dash: §e"+(GameOption.VERTICAL_DASH ? "§aYes" : "§cNo"));
 		lore.add("§6Dash: "+(GameOption.DASH ? "§aYes" : "§cNo"));
 		lore.add("§6Walk: "+(GameOption.WALK ? "§aYes" : "§cNo"));
 		lore.add("§6Jump: "+(GameOption.JUMP ? "§aYes" : "§cNo"));
