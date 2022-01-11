@@ -301,6 +301,31 @@ public class ConfigMenu {
         meta.setLore(lore);
         item.setItemMeta(meta);
         inv.setItem(slot, item);
+        
+        item = new ItemStack(Material.NETHER_STAR, 1);
+		meta = item.getItemMeta();
+		meta.setDisplayName("§aCurrent configuration");
+		lore = new ArrayList<>();
+		lore.add("§6Trigger: §e"+GameOption.FIRE_DELAY/20+"s");
+		lore.add("§6Dash: §e"+GameOption.DASH_DELAY/20+"s");
+		lore.add("§6Max score: §e"+GameOption.MAX_SCORE);
+		lore.add("");
+		lore.add("§6Speed: §e"+GameOption.PLAYER_SPEED);
+		lore.add("§6Jump: §e"+GameOption.JUMP_BOOST);
+		lore.add("§6Slow: §e"+GameOption.SLOWNESS);
+		lore.add("");
+		lore.add("§6Blindness: "+(GameOption.BLINDNESS ? "§aYes" : "§cNo"));
+		lore.add("§6Invisibility: "+(GameOption.INVISIBILITY ? "§aYes" : "§cNo"));
+		lore.add("§6NameTag: "+(GameOption.NAMETAG ? "§aYes" : "§cNo"));
+		lore.add("");
+		lore.add("§6Dash: "+(GameOption.DASH ? "§aYes" : "§cNo"));
+		lore.add("§6Walk: "+(GameOption.WALK ? "§aYes" : "§cNo"));
+		lore.add("§6Jump: "+(GameOption.JUMP ? "§aYes" : "§cNo"));
+		lore.add("");
+		lore.add("§7You can also use §e/showconfig");
+		meta.setLore(lore);
+		item.setItemMeta(meta);
+		inv.setItem(45, item);
 	}
 	
 	private static void commandMessage(String commandName, float value, Player p) {
@@ -368,7 +393,7 @@ public class ConfigMenu {
 				lore.add("§7You can also use §e/togglejump");
 				toggle(GameOption.JUMP, inv, lore, "§bJump", 43);
 			break;
-			case 49: CommandResetConfig.run(p); break;
+			case 49: CommandResetConfig.run(p); open(p); break;
 			case 53: p.closeInventory(); break;
 			default: break;
 		}
