@@ -70,7 +70,7 @@ public class ConfigMenu {
 		item.setItemMeta(meta);
 		inv.setItem(12, item);
 		
-		item = new ItemStack(Material.FIRE, 1);
+		item = new ItemStack(Material.BLAZE_POWDER, 1);
 		meta = item.getItemMeta();
 		meta.setDisplayName("§bDash strength");
 		lore = new ArrayList<>();
@@ -164,7 +164,7 @@ public class ConfigMenu {
 		lore.add("§7You can also use §e/toggleverticaldash");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
-		inv.setItem(32, item);	
+		inv.setItem(31, item);	
 		
 		item = new ItemStack(Material.FEATHER, 1);
 		meta = item.getItemMeta();
@@ -245,7 +245,7 @@ public class ConfigMenu {
 		lore.add("§7You can also use §e/toggleverticaldash");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
-		inv.setItem(41, item);	
+		inv.setItem(40, item);	
 		
 		item = new ItemStack(Material.INK_SACK, 1, (byte) (GameOption.DASH ? 10 : 8));
 		meta = item.getItemMeta();
@@ -413,7 +413,7 @@ public class ConfigMenu {
 				lore.add("§7Toggle vertical dash");
 				lore.add("");
 				lore.add("§7You can also use §e/toggleverticaldash");
-				toggle(GameOption.VERTICAL_DASH, inv, lore, "§bVertical dash", 39);
+				toggle(GameOption.VERTICAL_DASH, inv, lore, "§bVertical dash", 40);
 			break;
 			case 41: case 32: CommandToggleDash.run(p); 
 				lore = new ArrayList<>();
