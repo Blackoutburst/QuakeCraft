@@ -106,7 +106,7 @@ public class MapMenu {
 		ArrayList<String> lore = new ArrayList<>();
 		lore.add("§7Click me to start a game on "+name);
 		lore.add("");
-		lore.add("§7This world contains §e"+respawns.size());
+		lore.add("§7This world contains §e"+respawns.size()+" §7spawnpoints");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
 		inv.setItem(slot, item);
