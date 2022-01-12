@@ -108,6 +108,13 @@ Blue pad launch the player in the sky while red launch the player in the directi
 In this menu you can pretty much change everything and create custom quake game\
 ![image](https://user-images.githubusercontent.com/30992311/148975116-a890f694-b668-49ff-b170-88fad846d049.png)
 
+### Map Selector
+Display official Hypixel map in gold and custom maps in blue\
+![unknown](https://user-images.githubusercontent.com/30992311/149159890-39a1b2f7-624e-4d3f-80e2-ccfa0769d19b.png)\
+![unknown](https://user-images.githubusercontent.com/30992311/149160007-fcaef7f5-bb8a-46fb-b6f5-e098e116b46d.png)\
+![unknown](https://user-images.githubusercontent.com/30992311/149160045-201b93ad-6b71-47a2-919a-7f53165fb4cc.png)
+
+
 
 ### New Demo video
 Coming soon.
