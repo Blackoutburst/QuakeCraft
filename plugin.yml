@@ -77,6 +77,9 @@ commands:
   config:
     description: Show configuration menu
     usage: /config
+  play:
+    description: Show the map selector
+    usage: /play
   scan:
     permission: quake.debug
     description: Scan the world for gift spawnpoint (Debug command)

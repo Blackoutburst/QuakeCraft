@@ -265,6 +265,11 @@ public class Main extends JavaPlugin implements Listener {
 			ConfigMenu.getValue(event.getSlot(), (Player) event.getWhoClicked(), event.getClickedInventory());
 			event.setCancelled(true);
 		}
+		
+		if (event.getInventory().getName().equals("Map Selector")) {
+			MapMenu.getValue(event.getCurrentItem().getItemMeta().getDisplayName());
+			event.setCancelled(true);
+		}
 	}
 	
 	@EventHandler
