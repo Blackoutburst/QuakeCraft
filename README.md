@@ -110,7 +110,7 @@ In this menu you can pretty much change everything and create custom quake game\
 
 ### Map Selector
 Display official Hypixel map in gold and custom maps in blue and the number of spawnpoints available on the map\
-![unknown](https://user-images.githubusercontent.com/30992311/149159890-39a1b2f7-624e-4d3f-80e2-ccfa0769d19b.png)\
+![unknown](https://user-images.githubusercontent.com/30992311/149159890-39a1b2f7-624e-4d3f-80e2-ccfa0769d19b.png)
 
 
 ### New Demo video
