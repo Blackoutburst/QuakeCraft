@@ -319,6 +319,7 @@ public class Main extends JavaPlugin implements Listener {
 			case "playerspeed": new CommandPlayerSpeed().execute(sender, args); break;
 			case "playerjump": new CommandPlayerJump().execute(sender, args); break;
 			case "dashstrength": new CommandDashStrength().execute(sender, args); break;
+			case "play": new CommandPlay().execute(sender); break;
 			default: return true;
 		}
 		return true;
