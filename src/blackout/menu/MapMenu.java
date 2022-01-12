@@ -65,13 +65,14 @@ public class MapMenu {
 		setItem(inv, Material.STAINED_GLASS, (byte) 2, "§6Reactor", 41);
 		setItem(inv, Material.STAINED_GLASS, (byte) 10, "§bBeta Reactor", 42);
 		setItem(inv, Material.SMOOTH_BRICK, (byte) 1, "§bRuin", 43);
-		setItem(inv, Material.PRISMARINE, (byte) 0, "§6Sunken", 44);
-		setItem(inv, Material.PRISMARINE, (byte) 1, "§bBeta Sunken", 45);
-		setItem(inv, Material.LOG, (byte) 3, "§bThe Devil Castle", 46);
-		setItem(inv, Material.BRICK, (byte) 0, "§6Town", 47);
-		setItem(inv, Material.BRICK, (byte) 0, "§bTown Edit", 48);
-		setItem(inv, Material.WOOD, (byte) 0, "§6WoodStone", 49);
-		setItem(inv, Material.WOOD, (byte) 0, "§bOld WoodStone", 50);
+		setItem(inv, Material.SMOOTH_BRICK, (byte) 3, "§6Sero", 44);
+		setItem(inv, Material.PRISMARINE, (byte) 0, "§6Sunken", 45);
+		setItem(inv, Material.PRISMARINE, (byte) 1, "§bBeta Sunken", 46);
+		setItem(inv, Material.LOG, (byte) 3, "§bThe Devil Castle", 47);
+		setItem(inv, Material.BRICK, (byte) 0, "§6Town", 48);
+		setItem(inv, Material.BRICK, (byte) 0, "§bTown Edit", 49);
+		setItem(inv, Material.WOOD, (byte) 0, "§6WoodStone", 50);
+		setItem(inv, Material.WOOD, (byte) 0, "§bOld WoodStone", 51);
 		
 		p.openInventory(inv);
 	}
