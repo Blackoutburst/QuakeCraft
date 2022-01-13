@@ -117,7 +117,7 @@ public class Main extends JavaPlugin implements Listener {
 		if (qp.getJumpPadCooldown() <= 0 && world.getBlockAt(belowPlayer).getType().equals(Material.LAPIS_BLOCK)) {
 			qp.setJumpPadCooldown(1);
 			Vector dash = player.getLocation().getDirection().clone();
-			world.playSound(player.getLocation(), Sound.PISTON_EXTEND, 4, 1);
+			world.playSound(player.getLocation(), Sound.PISTON_EXTEND, 4, 0.5f);
 			
 			dash.setY(0.05f);
 			dash.setX(0.0f);
@@ -208,7 +208,7 @@ public class Main extends JavaPlugin implements Listener {
 							event.getPlayer().setVelocity(dash.multiply(GameOption.DASH_STRENGTH));
 						}
 					}.runTaskLater(Main.getPlugin(Main.class), 1L);
-					event.getPlayer().getWorld().playSound(event.getPlayer().getLocation(), Sound.BAT_TAKEOFF, 1, 1);
+					event.getPlayer().getWorld().playSound(event.getPlayer().getLocation(), Sound.BAT_TAKEOFF, 3, 0.5f);
 				}
 			} else {
 				event.getPlayer().sendMessage("§cDash is disabled in this game !");
