@@ -18,108 +18,33 @@ public class GunMenu {
 	public static void open(Player p) {
 		Inventory inv = Main.getPlugin(Main.class).getServer().createInventory(null, 36, "Gun Menu");
 		
-		ItemStack item = new ItemStack(Material.WOOD_HOE, 1);
-		ItemMeta meta = item.getItemMeta();
-		meta.setDisplayName("§bWooden Case");
-		ArrayList<String> lore = new ArrayList<>();
-		lore.add("§7Click to select the Wooden Case");
-		meta.setLore(lore);
-		item.setItemMeta(meta);
-		inv.setItem(11, item);
+		setItem(inv, Material.WOOD_HOE, "§bWooden Case", 11, false);	
+		setItem(inv, Material.STONE_HOE, "§bMarbled Case", 12, false);		
+		setItem(inv, Material.IRON_HOE, "§bReinforced Case", 13, false);
+		setItem(inv, Material.GOLD_HOE, "§bPlated Case", 14, false);
+		setItem(inv, Material.DIAMOND_HOE, "§bBling Case", 15, false);
 		
-		item = new ItemStack(Material.STONE_HOE, 1);
-		meta = item.getItemMeta();
-		meta.setDisplayName("§bMarbled Case");
-		lore = new ArrayList<>();
-		lore.add("§7Click to select the Marbled Case");
-		meta.setLore(lore);
-		item.setItemMeta(meta);
-		inv.setItem(12, item);
-		
-		item = new ItemStack(Material.IRON_HOE, 1);
-		meta = item.getItemMeta();
-		meta.setDisplayName("§bReinforced Case");
-		lore = new ArrayList<>();
-		lore.add("§7Click to select the Reinforced Case");
-		meta.setLore(lore);
-		item.setItemMeta(meta);
-		inv.setItem(13, item);
-		
-		item = new ItemStack(Material.GOLD_HOE, 1);
-		meta = item.getItemMeta();
-		meta.setDisplayName("§bPlated Case");
-		lore = new ArrayList<>();
-		lore.add("§7Click to select the Plated Case");
-		meta.setLore(lore);
-		item.setItemMeta(meta);
-		inv.setItem(14, item);
-		
-		item = new ItemStack(Material.DIAMOND_HOE, 1);
-		meta = item.getItemMeta();
-		meta.setDisplayName("§bBling Case");
-		lore = new ArrayList<>();
-		lore.add("§7Click to select the Bling Case");
-		meta.setLore(lore);
-		item.setItemMeta(meta);
-		inv.setItem(15, item);
-
-		item = new ItemStack(Material.WOOD_HOE, 1);
-		meta = item.getItemMeta();
-		meta.addItemFlags(ItemFlag.values());
-		meta.addEnchant(Enchantment.ARROW_DAMAGE, 10, true);
-		meta.setDisplayName("§6Varnished Wooden Case");
-		lore = new ArrayList<>();
-		lore.add("§7Click to select the Varnished Wooden Case");
-		meta.setLore(lore);
-		item.setItemMeta(meta);
-		inv.setItem(20, item);
-		
-		item = new ItemStack(Material.STONE_HOE, 1);
-		meta = item.getItemMeta();
-		meta.addItemFlags(ItemFlag.values());
-		meta.addEnchant(Enchantment.ARROW_DAMAGE, 10, true);
-		meta.setDisplayName("§6Polished Marbled Case");
-		lore = new ArrayList<>();
-		lore.add("§7Click to select the Polished Marbled Case");
-		meta.setLore(lore);
-		item.setItemMeta(meta);
-		inv.setItem(21, item);
-		
-		item = new ItemStack(Material.IRON_HOE, 1);
-		meta = item.getItemMeta();
-		meta.addItemFlags(ItemFlag.values());
-		meta.addEnchant(Enchantment.ARROW_DAMAGE, 10, true);
-		meta.setDisplayName("§6Polished Reinforced Case");
-		lore = new ArrayList<>();
-		lore.add("§7Click to select the Polished Reinforced Case");
-		meta.setLore(lore);
-		item.setItemMeta(meta);
-		inv.setItem(22, item);
-		
-		item = new ItemStack(Material.GOLD_HOE, 1);
-		meta = item.getItemMeta();
-		meta.addItemFlags(ItemFlag.values());
-		meta.addEnchant(Enchantment.ARROW_DAMAGE, 10, true);
-		meta.setDisplayName("§6Polished Plated Case");
-		lore = new ArrayList<>();
-		lore.add("§7Click to select the Polished Plated Case");
-		meta.setLore(lore);
-		item.setItemMeta(meta);
-		inv.setItem(23, item);
-		
-		item = new ItemStack(Material.DIAMOND_HOE, 1);
-		meta = item.getItemMeta();
-		meta.addItemFlags(ItemFlag.values());
-		meta.addEnchant(Enchantment.ARROW_DAMAGE, 10, true);
-		meta.setDisplayName("§6Polished Bling Case");
-		lore = new ArrayList<>();
-		lore.add("§7Click to select the Polished Bling Case");
-		meta.setLore(lore);
-		item.setItemMeta(meta);
-		inv.setItem(24, item);
-		
+		setItem(inv, Material.WOOD_HOE, "§6Varnished Wooden Case", 20, true);	
+		setItem(inv, Material.STONE_HOE, "§6Polished Marbled Case", 21, true);		
+		setItem(inv, Material.IRON_HOE, "§6Polished Reinforced Case", 22, true);
+		setItem(inv, Material.GOLD_HOE, "§6Polished Plated Case", 23, true);
+		setItem(inv, Material.DIAMOND_HOE, "§6Polished Bling Case", 24, true);
 		
 		p.openInventory(inv);
+	}
+	
+	private static void setItem(Inventory inv, Material mat, String name, int slot, boolean polished) {
+		ItemStack item = new ItemStack(mat, 1);
+		ItemMeta meta = item.getItemMeta();
+		meta.addItemFlags(ItemFlag.values());
+		if (polished)
+			meta.addEnchant(Enchantment.ARROW_DAMAGE, 10, true);
+		meta.setDisplayName(name);
+		ArrayList<String> lore = new ArrayList<>();
+		lore.add("§7Click to select the "+name);
+		meta.setLore(lore);
+		item.setItemMeta(meta);
+		inv.setItem(slot, item);
 	}
 	
 	public static void getValue(int slot, Player p, boolean open) {

@@ -77,11 +77,9 @@ public class RailGun {
 					Bukkit.broadcastMessage(owner.getPlayer().getDisplayName()+" §egibbed§r "+((Player)e).getDisplayName());
 					this.detonate(owner);
 				}
-			} else if (e instanceof LivingEntity) {
-				if (dist && ((LivingEntity) e).getHealth() > 0) {
-					Bukkit.broadcastMessage(owner.getPlayer().getDisplayName()+" §egibbed a§r "+e.getName()+" ??");
-					((LivingEntity) e).setHealth(0);
-				}
+			} else if (e instanceof LivingEntity && dist && ((LivingEntity) e).getHealth() > 0) {
+				Bukkit.broadcastMessage(owner.getPlayer().getDisplayName()+" §egibbed a§r "+e.getName()+" ??");
+				((LivingEntity) e).setHealth(0);
 			}
 		}
 	}

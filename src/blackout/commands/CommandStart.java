@@ -40,7 +40,7 @@ public class CommandStart {
 			File tmp = new File(index.getPath(), s);
 			if (tmp.isDirectory()) continue;
 			
-			if (tmp.getName().replace(".yml", "").toLowerCase().equals(worldName.toString())) {
+			if (tmp.getName().replace(".yml", "").equalsIgnoreCase(worldName.toString())) {
 				finalWorldName = tmp.getName().replace(".yml", "");
 			}
 		}

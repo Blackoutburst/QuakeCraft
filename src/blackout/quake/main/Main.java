@@ -229,46 +229,44 @@ public class Main extends JavaPlugin implements Listener {
 	
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent event) {
-		if (event.getInventory().getName().equals("Gun customisation Menu")) {
-			CustomMenu.click(event.getSlot(), (Player) event.getWhoClicked());
-			event.setCancelled(true);
-		}
-		if (event.getInventory().getName().equals("Gun Menu")) {
-			GunMenu.getValue(event.getSlot(), (Player) event.getWhoClicked(), true);
-			event.setCancelled(true);
-		}
 		
-		if (event.getInventory().getName().equals("Shape Menu")) {
-			ShapeMenu.getValue(event.getSlot(), (Player) event.getWhoClicked(), true);
-			event.setCancelled(true);
-		}
-		
-		if (event.getInventory().getName().equals("Color Menu")) {
-			ColorMenu.getValue(event.getSlot(), (Player) event.getWhoClicked(), true);
-			event.setCancelled(true);
-		}
-		
-		if (event.getInventory().getName().equals("Kill Sounds")) {
-			if (event.isLeftClick())
-				SoundsMenu.getValue(event.getSlot(), (Player) event.getWhoClicked(), true);
-			if (event.isRightClick())
-				SoundsMenu.preview(event.getSlot(), (Player) event.getWhoClicked());
-			event.setCancelled(true);
-		}
-		
-		if (event.getInventory().getName().equals("Name Color Menu")) {
-			NameColorMenu.getValue(event.getSlot(), (Player) event.getWhoClicked(), true);
-			event.setCancelled(true);
-		}
-		
-		if (event.getInventory().getName().equals("Game Configuration")) {
-			ConfigMenu.getValue(event.getSlot(), (Player) event.getWhoClicked(), event.getClickedInventory());
-			event.setCancelled(true);
-		}
-		
-		if (event.getInventory().getName().equals("Map Selector")) {
-			MapMenu.getValue(event.getCurrentItem().getItemMeta().getDisplayName());
-			event.setCancelled(true);
+		switch(event.getInventory().getName()) {
+			case "Gun customisation Menu": 
+				CustomMenu.click(event.getSlot(), (Player) event.getWhoClicked());
+				event.setCancelled(true);
+			break;
+			case "Gun Menu": 
+				GunMenu.getValue(event.getSlot(), (Player) event.getWhoClicked(), true);
+				event.setCancelled(true);
+			break;
+			case "Shape Menu": 
+				ShapeMenu.getValue(event.getSlot(), (Player) event.getWhoClicked(), true);
+				event.setCancelled(true);
+			break;
+			case "Color Menu": 
+				ColorMenu.getValue(event.getSlot(), (Player) event.getWhoClicked(), true);
+				event.setCancelled(true);
+			break;
+			case "Kill Sounds": 
+				if (event.isLeftClick())
+					SoundsMenu.getValue(event.getSlot(), (Player) event.getWhoClicked(), true);
+				if (event.isRightClick())
+					SoundsMenu.preview(event.getSlot(), (Player) event.getWhoClicked());
+				event.setCancelled(true);
+			break;
+			case "Name Color Menu": 
+				NameColorMenu.getValue(event.getSlot(), (Player) event.getWhoClicked(), true);
+				event.setCancelled(true);
+			break;
+			case "Game Configuration": 
+				ConfigMenu.getValue(event.getSlot(), (Player) event.getWhoClicked(), event.getClickedInventory());
+				event.setCancelled(true);
+			break;
+			case "Map Selector": 
+				MapMenu.getValue(event.getCurrentItem().getItemMeta().getDisplayName());
+				event.setCancelled(true);
+			break;
+			default: break;
 		}
 	}
 	
