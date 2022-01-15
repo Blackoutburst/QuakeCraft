@@ -263,8 +263,10 @@ public class Main extends JavaPlugin implements Listener {
 				event.setCancelled(true);
 			break;
 			case "Map Selector": 
-				MapMenu.getValue(event.getCurrentItem().getItemMeta().getDisplayName());
-				event.setCancelled(true);
+				if (event.getCurrentItem() != null) {
+					MapMenu.getValue(event.getCurrentItem().getItemMeta().getDisplayName());
+					event.setCancelled(true);
+				}
 			break;
 			default: break;
 		}
