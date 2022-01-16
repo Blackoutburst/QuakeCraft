@@ -34,6 +34,7 @@ public class RailGun {
 				!b.getType().equals(Material.TORCH) &&
 				!b.getType().equals(Material.STEP) &&
 				!b.getType().equals(Material.RED_ROSE) &&
+				!b.getType().equals(Material.YELLOW_FLOWER) &&
 				!b.getType().equals(Material.LONG_GRASS) &&
 				!b.getType().equals(Material.DOUBLE_PLANT) &&
 				!b.getType().equals(Material.DEAD_BUSH) &&
@@ -46,7 +47,14 @@ public class RailGun {
 				!b.getType().equals(Material.GOLD_PLATE) &&
 				!b.getType().equals(Material.IRON_PLATE) &&
 				!b.getType().equals(Material.TRAP_DOOR) &&
-				!b.getType().equals(Material.IRON_TRAPDOOR));
+				!b.getType().equals(Material.IRON_TRAPDOOR) &&
+				!b.getType().equals(Material.CARPET) &&
+				!b.getType().equals(Material.BARRIER) &&
+				!b.getType().equals(Material.STONE_BUTTON) &&
+				!b.getType().equals(Material.WOOD_BUTTON) &&
+				!b.getType().equals(Material.SNOW) &&
+				!b.getType().equals(Material.FIRE) &&
+				!b.getType().equals(Material.SIGN));
 	}
 	
 	public void fire(QuakePlayer p) {
@@ -70,7 +78,7 @@ public class RailGun {
 			final float z = (float) (location.getZ() - e.getLocation().getZ());
 			final boolean dist = ((x * x) + (y * y) + (z * z)) <= 4.0;
 			if (e instanceof Player) {
-
+				if (((Player) e).getGameMode() == GameMode.SPECTATOR) continue;
 				if (e.getUniqueId() != owner.getPlayer().getUniqueId() && dist) {
 					Core.teleportToRespawn((Player) e);
 					owner.getPlayer().getWorld().playSound(owner.getPlayer().getLocation(), owner.getGunProfile().getSound(), 3, owner.getGunProfile().getPitch());
