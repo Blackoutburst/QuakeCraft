@@ -54,7 +54,29 @@ public class RailGun {
 				!b.getType().equals(Material.WOOD_BUTTON) &&
 				!b.getType().equals(Material.SNOW) &&
 				!b.getType().equals(Material.FIRE) &&
-				!b.getType().equals(Material.SIGN));
+				!b.getType().equals(Material.SIGN) &&
+				!b.getType().equals(Material.WATER) &&
+				!b.getType().equals(Material.WATER_LILY) &&
+				!b.getType().equals(Material.STATIONARY_WATER) &&
+				!b.getType().equals(Material.LAVA) &&
+				!b.getType().equals(Material.STATIONARY_LAVA) &&
+				!b.getType().equals(Material.RAILS) &&
+				!b.getType().equals(Material.ACTIVATOR_RAIL) &&
+				!b.getType().equals(Material.DETECTOR_RAIL) &&
+				!b.getType().equals(Material.POWERED_RAIL) &&
+				!b.getType().equals(Material.LEVER) &&
+				!b.getType().equals(Material.REDSTONE_WIRE) &&
+				!b.getType().equals(Material.REDSTONE_TORCH_ON) &&
+				!b.getType().equals(Material.REDSTONE_TORCH_OFF) &&
+				!b.getType().equals(Material.LADDER) &&
+				!b.getType().equals(Material.TRIPWIRE_HOOK) &&
+				!b.getType().equals(Material.WATER_LILY) &&
+				!b.getType().equals(Material.REDSTONE_COMPARATOR) &&
+				!b.getType().equals(Material.REDSTONE_COMPARATOR_ON) &&
+				!b.getType().equals(Material.REDSTONE_COMPARATOR_OFF) &&
+				!b.getType().equals(Material.FLOWER_POT) &&
+				!b.getType().equals(Material.PORTAL) &&
+				!b.getType().equals(Material.ENDER_PORTAL));
 	}
 	
 	public void fire(QuakePlayer p) {
