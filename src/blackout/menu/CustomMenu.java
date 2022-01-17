@@ -96,7 +96,7 @@ public class CustomMenu {
 		lore.add("§7Select your gun case");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
-		inv.setItem(11, item);
+		inv.setItem(10, item);
 		
 		item = new ItemStack(getExplosionIcon(qp.getGunProfile()), 1, (byte)(getExplosionIcon(qp.getGunProfile()).equals(Material.SKULL_ITEM) ? 4 : 0));
 		meta = item.getItemMeta();
@@ -106,7 +106,7 @@ public class CustomMenu {
 		lore.add("§7Select the shape of your explosion!");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
-		inv.setItem(12, item);
+		inv.setItem(11, item);
 		
 		item = new ItemStack(Material.INK_SACK, 1, getExplosionColor(qp.getGunProfile()));
 		meta = item.getItemMeta();
@@ -115,7 +115,7 @@ public class CustomMenu {
 		lore.add("§7Select the color of your explosion!");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
-		inv.setItem(13, item);
+		inv.setItem(12, item);
 		
 		item = new ItemStack(Material.NOTE_BLOCK, 1);
 		meta = item.getItemMeta();
@@ -134,6 +134,15 @@ public class CustomMenu {
 		meta.setLore(lore);
 		item.setItemMeta(meta);
 		inv.setItem(15, item);
+		
+		item = new ItemStack(Material.STRING, 1);
+		meta = item.getItemMeta();
+		meta.setDisplayName("§aBeam");
+		lore = new ArrayList<>();
+		lore.add("§7Select your beam!");
+		meta.setLore(lore);
+		item.setItemMeta(meta);
+		inv.setItem(16, item);
 		
 		p.openInventory(inv);
 	}

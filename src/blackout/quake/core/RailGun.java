@@ -117,7 +117,7 @@ public class RailGun {
 	public void trail() {
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			PlayerConnection connection = ((CraftPlayer) p).getHandle().playerConnection;
-			connection.sendPacket(new PacketPlayOutWorldParticles(EnumParticle.FIREWORKS_SPARK, true, (float) location.getX(), (float) location.getY(), (float) location.getZ(), 0, 0, 0, 0, 1, 0));
+			connection.sendPacket(new PacketPlayOutWorldParticles(owner.gunProfile.trail, true, (float) location.getX(), (float) location.getY(), (float) location.getZ(), 0, 0, 0, 0, 1, 0));
 		}
 	}
 	
