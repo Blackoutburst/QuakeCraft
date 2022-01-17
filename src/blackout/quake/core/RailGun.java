@@ -36,6 +36,7 @@ public class RailGun {
 	protected QuakePlayer owner;
 	
 	private int trailColor = 0;
+	private boolean circle = true;
 	
 	public RailGun(Location location, Vector direction, QuakePlayer owner) {
 		this.location = location;
@@ -160,6 +161,41 @@ public class RailGun {
 		}
 	}
 	
+	private void createCircle(PlayerConnection connection, float radius) {
+		int particles = 9;
+		for (int i = 0; i < particles; i++) {
+			double angle = 2 * Math.PI * i / particles;
+			double x = Math.cos(angle) * radius;
+			double y = Math.sin(angle) * radius;
+			Vector v = rotateAroundAxisX(new Vector(x, y, 0), location.getPitch());
+			v = rotateAroundAxisY(v, location.getYaw());
+			Location temp = location.clone().add(v);
+			
+			connection.sendPacket(new PacketPlayOutWorldParticles(EnumParticle.FLAME, true, (float) temp.getX(), (float) temp.getY(), (float) temp.getZ(), 0, 0, 0, 0, 1));
+		}
+	}
+	
+	private Vector rotateAroundAxisX(Vector v, double angle) {
+		angle = Math.toRadians(angle);
+		
+		double cos = Math.cos(angle);
+		double sin = Math.sin(angle);
+		double y = v.getY() * cos - v.getZ() * sin;
+		double z = v.getY() * sin + v.getZ() * cos;
+		return v.setY(y).setZ(z);
+	}
+	 
+	private Vector rotateAroundAxisY(Vector v, double angle) {
+		angle = -angle;
+		angle = Math.toRadians(angle);
+		
+		double cos = Math.cos(angle);
+		double sin = Math.sin(angle);
+		double x = v.getX() * cos + v.getZ() * sin;
+		double z = v.getX() * -sin + v.getZ() * cos;
+		return v.setX(x).setZ(z);
+	}
+	
 	public void trail() {
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			PlayerConnection connection = ((CraftPlayer) p).getHandle().playerConnection;
@@ -169,6 +205,11 @@ public class RailGun {
 				final float g = (float)(c.getGreen()) / 255.0f;
 				final float b = (float)(c.getBlue()) / 255.0f;
 				connection.sendPacket(new PacketPlayOutWorldParticles(owner.gunProfile.trail, true, (float) location.getX(), (float) location.getY(), (float) location.getZ(), r, g, b, 1, 0));
+			}else if (owner.gunProfile.trail == EnumParticle.BARRIER) {
+				connection.sendPacket(new PacketPlayOutWorldParticles(EnumParticle.FLAME, true, (float) location.getX(), (float) location.getY(), (float) location.getZ(), 0, 0, 0, 0, 1));
+				if (circle)
+					createCircle(connection, 0.5f);
+				circle = circle ? false : true; 
 			} else {
 				connection.sendPacket(new PacketPlayOutWorldParticles(owner.gunProfile.trail, true, (float) location.getX(), (float) location.getY(), (float) location.getZ(), 0, 0, 0, 0, 1));
 			}
