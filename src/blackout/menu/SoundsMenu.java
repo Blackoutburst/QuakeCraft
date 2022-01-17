@@ -33,6 +33,9 @@ public class SoundsMenu {
 		setItem(inv, 31, "§aWither", Material.ENDER_PORTAL_FRAME);
 		setItem(inv, 32, "§aLevel Up", Material.EXP_BOTTLE);
 		setItem(inv, 33, "§aZombie Destroy", Material.ROTTEN_FLESH);
+		setItem(inv, 39, "§aEnderman Teleport", Material.ENDER_STONE);
+		setItem(inv, 40, "§aSkeleton Death", Material.BONE);
+		setItem(inv, 41, "§aSplash", Material.WATER_BUCKET);
 		
 		p.openInventory(inv);
 	}
@@ -69,6 +72,9 @@ public class SoundsMenu {
 			case 31: qp.getGunProfile().setSound(Sound.WITHER_IDLE).setPitch(1); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
 			case 32: qp.getGunProfile().setSound(Sound.LEVEL_UP).setPitch(1); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
 			case 33: qp.getGunProfile().setSound(Sound.ZOMBIE_WOODBREAK).setPitch(1); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
+			case 39: qp.getGunProfile().setSound(Sound.ENDERMAN_TELEPORT).setPitch(1); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
+			case 40: qp.getGunProfile().setSound(Sound.SKELETON_DEATH).setPitch(2); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
+			case 41: qp.getGunProfile().setSound(Sound.SPLASH).setPitch(1); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
 			default: break;
 		}
 	}
@@ -90,6 +96,9 @@ public class SoundsMenu {
 			case 31: p.playSound(p.getLocation(), Sound.WITHER_IDLE, 1, 1); break;
 			case 32: p.playSound(p.getLocation(), Sound.LEVEL_UP, 1, 1); break;
 			case 33: p.playSound(p.getLocation(), Sound.ZOMBIE_WOODBREAK, 1, 1); break;
+			case 39: p.playSound(p.getLocation(), Sound.ENDERMAN_TELEPORT, 1, 1); break;
+			case 40: p.playSound(p.getLocation(), Sound.SKELETON_DEATH, 1, 2); break;
+			case 41: p.playSound(p.getLocation(), Sound.SPLASH, 1, 1); break;
 			default: break;
 		}
 	}
