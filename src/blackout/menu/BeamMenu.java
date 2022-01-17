@@ -18,19 +18,20 @@ public class BeamMenu {
 	public static void open(Player p) {
 		Inventory inv = Main.getPlugin(Main.class).getServer().createInventory(null, 36, "Beam Menu");
 		
-		ItemStack item = new ItemStack(Material.LONG_GRASS, 1);
+		ItemStack item = new ItemStack(Material.DOUBLE_PLANT, 1);
 		ItemMeta meta = item.getItemMeta();
 		meta.addItemFlags(ItemFlag.values());
 		meta.setDisplayName("§bPower");
 		ArrayList<String> lore = new ArrayList<>();
 		lore.add("§7Choose a gun trail particle!");
+		lore.add("§4W.I.P");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
 		inv.setItem(10, item);
 		
 		item = new ItemStack(Material.FIREWORK, 1);
 		meta = item.getItemMeta();
-		meta.setDisplayName("§bForework Sparks");
+		meta.setDisplayName("§bFirework Sparks");
 		lore = new ArrayList<>();
 		lore.add("§7Choose a gun trail particle!");
 		meta.setLore(lore);
@@ -105,6 +106,7 @@ public class BeamMenu {
 		meta.setDisplayName("§bRainbow");
 		lore = new ArrayList<>();
 		lore.add("§7Choose a gun trail particle!");
+		lore.add("§4W.I.P");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
 		inv.setItem(21, item);		
@@ -153,7 +155,7 @@ public class BeamMenu {
 		if (qp == null) return;
 
 		switch (slot) {
-			case 10: qp.getGunProfile().setTrail(EnumParticle.FLAME); qp.savePlayerData("trail", slot); if (open) CustomMenu.open(p); break;
+			case 10: qp.getGunProfile().setTrail(EnumParticle.BARRIER); qp.savePlayerData("trail", slot); if (open) CustomMenu.open(p); break;
 			case 11: qp.getGunProfile().setTrail(EnumParticle.FIREWORKS_SPARK); qp.savePlayerData("trail", slot); if (open) CustomMenu.open(p); break;
 			case 12: qp.getGunProfile().setTrail(EnumParticle.CRIT); qp.savePlayerData("trail", slot); if (open) CustomMenu.open(p); break;
 			case 13: qp.getGunProfile().setTrail(EnumParticle.HEART); qp.savePlayerData("trail", slot); if (open) CustomMenu.open(p); break;

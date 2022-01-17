@@ -40,6 +40,26 @@ public class CustomMenu {
 		}
 	}
 	
+	private static Material getBeamIcon(GunProfile gp) {
+		switch(gp.getTrail()) {
+			case BARRIER: return (Material.DOUBLE_PLANT);
+			case FIREWORKS_SPARK: return (Material.FIREWORK);
+			case CRIT: return (Material.IRON_SWORD);
+			case HEART: return (Material.RED_ROSE);
+			case VILLAGER_HAPPY: return (Material.EMERALD);
+			case SMOKE_NORMAL: return (Material.FIREWORK_CHARGE);
+			case CLOUD: return (Material.SNOW_BALL);
+			case ENCHANTMENT_TABLE: return (Material.BOOK);
+			case SPELL_WITCH: return (Material.BREWING_STAND_ITEM);
+			case REDSTONE: return (Material.PAINTING);
+			case VILLAGER_ANGRY: return (Material.MAGMA_CREAM);
+			case FLAME: return (Material.BLAZE_POWDER);
+			case WATER_BUBBLE: return (Material.WATER_LILY);
+			case NOTE: return (Material.NOTE_BLOCK);
+			default: return (Material.FIREWORK);
+		}
+	}
+	
 	private static byte getNameColor(GunProfile gp) {
 		switch(gp.getNameColor()) {
 			case DARK_RED: return ((byte) 1);
@@ -135,7 +155,7 @@ public class CustomMenu {
 		item.setItemMeta(meta);
 		inv.setItem(15, item);
 		
-		item = new ItemStack(Material.STRING, 1);
+		item = new ItemStack(getBeamIcon(qp.getGunProfile()), 1);
 		meta = item.getItemMeta();
 		meta.setDisplayName("§aBeam");
 		lore = new ArrayList<>();
