@@ -30,6 +30,29 @@ public class CustomMenu {
 		p.getInventory().setItem(0, menu);
 	}
 	
+	private static Material getSoundIcon(GunProfile gp) {
+		switch(gp.getSound()) {
+			case HORSE_DEATH: return (Material.SADDLE);
+			case BAT_DEATH: return (Material.FEATHER);
+			case ENDERMAN_DEATH: return (Material.ENDER_PEARL);
+			case IRONGOLEM_DEATH: return (Material.IRON_BLOCK);
+			case PIG_DEATH: return (Material.PORK);
+			case COW_HURT: return (Material.LEATHER);
+			case CREEPER_DEATH: return (Material.SULPHUR);
+			case ANVIL_LAND: return (Material.ANVIL);
+			case GHAST_DEATH: return (Material.GHAST_TEAR);
+			case ENDERDRAGON_GROWL: return (Material.DRAGON_EGG);
+			case VILLAGER_IDLE: return (Material.EMERALD);
+			case WITHER_IDLE: return (Material.ENDER_PORTAL_FRAME);
+			case LEVEL_UP: return (Material.EXP_BOTTLE);
+			case ZOMBIE_WOODBREAK: return (Material.ROTTEN_FLESH);
+			case ENDERMAN_TELEPORT: return (Material.ENDER_STONE);
+			case SKELETON_DEATH: return (Material.BONE);
+			case SPLASH: return (Material.WATER_BUCKET);
+			default: return (Material.BLAZE_ROD);
+		}
+	}
+	
 	private static Material getExplosionIcon(GunProfile gp) {
 		switch(gp.getShape()) {
 			case BALL_LARGE: return (Material.FIREBALL);
@@ -43,7 +66,6 @@ public class CustomMenu {
 	private static Material getBeamIcon(GunProfile gp) {
 		switch(gp.getTrail()) {
 			case BARRIER: return (Material.DOUBLE_PLANT);
-			case FIREWORKS_SPARK: return (Material.FIREWORK);
 			case CRIT: return (Material.IRON_SWORD);
 			case HEART: return (Material.RED_ROSE);
 			case VILLAGER_HAPPY: return (Material.EMERALD);
@@ -137,7 +159,7 @@ public class CustomMenu {
 		item.setItemMeta(meta);
 		inv.setItem(12, item);
 		
-		item = new ItemStack(Material.NOTE_BLOCK, 1);
+		item = new ItemStack(getSoundIcon(qp.getGunProfile()), 1);
 		meta = item.getItemMeta();
 		meta.setDisplayName("§aKill Sounds");
 		lore = new ArrayList<>();
