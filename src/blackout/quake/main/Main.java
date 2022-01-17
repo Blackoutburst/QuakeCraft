@@ -271,6 +271,10 @@ public class Main extends JavaPlugin implements Listener {
 					event.setCancelled(true);
 				}
 			break;
+			case "Beam Menu": 
+				BeamMenu.getValue(event.getSlot(), (Player) event.getWhoClicked(), true);
+				event.setCancelled(true);
+			break;
 			default: break;
 		}
 	}

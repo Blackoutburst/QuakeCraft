@@ -16,7 +16,7 @@ import net.minecraft.server.v1_8_R3.EnumParticle;
 public class BeamMenu {
 	
 	public static void open(Player p) {
-		Inventory inv = Main.getPlugin(Main.class).getServer().createInventory(null, 36, "trail Menu");
+		Inventory inv = Main.getPlugin(Main.class).getServer().createInventory(null, 36, "Beam Menu");
 		
 		ItemStack item = new ItemStack(Material.LONG_GRASS, 1);
 		ItemMeta meta = item.getItemMeta();
