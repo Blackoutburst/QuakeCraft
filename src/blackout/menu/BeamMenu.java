@@ -106,7 +106,6 @@ public class BeamMenu {
 		meta.setDisplayName("§bRainbow");
 		lore = new ArrayList<>();
 		lore.add("§7Choose a gun trail particle!");
-		lore.add("§4W.I.P");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
 		inv.setItem(21, item);		

@@ -1,8 +1,13 @@
 package blackout.quake.core;
 
-import net.minecraft.server.v1_8_R3.*;
+import java.awt.Color;
+
+import org.bukkit.Bukkit;
+import org.bukkit.FireworkEffect;
+import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.*;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
@@ -14,12 +19,23 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.util.Vector;
 
+import net.minecraft.server.v1_8_R3.EntityFireworks;
+import net.minecraft.server.v1_8_R3.EnumParticle;
+import net.minecraft.server.v1_8_R3.PacketPlayOutEntityDestroy;
+import net.minecraft.server.v1_8_R3.PacketPlayOutEntityMetadata;
+import net.minecraft.server.v1_8_R3.PacketPlayOutEntityStatus;
+import net.minecraft.server.v1_8_R3.PacketPlayOutSpawnEntity;
+import net.minecraft.server.v1_8_R3.PacketPlayOutWorldParticles;
+import net.minecraft.server.v1_8_R3.PlayerConnection;
+
 
 public class RailGun {
 	
 	protected Location location;
 	protected Vector direction;
 	protected QuakePlayer owner;
+	
+	private int trailColor = 0;
 	
 	public RailGun(Location location, Vector direction, QuakePlayer owner) {
 		this.location = location;
@@ -81,6 +97,7 @@ public class RailGun {
 	
 	public void fire(QuakePlayer p) {
 		final RailGun b = this;
+		trailColor = 0;
 
 		p.getPlayer().getWorld().playSound(p.getPlayer().getLocation(), Sound.BLAZE_HIT, 2, 2);
 		p.cooldown = GameOption.FIRE_DELAY;
@@ -114,11 +131,49 @@ public class RailGun {
 		}
 	}
 	
+	private Color getColor() {
+		switch(trailColor) {
+			default: return new Color(255, 0, 0);
+			case 1: return new Color(255, 85, 0);
+			case 2: return new Color(255, 132, 0);
+			case 3: return new Color(255, 174, 0);
+			case 4: return new Color(255, 255, 0);
+			case 5: return new Color(174, 255, 0);
+			case 6: return new Color(132, 255, 0);
+			case 7: return new Color(85, 255, 0);
+			case 8: return new Color(0, 255, 0);
+			case 9: return new Color(0, 255, 85);
+			case 10: return new Color(0, 255, 132);
+			case 11: return new Color(0, 255, 174);
+			case 12: return new Color(0, 255, 255);
+			case 13: return new Color(0, 174, 255);
+			case 14: return new Color(0, 132, 255);
+			case 15: return new Color(0, 85, 255);
+			case 16: return new Color(0, 0, 255);
+			case 17: return new Color(85, 0, 255);
+			case 18: return new Color(132, 0, 255);
+			case 19: return new Color(174, 0, 255);
+			case 20: return new Color(255, 0, 255);
+			case 21: return new Color(255, 0, 174);
+			case 22: return new Color(255, 0, 132);
+			case 23: trailColor = 0; return new Color(255, 0, 85);
+		}
+	}
+	
 	public void trail() {
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			PlayerConnection connection = ((CraftPlayer) p).getHandle().playerConnection;
-			connection.sendPacket(new PacketPlayOutWorldParticles(owner.gunProfile.trail, true, (float) location.getX(), (float) location.getY(), (float) location.getZ(), 0, 0, 0, 0, 1, 0));
+			if (owner.gunProfile.trail == EnumParticle.REDSTONE) {
+				final Color c = getColor();
+				final float r = c.getRed() == 0 ? Float.MIN_VALUE : (float)(c.getRed()) / 255.0f;
+				final float g = (float)(c.getGreen()) / 255.0f;
+				final float b = (float)(c.getBlue()) / 255.0f;
+				connection.sendPacket(new PacketPlayOutWorldParticles(owner.gunProfile.trail, true, (float) location.getX(), (float) location.getY(), (float) location.getZ(), r, g, b, 1, 0));
+			} else {
+				connection.sendPacket(new PacketPlayOutWorldParticles(owner.gunProfile.trail, true, (float) location.getX(), (float) location.getY(), (float) location.getZ(), 0, 0, 0, 0, 1));
+			}
 		}
+		trailColor++;
 	}
 	
 	public void detonate(QuakePlayer owner) {
