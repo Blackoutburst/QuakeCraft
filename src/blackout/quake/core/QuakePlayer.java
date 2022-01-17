@@ -7,6 +7,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
+import blackout.menu.BeamMenu;
 import blackout.menu.ColorMenu;
 import blackout.menu.GunMenu;
 import blackout.menu.NameColorMenu;
@@ -143,5 +144,6 @@ public class QuakePlayer {
 		ColorMenu.getValue(playerData.getInt("color"), this.player, false);
 		SoundsMenu.getValue(playerData.getInt("sound"), this.player, false);
 		NameColorMenu.getValue(playerData.getInt("nameColor"), this.player, false);
+		BeamMenu.getValue(playerData.getInt("trail"), this.player, false);
 	}
 }

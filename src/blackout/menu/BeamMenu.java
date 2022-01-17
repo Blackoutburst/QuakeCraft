@@ -2,7 +2,6 @@ package blackout.menu;
 
 import java.util.ArrayList;
 
-import org.bukkit.FireworkEffect.Type;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -17,7 +16,7 @@ import net.minecraft.server.v1_8_R3.EnumParticle;
 public class BeamMenu {
 	
 	public static void open(Player p) {
-		Inventory inv = Main.getPlugin(Main.class).getServer().createInventory(null, 36, "Shape Menu");
+		Inventory inv = Main.getPlugin(Main.class).getServer().createInventory(null, 36, "trail Menu");
 		
 		ItemStack item = new ItemStack(Material.LONG_GRASS, 1);
 		ItemMeta meta = item.getItemMeta();
@@ -154,20 +153,20 @@ public class BeamMenu {
 		if (qp == null) return;
 
 		switch (slot) {
-			case 10: qp.getGunProfile().setTrail(EnumParticle.FLAME); qp.savePlayerData("shape", slot); if (open) CustomMenu.open(p); break;
-			case 11: qp.getGunProfile().setTrail(EnumParticle.FIREWORKS_SPARK); qp.savePlayerData("shape", slot); if (open) CustomMenu.open(p); break;
-			case 12: qp.getGunProfile().setTrail(EnumParticle.CRIT); qp.savePlayerData("shape", slot); if (open) CustomMenu.open(p); break;
-			case 13: qp.getGunProfile().setTrail(EnumParticle.HEART); qp.savePlayerData("shape", slot); if (open) CustomMenu.open(p); break;
-			case 14: qp.getGunProfile().setTrail(EnumParticle.VILLAGER_HAPPY); qp.savePlayerData("shape", slot); if (open) CustomMenu.open(p); break;
-			case 15: qp.getGunProfile().setTrail(EnumParticle.SMOKE_NORMAL); qp.savePlayerData("shape", slot); if (open) CustomMenu.open(p); break;
-			case 16: qp.getGunProfile().setTrail(EnumParticle.CLOUD); qp.savePlayerData("shape", slot); if (open) CustomMenu.open(p); break;
-			case 19: qp.getGunProfile().setTrail(EnumParticle.ENCHANTMENT_TABLE); qp.savePlayerData("shape", slot); if (open) CustomMenu.open(p); break;
-			case 20: qp.getGunProfile().setTrail(EnumParticle.SPELL_WITCH); qp.savePlayerData("shape", slot); if (open) CustomMenu.open(p); break;
-			case 21: qp.getGunProfile().setTrail(EnumParticle.REDSTONE); qp.savePlayerData("shape", slot); if (open) CustomMenu.open(p); break;
-			case 22: qp.getGunProfile().setTrail(EnumParticle.VILLAGER_ANGRY); qp.savePlayerData("shape", slot); if (open) CustomMenu.open(p); break;
-			case 23: qp.getGunProfile().setTrail(EnumParticle.FLAME); qp.savePlayerData("shape", slot); if (open) CustomMenu.open(p); break;
-			case 24: qp.getGunProfile().setTrail(EnumParticle.WATER_BUBBLE); qp.savePlayerData("shape", slot); if (open) CustomMenu.open(p); break;
-			case 25: qp.getGunProfile().setTrail(EnumParticle.NOTE); qp.savePlayerData("shape", slot); if (open) CustomMenu.open(p); break;
+			case 10: qp.getGunProfile().setTrail(EnumParticle.FLAME); qp.savePlayerData("trail", slot); if (open) CustomMenu.open(p); break;
+			case 11: qp.getGunProfile().setTrail(EnumParticle.FIREWORKS_SPARK); qp.savePlayerData("trail", slot); if (open) CustomMenu.open(p); break;
+			case 12: qp.getGunProfile().setTrail(EnumParticle.CRIT); qp.savePlayerData("trail", slot); if (open) CustomMenu.open(p); break;
+			case 13: qp.getGunProfile().setTrail(EnumParticle.HEART); qp.savePlayerData("trail", slot); if (open) CustomMenu.open(p); break;
+			case 14: qp.getGunProfile().setTrail(EnumParticle.VILLAGER_HAPPY); qp.savePlayerData("trail", slot); if (open) CustomMenu.open(p); break;
+			case 15: qp.getGunProfile().setTrail(EnumParticle.SMOKE_NORMAL); qp.savePlayerData("trail", slot); if (open) CustomMenu.open(p); break;
+			case 16: qp.getGunProfile().setTrail(EnumParticle.CLOUD); qp.savePlayerData("trail", slot); if (open) CustomMenu.open(p); break;
+			case 19: qp.getGunProfile().setTrail(EnumParticle.ENCHANTMENT_TABLE); qp.savePlayerData("trail", slot); if (open) CustomMenu.open(p); break;
+			case 20: qp.getGunProfile().setTrail(EnumParticle.SPELL_WITCH); qp.savePlayerData("trail", slot); if (open) CustomMenu.open(p); break;
+			case 21: qp.getGunProfile().setTrail(EnumParticle.REDSTONE); qp.savePlayerData("trail", slot); if (open) CustomMenu.open(p); break;
+			case 22: qp.getGunProfile().setTrail(EnumParticle.VILLAGER_ANGRY); qp.savePlayerData("trail", slot); if (open) CustomMenu.open(p); break;
+			case 23: qp.getGunProfile().setTrail(EnumParticle.FLAME); qp.savePlayerData("trail", slot); if (open) CustomMenu.open(p); break;
+			case 24: qp.getGunProfile().setTrail(EnumParticle.WATER_BUBBLE); qp.savePlayerData("trail", slot); if (open) CustomMenu.open(p); break;
+			case 25: qp.getGunProfile().setTrail(EnumParticle.NOTE); qp.savePlayerData("trail", slot); if (open) CustomMenu.open(p); break;
 			default: break;
 		}
 	}

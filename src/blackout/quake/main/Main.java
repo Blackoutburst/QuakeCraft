@@ -74,6 +74,7 @@ public class Main extends JavaPlugin implements Listener {
 			qp.savePlayerData("color", 31);
 			qp.savePlayerData("sound", 11);
 			qp.savePlayerData("nameColor", 23);
+			qp.savePlayerData("trail", 11);
 			players.add(qp);
 		}
 		
