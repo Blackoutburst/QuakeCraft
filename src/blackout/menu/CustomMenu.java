@@ -149,11 +149,12 @@ public class CustomMenu {
 	
 	public static void click(int slot, Player p) {
 		switch (slot) {
-			case 11: GunMenu.open(p); break;
-			case 12: ShapeMenu.open(p); break;
-			case 13: ColorMenu.open(p); break;
+			case 10: GunMenu.open(p); break;
+			case 11: ShapeMenu.open(p); break;
+			case 12: ColorMenu.open(p); break;
 			case 14: SoundsMenu.open(p); break;
 			case 15: NameColorMenu.open(p); break;
+			case 16: BeamMenu.open(p); break;
 			default: break;
 		}
 	}
