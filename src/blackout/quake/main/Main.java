@@ -3,6 +3,8 @@ package blackout.quake.main;
 import blackout.commands.*;
 import blackout.menu.*;
 import blackout.quake.core.*;
+import net.minecraft.server.v1_8_R3.EnumParticle;
+
 import org.bukkit.*;
 import org.bukkit.FireworkEffect.Type;
 import org.bukkit.command.Command;
@@ -57,7 +59,7 @@ public class Main extends JavaPlugin implements Listener {
 		event.getPlayer().getInventory().clear();
 		event.getPlayer().teleport(spawn);
 		
-		GunProfile gunProfile = new GunProfile("§bWooden Case", Material.WOOD_HOE, Type.BALL, Color.AQUA, false, Sound.BLAZE_DEATH, 2, ChatColor.WHITE);
+		GunProfile gunProfile = new GunProfile("§bWooden Case", Material.WOOD_HOE, Type.BALL, Color.AQUA, false, Sound.BLAZE_DEATH, 2, ChatColor.WHITE, EnumParticle.FIREWORKS_SPARK);
 		QuakePlayer qp = new QuakePlayer(event.getPlayer(), gunProfile);
 		
 		ScoreboardManager.init(qp);

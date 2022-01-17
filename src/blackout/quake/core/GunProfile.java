@@ -6,6 +6,8 @@ import org.bukkit.FireworkEffect.Type;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 
+import net.minecraft.server.v1_8_R3.EnumParticle;
+
 public class GunProfile {
 	protected String name;
 	protected Material gun;
@@ -15,8 +17,9 @@ public class GunProfile {
 	protected Sound sound;
 	protected float pitch;
 	protected ChatColor nameColor;
+	protected EnumParticle trail;
 	
-	public GunProfile(String name, Material gun, Type shape, Color color, boolean superior, Sound sound, float pitch, ChatColor nameColor) {
+	public GunProfile(String name, Material gun, Type shape, Color color, boolean superior, Sound sound, float pitch, ChatColor nameColor, EnumParticle trail) {
 		this.name = name;
 		this.gun = gun;
 		this.shape = shape;
@@ -25,6 +28,7 @@ public class GunProfile {
 		this.sound = sound;
 		this.pitch = pitch;
 		this.nameColor = nameColor;
+		this.trail = trail;
 	}
 
 	public String getName() {
@@ -94,4 +98,13 @@ public class GunProfile {
 	public void setNameColor(ChatColor nameColor) {
 		this.nameColor = nameColor;
 	}
+
+	public EnumParticle getTrail() {
+		return trail;
+	}
+
+	public void setTrail(EnumParticle trail) {
+		this.trail = trail;
+	}
+
 }
