@@ -36,7 +36,7 @@ public class RailGun {
 	protected QuakePlayer owner;
 	
 	private int trailColor = 0;
-	private boolean circle = true;
+	private int circle = 0;
 	
 	public RailGun(Location location, Vector direction, QuakePlayer owner) {
 		this.location = location;
@@ -207,9 +207,11 @@ public class RailGun {
 				connection.sendPacket(new PacketPlayOutWorldParticles(owner.gunProfile.trail, true, (float) location.getX(), (float) location.getY(), (float) location.getZ(), r, g, b, 1, 0));
 			}else if (owner.gunProfile.trail == EnumParticle.BARRIER) {
 				connection.sendPacket(new PacketPlayOutWorldParticles(EnumParticle.FLAME, true, (float) location.getX(), (float) location.getY(), (float) location.getZ(), 0, 0, 0, 0, 1));
-				if (circle)
-					createCircle(connection, 0.5f);
-				circle = circle ? false : true; 
+				circle++;
+				if (circle > 2) {
+					createCircle(connection, 0.3f);
+					circle = 0;
+				}
 			} else {
 				connection.sendPacket(new PacketPlayOutWorldParticles(owner.gunProfile.trail, true, (float) location.getX(), (float) location.getY(), (float) location.getZ(), 0, 0, 0, 0, 1));
 			}
