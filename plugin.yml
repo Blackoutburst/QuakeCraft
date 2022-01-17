@@ -1,4 +1,4 @@
-main: blackout.quake.main.Main
+main: com.blackoutburst.quake.main.Main
 name: QuakeTest
 version: 0.1
 api-version: 1.13
