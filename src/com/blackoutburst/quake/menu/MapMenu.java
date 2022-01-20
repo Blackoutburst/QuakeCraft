@@ -64,7 +64,7 @@ public class MapMenu {
 		setItem(inv, Material.DIAMOND_ORE, (byte) 0, "§6Mines", 40);
 		setItem(inv, Material.IRON_ORE, (byte) 0, "§bOld Mines", 41);
 		setItem(inv, Material.RED_ROSE, (byte) 1, "§bOrchid", 42);
-		setItem(inv, Material.STAINED_CLAY, (byte) 14, "§bQuake city", 43);
+		setItem(inv, Material.STAINED_CLAY, (byte) 14, "§bQuake City", 43);
 		setItem(inv, Material.STAINED_GLASS, (byte) 2, "§6Reactor", 44);
 		setItem(inv, Material.STAINED_GLASS, (byte) 10, "§bBeta Reactor", 45);
 		setItem(inv, Material.SMOOTH_BRICK, (byte) 1, "§bRuin", 46);
