@@ -212,6 +212,10 @@ public class Main extends JavaPlugin implements Listener {
  	public void onPlayerQuit(PlayerQuitEvent event) {
 		players.remove(QuakePlayer.getFromPlayer(event.getPlayer()));
 		ScoreboardManager.updatePlayers();
+		
+		if (players.size() == 0) {
+			Core.endGame();
+		}
 	}
 	
 	@EventHandler
