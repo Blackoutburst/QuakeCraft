@@ -29,7 +29,7 @@ public class ScoreboardManager {
 	  			}
   			} else {
   				for (QuakePlayer qp : Main.players) {
-  					qp.getBoard().set(10 - i, "   ");
+  					qp.getBoard().set(11 - i, "   ");
   				}
   			}
   		}
