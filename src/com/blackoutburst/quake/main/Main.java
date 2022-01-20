@@ -61,7 +61,7 @@ import com.blackoutburst.quake.commands.CommandToggleVerticalDash;
 import com.blackoutburst.quake.commands.CommandToggleWalk;
 import com.blackoutburst.quake.commands.CommandTriggerSpeed;
 import com.blackoutburst.quake.core.Core;
-import com.blackoutburst.quake.core.GameOption;
+import com.blackoutburst.quake.core.Dash;
 import com.blackoutburst.quake.core.GunProfile;
 import com.blackoutburst.quake.core.QuakePlayer;
 import com.blackoutburst.quake.core.RailGun;
@@ -240,39 +240,7 @@ public class Main extends JavaPlugin implements Listener {
 		
 		if (!gameRunning) return;
 		
-		if ((event.getAction().equals(Action.LEFT_CLICK_BLOCK) || 
-				event.getAction().equals(Action.LEFT_CLICK_AIR)) &&
-				Core.clickHoe(event.getPlayer().getItemInHand().getType())) {
-			
-			if (GameOption.DASH) {
-				if (qp.getDashCooldown() > 0) {
-					event.getPlayer().sendMessage("§cYou can only dash once every "+(GameOption.DASH_DELAY/20)+" seconds");
-				} else {
-					qp.setDashCooldown(GameOption.DASH_DELAY);
-					
-					Vector dash = event.getPlayer().getLocation().getDirection().clone();
-					
-					dash.setY(0.05f);
-					dash.setX(0.0f);
-					dash.setZ(0.0f);
-					
-					event.getPlayer().setVelocity(dash.multiply(5));
-					
-					new BukkitRunnable(){
-						@Override
-						public void run(){
-							Vector dash = event.getPlayer().getLocation().getDirection().clone();
-							if (!GameOption.VERTICAL_DASH)
-								dash.setY(0.0f);
-							event.getPlayer().setVelocity(dash.multiply(GameOption.DASH_STRENGTH));
-						}
-					}.runTaskLater(Main.getPlugin(Main.class), 1L);
-					event.getPlayer().getWorld().playSound(event.getPlayer().getLocation(), Sound.BAT_TAKEOFF, 3, 0.5f);
-				}
-			} else {
-				event.getPlayer().sendMessage("§cDash is disabled in this game !");
-			}
-		}
+		Dash.dash(qp, event);
 		
 		if ((event.getAction().equals(Action.RIGHT_CLICK_BLOCK) || 
 			event.getAction().equals(Action.RIGHT_CLICK_AIR)) &&
