@@ -214,7 +214,7 @@ public class Main extends JavaPlugin implements Listener {
 		ScoreboardManager.updatePlayers();
 		
 		if (players.size() == 0) {
-			Core.endGame();
+			gameRunning = false;
 		}
 	}
 	
