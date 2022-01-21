@@ -14,11 +14,17 @@ import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
+import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
+
+import com.blackoutburst.quake.main.Main;
 
 import net.minecraft.server.v1_8_R3.EntityFireworks;
 import net.minecraft.server.v1_8_R3.EnumParticle;
@@ -203,6 +209,25 @@ public class RailGun {
 		return v.setX(x).setZ(z);
 	}
 	
+	private void spawnHanndHead() {
+		ItemStack itemstack = new ItemStack(Material.SKULL_ITEM, 1, (byte) 3);
+		SkullMeta skullMeta = (SkullMeta) itemstack.getItemMeta();
+		skullMeta.addItemFlags(ItemFlag.values());
+		skullMeta.setOwner("hannd");
+		itemstack.setItemMeta(skullMeta);
+		
+		Item item = location.getWorld().dropItem(location, itemstack);
+		item.setPickupDelay(100);
+
+		
+		new BukkitRunnable(){
+			@Override
+			public void run(){
+				item.remove();
+			}
+		}.runTaskLaterAsynchronously(Main.getPlugin(Main.class), 10L);
+	}
+	
 	public void trail() {
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			PlayerConnection connection = ((CraftPlayer) p).getHandle().playerConnection;
@@ -212,13 +237,16 @@ public class RailGun {
 				final float g = (float)(c.getGreen()) / 255.0f;
 				final float b = (float)(c.getBlue()) / 255.0f;
 				connection.sendPacket(new PacketPlayOutWorldParticles(owner.gunProfile.trail, true, (float) location.getX(), (float) location.getY(), (float) location.getZ(), r, g, b, 1, 0));
-			}else if (owner.gunProfile.trail == EnumParticle.BARRIER) {
+			} else if (owner.gunProfile.trail == EnumParticle.BARRIER) {
 				connection.sendPacket(new PacketPlayOutWorldParticles(EnumParticle.FLAME, true, (float) location.getX(), (float) location.getY(), (float) location.getZ(), 0, 0, 0, 0, 1));
 				circle++;
 				if (circle > 2) {
 					createCircle(connection, 0.3f);
 					circle = 0;
 				}
+			} else if (owner.gunProfile.trail == EnumParticle.SUSPENDED_DEPTH) {
+				connection.sendPacket(new PacketPlayOutWorldParticles(owner.gunProfile.trail, true, (float) location.getX(), (float) location.getY(), (float) location.getZ(), 255, 132, 0, 1, 0));
+				spawnHanndHead();
 			} else {
 				connection.sendPacket(new PacketPlayOutWorldParticles(owner.gunProfile.trail, true, (float) location.getX(), (float) location.getY(), (float) location.getZ(), 0, 0, 0, 0, 1));
 			}

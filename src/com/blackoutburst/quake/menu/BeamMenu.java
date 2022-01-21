@@ -8,6 +8,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
 
 import com.blackoutburst.quake.core.QuakePlayer;
 import com.blackoutburst.quake.main.Main;
@@ -15,6 +16,14 @@ import com.blackoutburst.quake.main.Main;
 import net.minecraft.server.v1_8_R3.EnumParticle;
 
 public class BeamMenu {
+	
+	/*
+	[00] [01] [02] [03] [04] [05] [06] [07] [08]
+	[09] [10] [11] [12] [13] [14] [15] [16] [17]
+	[18] [19] [20] [21] [22] [23] [24] [25] [26]
+	[27] [28] [29] [30] [31] [32] [33] [34] [35]
+	[36] [37] [38] [39] [40] [41] [42] [43] [44]
+	*/
 	
 	public static void open(Player p) {
 		Inventory inv = Main.getPlugin(Main.class).getServer().createInventory(null, 36, "Beam Menu");
@@ -146,6 +155,21 @@ public class BeamMenu {
 		item.setItemMeta(meta);
 		inv.setItem(25, item);	
 		
+		
+		
+		item = new ItemStack(Material.SKULL_ITEM, 1, (byte) 3);
+		SkullMeta skullMeta = (SkullMeta) item.getItemMeta();
+		skullMeta.addItemFlags(ItemFlag.values());
+		skullMeta.setOwner("hannd");
+		skullMeta.setDisplayName("§bHannd ???");
+		lore = new ArrayList<>();
+		lore.add("§7HAND, HAANND");
+		lore.add("§4§lHaNnD??????");
+		lore.add("§6§mRackals suggestions are weird §r§b§nHAAAAAAANNNNNNNNNND");
+		meta.setLore(lore);
+		item.setItemMeta(meta);
+		inv.setItem(31, item);
+		
 		p.openInventory(inv);
 	}
 	
@@ -168,6 +192,7 @@ public class BeamMenu {
 			case 23: qp.getGunProfile().setTrail(EnumParticle.FLAME); qp.savePlayerData("trail", slot); if (open) CustomMenu.open(p); break;
 			case 24: qp.getGunProfile().setTrail(EnumParticle.WATER_BUBBLE); qp.savePlayerData("trail", slot); if (open) CustomMenu.open(p); break;
 			case 25: qp.getGunProfile().setTrail(EnumParticle.NOTE); qp.savePlayerData("trail", slot); if (open) CustomMenu.open(p); break;
+			case 31: qp.getGunProfile().setTrail(EnumParticle.SUSPENDED_DEPTH); qp.savePlayerData("trail", slot); if (open) CustomMenu.open(p); break;
 			default: break;
 		}
 	}
