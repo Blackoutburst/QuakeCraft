@@ -26,19 +26,15 @@ public class CommandClean {
 		
 		worldName = new StringBuilder(worldName.substring(0, worldName.length() - 1).toLowerCase());
 		
-		
 		File index = new File("./plugins/Quake/");
-		String[] entries = index.list();
+		File[] entries = index.listFiles();
 		String finalWorldName = null;
 		
 		if (entries == null) return;
 
-		for(String s: entries) {
-			File tmp = new File(index.getPath(), s);
-			if (tmp.isDirectory()) continue;
-			
-			if (tmp.getName().replace(".yml", "").equalsIgnoreCase(worldName.toString())) {
-				finalWorldName = tmp.getName().replace(".yml", "");
+		for(File s: entries) {
+			if (s.getName().replace(".yml", "").equalsIgnoreCase(worldName.toString())) {
+				finalWorldName = s.getName().replace(".yml", "");
 			}
 		}
 		
