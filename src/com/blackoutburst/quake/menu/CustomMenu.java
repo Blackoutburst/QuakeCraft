@@ -190,7 +190,7 @@ public class CustomMenu {
 			skullMeta.setLore(lore);
 			item.setItemMeta(skullMeta);
 		} else {
-			item = new ItemStack(getBeamIcon(qp.getGunProfile()), 1, (byte) 3);
+			item = new ItemStack(getBeamIcon(qp.getGunProfile()), 1);
 			meta = item.getItemMeta();
 			meta.setDisplayName("§aBeam");
 			lore = new ArrayList<>();
