@@ -26,7 +26,7 @@ public class BeamMenu {
 	*/
 	
 	public static void open(Player p) {
-		Inventory inv = Main.getPlugin(Main.class).getServer().createInventory(null, 36, "Beam Menu");
+		Inventory inv = Main.getPlugin(Main.class).getServer().createInventory(null, 45, "Beam Menu");
 		
 		ItemStack item = new ItemStack(Material.DOUBLE_PLANT, 1);
 		ItemMeta meta = item.getItemMeta();
