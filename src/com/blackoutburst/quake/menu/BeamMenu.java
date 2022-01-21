@@ -156,7 +156,6 @@ public class BeamMenu {
 		inv.setItem(25, item);	
 		
 		
-		
 		item = new ItemStack(Material.SKULL_ITEM, 1, (byte) 3);
 		SkullMeta skullMeta = (SkullMeta) item.getItemMeta();
 		skullMeta.addItemFlags(ItemFlag.values());
@@ -166,8 +165,8 @@ public class BeamMenu {
 		lore.add("§7HAND, HAANND");
 		lore.add("§4§lHaNnD??????");
 		lore.add("§6§mRackals suggestions are weird §r§b§nHAAAAAAANNNNNNNNNND");
-		meta.setLore(lore);
-		item.setItemMeta(meta);
+		skullMeta.setLore(lore);
+		item.setItemMeta(skullMeta);
 		inv.setItem(31, item);
 		
 		p.openInventory(inv);

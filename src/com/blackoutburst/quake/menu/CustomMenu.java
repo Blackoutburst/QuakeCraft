@@ -10,6 +10,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
 
 import com.blackoutburst.quake.core.GunProfile;
 import com.blackoutburst.quake.core.QuakePlayer;
@@ -78,6 +79,7 @@ public class CustomMenu {
 			case FLAME: return (Material.BLAZE_POWDER);
 			case WATER_BUBBLE: return (Material.WATER_LILY);
 			case NOTE: return (Material.NOTE_BLOCK);
+			case SUSPENDED_DEPTH: return (Material.SKULL_ITEM);
 			default: return (Material.FIREWORK);
 		}
 	}
@@ -177,13 +179,25 @@ public class CustomMenu {
 		item.setItemMeta(meta);
 		inv.setItem(15, item);
 		
-		item = new ItemStack(getBeamIcon(qp.getGunProfile()), 1);
-		meta = item.getItemMeta();
-		meta.setDisplayName("§aBeam");
-		lore = new ArrayList<>();
-		lore.add("§7Select your beam!");
-		meta.setLore(lore);
-		item.setItemMeta(meta);
+		if (getBeamIcon(qp.getGunProfile()).equals(Material.SKULL_ITEM)) {
+			item = new ItemStack(Material.SKULL_ITEM, 1, (byte) 3);
+			SkullMeta skullMeta = (SkullMeta) item.getItemMeta();
+			skullMeta.addItemFlags(ItemFlag.values());
+			skullMeta.setOwner("hannd");
+			skullMeta.setDisplayName("§aBeam");
+			lore = new ArrayList<>();
+			lore.add("§7Select your beam!");
+			skullMeta.setLore(lore);
+			item.setItemMeta(skullMeta);
+		} else {
+			item = new ItemStack(getBeamIcon(qp.getGunProfile()), 1, (byte) 3);
+			meta = item.getItemMeta();
+			meta.setDisplayName("§aBeam");
+			lore = new ArrayList<>();
+			lore.add("§7Select your beam!");
+			meta.setLore(lore);
+			item.setItemMeta(meta);
+		}
 		inv.setItem(16, item);
 		
 		p.openInventory(inv);
