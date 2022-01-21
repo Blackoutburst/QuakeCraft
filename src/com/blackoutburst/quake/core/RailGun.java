@@ -93,7 +93,10 @@ public class RailGun {
 				!b.getType().equals(Material.REDSTONE_COMPARATOR_OFF) &&
 				!b.getType().equals(Material.FLOWER_POT) &&
 				!b.getType().equals(Material.PORTAL) &&
-				!b.getType().equals(Material.ENDER_PORTAL));
+				!b.getType().equals(Material.ENDER_PORTAL) &&
+				!b.getType().equals(Material.BANNER) &&
+				!b.getType().equals(Material.WALL_BANNER) &&
+				!b.getType().equals(Material.WALL_SIGN));
 	}
 	
 	public void fire(QuakePlayer p) {
