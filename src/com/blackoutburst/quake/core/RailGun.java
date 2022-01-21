@@ -1,6 +1,8 @@
 package com.blackoutburst.quake.core;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.FireworkEffect;
@@ -42,6 +44,9 @@ public class RailGun {
 	
 	private int trailColor = 0;
 	private int circle = 0;
+	private int head = 0;
+	
+	private List<Item> heads = new ArrayList<>();
 	
 	public RailGun(Location location, Vector direction, QuakePlayer owner) {
 		this.location = location;
@@ -117,6 +122,17 @@ public class RailGun {
 			b.getNearbyPlayer();
 			if (b.insideBlock()) break;
 		}
+		
+		new BukkitRunnable(){
+			@Override
+			public void run(){
+				try {
+					for (int i = 0; i < heads.size(); i++)
+						heads.get(i).remove();
+					heads.clear();
+				} catch (Exception ignored) {}
+			}
+		}.runTaskLaterAsynchronously(Main.getPlugin(Main.class), 10L);
 	}
 	
 	public void getNearbyPlayer() {
@@ -210,14 +226,7 @@ public class RailGun {
 	private void spawnHanndHead() {
 		Item item = location.getWorld().dropItem(location, SkullLoader.hannd);
 		item.setPickupDelay(100);
-
-		
-		new BukkitRunnable(){
-			@Override
-			public void run(){
-				item.remove();
-			}
-		}.runTaskLaterAsynchronously(Main.getPlugin(Main.class), 10L);
+		heads.add(item);
 	}
 	
 	public void trail() {
@@ -237,8 +246,12 @@ public class RailGun {
 					circle = 0;
 				}
 			} else if (owner.gunProfile.trail == EnumParticle.SUSPENDED_DEPTH) {
-				connection.sendPacket(new PacketPlayOutWorldParticles(owner.gunProfile.trail, true, (float) location.getX(), (float) location.getY(), (float) location.getZ(), 255, 132, 0, 1, 0));
-				spawnHanndHead();
+				connection.sendPacket(new PacketPlayOutWorldParticles(EnumParticle.REDSTONE, true, (float) location.getX(), (float) location.getY(), (float) location.getZ(), 1.0f, 0.5f, 0, 1, 0));
+				head++;
+				if (head > 1) {
+					spawnHanndHead();
+					circle = 0;
+				}
 			} else {
 				connection.sendPacket(new PacketPlayOutWorldParticles(owner.gunProfile.trail, true, (float) location.getX(), (float) location.getY(), (float) location.getZ(), 0, 0, 0, 0, 1));
 			}
