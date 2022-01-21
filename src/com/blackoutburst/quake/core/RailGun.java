@@ -17,10 +17,8 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
-import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
@@ -210,13 +208,7 @@ public class RailGun {
 	}
 	
 	private void spawnHanndHead() {
-		ItemStack itemstack = new ItemStack(Material.SKULL_ITEM, 1, (byte) 3);
-		SkullMeta skullMeta = (SkullMeta) itemstack.getItemMeta();
-		skullMeta.addItemFlags(ItemFlag.values());
-		skullMeta.setOwner("hannd");
-		itemstack.setItemMeta(skullMeta);
-		
-		Item item = location.getWorld().dropItem(location, itemstack);
+		Item item = location.getWorld().dropItem(location, SkullLoader.hannd);
 		item.setPickupDelay(100);
 
 		

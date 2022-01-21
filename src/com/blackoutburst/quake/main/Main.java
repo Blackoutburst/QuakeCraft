@@ -66,6 +66,7 @@ import com.blackoutburst.quake.core.GunProfile;
 import com.blackoutburst.quake.core.QuakePlayer;
 import com.blackoutburst.quake.core.RailGun;
 import com.blackoutburst.quake.core.ScoreboardManager;
+import com.blackoutburst.quake.core.SkullLoader;
 import com.blackoutburst.quake.menu.BeamMenu;
 import com.blackoutburst.quake.menu.ColorMenu;
 import com.blackoutburst.quake.menu.ConfigMenu;
@@ -96,6 +97,7 @@ public class Main extends JavaPlugin implements Listener {
 		new Core().cooldownTimer();
 		new Core().gameTimer();
 		new File("./plugins/Quake/player data/").mkdirs();
+		SkullLoader.load();
 		
 		gameWorld = Bukkit.getWorld("world");
 		spawn = new Location(Bukkit.getWorld("world"), 8.5f, 5.0f, 8.5f, 0, 0);
