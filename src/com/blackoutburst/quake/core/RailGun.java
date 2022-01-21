@@ -12,6 +12,7 @@ import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
+import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -116,6 +117,9 @@ public class RailGun {
 	
 	public void getNearbyPlayer() {
 		for (Entity e : location.getWorld().getEntities()) {
+			if (e instanceof ArmorStand) continue;
+			
+			
 			final float x = (float) (location.getX() - e.getLocation().getX());
 			final float y = (float) (location.getY() - e.getLocation().getY());
 			final float z = (float) (location.getZ() - e.getLocation().getZ());
