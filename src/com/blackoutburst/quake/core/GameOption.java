@@ -9,6 +9,7 @@ public class GameOption {
 	public static int PLAYER_SPEED = 2;
 	public static int JUMP_BOOST = 0;
 	public static int SLOWNESS = 0;
+	public static int BOUNCE_COUNT = 0;
 	
 	public static boolean BLINDNESS = false;
 	public static boolean INVISIBILITY = false;
@@ -26,6 +27,7 @@ public class GameOption {
 		PLAYER_SPEED = 2;
 		JUMP_BOOST = 0;
 		SLOWNESS = 0;
+		BOUNCE_COUNT = 0;
 		
 		BLINDNESS = false;
 		INVISIBILITY = false;

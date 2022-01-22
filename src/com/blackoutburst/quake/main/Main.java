@@ -35,6 +35,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 import com.blackoutburst.quake.commands.CommandBoop;
+import com.blackoutburst.quake.commands.CommandBounceCount;
 import com.blackoutburst.quake.commands.CommandClean;
 import com.blackoutburst.quake.commands.CommandConfig;
 import com.blackoutburst.quake.commands.CommandDashDelay;
@@ -326,9 +327,10 @@ public class Main extends JavaPlugin implements Listener {
 		switch(command.getName().toLowerCase()) {
 			case "spawn":
 			case "lobby":
-			case "l":
+			case "l":	
 				new CommandSpawn().execute(sender); break;
 			case "maxscore": new CommandMaxScore().execute(sender, args); break;
+			case "bouncecount": new CommandBounceCount().execute(sender, args); break;
 			case "listmap": new CommandListMap().execute(sender); break;
 			case "start": new CommandStart().execute(sender, args); break;
 			case "boop": new CommandBoop().execute(sender, args); break;

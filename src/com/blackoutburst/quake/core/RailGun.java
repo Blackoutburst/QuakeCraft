@@ -45,6 +45,7 @@ public class RailGun {
 	private int trailColor = 0;
 	private int circle = 0;
 	private int head = 0;
+	private int bounceLeft = GameOption.BOUNCE_COUNT + 1;
 	
 	private List<Item> heads = new ArrayList<>();
 	
@@ -54,8 +55,8 @@ public class RailGun {
 		this.owner = owner;
 	}
 	
-	public boolean insideBlock() {
-		final Block b = location.getWorld().getBlockAt(location);
+	public boolean insideBlock(Location loc) {
+		final Block b = loc.getWorld().getBlockAt(loc);
 		
 		return (!b.getType().equals(Material.AIR) && 
 				!b.getType().equals(Material.TORCH) &&
@@ -120,7 +121,38 @@ public class RailGun {
 			b.location.add(b.direction.normalize().multiply(0.5));
 			b.trail();
 			b.getNearbyPlayer();
-			if (b.insideBlock()) break;
+			
+			Location l2 = b.location.clone();
+			l2.add(b.direction.normalize().multiply(0.5));
+			l2.setX(b.location.getX());
+			l2.setY(b.location.getY());
+			
+			if (b.insideBlock(l2)) {
+				direction.setZ(-direction.getZ());
+				bounceLeft--;
+			}
+			
+			l2 = b.location.clone();
+			l2.add(b.direction.normalize().multiply(0.5));
+			l2.setZ(b.location.getZ());
+			l2.setY(b.location.getY());
+			
+			if (b.insideBlock(l2)) {
+				direction.setX(-direction.getX());
+				bounceLeft--;
+			}
+			
+			l2 = b.location.clone();
+			l2.add(b.direction.normalize().multiply(0.5));
+			l2.setX(b.location.getX());
+			l2.setZ(b.location.getZ());
+			
+			if (b.insideBlock(l2)) {
+				direction.setY(-direction.getY());
+				bounceLeft--;
+			}
+			
+			if (bounceLeft <= 0) break;
 		}
 		
 		new BukkitRunnable(){

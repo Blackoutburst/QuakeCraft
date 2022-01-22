@@ -15,6 +15,7 @@ public class CommandShowConfig {
 		sender.sendMessage("§6Speed: §e"+GameOption.PLAYER_SPEED);
 		sender.sendMessage("§6Jump: §e"+GameOption.JUMP_BOOST);
 		sender.sendMessage("§6Slow: §e"+GameOption.SLOWNESS);
+		sender.sendMessage("§6Bounces: §e"+GameOption.BOUNCE_COUNT);
 		sender.sendMessage("");
 		sender.sendMessage("§6Blindness: "+(GameOption.BLINDNESS ? "§aYes" : "§cNo"));
 		sender.sendMessage("§6Invisibility: "+(GameOption.INVISIBILITY ? "§aYes" : "§cNo"));

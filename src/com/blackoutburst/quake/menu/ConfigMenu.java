@@ -120,6 +120,22 @@ public class ConfigMenu {
 		inv.setItem(16, item);	
 		
 		/////////////////////////////
+		///////// 1.5d row ///////////
+		/////////////////////////////
+		
+		item = new ItemStack(Material.SLIME_BALL, 1);
+		meta = item.getItemMeta();
+		meta.setDisplayName("§bBounces");
+		lore = new ArrayList<>();
+		lore.add("§7Click to change the number of bounces");
+		lore.add("§aCurrent ray bounces: §6"+GameOption.BOUNCE_COUNT);
+		lore.add("");
+		lore.add("§7You can also use §e/bouncecount");
+		meta.setLore(lore);
+		item.setItemMeta(meta);
+		inv.setItem(22, item);	
+		
+		/////////////////////////////
 		///////// 2nd row ///////////
 		/////////////////////////////
 		
@@ -296,6 +312,7 @@ public class ConfigMenu {
 		lore.add("§6Speed: §e"+GameOption.PLAYER_SPEED);
 		lore.add("§6Jump: §e"+GameOption.JUMP_BOOST);
 		lore.add("§6Slow: §e"+GameOption.SLOWNESS);
+		lore.add("§6Slow: §e"+GameOption.BOUNCE_COUNT);
 		lore.add("");
 		lore.add("§6Blindness: "+(GameOption.BLINDNESS ? "§aYes" : "§cNo"));
 		lore.add("§6Invisibility: "+(GameOption.INVISIBILITY ? "§aYes" : "§cNo"));
@@ -349,6 +366,7 @@ public class ConfigMenu {
 		lore.add("§6Speed: §e"+GameOption.PLAYER_SPEED);
 		lore.add("§6Jump: §e"+GameOption.JUMP_BOOST);
 		lore.add("§6Slow: §e"+GameOption.SLOWNESS);
+		lore.add("§6Slow: §e"+GameOption.BOUNCE_COUNT);
 		lore.add("");
 		lore.add("§6Blindness: "+(GameOption.BLINDNESS ? "§aYes" : "§cNo"));
 		lore.add("§6Invisibility: "+(GameOption.INVISIBILITY ? "§aYes" : "§cNo"));
@@ -388,6 +406,7 @@ public class ConfigMenu {
 			case 14: commandMessage("playerspeed", GameOption.PLAYER_SPEED, p); break;
 			case 15: commandMessage("playerjump", GameOption.JUMP_BOOST, p); break;
 			case 16: commandMessage("playerslow", GameOption.SLOWNESS, p); break;
+			case 22: commandMessage("bouncecount", GameOption.BOUNCE_COUNT, p); break;
 			case 37: case 28: CommandToggleBlindness.run(p); 
 				List<String> lore = new ArrayList<>();
 				lore.add("§7Toggle blindness");
