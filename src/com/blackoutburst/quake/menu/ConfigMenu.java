@@ -348,7 +348,10 @@ public class ConfigMenu {
 		lore.add("§6Speed: §e"+GameOption.PLAYER_SPEED);
 		lore.add("§6Jump: §e"+GameOption.JUMP_BOOST);
 		lore.add("§6Slow: §e"+GameOption.SLOWNESS);
-		lore.add("§6Slow: §e"+GameOption.BOUNCE_COUNT);
+		lore.add("6Bounces: §e"+GameOption.BOUNCE_COUNT);
+		lore.add("§6Ray length: §e"+GameOption.RAY_LENGTH);
+		lore.add("§6Shatter count: §e"+GameOption.SHATTER_COUNT);
+		lore.add("§6Shatter length: §e"+GameOption.SHATTER_COUNT);
 		lore.add("");
 		lore.add("§6Blindness: "+(GameOption.BLINDNESS ? "§aYes" : "§cNo"));
 		lore.add("§6Invisibility: "+(GameOption.INVISIBILITY ? "§aYes" : "§cNo"));
@@ -402,7 +405,10 @@ public class ConfigMenu {
 		lore.add("§6Speed: §e"+GameOption.PLAYER_SPEED);
 		lore.add("§6Jump: §e"+GameOption.JUMP_BOOST);
 		lore.add("§6Slow: §e"+GameOption.SLOWNESS);
-		lore.add("§6Slow: §e"+GameOption.BOUNCE_COUNT);
+		lore.add("6Bounces: §e"+GameOption.BOUNCE_COUNT);
+		lore.add("§6Ray length: §e"+GameOption.RAY_LENGTH);
+		lore.add("§6Shatter count: §e"+GameOption.SHATTER_COUNT);
+		lore.add("§6Shatter length: §e"+GameOption.SHATTER_COUNT);
 		lore.add("");
 		lore.add("§6Blindness: "+(GameOption.BLINDNESS ? "§aYes" : "§cNo"));
 		lore.add("§6Invisibility: "+(GameOption.INVISIBILITY ? "§aYes" : "§cNo"));
