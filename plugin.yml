@@ -14,6 +14,15 @@ commands:
   spawn:
     description: Teleport you to spawn
     usage: /spawn
+  leaveQueue:
+    description: Remove you from the queue
+    usage: /leavequeue
+  joinQueue:
+    description: Add you to the queue
+    usage: /joinqueue
+  queue:
+    description: Toggle your queue status
+    usage: /queue
   listmap:
     description: List worlds and number of spawns
     usage: /listmap
@@ -44,6 +53,17 @@ commands:
   playerSlow:
     description: Set the player slowness
     usage: /playerslow <value>
+  bounceCount:
+    description: Set the number of bounces
+  rayLength:
+    description: Set the length of the ray
+    usage: /raylength <value>
+  shatterCount:
+    description: Set the number of shatter
+    usage: /shatterCount <value>
+  shatterLength:
+    description: Set the length of shatter
+    usage: /shatterLength <value>
   toggleBlindness:
     description: Toggle blindness
     usage: /toggleblindness
