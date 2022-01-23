@@ -11,7 +11,7 @@ public class GameOption {
 	public static int SLOWNESS = 0;
 	public static int BOUNCE_COUNT = 0;
 	public static int RAY_LENGTH = 500;
-	public static int SHATTER_COUNT = 10;
+	public static int SHATTER_COUNT = 0;
 	public static int SHATTER_LENGTH = 10;
 	
 	public static boolean BLINDNESS = false;

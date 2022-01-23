@@ -133,7 +133,43 @@ public class ConfigMenu {
 		lore.add("§7You can also use §e/bouncecount");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
-		inv.setItem(22, item);	
+		inv.setItem(20, item);	
+		
+		item = new ItemStack(Material.LEVER, 1);
+		meta = item.getItemMeta();
+		meta.setDisplayName("§bRay length");
+		lore = new ArrayList<>();
+		lore.add("§7Click to change the ray max length");
+		lore.add("§aCurrent ray length: §6"+GameOption.RAY_LENGTH);
+		lore.add("");
+		lore.add("§7You can also use §e/raylength");
+		meta.setLore(lore);
+		item.setItemMeta(meta);
+		inv.setItem(21, item);	
+		
+		item = new ItemStack(Material.PRISMARINE_SHARD, 1);
+		meta = item.getItemMeta();
+		meta.setDisplayName("§bShatter count");
+		lore = new ArrayList<>();
+		lore.add("§7Click to change the number of shatter ray");
+		lore.add("§aCurrent shatter: §6"+GameOption.SHATTER_COUNT);
+		lore.add("");
+		lore.add("§7You can also use §e/shattercount");
+		meta.setLore(lore);
+		item.setItemMeta(meta);
+		inv.setItem(23, item);	
+		
+		item = new ItemStack(Material.REDSTONE_TORCH_OFF, 1);
+		meta = item.getItemMeta();
+		meta.setDisplayName("§bShatter count");
+		lore = new ArrayList<>();
+		lore.add("§7Click to change the length of shatter ray");
+		lore.add("§aCurrent shatter ray length: §6"+GameOption.SHATTER_LENGTH);
+		lore.add("");
+		lore.add("§7You can also use §e/shatterlength");
+		meta.setLore(lore);
+		item.setItemMeta(meta);
+		inv.setItem(24, item);	
 		
 		/////////////////////////////
 		///////// 2nd row ///////////
@@ -406,7 +442,10 @@ public class ConfigMenu {
 			case 14: commandMessage("playerspeed", GameOption.PLAYER_SPEED, p); break;
 			case 15: commandMessage("playerjump", GameOption.JUMP_BOOST, p); break;
 			case 16: commandMessage("playerslow", GameOption.SLOWNESS, p); break;
-			case 22: commandMessage("bouncecount", GameOption.BOUNCE_COUNT, p); break;
+			case 20: commandMessage("bouncecount", GameOption.BOUNCE_COUNT, p); break;
+			case 21: commandMessage("raylength", GameOption.RAY_LENGTH, p); break;
+			case 23: commandMessage("shattercount", GameOption.SHATTER_COUNT, p); break;
+			case 24: commandMessage("shatterlength", GameOption.SHATTER_LENGTH, p); break;
 			case 37: case 28: CommandToggleBlindness.run(p); 
 				List<String> lore = new ArrayList<>();
 				lore.add("§7Toggle blindness");
