@@ -13,6 +13,7 @@ public class GameOption {
 	public static int RAY_LENGTH = 500;
 	public static int SHATTER_COUNT = 0;
 	public static int SHATTER_LENGTH = 10;
+	public static int GRAVITY = 0;
 	
 	public static boolean BLINDNESS = false;
 	public static boolean INVISIBILITY = false;
@@ -34,6 +35,7 @@ public class GameOption {
 		RAY_LENGTH = 500;
 		SHATTER_COUNT = 0;
 		SHATTER_LENGTH = 10;
+		GRAVITY = 0;
 		
 		BLINDNESS = false;
 		INVISIBILITY = false;

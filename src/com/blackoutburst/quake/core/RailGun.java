@@ -21,6 +21,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 import com.blackoutburst.quake.main.Main;
@@ -121,6 +122,7 @@ public class RailGun {
 		p.cooldown = GameOption.FIRE_DELAY;
 		
 		for (int i = length; i > 0; i--) {
+			direction.add(new Vector(0, -0.001f * GameOption.GRAVITY, 0));
 			location.add(direction.normalize().multiply(0.5));
 			trail();
 			getNearbyPlayer();
@@ -167,6 +169,14 @@ public class RailGun {
 				break;
 			}
 		}
+		
+		new BukkitRunnable(){
+			@Override
+			public void run(){
+				for (Item i : heads)
+					i.remove();
+			}
+		}.runTaskLaterAsynchronously(Main.getPlugin(Main.class), 5L);
 	}
 	
 	public void getNearbyPlayer() {
@@ -286,9 +296,9 @@ public class RailGun {
 			} else if (owner.gunProfile.trail == EnumParticle.SUSPENDED_DEPTH) {
 				connection.sendPacket(new PacketPlayOutWorldParticles(EnumParticle.REDSTONE, true, (float) location.getX(), (float) location.getY(), (float) location.getZ(), 1.0f, 0.5f, 0, 1, 0));
 				head++;
-				if (head > 1) {
+				if (head > 2) {
 					spawnHanndHead();
-					circle = 0;
+					head = 0;
 				}
 			} else {
 				connection.sendPacket(new PacketPlayOutWorldParticles(owner.gunProfile.trail, true, (float) location.getX(), (float) location.getY(), (float) location.getZ(), 0, 0, 0, 0, 1));
