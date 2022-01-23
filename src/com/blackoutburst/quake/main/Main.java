@@ -41,12 +41,15 @@ import com.blackoutburst.quake.commands.CommandConfig;
 import com.blackoutburst.quake.commands.CommandDashDelay;
 import com.blackoutburst.quake.commands.CommandDashStrength;
 import com.blackoutburst.quake.commands.CommandEnd;
+import com.blackoutburst.quake.commands.CommandJoinQueue;
+import com.blackoutburst.quake.commands.CommandLeaveQueue;
 import com.blackoutburst.quake.commands.CommandListMap;
 import com.blackoutburst.quake.commands.CommandMaxScore;
 import com.blackoutburst.quake.commands.CommandPlay;
 import com.blackoutburst.quake.commands.CommandPlayerJump;
 import com.blackoutburst.quake.commands.CommandPlayerSlow;
 import com.blackoutburst.quake.commands.CommandPlayerSpeed;
+import com.blackoutburst.quake.commands.CommandQueue;
 import com.blackoutburst.quake.commands.CommandRayLength;
 import com.blackoutburst.quake.commands.CommandResetConfig;
 import com.blackoutburst.quake.commands.CommandScan;
@@ -148,6 +151,17 @@ public class Main extends JavaPlugin implements Listener {
 		final Location belowPlayer = player.getLocation();
 		belowPlayer.setY(belowPlayer.getY() - 1);
 		
+		
+		if (event.getPlayer().getLocation().getY() < -10) {
+			if (gameRunning && qp != null) {
+				Core.teleportToRespawn(event.getPlayer());
+			} else {
+				event.getPlayer().teleport(spawn);
+			}
+		}
+		
+		if (qp == null) return;
+		
 		if (qp.getJumpPadCooldown() <= 0 && world.getBlockAt(belowPlayer).getType().equals(Material.REDSTONE_BLOCK)) {
 			qp.setJumpPadCooldown(1);
 			Vector dash = player.getLocation().getDirection().clone();
@@ -204,14 +218,6 @@ public class Main extends JavaPlugin implements Listener {
 					qp.setJumpPadCooldown(0);
 				}
 			}.runTaskLater(Main.getPlugin(Main.class), 10L);
-		}
-		
-		if (event.getPlayer().getLocation().getY() < -10) {
-			if (gameRunning) {
-				Core.teleportToRespawn(event.getPlayer());
-			} else {
-				event.getPlayer().teleport(spawn);
-			}
 		}
 	}
 	
@@ -368,6 +374,9 @@ public class Main extends JavaPlugin implements Listener {
 			case "playerjump": new CommandPlayerJump().execute(sender, args); break;
 			case "dashstrength": new CommandDashStrength().execute(sender, args); break;
 			case "play": new CommandPlay().execute(sender); break;
+			case "joinqueue": new CommandJoinQueue().execute(sender); break;
+			case "leavequeue": new CommandLeaveQueue().execute(sender); break;
+			case "queue": new CommandQueue().execute(sender); break;
 			default: return true;
 		}
 		return true;

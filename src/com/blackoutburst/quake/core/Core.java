@@ -99,16 +99,18 @@ public class Core {
 		int seconds = Main.gameTime % 60;
 		String time = String.format("%d:%02d", minutes, seconds);
 
-		Bukkit.broadcastMessage("§a==============================");
-		Bukkit.broadcastMessage(Utils.centerText("Map: §6"+Main.players.get(0).getPlayer().getLocation().getWorld().getName()));
-		Bukkit.broadcastMessage(Utils.centerText("Time: §e"+time));
-		Bukkit.broadcastMessage("");
-		
-		for (int i = 0; i < 3; i++)
-			if (i < Main.players.size())
-				Bukkit.broadcastMessage(Utils.centerText(Main.players.get(i).getPlayer().getDisplayName()+": "+Main.players.get(i).getScore()));
-		
-		Bukkit.broadcastMessage("§a==============================");
+		for (QuakePlayer qp : Main.players) {
+			qp.getPlayer().sendMessage("§a==============================");
+			qp.getPlayer().sendMessage(Utils.centerText("Map: §6"+Main.players.get(0).getPlayer().getLocation().getWorld().getName()));
+			qp.getPlayer().sendMessage(Utils.centerText("Time: §e"+time));
+			qp.getPlayer().sendMessage("");
+			
+			for (int i = 0; i < 3; i++)
+				if (i < Main.players.size())
+					qp.getPlayer().sendMessage(Utils.centerText(Main.players.get(i).getPlayer().getDisplayName()+": "+Main.players.get(i).getScore()));
+			
+			qp.getPlayer().sendMessage("§a==============================");
+		}
 		
 		for (int i = 0; i < Main.players.size(); i++)
 			Core.updateName(Main.players.get(i), NameTagVisibility.ALWAYS);

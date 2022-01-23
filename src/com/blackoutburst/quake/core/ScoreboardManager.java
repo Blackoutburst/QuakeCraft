@@ -4,6 +4,11 @@ import com.blackoutburst.quake.main.Main;
 
 public class ScoreboardManager {
 
+	public static void clear(QuakePlayer p) {
+		for (int i = 15; i >= 0; i--)
+			p.getBoard().remove(i);
+	}
+	
 	public static void init(QuakePlayer qp) {
 		Board board = new Board(qp.getPlayer());
 		

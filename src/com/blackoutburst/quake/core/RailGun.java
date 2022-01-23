@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import org.bukkit.Bukkit;
 import org.bukkit.FireworkEffect;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -24,6 +23,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.util.Vector;
 
+import com.blackoutburst.quake.main.Main;
 
 import net.minecraft.server.v1_8_R3.EntityFireworks;
 import net.minecraft.server.v1_8_R3.EnumParticle;
@@ -183,11 +183,13 @@ public class RailGun {
 				if (e.getUniqueId() != owner.getPlayer().getUniqueId() && dist) {
 					Core.teleportToRespawn((Player) e);
 					owner.getPlayer().getWorld().playSound(owner.getPlayer().getLocation(), owner.getGunProfile().getSound(), 3, owner.getGunProfile().getPitch());
-					Bukkit.broadcastMessage(owner.getPlayer().getDisplayName()+" §egibbed§r "+((Player)e).getDisplayName());
+					for (QuakePlayer qp : Main.players)
+						qp.getPlayer().sendMessage(owner.getPlayer().getDisplayName()+" §egibbed§r "+((Player)e).getDisplayName());
 					this.detonate(owner);
 				}
 			} else if (e instanceof LivingEntity && dist && ((LivingEntity) e).getHealth() > 0) {
-				Bukkit.broadcastMessage(owner.getPlayer().getDisplayName()+" §egibbed a§r "+e.getName()+" ??");
+				for (QuakePlayer qp : Main.players)
+					qp.getPlayer().sendMessage(owner.getPlayer().getDisplayName()+" §egibbed a§r "+e.getName()+" ??");
 				((LivingEntity) e).setHealth(0);
 			}
 		}
@@ -264,7 +266,9 @@ public class RailGun {
 	}
 	
 	public void trail() {
-		for (Player p : Bukkit.getOnlinePlayers()) {
+		for (QuakePlayer qp : Main.players) {
+			final Player p = qp.getPlayer();
+			
 			PlayerConnection connection = ((CraftPlayer) p).getHandle().playerConnection;
 			if (owner.gunProfile.trail == EnumParticle.REDSTONE) {
 				final Color c = getColor();
@@ -297,7 +301,9 @@ public class RailGun {
 		owner.score++;
 		ScoreboardManager.updatePlayers();
 		
-		for (Player p : Bukkit.getOnlinePlayers()) {
+		for (QuakePlayer qp : Main.players) {
+			final Player p = qp.getPlayer();
+			
 			if (p.getWorld() != owner.getPlayer().getWorld()) continue;
 			
 			PlayerConnection connection = ((CraftPlayer) p).getHandle().playerConnection;

@@ -33,6 +33,15 @@ public class Board {
 		this.objective.setDisplayName(name);
 	}
  
+	public void remove(int row) {
+		for(String entry : this.scoreboard.getEntries()) {
+			if(this.objective.getScore(entry).getScore() == row) {
+				this.scoreboard.resetScores(entry);
+				break;
+			}
+		}
+	}
+	
 	public void set(int row, String text) {
 		if(text.length() > 32) { text = text.substring(0, 32); }
 		for(String entry : this.scoreboard.getEntries()) {

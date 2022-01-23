@@ -1,10 +1,11 @@
 package com.blackoutburst.quake.commands;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.blackoutburst.quake.core.GameOption;
+import com.blackoutburst.quake.core.QuakePlayer;
+import com.blackoutburst.quake.main.Main;
 
 public class CommandDashStrength {
 
@@ -25,6 +26,7 @@ public class CommandDashStrength {
 		
 		Player p = (Player) sender;
 		
-		Bukkit.broadcastMessage(p.getDisplayName()+" §bhas set the dash strength to §6"+value);
+		for (QuakePlayer qp : Main.players)
+			qp.getPlayer().sendMessage(p.getDisplayName()+" §bhas set the dash strength to §6"+value);
 	}
 }
