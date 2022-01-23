@@ -7,27 +7,26 @@ import com.blackoutburst.quake.core.GameOption;
 public class CommandShowConfig {
 
 	public void execute(CommandSender sender) {
-		sender.sendMessage("§b-------------------");
-		sender.sendMessage("§6Trigger: §e"+GameOption.FIRE_DELAY/20+"s");
-		sender.sendMessage("§6Dash: §e"+GameOption.DASH_DELAY/20+"s");
-		sender.sendMessage("§6Max score: §e"+GameOption.MAX_SCORE);
-		sender.sendMessage("§6Dash strength: §e"+GameOption.DASH_STRENGTH);
-		sender.sendMessage("§6Speed: §e"+GameOption.PLAYER_SPEED);
-		sender.sendMessage("§6Jump: §e"+GameOption.JUMP_BOOST);
-		sender.sendMessage("§6Slow: §e"+GameOption.SLOWNESS);
-		sender.sendMessage("§6Bounces: §e"+GameOption.BOUNCE_COUNT);
-		sender.sendMessage("§6Bounces: §e"+GameOption.BOUNCE_COUNT);
-		sender.sendMessage("§6Ray length: §e"+GameOption.RAY_LENGTH);
-		sender.sendMessage("§6Shatter count: §e"+GameOption.SHATTER_COUNT);
-		sender.sendMessage("§6Shatter length: §e"+GameOption.SHATTER_COUNT);
+		sender.sendMessage("Â§b-------------------");
+		sender.sendMessage("Â§6Trigger: Â§e"+GameOption.FIRE_DELAY/20+"s");
+		sender.sendMessage("Â§6Dash: Â§e"+GameOption.DASH_DELAY/20+"s");
+		sender.sendMessage("Â§6Max score: Â§e"+GameOption.MAX_SCORE);
+		sender.sendMessage("Â§6Dash strength: Â§e"+GameOption.DASH_STRENGTH);
+		sender.sendMessage("Â§6Speed: Â§e"+GameOption.PLAYER_SPEED);
+		sender.sendMessage("Â§6Jump: Â§e"+GameOption.JUMP_BOOST);
+		sender.sendMessage("Â§6Slow: Â§e"+GameOption.SLOWNESS);
+		sender.sendMessage("Â§6Bounces: Â§e"+GameOption.BOUNCE_COUNT);
+		sender.sendMessage("Â§6Ray length: Â§e"+GameOption.RAY_LENGTH);
+		sender.sendMessage("Â§6Shatter count: Â§e"+GameOption.SHATTER_COUNT);
+		sender.sendMessage("Â§6Shatter length: Â§e"+GameOption.SHATTER_COUNT);
 		sender.sendMessage("");
-		sender.sendMessage("§6Blindness: "+(GameOption.BLINDNESS ? "§aYes" : "§cNo"));
-		sender.sendMessage("§6Invisibility: "+(GameOption.INVISIBILITY ? "§aYes" : "§cNo"));
-		sender.sendMessage("§6NameTag: "+(GameOption.NAMETAG ? "§aYes" : "§cNo"));
-		sender.sendMessage("§6Vertical dash: §e"+(GameOption.VERTICAL_DASH ? "§aYes" : "§cNo"));
-		sender.sendMessage("§6Dash: "+(GameOption.DASH ? "§aYes" : "§cNo"));
-		sender.sendMessage("§6Walk: "+(GameOption.WALK ? "§aYes" : "§cNo"));
-		sender.sendMessage("§6Jump: "+(GameOption.JUMP ? "§aYes" : "§cNo"));
-		sender.sendMessage("§b-------------------");
+		sender.sendMessage("Â§6Blindness: "+(GameOption.BLINDNESS ? "Â§aYes" : "Â§cNo"));
+		sender.sendMessage("Â§6Invisibility: "+(GameOption.INVISIBILITY ? "Â§aYes" : "Â§cNo"));
+		sender.sendMessage("Â§6NameTag: "+(GameOption.NAMETAG ? "Â§aYes" : "Â§cNo"));
+		sender.sendMessage("Â§6Vertical dash: Â§e"+(GameOption.VERTICAL_DASH ? "Â§aYes" : "Â§cNo"));
+		sender.sendMessage("Â§6Dash: "+(GameOption.DASH ? "Â§aYes" : "Â§cNo"));
+		sender.sendMessage("Â§6Walk: "+(GameOption.WALK ? "Â§aYes" : "Â§cNo"));
+		sender.sendMessage("Â§6Jump: "+(GameOption.JUMP ? "Â§aYes" : "Â§cNo"));
+		sender.sendMessage("Â§b-------------------");
 	}
 }
