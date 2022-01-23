@@ -257,7 +257,13 @@ public class Main extends JavaPlugin implements Listener {
 			Location loc = event.getPlayer().getLocation().clone();
 			loc.setY(loc.getY() + event.getPlayer().getEyeHeight());
 			
-			new RailGun(loc, event.getPlayer().getLocation().getDirection().clone(), qp, GameOption.RAY_LENGTH, false).fire(qp);
+			
+			new BukkitRunnable(){
+				@Override
+				public void run(){
+					new RailGun(loc, event.getPlayer().getLocation().getDirection().clone(), qp, GameOption.RAY_LENGTH, false).fire(qp);
+				}
+			}.runTaskAsynchronously(this);
 		}
 	}
 	

@@ -171,6 +171,18 @@ public class Core {
 			@Override
 			public void run(){
 				try {
+					if (Main.gameRunning)
+						for (QuakePlayer p : Main.players)
+							if (p.score >= GameOption.MAX_SCORE)
+								endGame();
+				} catch(Exception ignored) {}
+			}
+		}.runTaskTimer(Main.getPlugin(Main.class), 0L, 1L);
+		
+		new BukkitRunnable(){
+			@Override
+			public void run(){
+				try {
 					if (Main.gameRunning) {
 						gameTimerFunc();
 					}

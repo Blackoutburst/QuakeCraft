@@ -22,10 +22,8 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-import com.blackoutburst.quake.main.Main;
 
 import net.minecraft.server.v1_8_R3.EntityFireworks;
 import net.minecraft.server.v1_8_R3.EnumParticle;
@@ -169,17 +167,6 @@ public class RailGun {
 				break;
 			}
 		}
-		
-		new BukkitRunnable(){
-			@Override
-			public void run(){
-				try {
-					for (int i = 0; i < heads.size(); i++)
-						heads.get(i).remove();
-					heads.clear();
-				} catch (Exception ignored) {}
-			}
-		}.runTaskLaterAsynchronously(Main.getPlugin(Main.class), 10L);
 	}
 	
 	public void getNearbyPlayer() {
@@ -309,10 +296,6 @@ public class RailGun {
 	public void detonate(QuakePlayer owner) {
 		owner.score++;
 		ScoreboardManager.updatePlayers();
-		
-		if (owner.score >= GameOption.MAX_SCORE) {
-			Core.endGame();
-		}
 		
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			if (p.getWorld() != owner.getPlayer().getWorld()) continue;
