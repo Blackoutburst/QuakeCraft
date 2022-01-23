@@ -1,6 +1,8 @@
 package com.blackoutburst.quake.core;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import org.bukkit.FireworkEffect;
@@ -47,6 +49,8 @@ public class RailGun {
 	private int circle = 0;
 	private int head = 0;
 	private int bounceLeft = GameOption.BOUNCE_COUNT + 1;
+	
+	private List<Integer> headsID = new ArrayList<>();
 	
 	public RailGun(Location location, Vector direction, QuakePlayer owner, int length, boolean shatter) {
 		this.location = location;
@@ -166,6 +170,19 @@ public class RailGun {
 				break;
 			}
 		}
+		
+		new BukkitRunnable() {
+			public void run() {
+				for (QuakePlayer qp : Main.players) {
+					final Player p = qp.getPlayer();
+					final PlayerConnection connection = ((CraftPlayer) p).getHandle().playerConnection;
+					
+					for (int id : headsID)
+						connection.sendPacket(new PacketPlayOutEntityDestroy(id));
+				}
+				headsID.clear();
+			}
+		}.runTaskLaterAsynchronously(Main.getPlugin(Main.class), 5L);
 	}
 	
 	public void getNearbyPlayer() {
@@ -258,28 +275,6 @@ public class RailGun {
 		return v.setX(x).setZ(z);
 	}
 	
-	private void spawnHanndHead() {
-		for (QuakePlayer qp : Main.players) {
-			final Player p = qp.getPlayer();
-			final PlayerConnection connection = ((CraftPlayer) p).getHandle().playerConnection;
-			final World world = ((CraftWorld) p.getWorld()).getHandle();
-			
-	        final EntityItem item = new EntityItem(world);
-	        item.setItemStack(CraftItemStack.asNMSCopy(SkullLoader.hannd));
-	        item.setLocation(location.getX(), location.getY(), location.getZ(), 0, 0);
-	        
-	        connection.sendPacket(new PacketPlayOutSpawnEntity(item, 2, 100));
-	        connection.sendPacket(new PacketPlayOutEntityMetadata(item.getId(), item.getDataWatcher(), true));
-	        
-			new BukkitRunnable() {
-				public void run() {
-					connection.sendPacket(new PacketPlayOutEntityDestroy(item.getId()));
-				}
-			}.runTaskLater(Main.getPlugin(Main.class), 5L);
-	        
-		}
-	}
-	
 	public void trail() {
 		for (QuakePlayer qp : Main.players) {
 			final Player p = qp.getPlayer();
@@ -302,7 +297,15 @@ public class RailGun {
 				connection.sendPacket(new PacketPlayOutWorldParticles(EnumParticle.REDSTONE, true, (float) location.getX(), (float) location.getY(), (float) location.getZ(), 1.0f, 0.5f, 0, 1, 0));
 				head++;
 				if (head > 2) {
-					spawnHanndHead();
+					final World world = ((CraftWorld) p.getWorld()).getHandle();
+					
+			        final EntityItem item = new EntityItem(world);
+			        item.setItemStack(CraftItemStack.asNMSCopy(SkullLoader.hannd));
+			        item.setLocation(location.getX(), location.getY(), location.getZ(), 0, 0);
+			        
+			        connection.sendPacket(new PacketPlayOutSpawnEntity(item, 2, 100));
+			        connection.sendPacket(new PacketPlayOutEntityMetadata(item.getId(), item.getDataWatcher(), true));
+			        headsID.add(item.getId());
 					head = 0;
 				}
 			} else {
