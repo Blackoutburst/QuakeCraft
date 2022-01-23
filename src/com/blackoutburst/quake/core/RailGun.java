@@ -42,7 +42,7 @@ public class RailGun {
 	protected Location location;
 	protected Vector direction;
 	protected QuakePlayer owner;
-	protected boolean shater;
+	protected boolean shatter;
 	protected int length;
 	
 	private int trailColor = 0;
@@ -52,12 +52,12 @@ public class RailGun {
 	
 	private List<Item> heads = new ArrayList<>();
 	
-	public RailGun(Location location, Vector direction, QuakePlayer owner, int length, boolean shater) {
+	public RailGun(Location location, Vector direction, QuakePlayer owner, int length, boolean shatter) {
 		this.location = location;
 		this.direction = direction;
 		this.owner = owner;
 		this.length = length;
-		this.shater = shater;
+		this.shatter = shatter;
 	}
 	
 	public boolean insideBlock(Location loc) {
@@ -118,7 +118,8 @@ public class RailGun {
 	public void fire(QuakePlayer p) {
 		trailColor = 0;
 
-		p.getPlayer().getWorld().playSound(p.getPlayer().getLocation(), Sound.BLAZE_HIT, 2, 2);
+		if (!shatter)
+			p.getPlayer().getWorld().playSound(p.getPlayer().getLocation(), Sound.BLAZE_HIT, 2, 2);
 		p.cooldown = GameOption.FIRE_DELAY;
 		
 		for (int i = length; i > 0; i--) {
@@ -157,7 +158,7 @@ public class RailGun {
 			}
 			
 			if (bounceLeft <= 0) {
-				if (!shater) {
+				if (!shatter) {
 					for (int j = 0; j < GameOption.SHATTER_COUNT; j++) {
 						final float x = new Random().nextFloat() * 2 - 1;
 						final float y = new Random().nextFloat() * 2 - 1;
