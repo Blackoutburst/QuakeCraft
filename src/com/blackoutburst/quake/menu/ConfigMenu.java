@@ -159,9 +159,9 @@ public class ConfigMenu {
 		item.setItemMeta(meta);
 		inv.setItem(23, item);	
 		
-		item = new ItemStack(Material.REDSTONE_TORCH_OFF, 1);
+		item = new ItemStack(Material.REDSTONE_TORCH_ON, 1);
 		meta = item.getItemMeta();
-		meta.setDisplayName("§bShatter count");
+		meta.setDisplayName("§bShatter length");
 		lore = new ArrayList<>();
 		lore.add("§7Click to change the length of shatter ray");
 		lore.add("§aCurrent shatter ray length: §6"+GameOption.SHATTER_LENGTH);
