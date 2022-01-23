@@ -120,7 +120,7 @@ public class ConfigMenu {
 		inv.setItem(16, item);	
 		
 		/////////////////////////////
-		///////// 1.5d row ///////////
+		///////// 2nd row ///////////
 		/////////////////////////////
 		
 		item = new ItemStack(Material.SLIME_BALL, 1);
@@ -147,6 +147,18 @@ public class ConfigMenu {
 		item.setItemMeta(meta);
 		inv.setItem(21, item);	
 		
+		item = new ItemStack(Material.SAND, 1);
+		meta = item.getItemMeta();
+		meta.setDisplayName("§bGravity");
+		lore = new ArrayList<>();
+		lore.add("§7Click to change the gravity strength");
+		lore.add("§aCurrent ray length: §6"+GameOption.GRAVITY);
+		lore.add("");
+		lore.add("§7You can also use §e/gravity");
+		meta.setLore(lore);
+		item.setItemMeta(meta);
+		inv.setItem(22, item);	
+		
 		item = new ItemStack(Material.PRISMARINE_SHARD, 1);
 		meta = item.getItemMeta();
 		meta.setDisplayName("§bShatter count");
@@ -172,7 +184,7 @@ public class ConfigMenu {
 		inv.setItem(24, item);	
 		
 		/////////////////////////////
-		///////// 2nd row ///////////
+		///////// 3rd row ///////////
 		/////////////////////////////
 		
 		item = new ItemStack(Material.WOOL, 1, (byte) 15);
@@ -253,7 +265,7 @@ public class ConfigMenu {
 		inv.setItem(34, item);	
 		
 		/////////////////////////////
-		///////// 3rd row ///////////
+		///////// 4th row ///////////
 		/////////////////////////////
 		
 		item = new ItemStack(Material.INK_SACK, 1, (byte) (GameOption.BLINDNESS ? 10 : 8));
@@ -334,7 +346,7 @@ public class ConfigMenu {
 		inv.setItem(43, item);	
 		
 		/////////////////////////////
-		///////// 4th row ///////////
+		///////// 5th row ///////////
 		/////////////////////////////
 		
 		item = new ItemStack(Material.NETHER_STAR, 1);
@@ -352,6 +364,7 @@ public class ConfigMenu {
 		lore.add("§6Ray length: §e"+GameOption.RAY_LENGTH);
 		lore.add("§6Shatter count: §e"+GameOption.SHATTER_COUNT);
 		lore.add("§6Shatter length: §e"+GameOption.SHATTER_LENGTH);
+		lore.add("§6Gravity: §e"+GameOption.GRAVITY);
 		lore.add("");
 		lore.add("§6Blindness: "+(GameOption.BLINDNESS ? "§aYes" : "§cNo"));
 		lore.add("§6Invisibility: "+(GameOption.INVISIBILITY ? "§aYes" : "§cNo"));
@@ -409,6 +422,7 @@ public class ConfigMenu {
 		lore.add("§6Ray length: §e"+GameOption.RAY_LENGTH);
 		lore.add("§6Shatter count: §e"+GameOption.SHATTER_COUNT);
 		lore.add("§6Shatter length: §e"+GameOption.SHATTER_LENGTH);
+		lore.add("§6Gravity: §e"+GameOption.GRAVITY);
 		lore.add("");
 		lore.add("§6Blindness: "+(GameOption.BLINDNESS ? "§aYes" : "§cNo"));
 		lore.add("§6Invisibility: "+(GameOption.INVISIBILITY ? "§aYes" : "§cNo"));
@@ -450,6 +464,7 @@ public class ConfigMenu {
 			case 16: commandMessage("playerslow", GameOption.SLOWNESS, p); break;
 			case 20: commandMessage("bouncecount", GameOption.BOUNCE_COUNT, p); break;
 			case 21: commandMessage("raylength", GameOption.RAY_LENGTH, p); break;
+			case 22: commandMessage("gravity", GameOption.GRAVITY, p); break;
 			case 23: commandMessage("shattercount", GameOption.SHATTER_COUNT, p); break;
 			case 24: commandMessage("shatterlength", GameOption.SHATTER_LENGTH, p); break;
 			case 37: case 28: CommandToggleBlindness.run(p); 

@@ -41,6 +41,7 @@ import com.blackoutburst.quake.commands.CommandConfig;
 import com.blackoutburst.quake.commands.CommandDashDelay;
 import com.blackoutburst.quake.commands.CommandDashStrength;
 import com.blackoutburst.quake.commands.CommandEnd;
+import com.blackoutburst.quake.commands.CommandGravity;
 import com.blackoutburst.quake.commands.CommandJoinQueue;
 import com.blackoutburst.quake.commands.CommandLeaveQueue;
 import com.blackoutburst.quake.commands.CommandListMap;
@@ -377,6 +378,7 @@ public class Main extends JavaPlugin implements Listener {
 			case "joinqueue": new CommandJoinQueue().execute(sender); break;
 			case "leavequeue": new CommandLeaveQueue().execute(sender); break;
 			case "queue": new CommandQueue().execute(sender); break;
+			case "gravity": new CommandGravity().execute(sender, args); break;
 			default: return true;
 		}
 		return true;
