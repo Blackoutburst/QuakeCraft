@@ -15,7 +15,7 @@ public class CommandGravity {
 			return;
 		}
 		
-		int score = 25;
+		int score = 0;
 
 		try {
 			score = Integer.parseInt(args[0]);
