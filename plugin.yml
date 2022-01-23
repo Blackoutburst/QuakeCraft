@@ -38,6 +38,9 @@ commands:
   triggerSpeed:
     description: Set the trigger speed
     usage: /triggerspeed <value>
+  gravity:
+    description: Set the gravity
+    usage: /gravity <value>
   maxScore:
     description: Set the max score
     usage: /maxscore <value>
