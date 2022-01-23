@@ -10,6 +10,9 @@ public class GameOption {
 	public static int JUMP_BOOST = 0;
 	public static int SLOWNESS = 0;
 	public static int BOUNCE_COUNT = 0;
+	public static int RAY_LENGTH = 500;
+	public static int SHATTER_COUNT = 10;
+	public static int SHATTER_LENGTH = 10;
 	
 	public static boolean BLINDNESS = false;
 	public static boolean INVISIBILITY = false;
@@ -28,6 +31,9 @@ public class GameOption {
 		JUMP_BOOST = 0;
 		SLOWNESS = 0;
 		BOUNCE_COUNT = 0;
+		RAY_LENGTH = 500;
+		SHATTER_COUNT = 0;
+		SHATTER_LENGTH = 10;
 		
 		BLINDNESS = false;
 		INVISIBILITY = false;

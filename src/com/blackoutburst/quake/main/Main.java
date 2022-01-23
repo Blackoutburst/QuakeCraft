@@ -63,6 +63,7 @@ import com.blackoutburst.quake.commands.CommandToggleWalk;
 import com.blackoutburst.quake.commands.CommandTriggerSpeed;
 import com.blackoutburst.quake.core.Core;
 import com.blackoutburst.quake.core.Dash;
+import com.blackoutburst.quake.core.GameOption;
 import com.blackoutburst.quake.core.GunProfile;
 import com.blackoutburst.quake.core.QuakePlayer;
 import com.blackoutburst.quake.core.RailGun;
@@ -253,7 +254,7 @@ public class Main extends JavaPlugin implements Listener {
 			Location loc = event.getPlayer().getLocation().clone();
 			loc.setY(loc.getY() + event.getPlayer().getEyeHeight());
 			
-			new RailGun(loc, event.getPlayer().getLocation().getDirection().clone(), qp).fire(qp);
+			new RailGun(loc, event.getPlayer().getLocation().getDirection().clone(), qp, GameOption.RAY_LENGTH, false).fire(qp);
 		}
 	}
 	

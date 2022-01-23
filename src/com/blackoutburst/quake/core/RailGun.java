@@ -3,6 +3,7 @@ package com.blackoutburst.quake.core;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.bukkit.Bukkit;
 import org.bukkit.FireworkEffect;
@@ -41,6 +42,8 @@ public class RailGun {
 	protected Location location;
 	protected Vector direction;
 	protected QuakePlayer owner;
+	protected boolean shater;
+	protected int length;
 	
 	private int trailColor = 0;
 	private int circle = 0;
@@ -49,10 +52,12 @@ public class RailGun {
 	
 	private List<Item> heads = new ArrayList<>();
 	
-	public RailGun(Location location, Vector direction, QuakePlayer owner) {
+	public RailGun(Location location, Vector direction, QuakePlayer owner, int length, boolean shater) {
 		this.location = location;
 		this.direction = direction;
 		this.owner = owner;
+		this.length = length;
+		this.shater = shater;
 	}
 	
 	public boolean insideBlock(Location loc) {
@@ -111,48 +116,57 @@ public class RailGun {
 	}
 	
 	public void fire(QuakePlayer p) {
-		final RailGun b = this;
 		trailColor = 0;
 
 		p.getPlayer().getWorld().playSound(p.getPlayer().getLocation(), Sound.BLAZE_HIT, 2, 2);
 		p.cooldown = GameOption.FIRE_DELAY;
 		
-		for (int i = 500; i > 0; i--) {
-			b.location.add(b.direction.normalize().multiply(0.5));
-			b.trail();
-			b.getNearbyPlayer();
+		for (int i = length; i > 0; i--) {
+			location.add(direction.normalize().multiply(0.5));
+			trail();
+			getNearbyPlayer();
 			
-			Location l2 = b.location.clone();
-			l2.add(b.direction.normalize().multiply(0.5));
-			l2.setX(b.location.getX());
-			l2.setY(b.location.getY());
+			Location l2 = location.clone();
+			l2.add(direction.normalize().multiply(0.5));
+			l2.setX(location.getX());
+			l2.setY(location.getY());
 			
-			if (b.insideBlock(l2)) {
+			if (insideBlock(l2)) {
 				direction.setZ(-direction.getZ());
 				bounceLeft--;
 			}
 			
-			l2 = b.location.clone();
-			l2.add(b.direction.normalize().multiply(0.5));
-			l2.setZ(b.location.getZ());
-			l2.setY(b.location.getY());
+			l2 = location.clone();
+			l2.add(direction.normalize().multiply(0.5));
+			l2.setZ(location.getZ());
+			l2.setY(location.getY());
 			
-			if (b.insideBlock(l2)) {
+			if (insideBlock(l2)) {
 				direction.setX(-direction.getX());
 				bounceLeft--;
 			}
 			
-			l2 = b.location.clone();
-			l2.add(b.direction.normalize().multiply(0.5));
-			l2.setX(b.location.getX());
-			l2.setZ(b.location.getZ());
+			l2 = location.clone();
+			l2.add(direction.normalize().multiply(0.5));
+			l2.setX(location.getX());
+			l2.setZ(location.getZ());
 			
-			if (b.insideBlock(l2)) {
+			if (insideBlock(l2)) {
 				direction.setY(-direction.getY());
 				bounceLeft--;
 			}
 			
-			if (bounceLeft <= 0) break;
+			if (bounceLeft <= 0) {
+				if (!shater) {
+					for (int j = 0; j < GameOption.SHATTER_COUNT; j++) {
+						final float x = new Random().nextFloat() * 2 - 1;
+						final float y = new Random().nextFloat() * 2 - 1;
+						final float z = new Random().nextFloat() * 2 - 1;
+						new RailGun(location.clone(), new Vector(x, y, z).normalize(), p, GameOption.SHATTER_LENGTH, true).fire(p);
+					}
+				}
+				break;
+			}
 		}
 		
 		new BukkitRunnable(){
