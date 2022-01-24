@@ -2,6 +2,7 @@ package com.blackoutburst.quake.core;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
@@ -52,7 +53,7 @@ public class RailGun {
 	private byte head = 0;
 	private int bounceLeft = GameOption.BOUNCE_COUNT + 1;
 	
-	private List<Integer> headsID = new ArrayList<>();
+	private final List<Integer> headsID = new ArrayList<>();
 	
 	public RailGun(Location location, Vector direction, QuakePlayer owner, int length, boolean shatter) {
 		this.location = location;
@@ -168,8 +169,7 @@ public class RailGun {
 		new BukkitRunnable() {
 			public void run() {
 				for (final QuakePlayer qp : Main.players) {
-					final Player p = qp.player;
-					final PlayerConnection connection = ((CraftPlayer) p).getHandle().playerConnection;
+					final PlayerConnection connection = ((CraftPlayer) qp.player).getHandle().playerConnection;
 					
 					for (final int id : headsID)
 						connection.sendPacket(new PacketPlayOutEntityDestroy(id));
@@ -181,23 +181,15 @@ public class RailGun {
 	}
 	
 	public void getNearbyPlayer() {
-		final float xloc = (float) this.location.getX();
-		final float yloc = (float) this.location.getY();
-		final float zloc = (float) this.location.getZ();
-		final List<Entity> entities = this.location.getWorld().getEntities();
+		final Collection<Entity> entities = this.location.getWorld().getNearbyEntities(this.location, 1, 1, 1);
 
 		for (final Entity e : entities) {
 			if (e instanceof ArmorStand) continue;
 
-			final float x = (float) (xloc - e.getLocation().getX());
-			final float y = (float) (yloc - e.getLocation().getY());
-			final float z = (float) (zloc - e.getLocation().getZ());
-			final boolean dist = ((x * x) + (y * y) + (z * z)) <= 4.0f;
-
 			if (e instanceof Player) {
 				if (((Player) e).getGameMode() == GameMode.SPECTATOR) continue;
 
-				if (e.getUniqueId() != this.owner.player.getUniqueId() && dist) {
+				if (e.getUniqueId() != this.owner.player.getUniqueId()) {
 					Core.teleportToRespawn((Player) e);
 					this.owner.player.getWorld().playSound(this.owner.player.getLocation(), this.owner.gunProfile.sound, 3, this.owner.gunProfile.pitch);
 
@@ -206,7 +198,7 @@ public class RailGun {
 
 					this.detonate(this.owner);
 				}
-			} else if (e instanceof LivingEntity && dist && ((LivingEntity) e).getHealth() > 0) {
+			} else if (e instanceof LivingEntity && ((LivingEntity) e).getHealth() > 0) {
 				for (final QuakePlayer qp : Main.players)
 					qp.player.sendMessage(this.owner.player.getDisplayName()+" §egibbed a§r "+e.getName()+" ??");
 				((LivingEntity) e).setHealth(0);
@@ -286,7 +278,7 @@ public class RailGun {
 
 		for (final QuakePlayer qp : Main.players) {
 			final Player p = qp.player;
-			final PlayerConnection connection = ((CraftPlayer) p).getHandle().playerConnection;
+			final PlayerConnection connection = ((CraftPlayer) qp.player).getHandle().playerConnection;
 
 			switch (this.owner.gunProfile.trail) {
 				case REDSTONE:
@@ -313,7 +305,7 @@ public class RailGun {
 						final World world = ((CraftWorld) p.getWorld()).getHandle();
 						final EntityItem item = new EntityItem(world);
 
-				        item.setItemStack(CraftItemStack.asNMSCopy(SkullLoader.hannd));
+				        item.setItemStack(SkullLoader.hanndNMS);
 				        item.setLocation(xloc, yloc, zloc, 0, 0);
 
 				        connection.sendPacket(new PacketPlayOutSpawnEntity(item, 2, 100));
@@ -331,28 +323,26 @@ public class RailGun {
 	}
 
 	public void detonate(QuakePlayer owner) {
-		owner.score++;
 		ScoreboardManager.updatePlayers();
+		owner.score++;
 
 		final float xloc = (float) this.location.getX();
 		final float yloc = (float) this.location.getY();
 		final float zloc = (float) this.location.getZ();
 		final World world = ((CraftWorld) location.getWorld()).getHandle();
-		
+
+		final ItemStack stackFirework = new ItemStack(Material.FIREWORK);
+		final FireworkMeta fireworkMeta = (FireworkMeta) stackFirework.getItemMeta();
+		final FireworkEffect effect = FireworkEffect.builder().flicker(false).withColor(this.owner.gunProfile.color).with(this.owner.gunProfile.shape).build();
+		fireworkMeta.addEffect(effect);
+		fireworkMeta.setPower(2);
+		stackFirework.setItemMeta(fireworkMeta);
+		final EntityFireworks firework = new EntityFireworks(world, xloc, yloc, zloc, CraftItemStack.asNMSCopy(stackFirework));
+		firework.expectedLifespan = 0;
+
 		for (final QuakePlayer qp : Main.players) {
-			final Player p = qp.player;
-			
-			if (p.getWorld() != owner.player.getWorld()) continue;
-			
-			final PlayerConnection connection = ((CraftPlayer) p).getHandle().playerConnection;
-			final ItemStack stackFirework = new ItemStack(Material.FIREWORK);
-			final FireworkMeta fireworkMeta = (FireworkMeta) stackFirework.getItemMeta();
-			final FireworkEffect effect = FireworkEffect.builder().flicker(false).withColor(this.owner.gunProfile.color).with(this.owner.gunProfile.shape).build();
-			fireworkMeta.addEffect(effect);
-			fireworkMeta.setPower(2);
-			stackFirework.setItemMeta(fireworkMeta);
-			final EntityFireworks firework = new EntityFireworks(world, xloc, yloc, zloc, CraftItemStack.asNMSCopy(stackFirework));
-			firework.expectedLifespan = 0;
+			final PlayerConnection connection = ((CraftPlayer) qp.player).getHandle().playerConnection;
+
 			connection.sendPacket(new PacketPlayOutSpawnEntity(firework, 76));
 			connection.sendPacket(new PacketPlayOutEntityMetadata(firework.getId(), firework.getDataWatcher(), true));
 			connection.sendPacket(new PacketPlayOutEntityStatus(firework, (byte) 17));

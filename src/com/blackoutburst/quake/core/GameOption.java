@@ -10,7 +10,7 @@ public class GameOption {
 	public static int JUMP_BOOST = 0;
 	public static int SLOWNESS = 0;
 	public static int BOUNCE_COUNT = 0;
-	public static int RAY_LENGTH = 340;
+	public static int RAY_LENGTH = 300;
 	public static int SHATTER_COUNT = 0;
 	public static int SHATTER_LENGTH = 10;
 	public static int GRAVITY = 0;
