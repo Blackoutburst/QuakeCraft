@@ -133,14 +133,6 @@ public class RailGun {
 			this.getNearbyPlayer();
 			
 			Location l2 = this.location.clone();
-			l2.setZ(l2.getZ() + dir.getZ());
-			
-			if (this.insideBlock(l2)) {
-				direction.setZ(-direction.getZ());
-				bounceLeft--;
-			}
-			
-			l2 = this.location.clone();
 			l2.setX(l2.getX() + dir.getX());
 			
 			if (this.insideBlock(l2)) {
@@ -149,10 +141,18 @@ public class RailGun {
 			}
 			
 			l2 = this.location.clone();
-			l2.setY(l2.getX() + dir.getY());
+			l2.setY(l2.getY() + dir.getY());
 			
 			if (this.insideBlock(l2)) {
 				direction.setY(-direction.getY());
+				bounceLeft--;
+			}
+			
+			l2 = this.location.clone();
+			l2.setZ(l2.getZ() + dir.getZ());
+			
+			if (this.insideBlock(l2)) {
+				direction.setZ(-direction.getZ());
 				bounceLeft--;
 			}
 			
@@ -175,6 +175,7 @@ public class RailGun {
 						connection.sendPacket(new PacketPlayOutEntityDestroy(id));
 				}
 				headsID.clear();
+				this.cancel();
 			}
 		}.runTaskLaterAsynchronously(Main.getPlugin(Main.class), 5L);
 	}

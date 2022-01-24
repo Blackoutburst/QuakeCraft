@@ -28,6 +28,7 @@ public class Dash {
 				if (!GameOption.VERTICAL_DASH)
 					dash.setY(0.0f);
 				player.setVelocity(dash.multiply(GameOption.DASH_STRENGTH));
+				this.cancel();
 			}
 		}.runTaskLater(Main.getPlugin(Main.class), 1L);
 		

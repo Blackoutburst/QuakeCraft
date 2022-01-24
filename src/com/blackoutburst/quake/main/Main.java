@@ -180,6 +180,7 @@ public class Main extends JavaPlugin implements Listener {
 					Vector dash = player.getLocation().getDirection().clone();
 					dash.setY(0.1f);
 					player.setVelocity(dash.multiply(5));
+					this.cancel();
 				}
 			}.runTaskLater(Main.getPlugin(Main.class), 1L);
 			
@@ -187,6 +188,7 @@ public class Main extends JavaPlugin implements Listener {
 				@Override
 				public void run(){
 					qp.setJumpPadCooldown(0);
+					this.cancel();
 				}
 			}.runTaskLater(Main.getPlugin(Main.class), 10L);
 		}
@@ -210,6 +212,7 @@ public class Main extends JavaPlugin implements Listener {
 					dash.setX(0.0f);
 					dash.setZ(0.0f);
 					player.setVelocity(dash.multiply(2.1f));
+					this.cancel();
 				}
 			}.runTaskLater(Main.getPlugin(Main.class), 1L);
 			
@@ -217,6 +220,7 @@ public class Main extends JavaPlugin implements Listener {
 				@Override
 				public void run(){
 					qp.setJumpPadCooldown(0);
+					this.cancel();
 				}
 			}.runTaskLater(Main.getPlugin(Main.class), 10L);
 		}
@@ -269,6 +273,7 @@ public class Main extends JavaPlugin implements Listener {
 				@Override
 				public void run(){
 					new RailGun(loc, event.getPlayer().getLocation().getDirection().clone(), qp, GameOption.RAY_LENGTH, false).fire(qp);
+					this.cancel();
 				}
 			}.runTaskAsynchronously(this);
 		}
