@@ -39,15 +39,17 @@ import net.minecraft.server.v1_8_R3.World;
 
 public class RailGun {
 	
+	private static final Random RNG = new Random();
+	
 	protected Location location;
 	protected Vector direction;
 	protected QuakePlayer owner;
 	protected boolean shatter;
 	protected int length;
 	
-	private int trailColor = 0;
-	private int circle = 0;
-	private int head = 0;
+	private byte trailColor = 0;
+	private byte circle = 0;
+	private byte head = 0;
 	private int bounceLeft = GameOption.BOUNCE_COUNT + 1;
 	
 	private List<Integer> headsID = new ArrayList<>();
@@ -116,6 +118,8 @@ public class RailGun {
 	}
 	
 	public void fire(QuakePlayer p) {
+		final double begin = System.currentTimeMillis();
+		
 		trailColor = 0;
 
 		if (!shatter)
@@ -123,37 +127,32 @@ public class RailGun {
 		p.cooldown = GameOption.FIRE_DELAY;
 		
 		for (int i = length; i > 0; i--) {
-			direction.add(new Vector(0, -0.001f * GameOption.GRAVITY, 0));
-			location.add(direction.normalize().multiply(0.5));
-			trail();
-			getNearbyPlayer();
+			final Vector dir = direction.add(new Vector(0, -0.001f * GameOption.GRAVITY, 0)).normalize().multiply(0.5);
+			this.location.add(dir);
 			
-			Location l2 = location.clone();
-			l2.add(direction.normalize().multiply(0.5));
-			l2.setX(location.getX());
-			l2.setY(location.getY());
+			this.trail();
+			this.getNearbyPlayer();
 			
-			if (insideBlock(l2)) {
+			Location l2 = this.location.clone();
+			l2.setZ(l2.getZ() + dir.getZ());
+			
+			if (this.insideBlock(l2)) {
 				direction.setZ(-direction.getZ());
 				bounceLeft--;
 			}
 			
-			l2 = location.clone();
-			l2.add(direction.normalize().multiply(0.5));
-			l2.setZ(location.getZ());
-			l2.setY(location.getY());
+			l2 = this.location.clone();
+			l2.setX(l2.getX() + dir.getX());
 			
-			if (insideBlock(l2)) {
+			if (this.insideBlock(l2)) {
 				direction.setX(-direction.getX());
 				bounceLeft--;
 			}
 			
-			l2 = location.clone();
-			l2.add(direction.normalize().multiply(0.5));
-			l2.setX(location.getX());
-			l2.setZ(location.getZ());
+			l2 = this.location.clone();
+			l2.setY(l2.getX() + dir.getY());
 			
-			if (insideBlock(l2)) {
+			if (this.insideBlock(l2)) {
 				direction.setY(-direction.getY());
 				bounceLeft--;
 			}
@@ -161,10 +160,7 @@ public class RailGun {
 			if (bounceLeft <= 0) {
 				if (!shatter) {
 					for (int j = 0; j < GameOption.SHATTER_COUNT; j++) {
-						final float x = new Random().nextFloat() * 2 - 1;
-						final float y = new Random().nextFloat() * 2 - 1;
-						final float z = new Random().nextFloat() * 2 - 1;
-						new RailGun(location.clone(), new Vector(x, y, z).normalize(), p, GameOption.SHATTER_LENGTH, true).fire(p);
+						new RailGun(location.clone(), new Vector(RNG.nextFloat() * 2 - 1, RNG.nextFloat() * 2 - 1, RNG.nextFloat() * 2 - 1).normalize(), p, GameOption.SHATTER_LENGTH, true).fire(p);
 					}
 				}
 				break;
@@ -173,39 +169,49 @@ public class RailGun {
 		
 		new BukkitRunnable() {
 			public void run() {
-				for (QuakePlayer qp : Main.players) {
-					final Player p = qp.getPlayer();
+				for (final QuakePlayer qp : Main.players) {
+					final Player p = qp.player;
 					final PlayerConnection connection = ((CraftPlayer) p).getHandle().playerConnection;
 					
-					for (int id : headsID)
+					for (final int id : headsID)
 						connection.sendPacket(new PacketPlayOutEntityDestroy(id));
 				}
 				headsID.clear();
 			}
 		}.runTaskLaterAsynchronously(Main.getPlugin(Main.class), 5L);
+		
+		System.out.println(System.currentTimeMillis() - begin);
 	}
 	
 	public void getNearbyPlayer() {
-		for (Entity e : location.getWorld().getEntities()) {
+		final float xloc = (float) this.location.getX();
+		final float yloc = (float) this.location.getY();
+		final float zloc = (float) this.location.getZ();
+		final List<Entity> entities = this.location.getWorld().getEntities();
+		
+		for (final Entity e : entities) {
 			if (e instanceof ArmorStand) continue;
 			
+			final float x = (float) (xloc - e.getLocation().getX());
+			final float y = (float) (yloc - e.getLocation().getY());
+			final float z = (float) (zloc - e.getLocation().getZ());
+			final boolean dist = ((x * x) + (y * y) + (z * z)) <= 4.0f;
 			
-			final float x = (float) (location.getX() - e.getLocation().getX());
-			final float y = (float) (location.getY() - e.getLocation().getY());
-			final float z = (float) (location.getZ() - e.getLocation().getZ());
-			final boolean dist = ((x * x) + (y * y) + (z * z)) <= 4.0;
 			if (e instanceof Player) {
 				if (((Player) e).getGameMode() == GameMode.SPECTATOR) continue;
-				if (e.getUniqueId() != owner.getPlayer().getUniqueId() && dist) {
+				
+				if (e.getUniqueId() != this.owner.player.getUniqueId() && dist) {
 					Core.teleportToRespawn((Player) e);
-					owner.getPlayer().getWorld().playSound(owner.getPlayer().getLocation(), owner.getGunProfile().getSound(), 3, owner.getGunProfile().getPitch());
-					for (QuakePlayer qp : Main.players)
-						qp.getPlayer().sendMessage(owner.getPlayer().getDisplayName()+" §egibbed§r "+((Player)e).getDisplayName());
-					this.detonate(owner);
+					this.owner.player.getWorld().playSound(this.owner.player.getLocation(), this.owner.gunProfile.sound, 3, this.owner.gunProfile.pitch);
+					
+					for (final QuakePlayer qp : Main.players)
+						qp.player.sendMessage(this.owner.player.getDisplayName()+" §egibbed§r "+((Player)e).getDisplayName());
+					
+					this.detonate(this.owner);
 				}
 			} else if (e instanceof LivingEntity && dist && ((LivingEntity) e).getHealth() > 0) {
-				for (QuakePlayer qp : Main.players)
-					qp.getPlayer().sendMessage(owner.getPlayer().getDisplayName()+" §egibbed a§r "+e.getName()+" ??");
+				for (final QuakePlayer qp : Main.players)
+					qp.player.sendMessage(this.owner.player.getDisplayName()+" §egibbed a§r "+e.getName()+" ??");
 				((LivingEntity) e).setHealth(0);
 			}
 		}
@@ -240,15 +246,16 @@ public class RailGun {
 		}
 	}
 	
-	private void createCircle(PlayerConnection connection, float radius) {
-		int particles = 9;
-		for (int i = 0; i < particles; i++) {
-			double angle = 2 * Math.PI * i / particles;
-			double x = Math.cos(angle) * radius;
-			double y = Math.sin(angle) * radius;
-			Vector v = rotateAroundAxisX(new Vector(x, y, 0), location.getPitch());
-			v = rotateAroundAxisY(v, location.getYaw());
-			Location temp = location.clone().add(v);
+	private void createCircle(PlayerConnection connection) {
+		for (int i = 9; i > 0; i--) {
+			final double angle = 2 * Math.PI * i / 9;
+			final double x = Math.cos(angle) * 0.3f;
+			final double y = Math.sin(angle) * 0.3f;
+			
+			Vector v = rotateAroundAxisX(new Vector(x, y, 0), this.location.getPitch());
+			v = rotateAroundAxisY(v, this.location.getYaw());
+			
+			final Location temp = this.location.clone().add(v);
 			
 			connection.sendPacket(new PacketPlayOutWorldParticles(EnumParticle.FLAME, true, (float) temp.getX(), (float) temp.getY(), (float) temp.getZ(), 0, 0, 0, 0, 1));
 		}
@@ -257,10 +264,10 @@ public class RailGun {
 	private Vector rotateAroundAxisX(Vector v, double angle) {
 		angle = Math.toRadians(angle);
 		
-		double cos = Math.cos(angle);
-		double sin = Math.sin(angle);
-		double y = v.getY() * cos - v.getZ() * sin;
-		double z = v.getY() * sin + v.getZ() * cos;
+		final double cos = Math.cos(angle);
+		final double sin = Math.sin(angle);
+		final double y = v.getY() * cos - v.getZ() * sin;
+		final double z = v.getY() * sin + v.getZ() * cos;
 		return v.setY(y).setZ(z);
 	}
 	 
@@ -268,48 +275,59 @@ public class RailGun {
 		angle = -angle;
 		angle = Math.toRadians(angle);
 		
-		double cos = Math.cos(angle);
-		double sin = Math.sin(angle);
-		double x = v.getX() * cos + v.getZ() * sin;
-		double z = v.getX() * -sin + v.getZ() * cos;
+		final double cos = Math.cos(angle);
+		final double sin = Math.sin(angle);
+		final double x = v.getX() * cos + v.getZ() * sin;
+		final double z = v.getX() * -sin + v.getZ() * cos;
 		return v.setX(x).setZ(z);
 	}
 	
 	public void trail() {
-		for (QuakePlayer qp : Main.players) {
-			final Player p = qp.getPlayer();
+		final float xloc = (float) this.location.getX();
+		final float yloc = (float) this.location.getY();
+		final float zloc = (float) this.location.getZ();
+		
+		for (final QuakePlayer qp : Main.players) {
+			final Player p = qp.player;
+			final PlayerConnection connection = ((CraftPlayer) p).getHandle().playerConnection;
 			
-			PlayerConnection connection = ((CraftPlayer) p).getHandle().playerConnection;
-			if (owner.gunProfile.trail == EnumParticle.REDSTONE) {
-				final Color c = getColor();
-				final float r = c.getRed() == 0 ? Float.MIN_VALUE : (float)(c.getRed()) / 255.0f;
-				final float g = (float)(c.getGreen()) / 255.0f;
-				final float b = (float)(c.getBlue()) / 255.0f;
-				connection.sendPacket(new PacketPlayOutWorldParticles(owner.gunProfile.trail, true, (float) location.getX(), (float) location.getY(), (float) location.getZ(), r, g, b, 1, 0));
-			} else if (owner.gunProfile.trail == EnumParticle.BARRIER) {
-				connection.sendPacket(new PacketPlayOutWorldParticles(EnumParticle.FLAME, true, (float) location.getX(), (float) location.getY(), (float) location.getZ(), 0, 0, 0, 0, 1));
-				circle++;
-				if (circle > 2) {
-					createCircle(connection, 0.3f);
-					circle = 0;
-				}
-			} else if (owner.gunProfile.trail == EnumParticle.SUSPENDED_DEPTH) {
-				connection.sendPacket(new PacketPlayOutWorldParticles(EnumParticle.REDSTONE, true, (float) location.getX(), (float) location.getY(), (float) location.getZ(), 1.0f, 0.5f, 0, 1, 0));
-				head++;
-				if (head > 2) {
-					final World world = ((CraftWorld) p.getWorld()).getHandle();
+			switch (this.owner.gunProfile.trail) {
+				case REDSTONE:
+					final Color c = getColor();
+					final float r = c.getRed() == 0 ? Float.MIN_VALUE : (float)(c.getRed()) / 255.0f;
+					final float g = (float)(c.getGreen()) / 255.0f;
+					final float b = (float)(c.getBlue()) / 255.0f;
 					
-			        final EntityItem item = new EntityItem(world);
-			        item.setItemStack(CraftItemStack.asNMSCopy(SkullLoader.hannd));
-			        item.setLocation(location.getX(), location.getY(), location.getZ(), 0, 0);
-			        
-			        connection.sendPacket(new PacketPlayOutSpawnEntity(item, 2, 100));
-			        connection.sendPacket(new PacketPlayOutEntityMetadata(item.getId(), item.getDataWatcher(), true));
-			        headsID.add(item.getId());
-					head = 0;
-				}
-			} else {
-				connection.sendPacket(new PacketPlayOutWorldParticles(owner.gunProfile.trail, true, (float) location.getX(), (float) location.getY(), (float) location.getZ(), 0, 0, 0, 0, 1));
+					connection.sendPacket(new PacketPlayOutWorldParticles(this.owner.gunProfile.trail, true, (float) xloc, (float) yloc, (float) zloc, r, g, b, 1, 0));
+				break;
+				case BARRIER:
+					connection.sendPacket(new PacketPlayOutWorldParticles(EnumParticle.FLAME, true, (float) xloc, (float) yloc, (float) zloc, 0, 0, 0, 0, 1));
+					
+					circle++;
+					if (circle > 2) {
+						createCircle(connection);
+						circle = 0;
+					}
+				break;
+				case SUSPENDED_DEPTH:
+					connection.sendPacket(new PacketPlayOutWorldParticles(EnumParticle.REDSTONE, true, (float) xloc, (float) yloc, (float) zloc, 1.0f, 0.5f, 0, 1, 0));
+					head++;
+					if (head > 2) {
+						final World world = ((CraftWorld) p.getWorld()).getHandle();
+						final EntityItem item = new EntityItem(world);
+						
+				        item.setItemStack(CraftItemStack.asNMSCopy(SkullLoader.hannd));
+				        item.setLocation(xloc, yloc, zloc, 0, 0);
+				        
+				        connection.sendPacket(new PacketPlayOutSpawnEntity(item, 2, 100));
+				        connection.sendPacket(new PacketPlayOutEntityMetadata(item.getId(), item.getDataWatcher(), true));
+				        headsID.add(item.getId());
+						head = 0;
+					}
+				break;
+				default:
+					connection.sendPacket(new PacketPlayOutWorldParticles(this.owner.gunProfile.trail, true, (float) xloc, (float) yloc, (float) zloc, 0, 0, 0, 0, 1));
+				break;
 			}
 		}
 		trailColor++;
@@ -319,19 +337,24 @@ public class RailGun {
 		owner.score++;
 		ScoreboardManager.updatePlayers();
 		
-		for (QuakePlayer qp : Main.players) {
-			final Player p = qp.getPlayer();
+		final float xloc = (float) this.location.getX();
+		final float yloc = (float) this.location.getY();
+		final float zloc = (float) this.location.getZ();
+		final World world = ((CraftWorld) location.getWorld()).getHandle();
+		
+		for (final QuakePlayer qp : Main.players) {
+			final Player p = qp.player;
 			
-			if (p.getWorld() != owner.getPlayer().getWorld()) continue;
+			if (p.getWorld() != owner.player.getWorld()) continue;
 			
-			PlayerConnection connection = ((CraftPlayer) p).getHandle().playerConnection;
-			ItemStack stackFirework = new ItemStack(Material.FIREWORK);
-			FireworkMeta fireworkMeta = (FireworkMeta) stackFirework.getItemMeta();
-			FireworkEffect effect = FireworkEffect.builder().flicker(false).withColor(this.owner.getGunProfile().getColor()).with(this.owner.getGunProfile().getShape()).build();
+			final PlayerConnection connection = ((CraftPlayer) p).getHandle().playerConnection;
+			final ItemStack stackFirework = new ItemStack(Material.FIREWORK);
+			final FireworkMeta fireworkMeta = (FireworkMeta) stackFirework.getItemMeta();
+			final FireworkEffect effect = FireworkEffect.builder().flicker(false).withColor(this.owner.gunProfile.color).with(this.owner.gunProfile.shape).build();
 			fireworkMeta.addEffect(effect);
 			fireworkMeta.setPower(2);
 			stackFirework.setItemMeta(fireworkMeta);
-			EntityFireworks firework = new EntityFireworks(((CraftWorld) location.getWorld()).getHandle(), location.getX(), location.getY(), location.getZ(), CraftItemStack.asNMSCopy(stackFirework));
+			final EntityFireworks firework = new EntityFireworks(world, xloc, yloc, zloc, CraftItemStack.asNMSCopy(stackFirework));
 			firework.expectedLifespan = 0;
 			connection.sendPacket(new PacketPlayOutSpawnEntity(firework, 76));
 			connection.sendPacket(new PacketPlayOutEntityMetadata(firework.getId(), firework.getDataWatcher(), true));
