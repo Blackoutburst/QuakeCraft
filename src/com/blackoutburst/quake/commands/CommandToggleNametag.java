@@ -17,6 +17,6 @@ public class CommandToggleNametag {
 	public static void run(Player p) {
 		GameOption.NAMETAG = GameOption.NAMETAG ? false : true;
 		for (QuakePlayer qp : Main.players)
-			qp.getPlayer().sendMessage(p.getDisplayName()+" §bhas "+(GameOption.NAMETAG ? "§aEnabled" : "§cDisabled")+" §6Nametag");
+			qp.getPlayer().sendMessage(p.getDisplayName()+" Â§bhas "+(GameOption.NAMETAG ? "Â§aEnabled" : "Â§cDisabled")+" Â§6Nametag");
 	}
 }

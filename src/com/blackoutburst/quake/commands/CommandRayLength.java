@@ -11,7 +11,7 @@ public class CommandRayLength {
 
 	public void execute(CommandSender sender, String[] args) {
 		if (args.length == 0) {
-			sender.sendMessage("§cSpecifie a value");
+			sender.sendMessage("Â§cSpecifie a value");
 			return;
 		}
 		
@@ -20,13 +20,13 @@ public class CommandRayLength {
 		try {
 			value = Integer.parseInt(args[0]);
 		} catch (Exception e) {
-			sender.sendMessage("§cThe value must be a valid number");
+			sender.sendMessage("Â§cThe value must be a valid number");
 		}
 		GameOption.RAY_LENGTH = value;
 		
 		Player p = (Player) sender;
 		
 		for (QuakePlayer qp : Main.players)
-			qp.getPlayer().sendMessage(p.getDisplayName()+" §bhas set the ray length to §6"+value);
+			qp.getPlayer().sendMessage(p.getDisplayName()+" Â§bhas set the ray length to Â§6"+value);
 	}
 }

@@ -14,7 +14,7 @@ public class CommandLeaveQueue {
 		if (sender instanceof Player) {
 			Player p = (Player) sender;
 			if (QuakePlayer.getFromPlayer(p) == null) {
-				sender.sendMessage("§cYou are not in the queue !");
+				sender.sendMessage("Â§cYou are not in the queue !");
 			} else {
 				
 				final QuakePlayer qp = QuakePlayer.getFromPlayer(p);
@@ -23,9 +23,9 @@ public class CommandLeaveQueue {
 				Main.players.remove(qp);
 				
 				for (QuakePlayer qps : Main.players)
-					qps.getPlayer().sendMessage(p.getDisplayName()+" §6left the queue!");
+					qps.getPlayer().sendMessage(p.getDisplayName()+" Â§6left the queue!");
 				
-				sender.sendMessage("§aYou left the queue !");
+				sender.sendMessage("Â§aYou left the queue !");
 				ScoreboardManager.updatePlayers();
 			}
 		}

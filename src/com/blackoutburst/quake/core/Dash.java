@@ -28,6 +28,7 @@ public class Dash {
 				if (!GameOption.VERTICAL_DASH)
 					dash.setY(0.0f);
 				player.setVelocity(dash.multiply(GameOption.DASH_STRENGTH));
+				this.cancel();
 			}
 		}.runTaskLater(Main.getPlugin(Main.class), 1L);
 		
@@ -43,12 +44,12 @@ public class Dash {
 			
 			if (GameOption.DASH) {
 				if (qp.getDashCooldown() > 0) {
-					player.sendMessage("§cYour dash will be available in §e"+String.format("%.2f", qp.dashCooldown / 20)+" §cseconds!");
+					player.sendMessage("Â§cYour dash will be available in Â§e"+String.format("%.2f", qp.dashCooldown / 20)+" Â§cseconds!");
 				} else {
 					executeDash(player, qp);
 				}
 			} else {
-				player.sendMessage("§cDash is disabled in this game !");
+				player.sendMessage("Â§cDash is disabled in this game !");
 			}
 		}
 	}

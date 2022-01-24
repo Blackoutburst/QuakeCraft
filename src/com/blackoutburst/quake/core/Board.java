@@ -59,7 +59,7 @@ public class Board {
 		}
 
 		team = player.getBoard().scoreboard.getTeam(newPlayer.getPlayer().getName());
-		team.setPrefix("ง"+newPlayer.gunProfile.nameColor.getChar());
+		team.setPrefix("ยง"+newPlayer.gunProfile.nameColor.getChar());
 		team.setNameTagVisibility(tagVisible);
 		team.addEntry(newPlayer.getPlayer().getName());
 	}

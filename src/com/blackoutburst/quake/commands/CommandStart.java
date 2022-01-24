@@ -12,13 +12,13 @@ public class CommandStart {
 
 	public void execute(CommandSender sender, String[] args) {
 		if (args.length == 0) {
-			sender.sendMessage("§cYou must specifie the world name!");
+			sender.sendMessage("Â§cYou must specifie the world name!");
 			return;
 			
 		}
 		
 		if (Main.gameRunning) {
-			sender.sendMessage("§cYou must end the current game with §e/end§c before starting a new one!");
+			sender.sendMessage("Â§cYou must end the current game with Â§e/endÂ§c before starting a new one!");
 			return;
 		}
 		
@@ -52,7 +52,7 @@ public class CommandStart {
 		}
 		
 		if (finalWorldName == null) {
-			sender.sendMessage("§cThe world §f"+worldName+"§c doesn't exist!");
+			sender.sendMessage("Â§cThe world Â§f"+worldName+"Â§c doesn't exist!");
 			return;
 		}
 		

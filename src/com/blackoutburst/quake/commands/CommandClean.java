@@ -14,7 +14,7 @@ public class CommandClean {
 
 	public void execute(CommandSender sender, String[] args) {
 		if (args.length == 0) {
-			sender.sendMessage("§cInvalid usage try §e/clean <worldName>");
+			sender.sendMessage("Â§cInvalid usage try Â§e/clean <worldName>");
 			return;
 		}
 		
@@ -39,7 +39,7 @@ public class CommandClean {
 		}
 		
 		if (finalWorldName == null) {
-			sender.sendMessage("§cThe world §f"+worldName+"§c doesn't exist!");
+			sender.sendMessage("Â§cThe world Â§f"+worldName+"Â§c doesn't exist!");
 			return;
 		}
 		
@@ -49,6 +49,6 @@ public class CommandClean {
             Block b = l.getWorld().getBlockAt(l);
             b.setType(Material.AIR);
         }
-		sender.sendMessage("§bRemoved sponges on the §6"+Main.respawns.size()+" §bspawnpoints found in §6"+finalWorldName);
+		sender.sendMessage("Â§bRemoved sponges on the Â§6"+Main.respawns.size()+" Â§bspawnpoints found in Â§6"+finalWorldName);
 	}
 }

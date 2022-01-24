@@ -118,8 +118,6 @@ public class RailGun {
 	}
 	
 	public void fire(QuakePlayer p) {
-		final double begin = System.currentTimeMillis();
-		
 		trailColor = 0;
 
 		if (!shatter)
@@ -177,10 +175,9 @@ public class RailGun {
 						connection.sendPacket(new PacketPlayOutEntityDestroy(id));
 				}
 				headsID.clear();
+				this.cancel();
 			}
 		}.runTaskLaterAsynchronously(Main.getPlugin(Main.class), 5L);
-		
-		System.out.println(System.currentTimeMillis() - begin);
 	}
 	
 	public void getNearbyPlayer() {
@@ -188,35 +185,35 @@ public class RailGun {
 		final float yloc = (float) this.location.getY();
 		final float zloc = (float) this.location.getZ();
 		final List<Entity> entities = this.location.getWorld().getEntities();
-		
+
 		for (final Entity e : entities) {
 			if (e instanceof ArmorStand) continue;
-			
+
 			final float x = (float) (xloc - e.getLocation().getX());
 			final float y = (float) (yloc - e.getLocation().getY());
 			final float z = (float) (zloc - e.getLocation().getZ());
 			final boolean dist = ((x * x) + (y * y) + (z * z)) <= 4.0f;
-			
+
 			if (e instanceof Player) {
 				if (((Player) e).getGameMode() == GameMode.SPECTATOR) continue;
-				
+
 				if (e.getUniqueId() != this.owner.player.getUniqueId() && dist) {
 					Core.teleportToRespawn((Player) e);
 					this.owner.player.getWorld().playSound(this.owner.player.getLocation(), this.owner.gunProfile.sound, 3, this.owner.gunProfile.pitch);
-					
+
 					for (final QuakePlayer qp : Main.players)
-						qp.player.sendMessage(this.owner.player.getDisplayName()+" §egibbed§r "+((Player)e).getDisplayName());
-					
+						qp.player.sendMessage(this.owner.player.getDisplayName()+" Â§egibbedÂ§r "+((Player)e).getDisplayName());
+
 					this.detonate(this.owner);
 				}
 			} else if (e instanceof LivingEntity && dist && ((LivingEntity) e).getHealth() > 0) {
 				for (final QuakePlayer qp : Main.players)
-					qp.player.sendMessage(this.owner.player.getDisplayName()+" §egibbed a§r "+e.getName()+" ??");
+					qp.player.sendMessage(this.owner.player.getDisplayName()+" Â§egibbed aÂ§r "+e.getName()+" ??");
 				((LivingEntity) e).setHealth(0);
 			}
 		}
 	}
-	
+
 	private Color getColor() {
 		switch(trailColor) {
 			default: return new Color(255, 0, 0);
@@ -245,64 +242,64 @@ public class RailGun {
 			case 23: trailColor = 0; return new Color(255, 0, 85);
 		}
 	}
-	
+
 	private void createCircle(PlayerConnection connection) {
 		for (int i = 9; i > 0; i--) {
 			final double angle = 2 * Math.PI * i / 9;
 			final double x = Math.cos(angle) * 0.3f;
 			final double y = Math.sin(angle) * 0.3f;
-			
+
 			Vector v = rotateAroundAxisX(new Vector(x, y, 0), this.location.getPitch());
 			v = rotateAroundAxisY(v, this.location.getYaw());
-			
+
 			final Location temp = this.location.clone().add(v);
-			
+
 			connection.sendPacket(new PacketPlayOutWorldParticles(EnumParticle.FLAME, true, (float) temp.getX(), (float) temp.getY(), (float) temp.getZ(), 0, 0, 0, 0, 1));
 		}
 	}
-	
+
 	private Vector rotateAroundAxisX(Vector v, double angle) {
 		angle = Math.toRadians(angle);
-		
+
 		final double cos = Math.cos(angle);
 		final double sin = Math.sin(angle);
 		final double y = v.getY() * cos - v.getZ() * sin;
 		final double z = v.getY() * sin + v.getZ() * cos;
 		return v.setY(y).setZ(z);
 	}
-	 
+
 	private Vector rotateAroundAxisY(Vector v, double angle) {
 		angle = -angle;
 		angle = Math.toRadians(angle);
-		
+
 		final double cos = Math.cos(angle);
 		final double sin = Math.sin(angle);
 		final double x = v.getX() * cos + v.getZ() * sin;
 		final double z = v.getX() * -sin + v.getZ() * cos;
 		return v.setX(x).setZ(z);
 	}
-	
+
 	public void trail() {
 		final float xloc = (float) this.location.getX();
 		final float yloc = (float) this.location.getY();
 		final float zloc = (float) this.location.getZ();
-		
+
 		for (final QuakePlayer qp : Main.players) {
 			final Player p = qp.player;
 			final PlayerConnection connection = ((CraftPlayer) p).getHandle().playerConnection;
-			
+
 			switch (this.owner.gunProfile.trail) {
 				case REDSTONE:
 					final Color c = getColor();
 					final float r = c.getRed() == 0 ? Float.MIN_VALUE : (float)(c.getRed()) / 255.0f;
 					final float g = (float)(c.getGreen()) / 255.0f;
 					final float b = (float)(c.getBlue()) / 255.0f;
-					
-					connection.sendPacket(new PacketPlayOutWorldParticles(this.owner.gunProfile.trail, true, (float) xloc, (float) yloc, (float) zloc, r, g, b, 1, 0));
+
+					connection.sendPacket(new PacketPlayOutWorldParticles(this.owner.gunProfile.trail, true, xloc, yloc, zloc, r, g, b, 1, 0));
 				break;
 				case BARRIER:
-					connection.sendPacket(new PacketPlayOutWorldParticles(EnumParticle.FLAME, true, (float) xloc, (float) yloc, (float) zloc, 0, 0, 0, 0, 1));
-					
+					connection.sendPacket(new PacketPlayOutWorldParticles(EnumParticle.FLAME, true, xloc, yloc, zloc, 0, 0, 0, 0, 1));
+
 					circle++;
 					if (circle > 2) {
 						createCircle(connection);
@@ -310,15 +307,15 @@ public class RailGun {
 					}
 				break;
 				case SUSPENDED_DEPTH:
-					connection.sendPacket(new PacketPlayOutWorldParticles(EnumParticle.REDSTONE, true, (float) xloc, (float) yloc, (float) zloc, 1.0f, 0.5f, 0, 1, 0));
+					connection.sendPacket(new PacketPlayOutWorldParticles(EnumParticle.REDSTONE, true, xloc, yloc, zloc, 1.0f, 0.5f, 0, 1, 0));
 					head++;
 					if (head > 2) {
 						final World world = ((CraftWorld) p.getWorld()).getHandle();
 						final EntityItem item = new EntityItem(world);
-						
+
 				        item.setItemStack(CraftItemStack.asNMSCopy(SkullLoader.hannd));
 				        item.setLocation(xloc, yloc, zloc, 0, 0);
-				        
+
 				        connection.sendPacket(new PacketPlayOutSpawnEntity(item, 2, 100));
 				        connection.sendPacket(new PacketPlayOutEntityMetadata(item.getId(), item.getDataWatcher(), true));
 				        headsID.add(item.getId());
@@ -326,17 +323,17 @@ public class RailGun {
 					}
 				break;
 				default:
-					connection.sendPacket(new PacketPlayOutWorldParticles(this.owner.gunProfile.trail, true, (float) xloc, (float) yloc, (float) zloc, 0, 0, 0, 0, 1));
+					connection.sendPacket(new PacketPlayOutWorldParticles(this.owner.gunProfile.trail, true, xloc, yloc, zloc, 0, 0, 0, 0, 1));
 				break;
 			}
 		}
 		trailColor++;
 	}
-	
+
 	public void detonate(QuakePlayer owner) {
 		owner.score++;
 		ScoreboardManager.updatePlayers();
-		
+
 		final float xloc = (float) this.location.getX();
 		final float yloc = (float) this.location.getY();
 		final float zloc = (float) this.location.getZ();

@@ -17,6 +17,6 @@ public class CommandToggleDash {
 	public static void run(Player p) {
 		GameOption.DASH = GameOption.DASH ? false : true;
 		for (QuakePlayer qp : Main.players)
-			qp.getPlayer().sendMessage(p.getDisplayName()+" §bhas "+(GameOption.DASH ? "§aEnabled" : "§cDisabled")+" §6Dash");
+			qp.getPlayer().sendMessage(p.getDisplayName()+" Â§bhas "+(GameOption.DASH ? "Â§aEnabled" : "Â§cDisabled")+" Â§6Dash");
 	}
 }

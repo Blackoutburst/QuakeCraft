@@ -16,7 +16,7 @@ public class CommandResetConfig {
 	
 	public static void run(Player p) {
 		for (QuakePlayer qp : Main.players)
-			qp.getPlayer().sendMessage(p.getDisplayName()+" §bhas restored the default configuration");
+			qp.getPlayer().sendMessage(p.getDisplayName()+" Â§bhas restored the default configuration");
 		GameOption.restoreConfiguration();
 	}
 }

@@ -17,6 +17,6 @@ public class CommandToggleJump {
 	public static void run(Player p) {
 		GameOption.JUMP = GameOption.JUMP ? false : true;
 		for (QuakePlayer qp : Main.players)
-			qp.getPlayer().sendMessage(p.getDisplayName()+" §bhas "+(GameOption.JUMP ? "§aEnabled" : "§cDisabled")+" §6Jump");
+			qp.getPlayer().sendMessage(p.getDisplayName()+" Â§bhas "+(GameOption.JUMP ? "Â§aEnabled" : "Â§cDisabled")+" Â§6Jump");
 	}
 }

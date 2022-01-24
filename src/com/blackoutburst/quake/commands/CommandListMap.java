@@ -15,10 +15,10 @@ public class CommandListMap {
 		if (entries == null) return;
 		Arrays.sort(entries);
 
-		sender.sendMessage("§b-------------------");
-		sender.sendMessage("§6World name §r|§e Number of spawns");
+		sender.sendMessage("Â§b-------------------");
+		sender.sendMessage("Â§6World name Â§r|Â§e Number of spawns");
 		sender.sendMessage(" ");
-		sender.sendMessage("§e"+(entries.length - 1)+" §6worlds found");
+		sender.sendMessage("Â§e"+(entries.length - 1)+" Â§6worlds found");
 		sender.sendMessage(" ");
 		for(String s: entries) {
 			File tmp = new File(index.getPath(), s);
@@ -28,8 +28,8 @@ public class CommandListMap {
 			
 			Set<String> respawns = config.getConfigurationSection("loc").getKeys(false);
 			
-			sender.sendMessage("§6"+tmp.getName().replace(".yml", "")+" §r|§e "+respawns.size());
+			sender.sendMessage("Â§6"+tmp.getName().replace(".yml", "")+" Â§r|Â§e "+respawns.size());
 		}
-		sender.sendMessage("§b-------------------");
+		sender.sendMessage("Â§b-------------------");
 	}
 }

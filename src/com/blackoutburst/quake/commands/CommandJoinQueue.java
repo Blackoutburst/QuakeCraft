@@ -22,12 +22,12 @@ public class CommandJoinQueue {
 			Player p = (Player) sender;
 			if (QuakePlayer.getFromPlayer(p) == null) {
 				
-				GunProfile gunProfile = new GunProfile("§bWooden Case", Material.WOOD_HOE, Type.BALL, Color.AQUA, false, Sound.BLAZE_DEATH, 2, ChatColor.WHITE, EnumParticle.FIREWORKS_SPARK);
+				GunProfile gunProfile = new GunProfile("Â§bWooden Case", Material.WOOD_HOE, Type.BALL, Color.AQUA, false, Sound.BLAZE_DEATH, 2, ChatColor.WHITE, EnumParticle.FIREWORKS_SPARK);
 				QuakePlayer qp = new QuakePlayer(p, gunProfile);
 				ScoreboardManager.init(qp);
 				
 				for (QuakePlayer qps : Main.players)
-					qps.getPlayer().sendMessage(p.getDisplayName()+" §6joined the queue!");
+					qps.getPlayer().sendMessage(p.getDisplayName()+" Â§6joined the queue!");
 				
 				
 				Main.players.add(qp);
@@ -35,10 +35,10 @@ public class CommandJoinQueue {
 				
 				
 				ScoreboardManager.updatePlayers();
-				sender.sendMessage("§aYou joined the queue !");
+				sender.sendMessage("Â§aYou joined the queue !");
 				
 			} else {
-				sender.sendMessage("§cYou are already in the queue !");
+				sender.sendMessage("Â§cYou are already in the queue !");
 			}
 		}
 	}

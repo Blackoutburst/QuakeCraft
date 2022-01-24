@@ -11,7 +11,7 @@ public class CommandDashStrength {
 
 	public void execute(CommandSender sender, String[] args) {
 		if (args.length == 0) {
-			sender.sendMessage("§cSpecifie a value in seconds");
+			sender.sendMessage("Â§cSpecifie a value in seconds");
 			return;
 		}
 		
@@ -20,13 +20,13 @@ public class CommandDashStrength {
 		try {
 			value = Float.parseFloat(args[0]);
 		} catch (Exception e) {
-			sender.sendMessage("§cThe value must be a valid number");
+			sender.sendMessage("Â§cThe value must be a valid number");
 		}
 		GameOption.DASH_STRENGTH = value;
 		
 		Player p = (Player) sender;
 		
 		for (QuakePlayer qp : Main.players)
-			qp.getPlayer().sendMessage(p.getDisplayName()+" §bhas set the dash strength to §6"+value);
+			qp.getPlayer().sendMessage(p.getDisplayName()+" Â§bhas set the dash strength to Â§6"+value);
 	}
 }

@@ -17,20 +17,20 @@ public class NameColorMenu {
 	public static void open(Player p) {
 		Inventory inv = Main.getPlugin(Main.class).getServer().createInventory(null, 36, "Name Color Menu");
 		
-		setItem(inv, 10, (byte)1, "§4Dark Red");
-		setItem(inv, 11, (byte)9, "§cRed");
-		setItem(inv, 12, (byte)14, "§6Gold");
-		setItem(inv, 13, (byte)11, "§eYellow");
-		setItem(inv, 14, (byte)2, "§2Dark Green");
-		setItem(inv, 15, (byte)10, "§aGreen");
-		setItem(inv, 16, (byte)6, "§3Dark Aqua");
-		setItem(inv, 19, (byte)4, "§1Dark Blue");
-		setItem(inv, 20, (byte)12, "§9Blue");
-		setItem(inv, 21, (byte)13, "§dLight Purple");
-		setItem(inv, 22, (byte)5, "§5Dark Purple");
-		setItem(inv, 23, (byte)15, "§fWhite");
-		setItem(inv, 24, (byte)7, "§7Gray");
-		setItem(inv, 25, (byte)8, "§8Dark Gray");
+		setItem(inv, 10, (byte)1, "Â§4Dark Red");
+		setItem(inv, 11, (byte)9, "Â§cRed");
+		setItem(inv, 12, (byte)14, "Â§6Gold");
+		setItem(inv, 13, (byte)11, "Â§eYellow");
+		setItem(inv, 14, (byte)2, "Â§2Dark Green");
+		setItem(inv, 15, (byte)10, "Â§aGreen");
+		setItem(inv, 16, (byte)6, "Â§3Dark Aqua");
+		setItem(inv, 19, (byte)4, "Â§1Dark Blue");
+		setItem(inv, 20, (byte)12, "Â§9Blue");
+		setItem(inv, 21, (byte)13, "Â§dLight Purple");
+		setItem(inv, 22, (byte)5, "Â§5Dark Purple");
+		setItem(inv, 23, (byte)15, "Â§fWhite");
+		setItem(inv, 24, (byte)7, "Â§7Gray");
+		setItem(inv, 25, (byte)8, "Â§8Dark Gray");
 		
 		p.openInventory(inv);
 	}

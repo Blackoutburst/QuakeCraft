@@ -17,6 +17,6 @@ public class CommandToggleInvisibility {
 	public static void run(Player p) {
 		GameOption.INVISIBILITY = GameOption.INVISIBILITY ? false : true;
 		for (QuakePlayer qp : Main.players)
-			qp.getPlayer().sendMessage(p.getDisplayName()+" §bhas "+(GameOption.INVISIBILITY ? "§aEnabled" : "§cDisabled")+" §6Invisibility");
+			qp.getPlayer().sendMessage(p.getDisplayName()+" Â§bhas "+(GameOption.INVISIBILITY ? "Â§aEnabled" : "Â§cDisabled")+" Â§6Invisibility");
 	}
 }

@@ -11,7 +11,7 @@ public class CommandEnd {
 		if (Main.gameRunning)
 			Core.endGame();
 		else
-			sender.sendMessage("§cNo game are running right now !");
+			sender.sendMessage("Â§cNo game are running right now !");
 	}
 	
 }
