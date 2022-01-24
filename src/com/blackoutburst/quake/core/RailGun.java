@@ -175,7 +175,6 @@ public class RailGun {
 						connection.sendPacket(new PacketPlayOutEntityDestroy(id));
 				}
 				headsID.clear();
-				this.cancel();
 			}
 		}.runTaskLaterAsynchronously(Main.getPlugin(Main.class), 5L);
 	}
