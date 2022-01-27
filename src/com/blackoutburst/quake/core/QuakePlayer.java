@@ -27,6 +27,7 @@ public class QuakePlayer {
 	protected int score;
 	protected GunProfile gunProfile;
 	protected int jumpPadCooldown;
+	protected int killstreak;
 	
 	public QuakePlayer(Player player, GunProfile gunProfile) {
 		this.player = player;
@@ -36,6 +37,7 @@ public class QuakePlayer {
 		this.score = 0;
 		this.gunProfile = gunProfile;
 		this.jumpPadCooldown = 0;
+		this.killstreak = 0;
 	}
 	
 	public static QuakePlayer getFromPlayer(Player p) {
