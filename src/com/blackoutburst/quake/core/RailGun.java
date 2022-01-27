@@ -237,7 +237,7 @@ public class RailGun {
 			case 80: return (this.owner.player.getDisplayName()+" §r§b§obecame the first Quakecraft prophet!");
 			case 85: return (this.owner.player.getDisplayName()+" §r§b§ocreated an army of Quake players!");
 			case 90: return (this.owner.player.getDisplayName()+" §r§b§ois now a Quake emperor!");
-			case 100: return (this.owner.player.getDisplayName()+" §r§b§o, you sure have a lot of friends.");
+			case 100: return (this.owner.player.getDisplayName()+"§r§b§o, you sure have a lot of friends.");
 			case 101: return ("§r§b§oNice party you have there, §r"+this.owner.player.getDisplayName()+"§r§b§o.");
 			default: return ("none");
 		}
