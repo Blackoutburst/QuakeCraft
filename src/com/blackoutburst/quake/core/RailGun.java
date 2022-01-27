@@ -216,7 +216,7 @@ public class RailGun {
 					QuakePlayer quakePlayer = QuakePlayer.getFromPlayer((Player) e);
 					if (quakePlayer != null && quakePlayer.killstreak >= 5) {
 						for (final QuakePlayer qp : Main.players)
-							qp.player.sendMessage(quakePlayer.getPlayer().getDisplayName()+" §r§b§ogot shutdown by§r"+this.owner.getPlayer().getDisplayName());
+							qp.player.sendMessage(quakePlayer.getPlayer().getDisplayName()+" §r§b§ogot shutdown by §r"+this.owner.getPlayer().getDisplayName());
 					}
 					if (quakePlayer != null) {
 						quakePlayer.killstreak = 0;
