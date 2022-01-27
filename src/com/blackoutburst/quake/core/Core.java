@@ -119,6 +119,7 @@ public class Core {
 			p.getPlayer().teleport(Main.spawn);
 			p.getPlayer().getInventory().clear();
 			p.setScore(0);
+			p.killstreak = 0;
 			p.getPlayer().removePotionEffect(PotionEffectType.SPEED);
 			p.getPlayer().removePotionEffect(PotionEffectType.JUMP);
 			p.getPlayer().removePotionEffect(PotionEffectType.SLOW);
