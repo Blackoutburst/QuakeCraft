@@ -199,15 +199,27 @@ public class RailGun {
 
 				if (e.getUniqueId() != this.owner.player.getUniqueId() && dist) {
 					this.owner.killstreak++;
+
+
 					Core.teleportToRespawn((Player) e);
 					this.owner.player.getWorld().playSound(this.owner.player.getLocation(), this.owner.gunProfile.sound, 3, this.owner.gunProfile.pitch);
 
 					final String headshot = location.getY() - e.getLocation().getY() > 0.9f ? "§e§lHEADSHOT" : "";
 					final String killStreak = killStreak();
 					for (final QuakePlayer qp : Main.players) {
-						qp.player.sendMessage(this.owner.player.getDisplayName()+" §egibbed§r "+((Player)e).getDisplayName()+" "+headshot);
-						if (!killStreak.equals("none"))
+						qp.player.sendMessage(this.owner.player.getDisplayName()+" §7gibbed§r "+((Player)e).getDisplayName()+" "+headshot);
+						if (!killStreak.equals("none")) {
 							qp.player.sendMessage(killStreak);
+						}
+					}
+
+					QuakePlayer quakePlayer = QuakePlayer.getFromPlayer((Player) e);
+					if (quakePlayer != null && quakePlayer.killstreak >= 5) {
+						for (final QuakePlayer qp : Main.players)
+							qp.player.sendMessage(quakePlayer.getPlayer().getDisplayName()+" §r§b§ogot shutdown by§r"+this.owner.getPlayer().getDisplayName());
+					}
+					if (quakePlayer != null) {
+						quakePlayer.killstreak = 0;
 					}
 
 					this.detonate(this.owner);
