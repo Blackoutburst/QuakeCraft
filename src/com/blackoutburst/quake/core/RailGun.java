@@ -181,20 +181,28 @@ public class RailGun {
 	}
 	
 	public void getNearbyPlayer() {
-		final Collection<Entity> entities = this.location.getWorld().getNearbyEntities(this.location, 0.8f, 0.8f, 0.8f);
+		final float xloc = (float) this.location.getX();
+		final float yloc = (float) this.location.getY();
+		final float zloc = (float) this.location.getZ();
+		final List<Entity> entities = this.location.getWorld().getEntities();
 
 		for (final Entity e : entities) {
 			if (e instanceof ArmorStand) continue;
 
+			final float x = (float) (xloc - e.getLocation().getX());
+			final float y = (float) (yloc - e.getLocation().getY());
+			final float z = (float) (zloc - e.getLocation().getZ());
+			final boolean dist = ((x * x) + (y * y) + (z * z)) <= 4.0f;
+
 			if (e instanceof Player) {
 				if (((Player) e).getGameMode() == GameMode.SPECTATOR) continue;
 
-				if (e.getUniqueId() != this.owner.player.getUniqueId()) {
+				if (e.getUniqueId() != this.owner.player.getUniqueId() && dist) {
 					this.owner.killstreak++;
 					Core.teleportToRespawn((Player) e);
 					this.owner.player.getWorld().playSound(this.owner.player.getLocation(), this.owner.gunProfile.sound, 3, this.owner.gunProfile.pitch);
 
-					final String headshot = location.getY() - e.getLocation().getY() > 0.9f ? "§e§bHEADSHOT" : "";
+					final String headshot = location.getY() - e.getLocation().getY() > 0.9f ? "§e§lHEADSHOT" : "";
 					final String killStreak = killStreak();
 					for (final QuakePlayer qp : Main.players) {
 						qp.player.sendMessage(this.owner.player.getDisplayName()+" §egibbed§r "+((Player)e).getDisplayName()+" "+headshot);
@@ -204,7 +212,7 @@ public class RailGun {
 
 					this.detonate(this.owner);
 				}
-			} else if (e instanceof LivingEntity && ((LivingEntity) e).getHealth() > 0) {
+			} else if (e instanceof LivingEntity && ((LivingEntity) e).getHealth() > 0 && dist) {
 				for (final QuakePlayer qp : Main.players)
 					qp.player.sendMessage(this.owner.player.getDisplayName()+" §egibbed a§r "+e.getName()+" ??");
 				((LivingEntity) e).setHealth(0);
@@ -214,22 +222,22 @@ public class RailGun {
 
 	private String killStreak() {
 		switch(this.owner.killstreak) {
-			case 5: return (this.owner.player.getDisplayName()+"§r§b§ois on a Killing Spree!");
-			case 10: return (this.owner.player.getDisplayName()+"§r§b§ois on a Rampage!");
-			case 15: return (this.owner.player.getDisplayName()+"§r§b§ois Dominating!");
-			case 20: return (this.owner.player.getDisplayName()+"§r§b§ois Unstoppable!");
-			case 25: return (this.owner.player.getDisplayName()+"§r§b§ois Godlike!");
-			case 30: return (this.owner.player.getDisplayName()+"§r§b§obroke the game!");
-			case 35: return (this.owner.player.getDisplayName()+"§r§b§ofixed the game!");
-			case 40: return (this.owner.player.getDisplayName()+"§r§b§oentered a new dimension!");
-			case 50: return (this.owner.player.getDisplayName()+"§r§b§owent into oblivion!");
-			case 60: return (this.owner.player.getDisplayName()+"§r§b§oreached infinite and beyond!");
-			case 70: return (this.owner.player.getDisplayName()+"§r§b§ofound the meaning of life!");
-			case 75: return (this.owner.player.getDisplayName()+"§r§b§ocame back to Earth!");
-			case 80: return (this.owner.player.getDisplayName()+"§r§b§obecame the first Quakecraft prophet!");
-			case 85: return (this.owner.player.getDisplayName()+"§r§b§ocreated an army of Quake players!");
-			case 90: return (this.owner.player.getDisplayName()+"§r§b§ois now a Quake emperor!");
-			case 100: return (this.owner.player.getDisplayName()+"§r§b§o, you sure have a lot of friends.");
+			case 5: return (this.owner.player.getDisplayName()+" §r§b§ois on a Killing Spree!");
+			case 10: return (this.owner.player.getDisplayName()+" §r§b§ois on a Rampage!");
+			case 15: return (this.owner.player.getDisplayName()+" §r§b§ois Dominating!");
+			case 20: return (this.owner.player.getDisplayName()+" §r§b§ois Unstoppable!");
+			case 25: return (this.owner.player.getDisplayName()+" §r§b§ois Godlike!");
+			case 30: return (this.owner.player.getDisplayName()+" §r§b§obroke the game!");
+			case 35: return (this.owner.player.getDisplayName()+" §r§b§ofixed the game!");
+			case 40: return (this.owner.player.getDisplayName()+" §r§b§oentered a new dimension!");
+			case 50: return (this.owner.player.getDisplayName()+" §r§b§owent into oblivion!");
+			case 60: return (this.owner.player.getDisplayName()+" §r§b§oreached infinite and beyond!");
+			case 70: return (this.owner.player.getDisplayName()+" §r§b§ofound the meaning of life!");
+			case 75: return (this.owner.player.getDisplayName()+" §r§b§ocame back to Earth!");
+			case 80: return (this.owner.player.getDisplayName()+" §r§b§obecame the first Quakecraft prophet!");
+			case 85: return (this.owner.player.getDisplayName()+" §r§b§ocreated an army of Quake players!");
+			case 90: return (this.owner.player.getDisplayName()+" §r§b§ois now a Quake emperor!");
+			case 100: return (this.owner.player.getDisplayName()+" §r§b§o, you sure have a lot of friends.");
 			case 101: return ("§r§b§oNice party you have there, §r"+this.owner.player.getDisplayName()+"§r§b§o.");
 			default: return ("none");
 		}
