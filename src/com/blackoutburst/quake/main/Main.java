@@ -44,7 +44,8 @@ public class Main extends JavaPlugin implements Listener {
 		new Core().gameTimer();
 		new File("./plugins/Quake/player data/").mkdirs();
 		SkullLoader.load();
-		
+		Utils.spawnParticlesScheduler();
+
 		gameWorld = Bukkit.getWorld("world");
 		spawn = new Location(Bukkit.getWorld("world"), 8.5f, 5.0f, 8.5f, 0, 0);
 	}
