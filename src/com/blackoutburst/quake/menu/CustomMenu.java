@@ -28,7 +28,7 @@ public class CustomMenu {
 		lore.add("§6Open the gun customisation menu");
 		menuMeta.setLore(lore);
 		menu.setItemMeta(menuMeta);
-		p.getInventory().setItem(0, menu);
+		p.getInventory().setItem(8, menu);
 	}
 	
 	private static Material getSoundIcon(GunProfile gp) {
