@@ -6,12 +6,14 @@ import com.blackoutburst.quake.menu.*;
 import net.minecraft.server.v1_8_R3.EnumParticle;
 import org.bukkit.*;
 import org.bukkit.FireworkEffect.Type;
+import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -36,7 +38,25 @@ public class Main extends JavaPlugin implements Listener {
 	public static World gameWorld;
 	
 	public static Location spawn;
-	
+
+
+	public void onBlockBreak(BlockBreakEvent event) {
+		Player p = event.getPlayer();
+		Block b = event.getBlock();
+
+		if (Utils.isWand(p.getInventory())) {
+			event.setCancelled(true);
+			if (Utils.isSpawn(b.getLocation())) {
+				Location s = Utils.getSpawn(b.getLocation());
+				s.setYaw(s.getYaw() + 45);
+				if (s.getYaw() >= 360)
+					s.setYaw(0);
+				Utils.saveSpawns(p.getWorld().getName());
+				p.sendMessage("§6Spawn rotation set to §b"+s.getYaw()+"°");
+			}
+		}
+	}
+
 	@Override
 	public void onEnable() {
 		getServer().getPluginManager().registerEvents(this, this);
@@ -187,6 +207,28 @@ public class Main extends JavaPlugin implements Listener {
 	
 	@EventHandler
 	public void onPlayerInteract(PlayerInteractEvent event) {
+		if (Utils.isWand(event.getPlayer().getInventory()) && event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+			Player p = event.getPlayer();
+			Block b = event.getClickedBlock();
+			if (b == null) return;
+
+			if (!Utils.isSpawn(b.getLocation())) {
+				Location s = b.getLocation().clone();
+				Main.respawns.add(s);
+				Utils.saveSpawns(p.getWorld().getName());
+				Utils.spawnParticleCubeCustom(b, p, EnumParticle.VILLAGER_ANGRY);
+				p.sendMessage("§aBlock "+b.getType()+" is now a spawn");
+			} else {
+				Location s = Utils.getSpawn(b.getLocation());
+				Main.respawns.remove(s);
+				Utils.saveSpawns(p.getWorld().getName());
+				Utils.spawnParticleCubeCustom(b, p, EnumParticle.FLAME);
+				p.sendMessage("§cBlock "+b.getType()+" is no longer a spawn");
+			}
+			event.setCancelled(true);
+		}
+
+
 		QuakePlayer qp = QuakePlayer.getFromPlayer(event.getPlayer());
 		if (qp == null) return;
 		

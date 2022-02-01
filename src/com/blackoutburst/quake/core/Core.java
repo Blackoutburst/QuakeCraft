@@ -1,10 +1,7 @@
 package com.blackoutburst.quake.core;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Set;
-
+import com.blackoutburst.quake.main.Main;
+import com.blackoutburst.quake.menu.CustomMenu;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -20,8 +17,10 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.NameTagVisibility;
 
-import com.blackoutburst.quake.main.Main;
-import com.blackoutburst.quake.menu.CustomMenu;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Set;
 
 public class Core {
 
@@ -145,7 +144,9 @@ public class Core {
             double x = config.getDouble("loc."+i+".x") + 0.5f;
             double y = config.getDouble("loc."+i+".y") + 0.5f;
             double z = config.getDouble("loc."+i+".z") + 0.5f;
-			Main.respawns.add(new Location(Bukkit.getWorld(world), x, y, z, 0, 0));
+			double yaw = config.getDouble("loc."+i+".yaw", 0);
+			double pitch = config.getDouble("loc."+i+".pitch", 0);
+			Main.respawns.add(new Location(Bukkit.getWorld(world), x, y, z, (float) yaw, (float) pitch));
 		}
 	}
 	
