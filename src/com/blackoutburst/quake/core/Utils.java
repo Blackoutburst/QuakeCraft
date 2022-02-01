@@ -37,7 +37,10 @@ public class Utils {
 	}
 
 	public static void saveSpawns(String worldName) {
-		YamlConfiguration file = YamlConfiguration.loadConfiguration(new File("plugins/Quake/"+worldName+".yml"));
+		File f = new File("plugins/Quake/"+worldName+".yml");
+		if (f.exists()) f.delete();
+
+		YamlConfiguration file = YamlConfiguration.loadConfiguration(f);
 
 		for (int i = 0; i < Main.respawns.size(); i++) {
 			file.set("loc."+i+".world", worldName);
@@ -56,9 +59,9 @@ public class Utils {
 
 	public static boolean isSpawn(Location loc) {
 		for (Location s : Main.respawns) {
-			if (s.getX() == loc.getX() &&
-					s.getY() == loc.getY() &&
-					s.getZ() == loc.getZ()) {
+			if (s.getBlockX() == loc.getBlockX() &&
+					s.getBlockY() == loc.getBlockY() &&
+					s.getBlockZ() == loc.getBlockZ()) {
 				return (true);
 			}
 		}
@@ -67,9 +70,9 @@ public class Utils {
 
 	public static Location getSpawn(Location loc) {
 		for (Location s : Main.respawns) {
-			if (s.getX() == loc.getX() &&
-					s.getY() == loc.getY() &&
-					s.getZ() == loc.getZ()) {
+			if (s.getBlockX() == loc.getBlockX() &&
+					s.getBlockY() == loc.getBlockY() &&
+					s.getBlockZ() == loc.getBlockZ()) {
 				return (s);
 			}
 		}

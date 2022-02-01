@@ -39,7 +39,7 @@ public class Main extends JavaPlugin implements Listener {
 	
 	public static Location spawn;
 
-
+	@EventHandler
 	public void onBlockBreak(BlockBreakEvent event) {
 		Player p = event.getPlayer();
 		Block b = event.getBlock();
@@ -214,16 +214,20 @@ public class Main extends JavaPlugin implements Listener {
 
 			if (!Utils.isSpawn(b.getLocation())) {
 				Location s = b.getLocation().clone();
+				s.setX(s.getX()+0.5f);
+				s.setY(s.getY()+0.5f);
+				s.setZ(s.getZ()+0.5f);
+
 				Main.respawns.add(s);
 				Utils.saveSpawns(p.getWorld().getName());
-				Utils.spawnParticleCubeCustom(b, p, EnumParticle.VILLAGER_ANGRY);
-				p.sendMessage("§aBlock "+b.getType()+" is now a spawn");
+				Utils.spawnParticleCubeCustom(b, p, EnumParticle.VILLAGER_HAPPY);
+				p.sendMessage("§aNew spawn created at location §b("+b.getX()+", "+b.getY()+", "+b.getZ()+")");
 			} else {
 				Location s = Utils.getSpawn(b.getLocation());
 				Main.respawns.remove(s);
 				Utils.saveSpawns(p.getWorld().getName());
 				Utils.spawnParticleCubeCustom(b, p, EnumParticle.FLAME);
-				p.sendMessage("§cBlock "+b.getType()+" is no longer a spawn");
+				p.sendMessage("§cSpawn removed at location §b("+b.getX()+", "+b.getY()+", "+b.getZ()+")");
 			}
 			event.setCancelled(true);
 		}
