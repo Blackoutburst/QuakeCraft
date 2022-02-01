@@ -19,7 +19,7 @@ public class CommandSpawnWand {
 
             meta.setDisplayName("§6Spawn wand");
             lore.add("§eRight click §aa block to §bcreate §aa spawn or §cdelete §aa spawn");
-            lore.add("§eLeft click §&a spawn to edit the spawn §borientation");
+            lore.add("§eLeft click §aa spawn to edit the spawn §borientation");
             meta.setLore(lore);
             stack.setItemMeta(meta);
 
