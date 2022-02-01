@@ -2,6 +2,8 @@ package com.blackoutburst.quake.core;
 
 import com.blackoutburst.quake.main.Main;
 
+import java.util.ArrayList;
+
 public class ScoreboardManager {
 
 	public static void clear(QuakePlayer p) {
@@ -28,12 +30,12 @@ public class ScoreboardManager {
   		
   		for (int i = 0; i < 9; i++) {
   			if (i < Main.players.size()) {
-	  			for (QuakePlayer qp : Main.players) {
+	  			for (QuakePlayer qp : new ArrayList<>(Main.players)) {
 	  				QuakePlayer q = Main.players.get(i);
 	  				qp.getBoard().set(11 - i, q.getPlayer().getDisplayName()+": §a"+q.getScore());
 	  			}
   			} else {
-  				for (QuakePlayer qp : Main.players) {
+  				for (QuakePlayer qp : new ArrayList<>(Main.players)) {
   					qp.getBoard().set(11 - i, "   ");
   				}
   			}
