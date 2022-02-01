@@ -7,6 +7,8 @@ import com.blackoutburst.quake.core.QuakePlayer;
 import com.blackoutburst.quake.core.ScoreboardManager;
 import com.blackoutburst.quake.main.Main;
 
+import java.util.ArrayList;
+
 
 public class CommandLeaveQueue {
 
@@ -22,7 +24,7 @@ public class CommandLeaveQueue {
 				
 				Main.players.remove(qp);
 				
-				for (QuakePlayer qps : Main.players)
+				for (QuakePlayer qps : new ArrayList<>(Main.players))
 					qps.getPlayer().sendMessage(p.getDisplayName()+" §6left the queue!");
 				
 				sender.sendMessage("§aYou left the queue !");

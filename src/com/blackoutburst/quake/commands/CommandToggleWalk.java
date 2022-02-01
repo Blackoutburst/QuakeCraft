@@ -7,6 +7,8 @@ import com.blackoutburst.quake.core.GameOption;
 import com.blackoutburst.quake.core.QuakePlayer;
 import com.blackoutburst.quake.main.Main;
 
+import java.util.ArrayList;
+
 public class CommandToggleWalk {
 
 	public void execute(CommandSender sender) {
@@ -16,7 +18,7 @@ public class CommandToggleWalk {
 	
 	public static void run(Player p) {
 		GameOption.WALK = GameOption.WALK ? false : true;
-		for (QuakePlayer qp : Main.players)
+		for (QuakePlayer qp : new ArrayList<>(Main.players))
 			qp.getPlayer().sendMessage(p.getDisplayName()+" §bhas "+(GameOption.WALK ? "§aEnabled" : "§cDisabled")+" §6Walk");
 	}
 }

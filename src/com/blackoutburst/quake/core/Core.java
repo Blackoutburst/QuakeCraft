@@ -1,6 +1,7 @@
 package com.blackoutburst.quake.core;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Set;
 
@@ -99,7 +100,7 @@ public class Core {
 		int seconds = Main.gameTime % 60;
 		String time = String.format("%d:%02d", minutes, seconds);
 
-		for (QuakePlayer qp : Main.players) {
+		for (QuakePlayer qp : new ArrayList<>(Main.players)) {
 			qp.getPlayer().sendMessage("§a==============================");
 			qp.getPlayer().sendMessage(Utils.centerText("Map: §6"+Main.players.get(0).getPlayer().getLocation().getWorld().getName()));
 			qp.getPlayer().sendMessage(Utils.centerText("Time: §e"+time));

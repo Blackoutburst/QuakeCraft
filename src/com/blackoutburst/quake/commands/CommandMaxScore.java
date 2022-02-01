@@ -7,6 +7,8 @@ import com.blackoutburst.quake.core.GameOption;
 import com.blackoutburst.quake.core.QuakePlayer;
 import com.blackoutburst.quake.main.Main;
 
+import java.util.ArrayList;
+
 public class CommandMaxScore {
 
 	public void execute(CommandSender sender, String[] args) {
@@ -26,7 +28,7 @@ public class CommandMaxScore {
 		
 		Player p = (Player) sender;
 		
-		for (QuakePlayer qp : Main.players)
+		for (QuakePlayer qp : new ArrayList<>(Main.players))
 			qp.getPlayer().sendMessage(p.getDisplayName()+" §bhas set the max score to §6"+score);
 	}
 }
