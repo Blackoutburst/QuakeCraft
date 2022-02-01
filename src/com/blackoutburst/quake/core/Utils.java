@@ -101,7 +101,7 @@ public class Utils {
 
 	public static void spawnRotationLine(Location s, Player p) {
 		final PlayerConnection connection = ((CraftPlayer) p).getHandle().playerConnection;
-		final EnumParticle part = EnumParticle.SPELL_WITCH;
+		final EnumParticle part = EnumParticle.CRIT_MAGIC;
 		final float nb = 0.1f;
 		float x = (float)s.getX();
 		float y = (float)s.getY();
@@ -110,35 +110,35 @@ public class Utils {
 		switch ((int)(s.getYaw())) {
 			case 45:
 				for (float i = 0; i < 0.5f; i += nb)
-					connection.sendPacket(new PacketPlayOutWorldParticles(part, true, x - i + 0.5f, y + 1, z + i + 0.5f, 0, 0, 0, 0, 1));
+					connection.sendPacket(new PacketPlayOutWorldParticles(part, true, x - i, y + 0.5f, z + i, 0, 0, 0, 0, 1));
 				break;
 			case 90:
 				for (float i = 0; i < 0.5f; i += nb)
-					connection.sendPacket(new PacketPlayOutWorldParticles(part, true, x - i + 0.5f, y + 1, z + 0.5f, 0, 0, 0, 0, 1));
+					connection.sendPacket(new PacketPlayOutWorldParticles(part, true, x - i, y + 0.5f, z, 0, 0, 0, 0, 1));
 				break;
 			case 135:
 				for (float i = 0; i < 0.5f; i += nb)
-					connection.sendPacket(new PacketPlayOutWorldParticles(part, true, x - i + 0.5f, y + 1, z - i + 0.5f, 0, 0, 0, 0, 1));
+					connection.sendPacket(new PacketPlayOutWorldParticles(part, true, x - i, y + 0.5f, z - i, 0, 0, 0, 0, 1));
 				break;
 			case 180:
 				for (float i = 0; i < 0.5f; i += nb)
-					connection.sendPacket(new PacketPlayOutWorldParticles(part, true, x + 0.5f, y + 1, z - i + 0.5f, 0, 0, 0, 0, 1));
+					connection.sendPacket(new PacketPlayOutWorldParticles(part, true, x, y + 0.5f, z - i, 0, 0, 0, 0, 1));
 				break;
 			case 225:
 				for (float i = 0; i < 0.5f; i += nb)
-					connection.sendPacket(new PacketPlayOutWorldParticles(part, true, x + i + 0.5f, y + 1, z - i + 0.5f, 0, 0, 0, 0, 1));
+					connection.sendPacket(new PacketPlayOutWorldParticles(part, true, x + i, y + 0.5f, z - i, 0, 0, 0, 0, 1));
 				break;
 			case 270:
 				for (float i = 0; i < 0.5f; i += nb)
-					connection.sendPacket(new PacketPlayOutWorldParticles(part, true, x + i + 0.5f, y + 1, z + 0.5f, 0, 0, 0, 0, 1));
+					connection.sendPacket(new PacketPlayOutWorldParticles(part, true, x + i, y + 0.5f, z, 0, 0, 0, 0, 1));
 				break;
 			case 315:
 				for (float i = 0; i < 0.5f; i += nb)
-					connection.sendPacket(new PacketPlayOutWorldParticles(part, true, x + i + 0.5f, y + 1, z + i + 0.5f, 0, 0, 0, 0, 1));
+					connection.sendPacket(new PacketPlayOutWorldParticles(part, true, x + i, y + 0.5f, z + i, 0, 0, 0, 0, 1));
 				break;
 			default:
 				for (float i = 0; i < 0.5f; i += nb)
-					connection.sendPacket(new PacketPlayOutWorldParticles(part, true, x + 0.5f, y + 1, z + i + 0.5f, 0, 0, 0, 0, 1));
+					connection.sendPacket(new PacketPlayOutWorldParticles(part, true, x, y + 0.5f, z + i, 0, 0, 0, 0, 1));
 				break;
 
 		}
@@ -148,7 +148,7 @@ public class Utils {
 		for (Location s : Main.respawns) {
 			if (Math.pow(s.getX() - p.getLocation().getX(), 2) +
 					Math.pow(s.getY() - p.getLocation().getY(), 2) +
-					Math.pow(s.getZ() - p.getLocation().getZ(), 2) > 100)
+					Math.pow(s.getZ() - p.getLocation().getZ(), 2) > 1000)
 				continue;
 
 			spawnParticleCubeCustom(p.getWorld().getBlockAt(s), p, EnumParticle.CRIT);
