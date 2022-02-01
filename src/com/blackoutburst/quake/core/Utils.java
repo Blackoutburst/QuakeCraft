@@ -163,7 +163,7 @@ public class Utils {
 				try {
 					for (Player p : Bukkit.getOnlinePlayers()) {
 						if (isWand(p.getInventory())) {
-
+							spawnParticleCube(p);
 						}
 					}
 				} catch(Exception ignored) {}
