@@ -1,20 +1,16 @@
 package com.blackoutburst.quake.commands;
 
-import java.io.File;
-
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.block.Block;
-import org.bukkit.command.CommandSender;
-
 import com.blackoutburst.quake.core.Core;
 import com.blackoutburst.quake.main.Main;
+import org.bukkit.command.CommandSender;
 
-public class CommandShowSpawn {
+import java.io.File;
+
+public class CommandLoadSpawn {
 
 	public void execute(CommandSender sender, String[] args) {
 		if (args.length == 0) {
-			sender.sendMessage("§cInvalid usage try §e/showspawn <worldName>");
+			sender.sendMessage("§cInvalid usage try §e/loadspawn <worldName>");
 			return;
 		}
 		
@@ -44,11 +40,6 @@ public class CommandShowSpawn {
 			return;
 		}
 		Core.loadRespawn(finalWorldName);
-		
-		for (Location l : Main.respawns) {
-            Block b = l.getWorld().getBlockAt(l);
-            b.setType(Material.SPONGE);
-        }
-		sender.sendMessage("§bAdded sponges on the §6"+Main.respawns.size()+" §bspawnpoints found in §6"+finalWorldName);
+		sender.sendMessage("§bLoaded the §6"+Main.respawns.size()+" §bspawnpoints found in §6"+finalWorldName);
 	}
 }

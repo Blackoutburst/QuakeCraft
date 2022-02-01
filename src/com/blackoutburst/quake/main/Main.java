@@ -301,6 +301,7 @@ public class Main extends JavaPlugin implements Listener {
 			case "scan": new CommandScan().execute(sender, args); break;
 			case "clean": new CommandClean().execute(sender, args); break;
 			case "showspawn": new CommandShowSpawn().execute(sender, args); break;
+			case "loadspawn": new CommandLoadSpawn().execute(sender, args); break;
 			case "triggerspeed": new CommandTriggerSpeed().execute(sender, args); break;
 			case "dashdelay": new CommandDashDelay().execute(sender, args); break;
 			case "config": new CommandConfig().execute(sender); break;
