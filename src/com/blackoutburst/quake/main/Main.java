@@ -1,18 +1,11 @@
 package com.blackoutburst.quake.main;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Color;
+import com.blackoutburst.quake.commands.*;
+import com.blackoutburst.quake.core.*;
+import com.blackoutburst.quake.menu.*;
+import net.minecraft.server.v1_8_R3.EnumParticle;
+import org.bukkit.*;
 import org.bukkit.FireworkEffect.Type;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
-import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -22,71 +15,15 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.player.PlayerToggleSneakEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-import com.blackoutburst.quake.commands.CommandBoop;
-import com.blackoutburst.quake.commands.CommandBounceCount;
-import com.blackoutburst.quake.commands.CommandClean;
-import com.blackoutburst.quake.commands.CommandConfig;
-import com.blackoutburst.quake.commands.CommandDashDelay;
-import com.blackoutburst.quake.commands.CommandDashStrength;
-import com.blackoutburst.quake.commands.CommandEnd;
-import com.blackoutburst.quake.commands.CommandGravity;
-import com.blackoutburst.quake.commands.CommandJoinQueue;
-import com.blackoutburst.quake.commands.CommandLeaveQueue;
-import com.blackoutburst.quake.commands.CommandListMap;
-import com.blackoutburst.quake.commands.CommandMaxScore;
-import com.blackoutburst.quake.commands.CommandPlay;
-import com.blackoutburst.quake.commands.CommandPlayerJump;
-import com.blackoutburst.quake.commands.CommandPlayerSlow;
-import com.blackoutburst.quake.commands.CommandPlayerSpeed;
-import com.blackoutburst.quake.commands.CommandQueue;
-import com.blackoutburst.quake.commands.CommandRayLength;
-import com.blackoutburst.quake.commands.CommandResetConfig;
-import com.blackoutburst.quake.commands.CommandScan;
-import com.blackoutburst.quake.commands.CommandShatterCount;
-import com.blackoutburst.quake.commands.CommandShatterLength;
-import com.blackoutburst.quake.commands.CommandShowConfig;
-import com.blackoutburst.quake.commands.CommandShowSpawn;
-import com.blackoutburst.quake.commands.CommandSpawn;
-import com.blackoutburst.quake.commands.CommandStart;
-import com.blackoutburst.quake.commands.CommandToggleBlindness;
-import com.blackoutburst.quake.commands.CommandToggleDash;
-import com.blackoutburst.quake.commands.CommandToggleInvisibility;
-import com.blackoutburst.quake.commands.CommandToggleJump;
-import com.blackoutburst.quake.commands.CommandToggleNametag;
-import com.blackoutburst.quake.commands.CommandToggleVerticalDash;
-import com.blackoutburst.quake.commands.CommandToggleWalk;
-import com.blackoutburst.quake.commands.CommandTriggerSpeed;
-import com.blackoutburst.quake.core.Core;
-import com.blackoutburst.quake.core.Dash;
-import com.blackoutburst.quake.core.GameOption;
-import com.blackoutburst.quake.core.GunProfile;
-import com.blackoutburst.quake.core.QuakePlayer;
-import com.blackoutburst.quake.core.RailGun;
-import com.blackoutburst.quake.core.ScoreboardManager;
-import com.blackoutburst.quake.core.SkullLoader;
-import com.blackoutburst.quake.menu.BeamMenu;
-import com.blackoutburst.quake.menu.ColorMenu;
-import com.blackoutburst.quake.menu.ConfigMenu;
-import com.blackoutburst.quake.menu.CustomMenu;
-import com.blackoutburst.quake.menu.GunMenu;
-import com.blackoutburst.quake.menu.MapMenu;
-import com.blackoutburst.quake.menu.NameColorMenu;
-import com.blackoutburst.quake.menu.ShapeMenu;
-import com.blackoutburst.quake.menu.SoundsMenu;
-
-import net.minecraft.server.v1_8_R3.EnumParticle;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Main extends JavaPlugin implements Listener {
@@ -384,6 +321,7 @@ public class Main extends JavaPlugin implements Listener {
 			case "leavequeue": new CommandLeaveQueue().execute(sender); break;
 			case "queue": new CommandQueue().execute(sender); break;
 			case "gravity": new CommandGravity().execute(sender, args); break;
+			case "spawnwand": new CommandSpawnWand().execute(sender); break;
 			default: return true;
 		}
 		return true;

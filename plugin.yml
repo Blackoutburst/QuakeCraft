@@ -115,6 +115,10 @@ commands:
     permission: quake.debug
     description: Clean spawn point
     usage: /clean
+  spawnWand:
+    permission: quake.debug
+    description: Give you the spawnwand
+    usage: /spawnwand
   showSpawn:
     permission: quake.debug
     description: Clean spawn point
