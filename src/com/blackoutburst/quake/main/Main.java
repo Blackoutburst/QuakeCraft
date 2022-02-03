@@ -218,6 +218,20 @@ public class Main extends JavaPlugin implements Listener {
 				s.setY(s.getY()+0.5f);
 				s.setZ(s.getZ()+0.5f);
 
+				if (Main.respawns.size() > 0 && !Main.respawns.get(0).getWorld().getName().equals(p.getWorld().getName())) {
+					Main.respawns.clear();
+					if (new File("./plugins/Quake/"+p.getWorld().getName()+".yml").exists()) {
+						p.sendMessage("§aAutomatically loaded the spawn of §e"+p.getWorld().getName());
+						Core.loadRespawn(p.getWorld().getName());
+					} else {
+						p.sendMessage("§aThe world §e"+p.getWorld().getName()+" §adoesn't seems to have a spawn configuration file, a new one has been made");
+					}
+				}
+				if (!new File("./plugins/Quake/"+p.getWorld().getName()+".yml").exists()) {
+					p.sendMessage("§aThe world §e"+p.getWorld().getName()+" §adoesn't seems to have a spawn configuration file, a new one has been made");
+				}
+
+
 				Main.respawns.add(s);
 				Utils.saveSpawns(p.getWorld().getName());
 				Utils.spawnParticleCubeCustom(b, p, EnumParticle.VILLAGER_HAPPY);
