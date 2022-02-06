@@ -32,7 +32,8 @@ public class RailGun {
 	protected QuakePlayer owner;
 	protected boolean shatter;
 	protected int length;
-	
+	protected byte kill;
+
 	private byte trailColor = 0;
 	private byte circle = 0;
 	private byte head = 0;
@@ -46,6 +47,7 @@ public class RailGun {
 		this.owner = owner;
 		this.length = length;
 		this.shatter = shatter;
+		this.kill = 0;
 	}
 	
 	public boolean insideBlock(Location loc) {
@@ -160,6 +162,10 @@ public class RailGun {
 				connection.sendPacket(new PacketPlayOutEntityDestroy(id));
 		}
 		headsID.clear();
+
+		for (final QuakePlayer qp : Main.players)
+			if (kill > 1)
+				qp.player.sendMessage(multiKill());
 	}
 	
 	public void getNearbyPlayer() {
@@ -204,6 +210,7 @@ public class RailGun {
 						quakePlayer.killstreak = 0;
 					}
 
+					this.kill++;
 					this.detonate(this.owner);
 				}
 			} else if (e instanceof LivingEntity && ((LivingEntity) e).getHealth() > 0 && dist) {
@@ -211,6 +218,20 @@ public class RailGun {
 					qp.player.sendMessage(this.owner.player.getDisplayName()+" §egibbed a§r "+e.getName()+" ??");
 				((LivingEntity) e).setHealth(0);
 			}
+		}
+	}
+
+	private String multiKill() {
+		switch(this.kill) {
+			case 2: return ("&c&l&oDouble-kill!");
+			case 3: return ("&c&l&oTriple-kill!");
+			case 4: return ("&c&l&oQuadruple-kill!");
+			case 5: return ("&c&l&oPenta-kill!");
+			case 6: return ("&c&l&oSextuple-kill!");
+			case 7: return ("&c&l&oMonster-kill!");
+			case 8: return ("&c&l&oMonster-kill!");
+			case 9: return ("&c&l&oMonster-kill!");
+			default: return ("&c&l&oWtf-bro!");
 		}
 	}
 
