@@ -15,6 +15,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 import java.awt.Color;
@@ -154,18 +155,22 @@ public class RailGun {
 				break;
 			}
 		}
-		
-		for (final QuakePlayer qp : Main.players) {
-			final PlayerConnection connection = ((CraftPlayer) qp.player).getHandle().playerConnection;
-
-			for (final int id : headsID)
-				connection.sendPacket(new PacketPlayOutEntityDestroy(id));
-		}
-		headsID.clear();
 
 		for (final QuakePlayer qp : Main.players)
 			if (kill > 1)
 				qp.player.sendMessage(multiKill());
+
+		new BukkitRunnable() {
+			public void run() {
+				for (final QuakePlayer qp : Main.players) {
+					final PlayerConnection connection = ((CraftPlayer) qp.player).getHandle().playerConnection;
+
+					for (final int id : headsID)
+						connection.sendPacket(new PacketPlayOutEntityDestroy(id));
+				}
+				headsID.clear();
+			}
+		}.runTaskLaterAsynchronously(Main.getPlugin(Main.class), 5L);
 	}
 	
 	public void getNearbyPlayer() {
