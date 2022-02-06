@@ -35,6 +35,7 @@ public class Core {
 	
 	public static void startGame(String worldName) {
 		Main.gameWorld = Bukkit.getWorld(worldName);
+		SkullLoader.loadBeam(worldName);
 		
 		
 		Main.gameRunning = true;

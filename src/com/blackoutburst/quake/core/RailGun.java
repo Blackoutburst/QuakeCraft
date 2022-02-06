@@ -333,15 +333,11 @@ public class RailGun {
 					connection.sendPacket(new PacketPlayOutWorldParticles(EnumParticle.REDSTONE, true, xloc, yloc, zloc, 1.0f, 0.5f, 0, 1, 0));
 					head++;
 					if (head > 2) {
-						final World world = ((CraftWorld) p.getWorld()).getHandle();
-						final EntityItem item = new EntityItem(world);
+						SkullLoader.hanndItem.setLocation(xloc, yloc, zloc, 0, 0);
 
-				        item.setItemStack(SkullLoader.hanndNMS);
-				        item.setLocation(xloc, yloc, zloc, 0, 0);
-
-				        connection.sendPacket(new PacketPlayOutSpawnEntity(item, 2, 100));
-				        connection.sendPacket(new PacketPlayOutEntityMetadata(item.getId(), item.getDataWatcher(), true));
-				        headsID.add(item.getId());
+				        connection.sendPacket(new PacketPlayOutSpawnEntity(SkullLoader.hanndItem, 2, 100));
+				        connection.sendPacket(new PacketPlayOutEntityMetadata(SkullLoader.hanndItemID, SkullLoader.hanndItemWatcher, true));
+				        headsID.add(SkullLoader.hanndItemID);
 						head = 0;
 					}
 				break;
