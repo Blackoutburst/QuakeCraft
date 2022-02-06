@@ -305,10 +305,18 @@ public class Main extends JavaPlugin implements Listener {
 				ConfigMenu.getValue(event.getSlot(), (Player) event.getWhoClicked(), event.getClickedInventory());
 				event.setCancelled(true);
 			break;
-			case "Map Selector": 
-				if (event.getCurrentItem() != null) {
+			case "Map Selector (1/2)": case "Map Selector (2/2)":
+				if (event.getCurrentItem() != null && !event.getCurrentItem().getType().equals(Material.ARROW)) {
 					MapMenu.getValue(event.getCurrentItem().getItemMeta().getDisplayName());
 					event.setCancelled(true);
+				} else if (event.getCurrentItem() != null && event.getCurrentItem().getType().equals(Material.ARROW)) {
+					if (event.getSlot() == 53) {
+						MapMenu.open2((Player) event.getWhoClicked());
+						event.setCancelled(true);
+					} else if (event.getSlot() == 45) {
+						MapMenu.open((Player) event.getWhoClicked());
+						event.setCancelled(true);
+					}
 				}
 			break;
 			case "Beam Menu": 
