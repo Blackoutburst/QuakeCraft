@@ -28,7 +28,7 @@ public class CommandMaxScore {
 		
 		Player p = (Player) sender;
 		
-		for (QuakePlayer qp : new ArrayList<>(Main.players))
+		for (QuakePlayer qp : Main.players)
 			qp.getPlayer().sendMessage(p.getDisplayName()+" §bhas set the max score to §6"+score);
 	}
 }

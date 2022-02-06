@@ -18,7 +18,7 @@ public class CommandToggleBlindness {
 	
 	public static void run(Player p) {
 		GameOption.BLINDNESS = !GameOption.BLINDNESS;
-		for (QuakePlayer qp : new ArrayList<>(Main.players))
+		for (QuakePlayer qp : Main.players)
 			qp.getPlayer().sendMessage(p.getDisplayName()+" §bhas "+(GameOption.BLINDNESS ? "§aEnabled" : "§cDisabled")+" §6Blindness");
 	}
 }

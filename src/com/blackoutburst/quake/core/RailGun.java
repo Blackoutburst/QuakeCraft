@@ -15,7 +15,6 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 import java.awt.Color;
@@ -154,18 +153,13 @@ public class RailGun {
 			}
 		}
 		
-		new BukkitRunnable() {
-			public void run() {
-				for (final QuakePlayer qp : new ArrayList<>(Main.players)) {
-					final PlayerConnection connection = ((CraftPlayer) qp.player).getHandle().playerConnection;
-					
-					for (final int id : headsID)
-						connection.sendPacket(new PacketPlayOutEntityDestroy(id));
-				}
-				headsID.clear();
-				this.cancel();
-			}
-		}.runTaskLaterAsynchronously(Main.getPlugin(Main.class), 5L);
+		for (final QuakePlayer qp : Main.players) {
+			final PlayerConnection connection = ((CraftPlayer) qp.player).getHandle().playerConnection;
+
+			for (final int id : headsID)
+				connection.sendPacket(new PacketPlayOutEntityDestroy(id));
+		}
+		headsID.clear();
 	}
 	
 	public void getNearbyPlayer() {
@@ -194,7 +188,7 @@ public class RailGun {
 
 					final String headshot = location.getY() - e.getLocation().getY() > 0.9f ? "§e§lHEADSHOT" : "";
 					final String killStreak = killStreak();
-					for (final QuakePlayer qp : new ArrayList<>(Main.players)) {
+					for (final QuakePlayer qp : Main.players) {
 						qp.player.sendMessage(this.owner.player.getDisplayName()+" §7gibbed§r "+((Player)e).getDisplayName()+" "+headshot);
 						if (!killStreak.equals("none")) {
 							qp.player.sendMessage(killStreak);
@@ -213,7 +207,7 @@ public class RailGun {
 					this.detonate(this.owner);
 				}
 			} else if (e instanceof LivingEntity && ((LivingEntity) e).getHealth() > 0 && dist) {
-				for (final QuakePlayer qp : new ArrayList<>(Main.players))
+				for (final QuakePlayer qp : Main.players)
 					qp.player.sendMessage(this.owner.player.getDisplayName()+" §egibbed a§r "+e.getName()+" ??");
 				((LivingEntity) e).setHealth(0);
 			}
@@ -313,7 +307,7 @@ public class RailGun {
 		final float yloc = (float) this.location.getY();
 		final float zloc = (float) this.location.getZ();
 
-		for (final QuakePlayer qp : new ArrayList<>(Main.players)) {
+		for (final QuakePlayer qp : Main.players) {
 			final Player p = qp.player;
 			final PlayerConnection connection = ((CraftPlayer) qp.player).getHandle().playerConnection;
 
@@ -377,7 +371,7 @@ public class RailGun {
 		final EntityFireworks firework = new EntityFireworks(world, xloc, yloc, zloc, CraftItemStack.asNMSCopy(stackFirework));
 		firework.expectedLifespan = 0;
 
-		for (final QuakePlayer qp : new ArrayList<>(Main.players)) {
+		for (final QuakePlayer qp : Main.players) {
 			final PlayerConnection connection = ((CraftPlayer) qp.player).getHandle().playerConnection;
 
 			connection.sendPacket(new PacketPlayOutSpawnEntity(firework, 76));

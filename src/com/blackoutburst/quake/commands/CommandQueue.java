@@ -28,7 +28,7 @@ public class CommandQueue {
 				QuakePlayer qp = new QuakePlayer(p, gunProfile);
 				ScoreboardManager.init(qp);
 				
-				for (QuakePlayer qps : new ArrayList<>(Main.players))
+				for (QuakePlayer qps : Main.players)
 					qps.getPlayer().sendMessage(p.getDisplayName()+" §6joined the queue!");
 				
 				
@@ -45,7 +45,7 @@ public class CommandQueue {
 				
 				Main.players.remove(qp);
 				
-				for (QuakePlayer qps : new ArrayList<>(Main.players))
+				for (QuakePlayer qps : Main.players)
 					qps.getPlayer().sendMessage(p.getDisplayName()+" §6left the queue!");
 				
 				sender.sendMessage("§aYou left the queue !");

@@ -28,7 +28,7 @@ public class CommandShatterLength {
 		
 		Player p = (Player) sender;
 		
-		for (QuakePlayer qp : new ArrayList<>(Main.players))
+		for (QuakePlayer qp : Main.players)
 			qp.getPlayer().sendMessage(p.getDisplayName()+" §bhas set the shatter length to §6"+value);
 	}
 }

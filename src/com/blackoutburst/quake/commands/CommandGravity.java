@@ -28,7 +28,7 @@ public class CommandGravity {
 		
 		Player p = (Player) sender;
 		
-		for (QuakePlayer qp : new ArrayList<>(Main.players))
+		for (QuakePlayer qp : Main.players)
 			qp.getPlayer().sendMessage(p.getDisplayName()+" §bhas set the gravity strength to §6"+score);
 	}
 }

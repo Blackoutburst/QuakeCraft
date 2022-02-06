@@ -18,7 +18,7 @@ public class CommandToggleWalk {
 	
 	public static void run(Player p) {
 		GameOption.WALK = GameOption.WALK ? false : true;
-		for (QuakePlayer qp : new ArrayList<>(Main.players))
+		for (QuakePlayer qp : Main.players)
 			qp.getPlayer().sendMessage(p.getDisplayName()+" §bhas "+(GameOption.WALK ? "§aEnabled" : "§cDisabled")+" §6Walk");
 	}
 }

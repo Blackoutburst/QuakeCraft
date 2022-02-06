@@ -30,12 +30,12 @@ public class ScoreboardManager {
   		
   		for (int i = 0; i < 9; i++) {
   			if (i < Main.players.size()) {
-	  			for (QuakePlayer qp : new ArrayList<>(Main.players)) {
+	  			for (QuakePlayer qp : Main.players) {
 	  				QuakePlayer q = Main.players.get(i);
 	  				qp.getBoard().set(11 - i, q.getPlayer().getDisplayName()+": §a"+q.getScore());
 	  			}
   			} else {
-  				for (QuakePlayer qp : new ArrayList<>(Main.players)) {
+  				for (QuakePlayer qp : Main.players) {
   					qp.getBoard().set(11 - i, "   ");
   				}
   			}

@@ -28,7 +28,7 @@ public class CommandDashDelay {
 		
 		Player p = (Player) sender;
 		
-		for (QuakePlayer qp : new ArrayList<>(Main.players))
+		for (QuakePlayer qp : Main.players)
 			qp.getPlayer().sendMessage(p.getDisplayName()+" §bhas set the dash delay to §6"+delay+"s");
 	}
 }

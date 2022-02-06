@@ -18,7 +18,7 @@ public class CommandToggleVerticalDash {
 	
 	public static void run(Player p) {
 		GameOption.VERTICAL_DASH = GameOption.VERTICAL_DASH ? false : true;
-		for (QuakePlayer qp : new ArrayList<>(Main.players))
+		for (QuakePlayer qp : Main.players)
 			qp.getPlayer().sendMessage(p.getDisplayName()+" §bhas "+(GameOption.VERTICAL_DASH ? "§aEnabled" : "§cDisabled")+" §6Vertical Dash");
 	}
 }

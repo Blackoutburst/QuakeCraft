@@ -28,7 +28,7 @@ public class CommandJoinQueue {
 				QuakePlayer qp = new QuakePlayer(p, gunProfile);
 				ScoreboardManager.init(qp);
 				
-				for (QuakePlayer qps : new ArrayList<>(Main.players))
+				for (QuakePlayer qps : Main.players)
 					qps.getPlayer().sendMessage(p.getDisplayName()+" §6joined the queue!");
 				
 				
