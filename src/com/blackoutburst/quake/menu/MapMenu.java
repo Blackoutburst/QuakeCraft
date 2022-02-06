@@ -47,7 +47,7 @@ public class MapMenu {
 		setSkullItem(inv,"§bFlat", "Hannd", 24);
 		setItem(inv, Material.WOOD, (byte) 3, "§6Forgotten", 25);
 		setItem(inv, Material.ICE, (byte) 0, "§bFrostmonic", 26);
-		setItem(inv, Material.SNOW, (byte) 0, "§6Fryst", 27);
+		setItem(inv, Material.SNOW_BLOCK, (byte) 0, "§6Fryst", 27);
 		setItem(inv, Material.LOG, (byte) 3, "§bHaikyo", 28);
 		setItem(inv, Material.NETHER_BRICK, (byte) 0, "§bHot War", 29);
 		setItem(inv, Material.LOG, (byte) 0, "§6HustWood", 30);
@@ -59,7 +59,7 @@ public class MapMenu {
 		setItem(inv, Material.COBBLESTONE, (byte) 0, "§6Lost World", 36);
 		setItem(inv, Material.WATER_LILY, (byte) 0, "§bLotus", 37);
 		setItem(inv, Material.GOLD_BLOCK, (byte) 0, "§bLunar Lost World", 38);
-		setItem(inv, Material.DARK_OAK_DOOR, (byte) 0, "§bMansion", 39);
+		setItem(inv, Material.DARK_OAK_DOOR_ITEM, (byte) 0, "§bMansion", 39);
 		setItem(inv, Material.STAINED_GLASS, (byte) 5, "§6Martian", 40);
 		setItem(inv, Material.STAINED_GLASS, (byte) 5, "§bMartian Flipped", 41);
 		setItem(inv, Material.WOOL, (byte) 14, "§bMega Apex", 42);
@@ -93,7 +93,7 @@ public class MapMenu {
 		setItem(inv, Material.SMOOTH_BRICK, (byte) 3, "§6Sero", 11);
 		setItem(inv, Material.SMOOTH_BRICK, (byte) 3, "§bSeroII", 12);
 		setItem(inv, Material.QUARTZ_BLOCK, (byte) 2, "§bSilo", 13);
-		setItem(inv, Material.SNOW, (byte) 0, "§bSnowglobe", 14);
+		setItem(inv, Material.SNOW_BLOCK, (byte) 0, "§bSnowglobe", 14);
 		setItem(inv, Material.PRISMARINE, (byte) 2, "§6Sunken", 15);
 		setItem(inv, Material.BRICK, (byte) 0, "§6Town", 16);
 		setItem(inv, Material.STEP, (byte) 4, "§bTown Edit", 17);
