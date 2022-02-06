@@ -59,7 +59,7 @@ public class Core {
 				gunMeta.addEnchant(Enchantment.ARROW_DAMAGE, 10, true);
 			}
 			gun.setItemMeta(gunMeta);
-			
+			p.getPlayer().getInventory().clear();
 			p.getPlayer().getInventory().setItem(0, gun);
 			
 			
