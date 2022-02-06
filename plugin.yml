@@ -1,9 +1,9 @@
 main: com.blackoutburst.quake.main.Main
-name: QuakeTest
-version: 0.1
+name: QuakeCraft
+version: 1.4
 api-version: 1.13
 author: Blackoutburst
-description: A quake test
+description: A Quake plugin with many extra features
 commands:
   lobby:
     description: Teleport you to spawn
