@@ -1,13 +1,10 @@
 package com.blackoutburst.quake.commands;
 
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-
 import com.blackoutburst.quake.core.GameOption;
 import com.blackoutburst.quake.core.QuakePlayer;
 import com.blackoutburst.quake.main.Main;
-
-import java.util.ArrayList;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class CommandToggleInvisibility {
 
@@ -17,7 +14,7 @@ public class CommandToggleInvisibility {
 	}
 	
 	public static void run(Player p) {
-		GameOption.INVISIBILITY = GameOption.INVISIBILITY ? false : true;
+		GameOption.INVISIBILITY = !GameOption.INVISIBILITY;
 		for (QuakePlayer qp : Main.players)
 			qp.getPlayer().sendMessage(p.getDisplayName()+" §bhas "+(GameOption.INVISIBILITY ? "§aEnabled" : "§cDisabled")+" §6Invisibility");
 	}

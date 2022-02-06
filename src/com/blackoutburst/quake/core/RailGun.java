@@ -228,9 +228,7 @@ public class RailGun {
 			case 4: return ("&c&l&oQuadruple-kill!");
 			case 5: return ("&c&l&oPenta-kill!");
 			case 6: return ("&c&l&oSextuple-kill!");
-			case 7: return ("&c&l&oMonster-kill!");
-			case 8: return ("&c&l&oMonster-kill!");
-			case 9: return ("&c&l&oMonster-kill!");
+			case 7: case 8: case 9: return ("&c&l&oMonster-kill!");
 			default: return ("&c&l&oWtf-bro!");
 		}
 	}

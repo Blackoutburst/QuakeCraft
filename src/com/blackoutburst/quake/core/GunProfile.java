@@ -83,10 +83,6 @@ public class GunProfile {
 		return (this);
 	}
 
-	public float getPitch() {
-		return pitch;
-	}
-
 	public void setPitch(float pitch) {
 		this.pitch = pitch;
 	}

@@ -2,8 +2,6 @@ package com.blackoutburst.quake.core;
 
 import com.blackoutburst.quake.main.Main;
 
-import java.util.ArrayList;
-
 public class ScoreboardManager {
 
 	public static void clear(QuakePlayer p) {

@@ -1,10 +1,5 @@
 package com.blackoutburst.quake.commands;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -13,17 +8,15 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class CommandScan {
 	
-	private List<Location> spawnpoints = new ArrayList<>();
+	private final List<Location> spawnpoints = new ArrayList<>();
 	
-	 /**
-     * Save every spawn location inside a file
-     * @param pos index in the yaml file
-     * @param x position x in world
-     * @param y position y in world
-     * @param z position z in world
-     */
     private void saveLocation(String worldName) {
         YamlConfiguration file = YamlConfiguration.loadConfiguration(new File("plugins/Quake/"+worldName+".yml"));
 

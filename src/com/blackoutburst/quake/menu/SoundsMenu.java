@@ -1,17 +1,18 @@
 package com.blackoutburst.quake.menu;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.blackoutburst.quake.core.QuakePlayer;
+import com.blackoutburst.quake.main.Main;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
 
-import com.blackoutburst.quake.core.QuakePlayer;
-import com.blackoutburst.quake.main.Main;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SoundsMenu {
 	
@@ -33,13 +34,28 @@ public class SoundsMenu {
 		setItem(inv, 31, "§aWither", Material.ENDER_PORTAL_FRAME);
 		setItem(inv, 32, "§aLevel Up", Material.EXP_BOTTLE);
 		setItem(inv, 33, "§aZombie Destroy", Material.ROTTEN_FLESH);
-		setItem(inv, 39, "§aEnderman Teleport", Material.ENDER_STONE);
-		setItem(inv, 40, "§aSkeleton Death", Material.BONE);
-		setItem(inv, 41, "§aSplash", Material.WATER_BUCKET);
+		setItem(inv, 38, "§aEnderman Teleport", Material.ENDER_STONE);
+		setItem(inv, 39, "§aSkeleton Death", Material.BONE);
+		setItem(inv, 40, "§aSplash", Material.WATER_BUCKET);
+		setSkullItem(inv, 41, "§aDragon death", "MHF_enderdragon");
 		
 		p.openInventory(inv);
 	}
-	
+
+	private static void setSkullItem(Inventory inv, int slot, String name, String owner) {
+		ItemStack item = new ItemStack(Material.SKULL_ITEM, 1, (byte) 3);
+		SkullMeta meta = (SkullMeta) item.getItemMeta();
+		meta.addItemFlags(ItemFlag.values());
+		meta.setOwner(owner);
+		meta.setDisplayName(name);
+		List<String> lore = new ArrayList<>();
+		lore.add("§bLeft click to select");
+		lore.add("§bRight click to preview");
+		meta.setLore(lore);
+		item.setItemMeta(meta);
+		inv.setItem(slot, item);
+	}
+
 	private static void setItem(Inventory inv, int slot, String name, Material mat) {
 		ItemStack item = new ItemStack(mat, 1);
 		ItemMeta meta = item.getItemMeta();
@@ -47,6 +63,7 @@ public class SoundsMenu {
 		List<String> lore = new ArrayList<>();
 		lore.add("§bLeft click to select");
 		lore.add("§bRight click to preview");
+		lore.add("§7You asked for it");
 		meta.setLore(lore);
         item.setItemMeta(meta);
 		inv.setItem(slot, item);
@@ -72,9 +89,10 @@ public class SoundsMenu {
 			case 31: qp.getGunProfile().setSound(Sound.WITHER_IDLE).setPitch(1); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
 			case 32: qp.getGunProfile().setSound(Sound.LEVEL_UP).setPitch(1); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
 			case 33: qp.getGunProfile().setSound(Sound.ZOMBIE_WOODBREAK).setPitch(1); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
-			case 39: qp.getGunProfile().setSound(Sound.ENDERMAN_TELEPORT).setPitch(1); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
-			case 40: qp.getGunProfile().setSound(Sound.SKELETON_DEATH).setPitch(1); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
-			case 41: qp.getGunProfile().setSound(Sound.SPLASH).setPitch(1); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
+			case 38: qp.getGunProfile().setSound(Sound.ENDERMAN_TELEPORT).setPitch(1); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
+			case 39: qp.getGunProfile().setSound(Sound.SKELETON_DEATH).setPitch(1); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
+			case 40: qp.getGunProfile().setSound(Sound.SPLASH).setPitch(1); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
+			case 41: qp.getGunProfile().setSound(Sound.ENDERDRAGON_DEATH).setPitch(1); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
 			default: break;
 		}
 	}
@@ -96,9 +114,10 @@ public class SoundsMenu {
 			case 31: p.playSound(p.getLocation(), Sound.WITHER_IDLE, 1, 1); break;
 			case 32: p.playSound(p.getLocation(), Sound.LEVEL_UP, 1, 1); break;
 			case 33: p.playSound(p.getLocation(), Sound.ZOMBIE_WOODBREAK, 1, 1); break;
-			case 39: p.playSound(p.getLocation(), Sound.ENDERMAN_TELEPORT, 1, 1); break;
-			case 40: p.playSound(p.getLocation(), Sound.SKELETON_DEATH, 1, 1); break;
-			case 41: p.playSound(p.getLocation(), Sound.SPLASH, 1, 1); break;
+			case 38: p.playSound(p.getLocation(), Sound.ENDERMAN_TELEPORT, 1, 1); break;
+			case 39: p.playSound(p.getLocation(), Sound.SKELETON_DEATH, 1, 1); break;
+			case 40: p.playSound(p.getLocation(), Sound.SPLASH, 1, 1); break;
+			case 41: p.playSound(p.getLocation(), Sound.ENDERDRAGON_DEATH, 1, 1); break;
 			default: break;
 		}
 	}

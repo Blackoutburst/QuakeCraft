@@ -1,21 +1,17 @@
 package com.blackoutburst.quake.commands;
 
-import org.bukkit.ChatColor;
-import org.bukkit.Color;
-import org.bukkit.Material;
-import org.bukkit.Sound;
-import org.bukkit.FireworkEffect.Type;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-
 import com.blackoutburst.quake.core.GunProfile;
 import com.blackoutburst.quake.core.QuakePlayer;
 import com.blackoutburst.quake.core.ScoreboardManager;
 import com.blackoutburst.quake.main.Main;
-
 import net.minecraft.server.v1_8_R3.EnumParticle;
-
-import java.util.ArrayList;
+import org.bukkit.ChatColor;
+import org.bukkit.Color;
+import org.bukkit.FireworkEffect.Type;
+import org.bukkit.Material;
+import org.bukkit.Sound;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class CommandJoinQueue {
 

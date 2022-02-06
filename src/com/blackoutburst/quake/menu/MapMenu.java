@@ -1,9 +1,7 @@
 package com.blackoutburst.quake.menu;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Set;
-
+import com.blackoutburst.quake.core.Core;
+import com.blackoutburst.quake.main.Main;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -13,8 +11,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
-import com.blackoutburst.quake.core.Core;
-import com.blackoutburst.quake.main.Main;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Set;
 
 public class MapMenu {
 	
@@ -44,7 +43,7 @@ public class MapMenu {
 		setItem(inv, Material.COBBLESTONE, (byte) 0, "§6DigSite2", 20);
 		setItem(inv, Material.SANDSTONE, (byte) 1, "§6Faarah", 21);
 		setItem(inv, Material.SANDSTONE, (byte) 1, "§bFaarah Edit", 22);
-		setSkullItem(inv, Material.SKULL_ITEM, (byte) 3, "§bFlat", 23, "Hannd");
+		setSkullItem(inv,"§bFlat", 23, "Hannd");
 		setItem(inv, Material.WOOD, (byte) 3, "§6Forgotten", 24);
 		setItem(inv, Material.SNOW_BLOCK, (byte) 0, "§6Fryst", 25);
 		setItem(inv, Material.LOG, (byte) 3, "§bHaikyo", 26);
@@ -79,11 +78,11 @@ public class MapMenu {
 		p.openInventory(inv);
 	}
 	
-	private static void setSkullItem(Inventory inv, Material mat, byte data, String name, int slot, String owner) {
+	private static void setSkullItem(Inventory inv, String name, int slot, String owner) {
 		YamlConfiguration config = YamlConfiguration.loadConfiguration(new File("./plugins/Quake/"+name.substring(2)+".yml"));
 		Set<String> respawns = config.getConfigurationSection("loc").getKeys(false);
 		
-		ItemStack item = new ItemStack(mat, 1, data);
+		ItemStack item = new ItemStack(Material.SKULL_ITEM, 1, (byte) 3);
 		SkullMeta meta = (SkullMeta) item.getItemMeta();
 		meta.addItemFlags(ItemFlag.values());
 		meta.setOwner(owner);

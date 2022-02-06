@@ -19,7 +19,7 @@ public class CommandShowConfig {
 		sender.sendMessage("§6Ray length: §e"+GameOption.RAY_LENGTH);
 		sender.sendMessage("§6Shatter count: §e"+GameOption.SHATTER_COUNT);
 		sender.sendMessage("§6Shatter length: §e"+GameOption.SHATTER_LENGTH);
-		sender.sendMessage("§6Grabity: §e"+GameOption.GRAVITY);
+		sender.sendMessage("§6Gravity: §e"+GameOption.GRAVITY);
 		sender.sendMessage("");
 		sender.sendMessage("§6Blindness: "+(GameOption.BLINDNESS ? "§aYes" : "§cNo"));
 		sender.sendMessage("§6Invisibility: "+(GameOption.INVISIBILITY ? "§aYes" : "§cNo"));
