@@ -1,15 +1,10 @@
 package com.blackoutburst.quake.core;
 
-import java.awt.Color;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
-import org.bukkit.FireworkEffect;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
+import com.blackoutburst.quake.main.Main;
+import net.minecraft.server.v1_8_R3.World;
+import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.Material;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
@@ -23,18 +18,10 @@ import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-import com.blackoutburst.quake.main.Main;
-
-import net.minecraft.server.v1_8_R3.EntityFireworks;
-import net.minecraft.server.v1_8_R3.EntityItem;
-import net.minecraft.server.v1_8_R3.EnumParticle;
-import net.minecraft.server.v1_8_R3.PacketPlayOutEntityDestroy;
-import net.minecraft.server.v1_8_R3.PacketPlayOutEntityMetadata;
-import net.minecraft.server.v1_8_R3.PacketPlayOutEntityStatus;
-import net.minecraft.server.v1_8_R3.PacketPlayOutSpawnEntity;
-import net.minecraft.server.v1_8_R3.PacketPlayOutWorldParticles;
-import net.minecraft.server.v1_8_R3.PlayerConnection;
-import net.minecraft.server.v1_8_R3.World;
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 
 public class RailGun {
@@ -114,7 +101,9 @@ public class RailGun {
 				!b.getType().equals(Material.ENDER_PORTAL) &&
 				!b.getType().equals(Material.BANNER) &&
 				!b.getType().equals(Material.WALL_BANNER) &&
-				!b.getType().equals(Material.WALL_SIGN));
+				!b.getType().equals(Material.WALL_SIGN) &&
+				!b.getType().equals(Material.IRON_DOOR_BLOCK) &&
+				!b.getType().equals(Material.WOODEN_DOOR));
 	}
 	
 	public void fire(QuakePlayer p) {
