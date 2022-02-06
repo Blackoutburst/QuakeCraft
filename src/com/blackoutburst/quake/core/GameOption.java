@@ -32,7 +32,7 @@ public class GameOption {
 		JUMP_BOOST = 0;
 		SLOWNESS = 0;
 		BOUNCE_COUNT = 0;
-		RAY_LENGTH = 340;
+		RAY_LENGTH = 150;
 		SHATTER_COUNT = 0;
 		SHATTER_LENGTH = 10;
 		GRAVITY = 0;
