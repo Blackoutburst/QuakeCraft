@@ -14,10 +14,8 @@ public class SkullLoader {
 	
 	public static ItemStack hannd;
 	public static net.minecraft.server.v1_8_R3.ItemStack hanndNMS;
-	public static EntityItem hanndItem;
-	public static int hanndItemID;
-	public static net.minecraft.server.v1_8_R3.DataWatcher hanndItemWatcher;
-	
+	public static World world;
+
 	public static void load() {
 		hannd = new ItemStack(Material.SKULL_ITEM, 1, (byte) 3);
 		SkullMeta skullMeta = (SkullMeta) hannd.getItemMeta();
@@ -28,11 +26,7 @@ public class SkullLoader {
 		hanndNMS = CraftItemStack.asNMSCopy(hannd);
 	}
 
-	public static void loadBeam(String worldName) {
-		final World world = ((CraftWorld) Bukkit.getWorld(worldName)).getHandle();
-		hanndItem = new EntityItem(world);
-		hanndItem.setItemStack(SkullLoader.hanndNMS);
-		hanndItemID = hanndItem.getId();
-		hanndItemWatcher = hanndItem.getDataWatcher();
+	public static void loadBeamWorld(String worldName) {
+		world = ((CraftWorld) Bukkit.getWorld(worldName)).getHandle();
 	}
 }

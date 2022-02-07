@@ -228,13 +228,13 @@ public class RailGun {
 
 	private String multiKill() {
 		switch(this.kill) {
-			case 2: return ("&c&l&oDouble-kill!");
-			case 3: return ("&c&l&oTriple-kill!");
-			case 4: return ("&c&l&oQuadruple-kill!");
-			case 5: return ("&c&l&oPenta-kill!");
-			case 6: return ("&c&l&oSextuple-kill!");
-			case 7: case 8: case 9: return ("&c&l&oMonster-kill!");
-			default: return ("&c&l&oWtf-bro!");
+			case 2: return ("§c§l§oDouble-kill!");
+			case 3: return ("§c§l§oTriple-kill!");
+			case 4: return ("§c§l§oQuadruple-kill!");
+			case 5: return ("§c§l§oPenta-kill!");
+			case 6: return ("§c§l§oSextuple-kill!");
+			case 7: case 8: case 9: return ("§c§l§oMonster-kill!");
+			default: return ("§c§l§oWtf-bro!");
 		}
 	}
 
@@ -330,8 +330,7 @@ public class RailGun {
 		final float xloc = (float) this.location.getX();
 		final float yloc = (float) this.location.getY();
 		final float zloc = (float) this.location.getZ();
-
-		SkullLoader.hanndItem.setLocation(xloc, yloc, zloc, 0, 0);
+		final EntityItem hanndItem = new EntityItem(SkullLoader.world, xloc, yloc, zloc, SkullLoader.hanndNMS);
 
 		for (final QuakePlayer qp : Main.players) {
 			final PlayerConnection connection = ((CraftPlayer) qp.player).getHandle().playerConnection;
@@ -344,32 +343,31 @@ public class RailGun {
 					final float b = (float)(c.getBlue()) / 255.0f;
 
 					connection.sendPacket(new PacketPlayOutWorldParticles(this.owner.gunProfile.trail, true, xloc, yloc, zloc, r, g, b, 1, 0));
-				break;
+					break;
 				case BARRIER:
 					connection.sendPacket(new PacketPlayOutWorldParticles(EnumParticle.FLAME, true, xloc, yloc, zloc, 0, 0, 0, 0, 1));
-
-					circle++;
 					if (circle > 2) {
 						createCircle(connection);
-						circle = 0;
 					}
-				break;
+					break;
 				case SUSPENDED_DEPTH:
 					connection.sendPacket(new PacketPlayOutWorldParticles(EnumParticle.REDSTONE, true, xloc, yloc, zloc, 1.0f, 0.5f, 0, 1, 0));
-					head++;
 					if (head > 2) {
-				        connection.sendPacket(new PacketPlayOutSpawnEntity(SkullLoader.hanndItem, 2, 100));
-				        connection.sendPacket(new PacketPlayOutEntityMetadata(SkullLoader.hanndItemID, SkullLoader.hanndItemWatcher, true));
-				        headsID.add(SkullLoader.hanndItemID);
-						head = 0;
+						connection.sendPacket(new PacketPlayOutSpawnEntity(hanndItem, 2, 100));
+						connection.sendPacket(new PacketPlayOutEntityMetadata(hanndItem.getId(), hanndItem.getDataWatcher(), true));
+						headsID.add(hanndItem.getId());
 					}
-				break;
+					break;
 				default:
 					connection.sendPacket(new PacketPlayOutWorldParticles(this.owner.gunProfile.trail, true, xloc, yloc, zloc, 0, 0, 0, 0, 1));
-				break;
+					break;
 			}
 		}
 		trailColor++;
+		circle++;
+		head++;
+		if (circle > 2) circle = 0;
+		if (head > 2) head = 0;
 	}
 
 	public void detonate(QuakePlayer owner) {
