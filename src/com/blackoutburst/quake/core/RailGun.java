@@ -170,7 +170,7 @@ public class RailGun {
 				}
 				headsID.clear();
 			}
-		}.runTaskLaterAsynchronously(Main.getPlugin(Main.class), 5L);
+		}.runTaskLaterAsynchronously(Main.getPlugin(Main.class), 7L);
 	}
 	
 	public void getNearbyPlayer() {
@@ -330,7 +330,7 @@ public class RailGun {
 		final float xloc = (float) this.location.getX();
 		final float yloc = (float) this.location.getY();
 		final float zloc = (float) this.location.getZ();
-		final EntityItem hanndItem = new EntityItem(SkullLoader.world, xloc, yloc, zloc, SkullLoader.hanndNMS);
+		final EntityItem hanndItem = new EntityItem(SkullLoader.world, xloc, yloc-0.5f, zloc, SkullLoader.hanndNMS);
 
 		switch (this.owner.gunProfile.trail) {
 			case REDSTONE:
@@ -367,11 +367,11 @@ public class RailGun {
 					((CraftPlayer) qp.player).getHandle().playerConnection.sendPacket(new PacketPlayOutWorldParticles(this.owner.gunProfile.trail, true, xloc, yloc, zloc, 0, 0, 0, 0, 1));
 				break;
 		}
+		if (circle > 2) circle = 0;
+		if (head > 2) head = 0;
 		trailColor++;
 		circle++;
 		head++;
-		if (circle > 2) circle = 0;
-		if (head > 2) head = 0;
 	}
 
 	public void detonate(QuakePlayer owner) {
