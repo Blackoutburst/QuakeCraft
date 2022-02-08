@@ -57,6 +57,7 @@ public class Core {
 	}
 	
 	public static void startGame(String worldName) {
+		countdown();
 		new BukkitRunnable() {
 			@Override
 			public void run() {
