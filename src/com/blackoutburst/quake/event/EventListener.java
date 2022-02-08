@@ -1,5 +1,6 @@
 package com.blackoutburst.quake.event;
 
+import com.blackoutburst.quake.core.Void;
 import com.blackoutburst.quake.core.*;
 import com.blackoutburst.quake.main.Main;
 import com.blackoutburst.quake.menu.*;
@@ -39,15 +40,7 @@ public class EventListener  implements Listener {
         final Location belowPlayer = player.getLocation();
         belowPlayer.setY(belowPlayer.getY() - 1);
 
-
-        if (event.getPlayer().getLocation().getY() < -10) {
-            if (Main.gameRunning && qp != null) {
-                Core.teleportToRespawn(event.getPlayer());
-            } else {
-                event.getPlayer().teleport(Main.spawn);
-            }
-        }
-
+        Void.fallInVoid(event, qp);
         if (qp == null) return;
 
         if (qp.getJumpPadCooldown() <= 0 && world.getBlockAt(belowPlayer).getType().equals(Material.REDSTONE_BLOCK)) {
@@ -163,7 +156,6 @@ public class EventListener  implements Listener {
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
-
         switch(event.getInventory().getName()) {
             case "Gun customisation Menu":
                 CustomMenu.click(event.getSlot(), (Player) event.getWhoClicked());
