@@ -16,7 +16,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.util.Vector;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -216,5 +218,105 @@ public class Utils {
 				} catch(Exception ignored) {}
 			}
 		}.runTaskTimerAsynchronously(Main.getPlugin(Main.class), 0L, 5L);
+	}
+
+	public static String multiKill(int kill) {
+		switch(kill) {
+			case 2: return ("§c§l§oDouble-kill!");
+			case 3: return ("§c§l§oTriple-kill!");
+			case 4: return ("§c§l§oQuadruple-kill!");
+			case 5: return ("§c§l§oPenta-kill!");
+			case 6: return ("§c§l§oSextuple-kill!");
+			case 7: case 8: case 9: return ("§c§l§oMonster-kill!");
+			default: return ("§c§l§oWtf-bro!");
+		}
+	}
+
+	public static String killStreak(QuakePlayer owner) {
+		switch(owner.killstreak) {
+			case 5: return (owner.player.getDisplayName()+" §r§b§ois on a Killing Spree!");
+			case 10: return (owner.player.getDisplayName()+" §r§b§ois on a Rampage!");
+			case 15: return (owner.player.getDisplayName()+" §r§b§ois Dominating!");
+			case 20: return (owner.player.getDisplayName()+" §r§b§ois Unstoppable!");
+			case 25: return (owner.player.getDisplayName()+" §r§b§ois Godlike!");
+			case 30: return (owner.player.getDisplayName()+" §r§b§obroke the game!");
+			case 35: return (owner.player.getDisplayName()+" §r§b§ofixed the game!");
+			case 40: return (owner.player.getDisplayName()+" §r§b§oentered a new dimension!");
+			case 50: return (owner.player.getDisplayName()+" §r§b§owent into oblivion!");
+			case 60: return (owner.player.getDisplayName()+" §r§b§oreached infinite and beyond!");
+			case 70: return (owner.player.getDisplayName()+" §r§b§ofound the meaning of life!");
+			case 75: return (owner.player.getDisplayName()+" §r§b§ocame back to Earth!");
+			case 80: return (owner.player.getDisplayName()+" §r§b§obecame the first Quakecraft prophet!");
+			case 85: return (owner.player.getDisplayName()+" §r§b§ocreated an army of Quake players!");
+			case 90: return (owner.player.getDisplayName()+" §r§b§ois now a Quake emperor!");
+			case 100: return (owner.player.getDisplayName()+"§r§b§o, you sure have a lot of friends.");
+			case 101: return ("§r§b§oNice party you have there, §r"+owner.player.getDisplayName()+"§r§b§o.");
+			default: return ("none");
+		}
+	}
+
+	public static Color getColor(int trailColor) {
+		switch(trailColor) {
+			default: return new Color(255, 0, 0);
+			case 1: return new Color(255, 85, 0);
+			case 2: return new Color(255, 132, 0);
+			case 3: return new Color(255, 174, 0);
+			case 4: return new Color(255, 255, 0);
+			case 5: return new Color(174, 255, 0);
+			case 6: return new Color(132, 255, 0);
+			case 7: return new Color(85, 255, 0);
+			case 8: return new Color(0, 255, 0);
+			case 9: return new Color(0, 255, 85);
+			case 10: return new Color(0, 255, 132);
+			case 11: return new Color(0, 255, 174);
+			case 12: return new Color(0, 255, 255);
+			case 13: return new Color(0, 174, 255);
+			case 14: return new Color(0, 132, 255);
+			case 15: return new Color(0, 85, 255);
+			case 16: return new Color(0, 0, 255);
+			case 17: return new Color(85, 0, 255);
+			case 18: return new Color(132, 0, 255);
+			case 19: return new Color(174, 0, 255);
+			case 20: return new Color(255, 0, 255);
+			case 21: return new Color(255, 0, 174);
+			case 22: return new Color(255, 0, 132);
+			case 23: trailColor = 0; return new Color(255, 0, 85);
+		}
+	}
+
+	public static void createCircle(PlayerConnection connection, Location location) {
+		for (int i = 9; i > 0; i--) {
+			final double angle = 2 * Math.PI * i / 9;
+			final double x = Math.cos(angle) * 0.3f;
+			final double y = Math.sin(angle) * 0.3f;
+
+			Vector v = rotateAroundAxisX(new Vector(x, y, 0), location.getPitch());
+			v = rotateAroundAxisY(v, location.getYaw());
+
+			final Location temp = location.clone().add(v);
+
+			connection.sendPacket(new PacketPlayOutWorldParticles(EnumParticle.FLAME, true, (float) temp.getX(), (float) temp.getY(), (float) temp.getZ(), 0, 0, 0, 0, 1));
+		}
+	}
+
+	private static Vector rotateAroundAxisX(Vector v, double angle) {
+		angle = Math.toRadians(angle);
+
+		final double cos = Math.cos(angle);
+		final double sin = Math.sin(angle);
+		final double y = v.getY() * cos - v.getZ() * sin;
+		final double z = v.getY() * sin + v.getZ() * cos;
+		return v.setY(y).setZ(z);
+	}
+
+	private static Vector rotateAroundAxisY(Vector v, double angle) {
+		angle = -angle;
+		angle = Math.toRadians(angle);
+
+		final double cos = Math.cos(angle);
+		final double sin = Math.sin(angle);
+		final double x = v.getX() * cos + v.getZ() * sin;
+		final double z = v.getX() * -sin + v.getZ() * cos;
+		return v.setX(x).setZ(z);
 	}
 }
