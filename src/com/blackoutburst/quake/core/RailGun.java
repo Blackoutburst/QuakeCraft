@@ -332,36 +332,40 @@ public class RailGun {
 		final float zloc = (float) this.location.getZ();
 		final EntityItem hanndItem = new EntityItem(SkullLoader.world, xloc, yloc, zloc, SkullLoader.hanndNMS);
 
-		for (final QuakePlayer qp : Main.players) {
-			final PlayerConnection connection = ((CraftPlayer) qp.player).getHandle().playerConnection;
+		switch (this.owner.gunProfile.trail) {
+			case REDSTONE:
+				final Color c = getColor();
+				final float r = c.getRed() == 0 ? Float.MIN_VALUE : (float)(c.getRed()) / 255.0f;
+				final float g = (float)(c.getGreen()) / 255.0f;
+				final float b = (float)(c.getBlue()) / 255.0f;
 
-			switch (this.owner.gunProfile.trail) {
-				case REDSTONE:
-					final Color c = getColor();
-					final float r = c.getRed() == 0 ? Float.MIN_VALUE : (float)(c.getRed()) / 255.0f;
-					final float g = (float)(c.getGreen()) / 255.0f;
-					final float b = (float)(c.getBlue()) / 255.0f;
-
-					connection.sendPacket(new PacketPlayOutWorldParticles(this.owner.gunProfile.trail, true, xloc, yloc, zloc, r, g, b, 1, 0));
-					break;
-				case BARRIER:
+				for (final QuakePlayer qp : Main.players)
+					((CraftPlayer) qp.player).getHandle().playerConnection.sendPacket(new PacketPlayOutWorldParticles(this.owner.gunProfile.trail, true, xloc, yloc, zloc, r, g, b, 1, 0));
+				break;
+			case BARRIER:
+				for (final QuakePlayer qp : Main.players) {
+					final PlayerConnection connection = ((CraftPlayer) qp.player).getHandle().playerConnection;
 					connection.sendPacket(new PacketPlayOutWorldParticles(EnumParticle.FLAME, true, xloc, yloc, zloc, 0, 0, 0, 0, 1));
 					if (circle > 2) {
 						createCircle(connection);
 					}
-					break;
-				case SUSPENDED_DEPTH:
+				}
+				break;
+			case SUSPENDED_DEPTH:
+				for (final QuakePlayer qp : Main.players) {
+					final PlayerConnection connection = ((CraftPlayer) qp.player).getHandle().playerConnection;
 					connection.sendPacket(new PacketPlayOutWorldParticles(EnumParticle.REDSTONE, true, xloc, yloc, zloc, 1.0f, 0.5f, 0, 1, 0));
 					if (head > 2) {
 						connection.sendPacket(new PacketPlayOutSpawnEntity(hanndItem, 2, 100));
 						connection.sendPacket(new PacketPlayOutEntityMetadata(hanndItem.getId(), hanndItem.getDataWatcher(), true));
 						headsID.add(hanndItem.getId());
 					}
-					break;
-				default:
-					connection.sendPacket(new PacketPlayOutWorldParticles(this.owner.gunProfile.trail, true, xloc, yloc, zloc, 0, 0, 0, 0, 1));
-					break;
-			}
+				}
+				break;
+			default:
+				for (final QuakePlayer qp : Main.players)
+					((CraftPlayer) qp.player).getHandle().playerConnection.sendPacket(new PacketPlayOutWorldParticles(this.owner.gunProfile.trail, true, xloc, yloc, zloc, 0, 0, 0, 0, 1));
+				break;
 		}
 		trailColor++;
 		circle++;
