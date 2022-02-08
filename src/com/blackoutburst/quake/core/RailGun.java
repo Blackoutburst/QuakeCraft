@@ -270,6 +270,7 @@ public class RailGun {
 		if (circle > 2) circle = 0;
 		if (head > 2) head = 0;
 		trailColor++;
+		if (trailColor > 23) trailColor = 0;
 		circle++;
 		head++;
 	}

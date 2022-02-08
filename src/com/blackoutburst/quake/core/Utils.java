@@ -280,7 +280,7 @@ public class Utils {
 			case 20: return new Color(255, 0, 255);
 			case 21: return new Color(255, 0, 174);
 			case 22: return new Color(255, 0, 132);
-			case 23: trailColor = 0; return new Color(255, 0, 85);
+			case 23: return new Color(255, 0, 85);
 		}
 	}
 

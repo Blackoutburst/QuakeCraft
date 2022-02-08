@@ -1,6 +1,5 @@
 package com.blackoutburst.quake.core;
 
-import net.minecraft.server.v1_8_R3.EntityItem;
 import net.minecraft.server.v1_8_R3.World;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

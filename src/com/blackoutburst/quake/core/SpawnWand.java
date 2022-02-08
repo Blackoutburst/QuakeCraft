@@ -21,6 +21,7 @@ public class SpawnWand {
             event.setCancelled(true);
             if (Utils.isSpawn(b.getLocation())) {
                 Location s = Utils.getSpawn(b.getLocation());
+                if (s == null) return;
                 s.setYaw(s.getYaw() + 45);
                 if (s.getYaw() >= 360)
                     s.setYaw(0);
