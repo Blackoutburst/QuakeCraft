@@ -1,27 +1,17 @@
 package com.blackoutburst.quake.main;
 
 import com.blackoutburst.quake.commands.*;
-import com.blackoutburst.quake.core.*;
-import com.blackoutburst.quake.menu.*;
-import net.minecraft.server.v1_8_R3.EnumParticle;
-import org.bukkit.*;
-import org.bukkit.FireworkEffect.Type;
-import org.bukkit.block.Block;
+import com.blackoutburst.quake.core.Core;
+import com.blackoutburst.quake.core.QuakePlayer;
+import com.blackoutburst.quake.core.SkullLoader;
+import com.blackoutburst.quake.core.Utils;
+import com.blackoutburst.quake.event.EventListener;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.FoodLevelChangeEvent;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.player.*;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.potion.PotionEffectType;
-import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.util.Vector;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -41,7 +31,7 @@ public class Main extends JavaPlugin {
 
 	@Override
 	public void onEnable() {
-		getServer().getPluginManager().registerEvents(this, this);
+		getServer().getPluginManager().registerEvents(new EventListener(), this);
 		new Core().cooldownTimer();
 		new Core().gameTimer();
 		new File("./plugins/Quake/player data/").mkdirs();
