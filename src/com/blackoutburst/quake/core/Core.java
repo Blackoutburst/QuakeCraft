@@ -32,64 +32,88 @@ public class Core {
 		}
 		ScoreboardManager.updatePlayers();
 	}
+
+	private static void countdown() {
+		for (QuakePlayer p : Main.players) {
+			NMSTitle.sendTitle(p.getPlayer(), "§e3", "", 0, 30, 0);
+		}
+		new BukkitRunnable() {
+			@Override
+			public void run() {
+				for (QuakePlayer p : Main.players) {
+					NMSTitle.sendTitle(p.getPlayer(), "§62", "", 0, 30, 0);
+				}
+			}
+		}.runTaskLater(Main.getPlugin(Main.class), 20L);
+
+		new BukkitRunnable() {
+			@Override
+			public void run() {
+				for (QuakePlayer p : Main.players) {
+					NMSTitle.sendTitle(p.getPlayer(), "§c1", "", 0, 20, 0);
+				}
+			}
+		}.runTaskLater(Main.getPlugin(Main.class), 40L);
+	}
 	
 	public static void startGame(String worldName) {
-		Main.gameWorld = Bukkit.getWorld(worldName);
-		SkullLoader.loadBeamWorld(worldName);
-		
-		
-		Main.gameRunning = true;
-		Main.gameTime = 0;
-		
-		loadRespawn(worldName);
-		
-		for (int i = 0; i < Main.players.size(); i++)
-			Core.updateName(Main.players.get(i), GameOption.NAMETAG ? NameTagVisibility.ALWAYS : NameTagVisibility.NEVER);
-		
-		for (QuakePlayer p : Main.players) {
-			
-			p.board.set(14, "Map: §a"+Main.gameWorld.getName());
-			ItemStack gun = new ItemStack(p.getGunProfile().getGun());
-			ItemMeta gunMeta = gun.getItemMeta();
-			
-			gunMeta.setDisplayName(p.getGunProfile().getName());
-			
-			if (p.getGunProfile().isSuperior()) {
-				gunMeta.addItemFlags(ItemFlag.values());
-				gunMeta.addEnchant(Enchantment.ARROW_DAMAGE, 10, true);
+		new BukkitRunnable() {
+			@Override
+			public void run() {
+				Main.gameWorld = Bukkit.getWorld(worldName);
+				SkullLoader.loadBeamWorld(worldName);
+
+				Main.gameRunning = true;
+				Main.gameTime = 0;
+
+				loadRespawn(worldName);
+
+				for (int i = 0; i < Main.players.size(); i++)
+					Core.updateName(Main.players.get(i), GameOption.NAMETAG ? NameTagVisibility.ALWAYS : NameTagVisibility.NEVER);
+
+				for (QuakePlayer p : Main.players) {
+
+					p.board.set(14, "Map: §a" + Main.gameWorld.getName());
+					ItemStack gun = new ItemStack(p.getGunProfile().getGun());
+					ItemMeta gunMeta = gun.getItemMeta();
+
+					gunMeta.setDisplayName(p.getGunProfile().getName());
+
+					if (p.getGunProfile().isSuperior()) {
+						gunMeta.addItemFlags(ItemFlag.values());
+						gunMeta.addEnchant(Enchantment.ARROW_DAMAGE, 10, true);
+					}
+					gun.setItemMeta(gunMeta);
+					p.getPlayer().getInventory().clear();
+					p.getPlayer().getInventory().setItem(0, gun);
+
+					if (GameOption.WALK && GameOption.PLAYER_SPEED > 0)
+						p.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 100000, GameOption.PLAYER_SPEED - 1, false, false));
+					if (GameOption.JUMP && GameOption.JUMP_BOOST > 0)
+						p.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 100000, GameOption.JUMP_BOOST - 1, false, false));
+					if (GameOption.WALK && GameOption.SLOWNESS > 0)
+						p.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100000, GameOption.SLOWNESS - 1, false, false));
+
+					if (GameOption.BLINDNESS)
+						p.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 100000, 0, false, false));
+					if (GameOption.INVISIBILITY)
+						p.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 100000, 0, false, false));
+					if (!GameOption.JUMP)
+						p.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 100000, 199, false, false));
+					if (!GameOption.WALK)
+						p.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100000, 254, false, false));
+
+					p.setCooldown(GameOption.FIRE_DELAY);
+
+					teleportToRespawn(p.getPlayer());
+
+					p.getPlayer().setHealth(20);
+					p.getPlayer().setSaturation(20);
+					p.getPlayer().setGameMode(GameMode.ADVENTURE);
+				}
+				ScoreboardManager.updatePlayers();
 			}
-			gun.setItemMeta(gunMeta);
-			p.getPlayer().getInventory().clear();
-			p.getPlayer().getInventory().setItem(0, gun);
-			
-			
-			if (GameOption.WALK && GameOption.PLAYER_SPEED > 0)
-				p.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 100000, GameOption.PLAYER_SPEED - 1, false, false));
-			if (GameOption.JUMP && GameOption.JUMP_BOOST > 0)
-				p.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 100000, GameOption.JUMP_BOOST - 1, false, false));
-			if (GameOption.WALK && GameOption.SLOWNESS > 0)
-				p.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100000, GameOption.SLOWNESS - 1, false, false));
-			
-			if (GameOption.BLINDNESS)
-				p.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 100000, 0, false, false));
-			if (GameOption.INVISIBILITY)
-				p.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 100000, 0, false, false));
-			if (!GameOption.JUMP)
-				p.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 100000, 199, false, false));
-			if (!GameOption.WALK)
-				p.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100000, 254, false, false));
-				
-			
-			p.setCooldown(GameOption.FIRE_DELAY);
-			
-			teleportToRespawn(p.getPlayer());
-			
-			p.getPlayer().setHealth(20);
-			p.getPlayer().setSaturation(20);
-			p.getPlayer().setGameMode(GameMode.ADVENTURE);
-			
-		}
-		ScoreboardManager.updatePlayers();
+		}.runTaskLater(Main.getPlugin(Main.class), 60L);
 	}
 	
 	public static void endGame() {
