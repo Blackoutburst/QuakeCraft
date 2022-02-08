@@ -51,6 +51,7 @@ public class SoundsMenu {
 		List<String> lore = new ArrayList<>();
 		lore.add("§bLeft click to select");
 		lore.add("§bRight click to preview");
+		lore.add("§7You asked for it");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
 		inv.setItem(slot, item);
@@ -63,7 +64,6 @@ public class SoundsMenu {
 		List<String> lore = new ArrayList<>();
 		lore.add("§bLeft click to select");
 		lore.add("§bRight click to preview");
-		lore.add("§7You asked for it");
 		meta.setLore(lore);
         item.setItemMeta(meta);
 		inv.setItem(slot, item);
