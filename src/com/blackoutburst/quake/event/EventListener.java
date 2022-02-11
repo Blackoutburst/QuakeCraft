@@ -16,7 +16,7 @@ import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.*;
 
-public class EventListener  implements Listener {
+public class EventListener implements Listener {
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
@@ -51,12 +51,6 @@ public class EventListener  implements Listener {
     @EventHandler
     public void onItemDrop(PlayerDropItemEvent event) {
         event.setCancelled(Main.gameRunning);
-    }
-
-    @EventHandler
-    public void onPlayerChat(AsyncPlayerChatEvent event) {
-        event.setMessage(event.getMessage().replace("&", "§"));
-        event.setFormat("%s: %s");
     }
 
     @EventHandler
