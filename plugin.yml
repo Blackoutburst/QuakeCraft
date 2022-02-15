@@ -68,6 +68,7 @@ commands:
   bounceCount:
     permission: quake.admin
     description: Set the number of bounces
+    usage: /bouncecount <value>
   rayLength:
     permission: quake.admin
     description: Set the length of the ray
