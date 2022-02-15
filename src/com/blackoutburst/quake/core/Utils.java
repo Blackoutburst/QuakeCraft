@@ -237,7 +237,7 @@ public class Utils {
 			case 3: return ("§c§l§oTriple-kill!");
 			case 4: return ("§c§l§oQuadruple-kill!");
 			case 5: return ("§c§l§oPenta-kill!");
-			case 6: return ("§c§l§oSextuple-kill!");
+			case 6: return ("§c§l§oHexa-kill!");
 			case 7: case 8: case 9: return ("§c§l§oMonster-kill!");
 			default: return ("§c§l§oWtf-bro!");
 		}
