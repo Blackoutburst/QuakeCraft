@@ -5,102 +5,119 @@ api-version: 1.13
 author: Blackoutburst
 description: A Quake plugin with many extra features
 commands:
-  lobby:
-    description: Teleport you to spawn
-    usage: /lobby
-  l:
-    description: Teleport you to spawn
-    usage: /l
-  spawn:
-    description: Teleport you to spawn
-    usage: /spawn
   leaveQueue:
+    permission: quake.admin
     description: Remove you from the queue
     usage: /leavequeue
   joinQueue:
+    permission: quake.admin
     description: Add you to the queue
     usage: /joinqueue
   queue:
+    permission: quake.admin
     description: Toggle your queue status
     usage: /queue
   listmap:
+    permission: quake.admin
     description: List worlds and number of spawns
     usage: /listmap
-  boop:
-    description: Boop someone
-    usage: /boop <player>
   start:
+    permission: quake.admin
     description: Start the game
     usage: /start <world name>
   end:
+    permission: quake.admin
     description: End the game
     usage: /end
   triggerSpeed:
+    permission: quake.admin
     description: Set the trigger speed
     usage: /triggerspeed <value>
   gravity:
+    permission: quake.admin
     description: Set the gravity
     usage: /gravity <value>
   maxScore:
+    permission: quake.admin
     description: Set the max score
     usage: /maxscore <value>
   dashDelay:
+    permission: quake.admin
     description: Set the dash delay
     usage: /dashdelay <value>
   playerSpeed:
+    permission: quake.admin
     description: Set the player speed
     usage: /playerspeed <value>
   playerJump:
+    permission: quake.admin
     description: Set the player jump
     usage: /playerjump <value>
   playerSlow:
+    permission: quake.admin
     description: Set the player slowness
     usage: /playerslow <value>
   bounceCount:
+    permission: quake.admin
     description: Set the number of bounces
   rayLength:
+    permission: quake.admin
     description: Set the length of the ray
     usage: /raylength <value>
   shatterCount:
+    permission: quake.admin
     description: Set the number of shatter
     usage: /shatterCount <value>
   shatterLength:
+    permission: quake.admin
     description: Set the length of shatter
     usage: /shatterLength <value>
   toggleBlindness:
+    permission: quake.admin
     description: Toggle blindness
     usage: /toggleblindness
   toggleInvisibility:
+    permission: quake.admin
     description: Toggle invisibility
     usage: /toggleinvisibility
   toggleNametag:
+    permission: quake.admin
     description: Toggle nametag
     usage: /togglenametag
   toggleDash:
+    permission: quake.admin
     description: Toggle dash
     usage: /toggledash
   toggleVerticalDash:
+    permission: quake.admin
     description: Toggle vertical dash
     usage: /toggleverticaldash
   dashStrength:
+    permission: quake.admin
     description: Set dash strength
     usage: /dashstrength
   toggleWalk:
+    permission: quake.admin
     description: Toggle walk
     usage: /togglewalk
   toggleJump:
+    permission: quake.admin
     description: Toggle jump
     usage: /togglejump
   resetConfig:
+    permission: quake.admin
     description: Reset configuration
     usage: /resetconfig
   showConfig:
+    permission: quake.admin
     description: Show configuration
     usage: /showconfig
   config:
+    permission: quake.admin
     description: Show configuration menu
     usage: /config
   play:
+    permission: quake.admin
     description: Show the map selector
     usage: /play
   scan:
@@ -126,4 +143,6 @@ commands:
     
   permissions:
     quake.debug:
+      default: op
+    quake.admin:
       default: op

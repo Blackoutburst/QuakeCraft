@@ -7,10 +7,6 @@ public class CommandManager {
 
     public static void execute(CommandSender sender, Command command, String[] args) {
         switch(command.getName().toLowerCase()) {
-            case "spawn":
-            case "lobby":
-            case "l":
-                new CommandSpawn().execute(sender); break;
             case "maxscore": new CommandMaxScore().execute(sender, args); break;
             case "bouncecount": new CommandBounceCount().execute(sender, args); break;
             case "raylength": new CommandRayLength().execute(sender, args); break;
@@ -18,7 +14,6 @@ public class CommandManager {
             case "shatterlength": new CommandShatterLength().execute(sender, args); break;
             case "listmap": new CommandListMap().execute(sender); break;
             case "start": new CommandStart().execute(sender, args); break;
-            case "boop": new CommandBoop().execute(sender, args); break;
             case "end": new CommandEnd().execute(sender); break;
             case "scan": new CommandScan().execute(sender, args); break;
             case "clean": new CommandClean().execute(sender, args); break;

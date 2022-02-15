@@ -9,8 +9,6 @@ public class Void {
         if (event.getPlayer().getLocation().getY() < -10) {
             if (Main.gameRunning && qp != null) {
                 Core.teleportToRespawn(event.getPlayer());
-            } else {
-                event.getPlayer().teleport(Main.spawn);
             }
         }
     }

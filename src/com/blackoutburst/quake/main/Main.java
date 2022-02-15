@@ -26,8 +26,6 @@ public class Main extends JavaPlugin {
 	public static List<Location> respawns = new ArrayList<>();
 	
 	public static World gameWorld;
-	
-	public static Location spawn;
 
 	@Override
 	public void onEnable() {
@@ -39,7 +37,6 @@ public class Main extends JavaPlugin {
 		Utils.spawnParticlesScheduler();
 
 		gameWorld = Bukkit.getWorld("world");
-		spawn = new Location(Bukkit.getWorld("world"), 8.5f, 5.0f, 8.5f, 0, 0);
 	}
 	
 	@Override

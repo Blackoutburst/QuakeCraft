@@ -141,7 +141,6 @@ public class Core {
 			Core.updateName(Main.players.get(i), NameTagVisibility.ALWAYS);
 		
 		for (QuakePlayer p : Main.players) {
-			p.getPlayer().teleport(Main.spawn);
 			p.getPlayer().getInventory().clear();
 			p.setScore(0);
 			p.killstreak = 0;

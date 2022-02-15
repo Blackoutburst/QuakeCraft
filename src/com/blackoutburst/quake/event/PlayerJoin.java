@@ -21,7 +21,6 @@ public class PlayerJoin {
         p.setFoodLevel(20);
         p.setGameMode(GameMode.ADVENTURE);
         p.getInventory().clear();
-        p.teleport(Main.spawn);
 
         GunProfile gunProfile = new GunProfile("§bWooden Case", Material.WOOD_HOE, FireworkEffect.Type.BALL, Color.AQUA, false, Sound.BLAZE_DEATH, 2, ChatColor.WHITE, EnumParticle.FIREWORKS_SPARK);
         QuakePlayer qp = new QuakePlayer(p, gunProfile);
