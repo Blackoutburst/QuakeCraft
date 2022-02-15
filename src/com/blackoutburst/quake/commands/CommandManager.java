@@ -5,44 +5,46 @@ import org.bukkit.command.CommandSender;
 
 public class CommandManager {
 
-    public static void execute(CommandSender sender, Command command, String[] args) {
-        switch(command.getName().toLowerCase()) {
-            case "maxscore": new CommandMaxScore().execute(sender, args); break;
-            case "bouncecount": new CommandBounceCount().execute(sender, args); break;
-            case "raylength": new CommandRayLength().execute(sender, args); break;
-            case "shattercount": new CommandShatterCount().execute(sender, args); break;
-            case "shatterlength": new CommandShatterLength().execute(sender, args); break;
-            case "listmap": new CommandListMap().execute(sender); break;
-            case "start": new CommandStart().execute(sender, args); break;
-            case "end": new CommandEnd().execute(sender); break;
-            case "scan": new CommandScan().execute(sender, args); break;
-            case "clean": new CommandClean().execute(sender, args); break;
-            case "showspawn": new CommandShowSpawn().execute(sender, args); break;
-            case "loadspawn": new CommandLoadSpawn().execute(sender, args); break;
-            case "triggerspeed": new CommandTriggerSpeed().execute(sender, args); break;
-            case "dashdelay": new CommandDashDelay().execute(sender, args); break;
-            case "config": new CommandConfig().execute(sender); break;
-            case "showconfig": new CommandShowConfig().execute(sender); break;
-            case "resetconfig": new CommandResetConfig().execute(sender); break;
-            case "togglejump": new CommandToggleJump().execute(sender); break;
-            case "togglewalk": new CommandToggleWalk().execute(sender); break;
-            case "toggledash": new CommandToggleDash().execute(sender); break;
-            case "toggleverticaldash": new CommandToggleVerticalDash().execute(sender); break;
-            case "togglenametag": new CommandToggleNametag().execute(sender); break;
-            case "toggleinvisibility": new CommandToggleInvisibility().execute(sender); break;
-            case "toggleblindness": new CommandToggleBlindness().execute(sender); break;
-            case "playerslow": new CommandPlayerSlow().execute(sender, args); break;
-            case "playerspeed": new CommandPlayerSpeed().execute(sender, args); break;
-            case "playerjump": new CommandPlayerJump().execute(sender, args); break;
-            case "dashstrength": new CommandDashStrength().execute(sender, args); break;
-            case "play": new CommandPlay().execute(sender); break;
-            case "joinqueue": new CommandJoinQueue().execute(sender); break;
-            case "leavequeue": new CommandLeaveQueue().execute(sender); break;
-            case "queue": new CommandQueue().execute(sender); break;
-            case "gravity": new CommandGravity().execute(sender, args); break;
-            case "spawnwand": new CommandSpawnWand().execute(sender); break;
-            case "setquakespawn": new CommandSetQuakeSpawn().execute(sender); break;
-            case "reload": new CommandReload().execute(); break;
+    public static void execute(CommandSender sender, Command command, String label, String[] args) {
+        if (!label.startsWith("quakecraft:")) label = "quakecraft:"+label;
+
+        switch(label.toLowerCase()) {
+            case "quakecraft:maxscore": new CommandMaxScore().execute(sender, args); break;
+            case "quakecraft:bouncecount": new CommandBounceCount().execute(sender, args); break;
+            case "quakecraft:raylength": new CommandRayLength().execute(sender, args); break;
+            case "quakecraft:shattercount": new CommandShatterCount().execute(sender, args); break;
+            case "quakecraft:shatterlength": new CommandShatterLength().execute(sender, args); break;
+            case "quakecraft:listmap": new CommandListMap().execute(sender); break;
+            case "quakecraft:start": new CommandStart().execute(sender, args); break;
+            case "quakecraft:end": new CommandEnd().execute(sender); break;
+            case "quakecraft:scan": new CommandScan().execute(sender, args); break;
+            case "quakecraft:clean": new CommandClean().execute(sender, args); break;
+            case "quakecraft:showspawn": new CommandShowSpawn().execute(sender, args); break;
+            case "quakecraft:loadspawn": new CommandLoadSpawn().execute(sender, args); break;
+            case "quakecraft:triggerspeed": new CommandTriggerSpeed().execute(sender, args); break;
+            case "quakecraft:dashdelay": new CommandDashDelay().execute(sender, args); break;
+            case "quakecraft:config": new CommandConfig().execute(sender); break;
+            case "quakecraft:showconfig": new CommandShowConfig().execute(sender); break;
+            case "quakecraft:resetconfig": new CommandResetConfig().execute(sender); break;
+            case "quakecraft:togglejump": new CommandToggleJump().execute(sender); break;
+            case "quakecraft:togglewalk": new CommandToggleWalk().execute(sender); break;
+            case "quakecraft:toggledash": new CommandToggleDash().execute(sender); break;
+            case "quakecraft:toggleverticaldash": new CommandToggleVerticalDash().execute(sender); break;
+            case "quakecraft:togglenametag": new CommandToggleNametag().execute(sender); break;
+            case "quakecraft:toggleinvisibility": new CommandToggleInvisibility().execute(sender); break;
+            case "quakecraft:toggleblindness": new CommandToggleBlindness().execute(sender); break;
+            case "quakecraft:playerslow": new CommandPlayerSlow().execute(sender, args); break;
+            case "quakecraft:playerspeed": new CommandPlayerSpeed().execute(sender, args); break;
+            case "quakecraft:playerjump": new CommandPlayerJump().execute(sender, args); break;
+            case "quakecraft:dashstrength": new CommandDashStrength().execute(sender, args); break;
+            case "quakecraft:play": new CommandPlay().execute(sender); break;
+            case "quakecraft:joinqueue": new CommandJoinQueue().execute(sender); break;
+            case "quakecraft:leavequeue": new CommandLeaveQueue().execute(sender); break;
+            case "quakecraft:queue": new CommandQueue().execute(sender); break;
+            case "quakecraft:gravity": new CommandGravity().execute(sender, args); break;
+            case "quakecraft:spawnwand": new CommandSpawnWand().execute(sender); break;
+            case "quakecraft:setquakespawn": new CommandSetQuakeSpawn().execute(sender); break;
+            case "quakecraft:reload": new CommandReload().execute(); break;
             default: break;
         }
     }

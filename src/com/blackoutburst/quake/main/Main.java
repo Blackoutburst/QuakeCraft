@@ -70,7 +70,7 @@ public class Main extends JavaPlugin {
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-		CommandManager.execute(sender, command, args);
+		CommandManager.execute(sender, command, label, args);
 		return true;
 	}
 }
