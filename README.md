@@ -12,43 +12,49 @@ Note this plugin is designed to have multiples map in different folder, test wer
 
 And this plugin is made for spigot / paper 1.8.8 (V1_8_R3)
 
+## Information
+To create spawn point I recommend you to only use the spawnwand, scan command still exist if you want to place a massive number of spawn but it's not something I recomand you.
+
+## Permission
+`quake.admin` Is necessary for every command
+
 ## Commands
-`/start <world name>` start the game on the specified map.\
-`/end` end the game.\
-`/triggerSpeed <value>` change the trigger speed for everyone.\
-`/dashDelay <value>` change the dash delay for everyone.\
-`/scan <x1> <y1> <z1> <x2> <y2> <z2>` scan sponges block in a specific area and write the location in a file named after the world name (define the map spawnpoints).\
-`/loadSpawn <world name>` load the spawnpoint inside the memory (usually this should not be used).\
-`/clean <world name>` remove the sponge block from a map.\
-`/showSpawn <world name>` put back the sponge block on a map loaded from the file generated with the scan command.\
-`/lobby` Teleport the player back to the lobby\
-`/l` Teleport the player back to the lobby\
-`/spawn` Teleport the player back to the lobby\
-`/listmap` List all the map and number of spawnpoints\
-`/boop` Yes\
-`/maxScore` set the score limit for a game (default is 25)\
-`/playerSpeed <value>` Change every player speed\
-`/playerJump <value>` Give player jump boost
-`/playerSlow <value>` Give player slowness\
-`/toggleBlindness` Toggle blindness effect in game\
-`/toggleInvisibility` Toggle invisibility in game\
-`/toggleNametag` Toggle nametag visibility\
-`/toggleDash` Toggle dash usage\
-`/toggleVerticalDash` Toggle vertical dash (allow the player to dash vertically)\
-`/dashStrength` Change the dash strength\
-`/toggleWalk` Toggle the ability to walk\
-`/toggleJump` Toggle the ability to jump\
-`/resetConfig` Restore the default game configuration\
-`/showConfig` Show the current game configuration\
-`/config` Open the configuration menu
-
-Commands such as:
-- scan
-- loadSpawn
-- clean
-- showSpawn
-
-Require the permission `quake.debug` or operator status to be used
+`reload` Reload the configuration\
+`setQuakeSpawn` Set the quake lobby spawnpoint (main world outside games)\
+`leaveQueue` Remove you from the queue\
+`joinQueue` Add you to the queue\
+`queue` Toggle your queue status\
+`listmap` List maps and number of spawns available\
+`start <world name>` Start a game\
+`end` End a game\
+`triggerSpeed <value>` Set the trigger speed\
+`gravity <value>` Set the gravity strength (for the beam not the players)\
+`maxScore <value>` Set the score goal to end a game\
+`dashDelay <value>` Set the Dash delay\
+`playerSpeed <value>` Set the player movement speed\
+`playerJump <value>` Set the player jump strength\
+`playerSlow <value>` Set the player slowness\
+`bounceCount <value>` Set the number of bounces a beam can do\
+`rayLength <value>` Set the length of the beam\
+`shatterCount <value>` Set the number of sub beam created on impact\
+`shatterLength <value>` Set the length of the sub beam\
+`toggleBlindness` Toggle blindness effect\
+`toggleInvisibility` Toggle Invisibility effect\
+`toggleNametag` Toggle nametag visibility\
+`toggleDash` Toggle dash usage\
+`toggleVerticalDash` Toggle the ability to dash on the Y axys\
+`dashStrength <value>` Set the dash strength\
+`toggleWalk` Toggle the ability to walk\
+`toggleJump` Toggle the ability to jump\
+`resetConfig` Reset the game configuration to default value\
+`showConfig` Show the current game configuration\
+`config` Open the configuration menu\
+`play` Open the map selector (unavailable on third party server sorry)\
+`scan <x1> <y1> <z1> <x2> <y2> <z2>` Scan the world for sponge block and created a spawnpoints files with them\
+`loadSpawn <world name>` Load a world spawnpoint\
+`clean <world name>` Removed sponge block on every spawnpoint saved\
+`spawnWand` Give you the spawnwand\
+`showSpawn <world name>` Place sponge block on spawnpoints\
 
 ## Features
 All features implemented so far are:
