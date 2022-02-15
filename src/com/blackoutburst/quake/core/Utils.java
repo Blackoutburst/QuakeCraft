@@ -5,10 +5,7 @@ import net.minecraft.server.v1_8_R3.EnumParticle;
 import net.minecraft.server.v1_8_R3.PacketPlayOutWorldParticles;
 import net.minecraft.server.v1_8_R3.PlayerConnection;
 import org.apache.commons.lang.StringUtils;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
@@ -18,12 +15,26 @@ import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-import java.awt.*;
+import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 
 public class Utils {
-	
+
+	public static void loadConfig() {
+		File f = new File("plugins/Quake/config/config.yml");
+		YamlConfiguration file = YamlConfiguration.loadConfiguration(f);
+
+		Main.allowMapSelector = file.getBoolean("allow-map-selector");
+		World world = Bukkit.getWorld(file.getString("spawn.world"));
+		double x = file.getDouble("spawn.x");
+		double y = file.getDouble("spawn.y");
+		double z = file.getDouble("spawn.z");
+		float yaw = (float) file.getDouble("spawn.yaw");
+		float pitch = (float) file.getDouble("spawn.pitch");
+		Main.spawn = new Location(world, x, y, z, yaw, pitch);
+	}
+
 	public static String centerText(String text) {
 		int maxWidth = 60;
 		int spaces = (int) Math.round((maxWidth - 1.4 * ChatColor.stripColor(text).length()) / 2);

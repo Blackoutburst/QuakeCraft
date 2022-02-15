@@ -42,6 +42,7 @@ public class CommandManager {
             case "gravity": new CommandGravity().execute(sender, args); break;
             case "spawnwand": new CommandSpawnWand().execute(sender); break;
             case "setquakespawn": new CommandSetQuakeSpawn().execute(sender); break;
+            case "reload": new CommandReload().execute(); break;
             default: break;
         }
     }

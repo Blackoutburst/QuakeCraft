@@ -5,6 +5,10 @@ api-version: 1.13
 author: Blackoutburst
 description: A Quake plugin with many extra features
 commands:
+  reload:
+    permission: quake.admin
+    description: Reload the configuration
+    usage: /reload
   setQuakeSpawn:
     permission: quake.admin
     description: Set the default spawn
@@ -125,28 +129,26 @@ commands:
     description: Show the map selector
     usage: /play
   scan:
-    permission: quake.debug
-    description: Scan the world for gift spawnpoint (Debug command)
+    permission: quake.admin
+    description: Scan the world for gift spawnpoint (admin command)
     usage: /scan <x1> <y1> <z1> <x2> <y2> <z2>
   loadSpawn:
-    permission: quake.debug
+    permission: quake.admin
     description: Load spawn point from file
     usage: /loadspawn
   clean:
-    permission: quake.debug
+    permission: quake.admin
     description: Clean spawn point
     usage: /clean
   spawnWand:
-    permission: quake.debug
+    permission: quake.admin
     description: Give you the spawnwand
     usage: /spawnwand
   showSpawn:
-    permission: quake.debug
+    permission: quake.admin
     description: Clean spawn point
     usage: /showspawn
     
   permissions:
-    quake.debug:
-      default: op
     quake.admin:
       default: op

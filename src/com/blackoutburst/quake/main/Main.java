@@ -64,14 +64,7 @@ public class Main extends JavaPlugin {
 				e.printStackTrace();
 			}
 		} else {
-			allowMapSelector = file.getBoolean("allow-map-selector");
-			World world = Bukkit.getWorld(file.getString("spawn.world"));
-			double x = file.getDouble("spawn.x");
-			double y = file.getDouble("spawn.y");
-			double z = file.getDouble("spawn.z");
-			float yaw = (float) file.getDouble("spawn.yaw");
-			float pitch = (float) file.getDouble("spawn.pitch");
-			spawn = new Location(world, x, y, z, yaw, pitch);
+			Utils.loadConfig();
 		}
 	}
 	
