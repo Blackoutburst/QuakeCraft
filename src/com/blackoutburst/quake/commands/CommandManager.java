@@ -44,7 +44,7 @@ public class CommandManager {
             case "quakecraft:gravity": new CommandGravity().execute(sender, args); break;
             case "quakecraft:spawnwand": new CommandSpawnWand().execute(sender); break;
             case "quakecraft:setquakespawn": new CommandSetQuakeSpawn().execute(sender); break;
-            case "quakecraft:reload": new CommandReload().execute(); break;
+            case "quakecraft:reload": new CommandReload().execute(sender); break;
             default: break;
         }
     }
