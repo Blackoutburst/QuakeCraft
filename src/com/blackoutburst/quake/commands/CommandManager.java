@@ -41,6 +41,7 @@ public class CommandManager {
             case "queue": new CommandQueue().execute(sender); break;
             case "gravity": new CommandGravity().execute(sender, args); break;
             case "spawnwand": new CommandSpawnWand().execute(sender); break;
+            case "setquakespawn": new CommandSetQuakeSpawn().execute(sender); break;
             default: break;
         }
     }

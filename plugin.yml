@@ -5,6 +5,10 @@ api-version: 1.13
 author: Blackoutburst
 description: A Quake plugin with many extra features
 commands:
+  setQuakeSpawn:
+    permission: quake.admin
+    description: Set the default spawn
+    usage: /setquakespawn
   leaveQueue:
     permission: quake.admin
     description: Remove you from the queue
