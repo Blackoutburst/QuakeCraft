@@ -37,7 +37,8 @@ public class SoundsMenu {
 		setItem(inv, 38, "§aEnderman Teleport", Material.ENDER_STONE);
 		setItem(inv, 39, "§aSkeleton Death", Material.BONE);
 		setItem(inv, 40, "§aSplash", Material.WATER_BUCKET);
-		setSkullItem(inv, 41, "§aDragon death", "MHF_enderdragon");
+		setSkullItem(inv, 41, "§aDragon Death", "MHF_enderdragon");
+		setItem(inv, 42, "§aWither Spawn", Material.SOUL_SAND);
 		
 		p.openInventory(inv);
 	}
@@ -93,6 +94,7 @@ public class SoundsMenu {
 			case 39: qp.getGunProfile().setSound(Sound.SKELETON_DEATH).setPitch(1); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
 			case 40: qp.getGunProfile().setSound(Sound.SPLASH).setPitch(1); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
 			case 41: qp.getGunProfile().setSound(Sound.ENDERDRAGON_DEATH).setPitch(1); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
+			case 42: qp.getGunProfile().setSound(Sound.WITHER_SPAWN).setPitch(1); qp.savePlayerData("sound", slot); if (open) CustomMenu.open(p); break;
 			default: break;
 		}
 	}
@@ -118,6 +120,7 @@ public class SoundsMenu {
 			case 39: p.playSound(p.getLocation(), Sound.SKELETON_DEATH, 1, 1); break;
 			case 40: p.playSound(p.getLocation(), Sound.SPLASH, 1, 1); break;
 			case 41: p.playSound(p.getLocation(), Sound.ENDERDRAGON_DEATH, 1, 1); break;
+			case 42: p.playSound(p.getLocation(), Sound.WITHER_SPAWN, 1, 1); break;
 			default: break;
 		}
 	}
