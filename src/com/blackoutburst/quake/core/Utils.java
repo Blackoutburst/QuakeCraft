@@ -25,6 +25,9 @@ public class Utils {
 		File f = new File("plugins/Quake/config/config.yml");
 		YamlConfiguration file = YamlConfiguration.loadConfiguration(f);
 
+		Main.getAtSpawnOnJoin = file.getBoolean("get-at-spawn-on-join");
+		Main.voidBackToLobbyOutsideGame = file.getBoolean("void-back-to-lobby-outside-game");
+		Main.disableDamageEverywhere = file.getBoolean("disable-damage-everywhere");
 		Main.allowMapSelector = file.getBoolean("allow-map-selector");
 		World world = Bukkit.getWorld(file.getString("spawn.world"));
 		double x = file.getDouble("spawn.x");

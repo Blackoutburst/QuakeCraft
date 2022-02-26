@@ -144,6 +144,7 @@ public class EventListener implements Listener {
 
     @EventHandler
     public void onEntityDamage(EntityDamageEvent event) {
+        event.setCancelled(Main.disableDamageEverywhere);
         event.setCancelled(Main.gameRunning);
     }
 

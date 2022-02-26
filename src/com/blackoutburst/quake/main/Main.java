@@ -27,6 +27,9 @@ public class Main extends JavaPlugin {
 	public static int gameTime = 0;
 	public static List<Location> respawns = new ArrayList<>();
 	public static boolean allowMapSelector;
+	public static boolean disableDamageEverywhere;
+	public static boolean voidBackToLobbyOutsideGame;
+	public static boolean getAtSpawnOnJoin;
 	public static Location spawn;
 
 	public static World gameWorld;
@@ -46,9 +49,15 @@ public class Main extends JavaPlugin {
 		File f = new File("plugins/Quake/config/config.yml");
 		YamlConfiguration file = YamlConfiguration.loadConfiguration(f);
 		if (!f.exists()) {
+			getAtSpawnOnJoin = false;
 			allowMapSelector = false;
+			disableDamageEverywhere = false;
+			voidBackToLobbyOutsideGame = false;
 			spawn = new Location(Bukkit.getWorlds().get(0), 0.5, 5, 0.5, 0, 0);
 
+			file.set("get-at-spawn-on-join", false);
+			file.set("void-back-to-lobby-outside-game", false);
+			file.set("disable-damage-everywhere", false);
 			file.set("allow-map-selector", false);
 			file.set("spawn", null);
 			file.set("spawn.world", Bukkit.getWorlds().get(0).getName());
