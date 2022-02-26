@@ -5,6 +5,9 @@ api-version: 1.13
 author: Blackoutburst
 description: A Quake plugin with many extra features
 commands:
+  l:
+    description: Teleport you to the Lobby
+    usage: /l
   reload:
     permission: quake.admin
     description: Reload the configuration
