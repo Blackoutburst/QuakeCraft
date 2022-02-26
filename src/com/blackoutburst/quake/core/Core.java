@@ -119,7 +119,8 @@ public class Core {
 	
 	public static void endGame() {
 		Main.gameRunning = false;
-		
+		Main.players.sort(new PlayerComparator());
+
 		int minutes = Main.gameTime / 60;
 		int seconds = Main.gameTime % 60;
 		String time = String.format("%d:%02d", minutes, seconds);
