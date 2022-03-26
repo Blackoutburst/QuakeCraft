@@ -239,25 +239,28 @@ public class RailGun {
 		switch (this.owner.gunProfile.trail) {
 			case REDSTONE:
 				final Color c = Utils.getColor(trailColor);
-				final float r = c.getRed() == 0 ? Float.MIN_VALUE : (float)(c.getRed()) / 255.0f;
-				final float g = (float)(c.getGreen()) / 255.0f;
-				final float b = (float)(c.getBlue()) / 255.0f;
+				final int r = c.getRed() == 0 ? 1 : c.getRed();
+				final int g = c.getGreen();
+				final int b = c.getBlue();
+
+				Particle.DustOptions dustOptions = new Particle.DustOptions(org.bukkit.Color.fromRGB(r, g, b), 1);
 
 				for (final QuakePlayer qp : Main.players)
-					qp.getPlayer().getWorld().spawnParticle(this.owner.gunProfile.trail, xloc, yloc, zloc, 1, r, g, b);
+					qp.getPlayer().getWorld().spawnParticle(this.owner.gunProfile.trail, xloc, yloc, zloc, 1, 0, 0, 0, 0, dustOptions);
 				break;
 			case BARRIER:
 				for (final QuakePlayer qp : Main.players) {
-					qp.getPlayer().getWorld().spawnParticle(Particle.FLAME, xloc, yloc, zloc, 1);
+					qp.getPlayer().getWorld().spawnParticle(Particle.FLAME, xloc, yloc, zloc, 1, 0, 0, 0);
 					if (circle > 2) {
 						Utils.createCircle(location);
 					}
 				}
 				break;
 			case SUSPENDED_DEPTH:
+				dustOptions = new Particle.DustOptions(org.bukkit.Color.ORANGE, 1);
 				for (final QuakePlayer qp : Main.players) {
 					final PlayerConnection connection = ((CraftPlayer) qp.player).getHandle().b;
-					qp.getPlayer().getWorld().spawnParticle(Particle.REDSTONE, xloc, yloc, zloc, 1, 1.0f, 0.5f, 0, 1);
+					qp.getPlayer().getWorld().spawnParticle(Particle.REDSTONE, xloc, yloc, zloc, 1, 0, 0, 0, 0, dustOptions);
 					if (head > 2) {
 						connection.sendPacket(new PacketPlayOutSpawnEntity(hanndItem));
 						connection.sendPacket(new PacketPlayOutEntityMetadata(hanndItem.getId(), hanndItem.getDataWatcher(), true));
@@ -267,7 +270,7 @@ public class RailGun {
 				break;
 			default:
 				for (final QuakePlayer qp : Main.players)
-					qp.getPlayer().getWorld().spawnParticle(this.owner.gunProfile.trail, xloc, yloc, zloc, 1);
+					qp.getPlayer().getWorld().spawnParticle(this.owner.gunProfile.trail, xloc, yloc, zloc, 1, 0, 0, 0);
 				break;
 		}
 		if (circle > 2) circle = 0;

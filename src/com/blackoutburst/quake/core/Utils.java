@@ -98,63 +98,63 @@ public class Utils {
 		float z = b.getZ();
 
 		for (float i = 0; i < 1; i += nb)
-			b.getWorld().spawnParticle(part, x + i, y, z, 1);
+			b.getWorld().spawnParticle(part, x + i, y, z, 1, 0, 0, 0);
 		for (float i = 0; i < 1; i += nb)
-			b.getWorld().spawnParticle(part, x, y + i, z, 1);
+			b.getWorld().spawnParticle(part, x, y + i, z, 1, 0, 0, 0);
 		for (float i = 0; i < 1; i += nb)
-			b.getWorld().spawnParticle(part, x, y, z + i, 1);
+			b.getWorld().spawnParticle(part, x, y, z + i, 1, 0, 0, 0);
 
 		x = b.getX() + 1;
 		y = b.getY() + 1;
 		z = b.getZ() + 1;
 
 		for (float i = 0; i < 1; i += nb)
-			b.getWorld().spawnParticle(part, x - i, y, z, 1);
+			b.getWorld().spawnParticle(part, x - i, y, z, 1, 0, 0, 0);
 		for (float i = 0; i < 1; i += nb)
-			b.getWorld().spawnParticle(part, x, y - i, z, 1);
+			b.getWorld().spawnParticle(part, x, y - i, z, 1, 0, 0, 0);
 		for (float i = 0; i < 1; i += nb)
-			b.getWorld().spawnParticle(part, x, y, z - i, 1);
+			b.getWorld().spawnParticle(part, x, y, z - i, 1, 0, 0, 0);
 
 		x = b.getX() + 1;
 		y = b.getY() + 1;
 		z = b.getZ();
 
 		for (float i = 0; i < 1; i += 0.2f)
-			b.getWorld().spawnParticle(part, x - i, y, z, 1);
+			b.getWorld().spawnParticle(part, x - i, y, z, 1, 0, 0, 0);
 		for (float i = 0; i < 1; i += 0.2f)
-			b.getWorld().spawnParticle(part, x, y - i, z, 1);
+			b.getWorld().spawnParticle(part, x, y - i, z, 1, 0, 0, 0);
 
 		x = b.getX() + 1;
 		y = b.getY();
 		z = b.getZ() + 1;
 
 		for (float i = 0; i < 1; i += nb)
-			b.getWorld().spawnParticle(part, x - i, y, z, 1);
+			b.getWorld().spawnParticle(part, x - i, y, z, 1, 0, 0, 0);
 		for (float i = 0; i < 1; i += nb)
-			b.getWorld().spawnParticle(part, x, y, z - 1, 1);
+			b.getWorld().spawnParticle(part, x, y, z - 1, 1, 0, 0, 0);
 
 		x = b.getX();
 		y = b.getY() + 1;
 		z = b.getZ() + 1;
 
 		for (float i = 0; i < 1; i += nb)
-			b.getWorld().spawnParticle(part, x, y - i, z, 1);
+			b.getWorld().spawnParticle(part, x, y - i, z, 1, 0, 0, 0);
 		for (float i = 0; i < 1; i += nb)
-			b.getWorld().spawnParticle(part, x, y, z - 1, 1);
+			b.getWorld().spawnParticle(part, x, y, z - 1, 1, 0, 0, 0);
 
 		x = b.getX() + 1;
 		y = b.getY();
 		z = b.getZ();
 
 		for (float i = 0; i < 1; i += nb)
-			b.getWorld().spawnParticle(part, x, y, z + i, 1);
+			b.getWorld().spawnParticle(part, x, y, z + i, 1, 0, 0, 0);
 
 		x = b.getX();
 		y = b.getY() + 1;
 		z = b.getZ();
 
 		for (float i = 0; i < 1; i += nb)
-			b.getWorld().spawnParticle(part, x, y, z + i, 1);
+			b.getWorld().spawnParticle(part, x, y, z + i, 1, 0, 0, 0);
 	}
 
 	public static void spawnRotationLine(Location s, Player p) {
@@ -167,35 +167,35 @@ public class Utils {
 		switch ((int)(s.getYaw())) {
 			case 45:
 				for (float i = 0; i <= 0.5f; i += nb)
-					s.getWorld().spawnParticle(part, x - i, y + 0.5f, z + i, 1);
+					s.getWorld().spawnParticle(part, x - i, y + 0.5f, z + i, 1, 0, 0, 0);
 				break;
 			case 90:
 				for (float i = 0; i <= 0.5f; i += nb)
-					s.getWorld().spawnParticle(part, x - i, y + 0.5f, z, 1);
+					s.getWorld().spawnParticle(part, x - i, y + 0.5f, z, 1, 0, 0, 0);
 				break;
 			case 135:
 				for (float i = 0; i <= 0.5f; i += nb)
-					s.getWorld().spawnParticle(part, x - i, y + 0.5f, z - i, 1);
+					s.getWorld().spawnParticle(part, x - i, y + 0.5f, z - i, 1, 0, 0, 0);
 				break;
 			case 180:
 				for (float i = 0; i <= 0.5f; i += nb)
-					s.getWorld().spawnParticle(part, x, y + 0.5f, z - i, 1);
+					s.getWorld().spawnParticle(part, x, y + 0.5f, z - i, 1, 0, 0, 0);
 				break;
 			case 225:
 				for (float i = 0; i <= 0.5f; i += nb)
-					s.getWorld().spawnParticle(part, x + i, y + 0.5f, z - i, 1);
+					s.getWorld().spawnParticle(part, x + i, y + 0.5f, z - i, 1, 0, 0, 0);
 				break;
 			case 270:
 				for (float i = 0; i <= 0.5f; i += nb)
-					s.getWorld().spawnParticle(part, x + i, y + 0.5f, z, 1);
+					s.getWorld().spawnParticle(part, x + i, y + 0.5f, z, 1, 0, 0, 0);
 				break;
 			case 315:
 				for (float i = 0; i <= 0.5f; i += nb)
-					s.getWorld().spawnParticle(part, x + i, y + 0.5f, z + i, 1);
+					s.getWorld().spawnParticle(part, x + i, y + 0.5f, z + i, 1, 0, 0, 0);
 				break;
 			default:
 				for (float i = 0; i <= 0.5f; i += nb)
-					s.getWorld().spawnParticle(part, x, y + 0.5f, z + i, 1);
+					s.getWorld().spawnParticle(part, x, y + 0.5f, z + i, 1, 0, 0, 0);
 				break;
 
 		}
@@ -303,7 +303,7 @@ public class Utils {
 
 			final Location temp = location.clone().add(v);
 
-			location.getWorld().spawnParticle(Particle.FLAME, (float) temp.getX(), (float) temp.getY(), (float) temp.getZ(), 1);
+			location.getWorld().spawnParticle(Particle.FLAME, (float) temp.getX(), (float) temp.getY(), (float) temp.getZ(), 1, 0, 0, 0);
 		}
 	}
 
