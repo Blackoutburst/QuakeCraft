@@ -10,7 +10,7 @@ This plugin re-creates the base game of QuakeCraft from Hypixel for learning pur
 
 Note this plugin is designed to have multiples map in different folder, test were effectued with [Multiverse-Core](https://dev.bukkit.org/projects/multiverse-core)
 
-And this plugin is made for spigot / paper 1.8.8 (V1_8_R3)
+This is the 1.17.1 port, some element aren't ported correctly such as legacy materials, feel free to PR 
 
 ## Information
 To create spawn point I recommend you to only use the spawnwand, scan command still exist if you want to place a massive number of spawn but it's not something I recomand you.
