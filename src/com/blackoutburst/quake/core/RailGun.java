@@ -246,11 +246,11 @@ public class RailGun {
 				Particle.DustOptions dustOptions = new Particle.DustOptions(org.bukkit.Color.fromRGB(r, g, b), 1);
 
 				for (final QuakePlayer qp : Main.players)
-					qp.getPlayer().getWorld().spawnParticle(this.owner.gunProfile.trail, xloc, yloc, zloc, 1, 0, 0, 0, 0, dustOptions);
+					qp.getPlayer().getWorld().spawnParticle(this.owner.gunProfile.trail, xloc, yloc, zloc, 0, 0, 0, 0, 0, dustOptions);
 				break;
 			case BARRIER:
 				for (final QuakePlayer qp : Main.players) {
-					qp.getPlayer().getWorld().spawnParticle(Particle.FLAME, xloc, yloc, zloc, 1, 0, 0, 0);
+					qp.getPlayer().getWorld().spawnParticle(Particle.FLAME, xloc, yloc, zloc, 0, 0, 0, 0);
 					if (circle > 2) {
 						Utils.createCircle(location);
 					}
@@ -260,7 +260,7 @@ public class RailGun {
 				dustOptions = new Particle.DustOptions(org.bukkit.Color.ORANGE, 1);
 				for (final QuakePlayer qp : Main.players) {
 					final PlayerConnection connection = ((CraftPlayer) qp.player).getHandle().b;
-					qp.getPlayer().getWorld().spawnParticle(Particle.REDSTONE, xloc, yloc, zloc, 1, 0, 0, 0, 0, dustOptions);
+					qp.getPlayer().getWorld().spawnParticle(Particle.REDSTONE, xloc, yloc, zloc, 0, 0, 0, 0, 0, dustOptions);
 					if (head > 2) {
 						connection.sendPacket(new PacketPlayOutSpawnEntity(hanndItem));
 						connection.sendPacket(new PacketPlayOutEntityMetadata(hanndItem.getId(), hanndItem.getDataWatcher(), true));
@@ -270,7 +270,7 @@ public class RailGun {
 				break;
 			default:
 				for (final QuakePlayer qp : Main.players)
-					qp.getPlayer().getWorld().spawnParticle(this.owner.gunProfile.trail, xloc, yloc, zloc, 1, 0, 0, 0);
+					qp.getPlayer().getWorld().spawnParticle(this.owner.gunProfile.trail, xloc, yloc, zloc, 0, 0, 0, 0);
 				break;
 		}
 		if (circle > 2) circle = 0;
