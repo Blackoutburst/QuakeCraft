@@ -1,7 +1,7 @@
 package com.blackoutburst.quake.menu;
 
-import java.util.ArrayList;
-
+import com.blackoutburst.quake.core.QuakePlayer;
+import com.blackoutburst.quake.main.Main;
 import org.bukkit.FireworkEffect.Type;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -10,15 +10,14 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import com.blackoutburst.quake.core.QuakePlayer;
-import com.blackoutburst.quake.main.Main;
+import java.util.ArrayList;
 
 public class ShapeMenu {
 	
 	public static void open(Player p) {
 		Inventory inv = Main.getPlugin(Main.class).getServer().createInventory(null, 27, "Shape Menu");
 		
-		ItemStack item = new ItemStack(Material.FIREWORK_CHARGE, 1);
+		ItemStack item = new ItemStack(Material.LEGACY_FIREWORK_CHARGE, 1);
 		ItemMeta meta = item.getItemMeta();
 		meta.addItemFlags(ItemFlag.values());
 		meta.setDisplayName("§bSmall explosion");
@@ -28,7 +27,7 @@ public class ShapeMenu {
 		item.setItemMeta(meta);
 		inv.setItem(11, item);
 		
-		item = new ItemStack(Material.FIREBALL, 1);
+		item = new ItemStack(Material.LEGACY_FIREBALL, 1);
 		meta = item.getItemMeta();
 		meta.setDisplayName("§bLarge explosion");
 		lore = new ArrayList<>();
@@ -55,7 +54,7 @@ public class ShapeMenu {
 		item.setItemMeta(meta);
 		inv.setItem(14, item);
 		
-		item = new ItemStack(Material.SKULL_ITEM, 1, (byte)4);
+		item = new ItemStack(Material.LEGACY_SKULL_ITEM, 1, (byte)4);
 		meta = item.getItemMeta();
 		meta.setDisplayName("§bCreeper explosion");
 		lore = new ArrayList<>();

@@ -1,23 +1,18 @@
 package com.blackoutburst.quake.core;
 
-import java.io.File;
-import java.io.IOException;
-
+import com.blackoutburst.quake.main.Main;
+import com.blackoutburst.quake.menu.*;
+import net.minecraft.network.chat.ChatComponentText;
+import net.minecraft.network.chat.ChatMessageType;
+import net.minecraft.network.protocol.game.PacketPlayOutChat;
+import net.minecraft.server.network.PlayerConnection;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
-import com.blackoutburst.quake.main.Main;
-import com.blackoutburst.quake.menu.BeamMenu;
-import com.blackoutburst.quake.menu.ColorMenu;
-import com.blackoutburst.quake.menu.GunMenu;
-import com.blackoutburst.quake.menu.NameColorMenu;
-import com.blackoutburst.quake.menu.ShapeMenu;
-import com.blackoutburst.quake.menu.SoundsMenu;
-
-import net.minecraft.server.v1_8_R3.ChatComponentText;
-import net.minecraft.server.v1_8_R3.PacketPlayOutChat;
-import net.minecraft.server.v1_8_R3.PlayerConnection;
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
 
 public class QuakePlayer {
 	protected Player player;
@@ -50,11 +45,11 @@ public class QuakePlayer {
 	}
 	
 	public void displayCooldown() {
-		PlayerConnection connection = ((CraftPlayer) this.player).getHandle().playerConnection;
+		PlayerConnection connection = ((CraftPlayer) this.player).getHandle().b;
 		
 		String reload = cooldown == 0 ? "§a"+String.format("%.2f", GameOption.FIRE_DELAY / 20)+"s "+reloadString() : "§c"+String.format("%.2f", cooldown / 20)+"s "+reloadString();
 		
-		connection.sendPacket(new PacketPlayOutChat(new ChatComponentText(reload), (byte) 2));
+		connection.sendPacket(new PacketPlayOutChat(new ChatComponentText(reload), ChatMessageType.c, UUID.randomUUID()));
 	}
 	
 	private String reloadString() {

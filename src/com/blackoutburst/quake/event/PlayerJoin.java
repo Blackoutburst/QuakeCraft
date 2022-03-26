@@ -5,7 +5,6 @@ import com.blackoutburst.quake.core.QuakePlayer;
 import com.blackoutburst.quake.core.ScoreboardManager;
 import com.blackoutburst.quake.main.Main;
 import com.blackoutburst.quake.menu.CustomMenu;
-import net.minecraft.server.v1_8_R3.EnumParticle;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffectType;
@@ -25,7 +24,7 @@ public class PlayerJoin {
         if (Main.getAtSpawnOnJoin)
             p.teleport(Main.spawn);
 
-        GunProfile gunProfile = new GunProfile("§bWooden Case", Material.WOOD_HOE, FireworkEffect.Type.BALL, Color.AQUA, false, Sound.BLAZE_DEATH, 2, ChatColor.WHITE, EnumParticle.FIREWORKS_SPARK);
+        GunProfile gunProfile = new GunProfile("§bWooden Case", Material.WOODEN_HOE, FireworkEffect.Type.BALL, Color.AQUA, false, Sound.ENTITY_BLAZE_DEATH, 2, ChatColor.WHITE, Particle.FIREWORKS_SPARK);
         QuakePlayer qp = new QuakePlayer(p, gunProfile);
 
         ScoreboardManager.init(qp);

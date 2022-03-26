@@ -1,12 +1,7 @@
 package com.blackoutburst.quake.core;
 
-import org.bukkit.ChatColor;
-import org.bukkit.Color;
+import org.bukkit.*;
 import org.bukkit.FireworkEffect.Type;
-import org.bukkit.Material;
-import org.bukkit.Sound;
-
-import net.minecraft.server.v1_8_R3.EnumParticle;
 
 public class GunProfile {
 	protected String name;
@@ -17,9 +12,9 @@ public class GunProfile {
 	protected Sound sound;
 	protected float pitch;
 	protected ChatColor nameColor;
-	protected EnumParticle trail;
+	protected Particle trail;
 	
-	public GunProfile(String name, Material gun, Type shape, Color color, boolean superior, Sound sound, float pitch, ChatColor nameColor, EnumParticle trail) {
+	public GunProfile(String name, Material gun, Type shape, Color color, boolean superior, Sound sound, float pitch, ChatColor nameColor, Particle trail) {
 		this.name = name;
 		this.gun = gun;
 		this.shape = shape;
@@ -95,11 +90,11 @@ public class GunProfile {
 		this.nameColor = nameColor;
 	}
 
-	public EnumParticle getTrail() {
+	public Particle getTrail() {
 		return trail;
 	}
 
-	public void setTrail(EnumParticle trail) {
+	public void setTrail(Particle trail) {
 		this.trail = trail;
 	}
 

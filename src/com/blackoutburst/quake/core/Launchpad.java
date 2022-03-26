@@ -15,7 +15,7 @@ public class Launchpad {
     private static void redstonePad(Player player, QuakePlayer qp, World world) {
         qp.setJumpPadCooldown(1);
         Vector dash = player.getLocation().getDirection().clone();
-        world.playSound(player.getLocation(), Sound.PISTON_EXTEND, 4, 0.5f);
+        world.playSound(player.getLocation(), Sound.BLOCK_PISTON_EXTEND, 4, 0.5f);
 
         dash.setY(0.05f);
         dash.setX(0.0f);
@@ -45,7 +45,7 @@ public class Launchpad {
     private static void lapisPad(Player player, QuakePlayer qp, World world) {
         qp.setJumpPadCooldown(1);
         Vector dash = player.getLocation().getDirection().clone();
-        world.playSound(player.getLocation(), Sound.PISTON_EXTEND, 4, 0.5f);
+        world.playSound(player.getLocation(), Sound.BLOCK_PISTON_EXTEND, 4, 0.5f);
 
         dash.setY(0.05f);
         dash.setX(0.0f);

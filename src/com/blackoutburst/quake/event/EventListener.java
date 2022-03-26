@@ -82,7 +82,7 @@ public class EventListener implements Listener {
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
-        switch(event.getInventory().getName()) {
+        switch(event.getView().getTitle()) {
             case "Gun customisation Menu":
                 CustomMenu.click(event.getSlot(), (Player) event.getWhoClicked());
                 event.setCancelled(true);

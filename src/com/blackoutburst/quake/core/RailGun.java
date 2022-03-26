@@ -1,14 +1,19 @@
 package com.blackoutburst.quake.core;
 
 import com.blackoutburst.quake.main.Main;
-import net.minecraft.server.v1_8_R3.World;
-import net.minecraft.server.v1_8_R3.*;
-import org.bukkit.Material;
+import net.minecraft.network.protocol.game.PacketPlayOutEntityDestroy;
+import net.minecraft.network.protocol.game.PacketPlayOutEntityMetadata;
+import net.minecraft.network.protocol.game.PacketPlayOutEntityStatus;
+import net.minecraft.network.protocol.game.PacketPlayOutSpawnEntity;
+import net.minecraft.server.level.WorldServer;
+import net.minecraft.server.network.PlayerConnection;
+import net.minecraft.world.entity.item.EntityItem;
+import net.minecraft.world.entity.projectile.EntityFireworks;
 import org.bukkit.*;
 import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_17_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_17_R1.inventory.CraftItemStack;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -56,63 +61,62 @@ public class RailGun {
 		
 		return (!b.getType().equals(Material.AIR) && 
 				!b.getType().equals(Material.TORCH) &&
-				!b.getType().equals(Material.STEP) &&
-				!b.getType().equals(Material.RED_ROSE) &&
-				!b.getType().equals(Material.YELLOW_FLOWER) &&
-				!b.getType().equals(Material.LONG_GRASS) &&
-				!b.getType().equals(Material.DOUBLE_PLANT) &&
+				!b.getType().equals(Material.LEGACY_STEP) &&
+				!b.getType().equals(Material.LEGACY_RED_ROSE) &&
+				!b.getType().equals(Material.LEGACY_YELLOW_FLOWER) &&
+				!b.getType().equals(Material.LEGACY_LONG_GRASS) &&
+				!b.getType().equals(Material.LEGACY_DOUBLE_PLANT) &&
 				!b.getType().equals(Material.DEAD_BUSH) &&
 				!b.getType().equals(Material.RED_MUSHROOM) &&
 				!b.getType().equals(Material.BROWN_MUSHROOM) &&
 				!b.getType().equals(Material.VINE) &&
-				!b.getType().equals(Material.WOOD_STEP) &&
-				!b.getType().equals(Material.STONE_PLATE) &&
-				!b.getType().equals(Material.WOOD_PLATE) &&
-				!b.getType().equals(Material.GOLD_PLATE) &&
-				!b.getType().equals(Material.IRON_PLATE) &&
-				!b.getType().equals(Material.TRAP_DOOR) &&
+				!b.getType().equals(Material.LEGACY_WOOD_STEP) &&
+				!b.getType().equals(Material.LEGACY_STONE_PLATE) &&
+				!b.getType().equals(Material.LEGACY_WOOD_PLATE) &&
+				!b.getType().equals(Material.LEGACY_GOLD_PLATE) &&
+				!b.getType().equals(Material.LEGACY_IRON_PLATE) &&
+				!b.getType().equals(Material.LEGACY_TRAP_DOOR) &&
 				!b.getType().equals(Material.IRON_TRAPDOOR) &&
-				!b.getType().equals(Material.CARPET) &&
+				!b.getType().equals(Material.LEGACY_CARPET) &&
 				!b.getType().equals(Material.BARRIER) &&
 				!b.getType().equals(Material.STONE_BUTTON) &&
-				!b.getType().equals(Material.WOOD_BUTTON) &&
+				!b.getType().equals(Material.LEGACY_WOOD_BUTTON) &&
 				!b.getType().equals(Material.SNOW) &&
 				!b.getType().equals(Material.FIRE) &&
-				!b.getType().equals(Material.SIGN) &&
+				!b.getType().equals(Material.LEGACY_SIGN) &&
 				!b.getType().equals(Material.WATER) &&
-				!b.getType().equals(Material.WATER_LILY) &&
-				!b.getType().equals(Material.STATIONARY_WATER) &&
+				!b.getType().equals(Material.LEGACY_WATER_LILY) &&
+				!b.getType().equals(Material.LEGACY_STATIONARY_WATER) &&
 				!b.getType().equals(Material.LAVA) &&
-				!b.getType().equals(Material.STATIONARY_LAVA) &&
-				!b.getType().equals(Material.RAILS) &&
+				!b.getType().equals(Material.LEGACY_STATIONARY_LAVA) &&
+				!b.getType().equals(Material.LEGACY_RAILS) &&
 				!b.getType().equals(Material.ACTIVATOR_RAIL) &&
 				!b.getType().equals(Material.DETECTOR_RAIL) &&
 				!b.getType().equals(Material.POWERED_RAIL) &&
 				!b.getType().equals(Material.LEVER) &&
 				!b.getType().equals(Material.REDSTONE_WIRE) &&
-				!b.getType().equals(Material.REDSTONE_TORCH_ON) &&
-				!b.getType().equals(Material.REDSTONE_TORCH_OFF) &&
+				!b.getType().equals(Material.LEGACY_REDSTONE_TORCH_ON) &&
+				!b.getType().equals(Material.LEGACY_REDSTONE_TORCH_OFF) &&
 				!b.getType().equals(Material.LADDER) &&
 				!b.getType().equals(Material.TRIPWIRE_HOOK) &&
-				!b.getType().equals(Material.WATER_LILY) &&
-				!b.getType().equals(Material.REDSTONE_COMPARATOR) &&
-				!b.getType().equals(Material.REDSTONE_COMPARATOR_ON) &&
-				!b.getType().equals(Material.REDSTONE_COMPARATOR_OFF) &&
+				!b.getType().equals(Material.LEGACY_REDSTONE_COMPARATOR) &&
+				!b.getType().equals(Material.LEGACY_REDSTONE_COMPARATOR_ON) &&
+				!b.getType().equals(Material.LEGACY_REDSTONE_COMPARATOR_OFF) &&
 				!b.getType().equals(Material.FLOWER_POT) &&
-				!b.getType().equals(Material.PORTAL) &&
-				!b.getType().equals(Material.ENDER_PORTAL) &&
-				!b.getType().equals(Material.BANNER) &&
-				!b.getType().equals(Material.WALL_BANNER) &&
-				!b.getType().equals(Material.WALL_SIGN) &&
-				!b.getType().equals(Material.IRON_DOOR_BLOCK) &&
-				!b.getType().equals(Material.WOODEN_DOOR));
+				!b.getType().equals(Material.LEGACY_PORTAL) &&
+				!b.getType().equals(Material.LEGACY_ENDER_PORTAL) &&
+				!b.getType().equals(Material.LEGACY_BANNER) &&
+				!b.getType().equals(Material.LEGACY_WALL_BANNER) &&
+				!b.getType().equals(Material.LEGACY_WALL_SIGN) &&
+				!b.getType().equals(Material.LEGACY_IRON_DOOR_BLOCK) &&
+				!b.getType().equals(Material.LEGACY_WOODEN_DOOR));
 	}
 	
 	public void fire(QuakePlayer p) {
 		trailColor = 0;
 
 		if (!shatter)
-			p.getPlayer().getWorld().playSound(p.getPlayer().getLocation(), Sound.BLAZE_HIT, 2, 2);
+			p.getPlayer().getWorld().playSound(p.getPlayer().getLocation(), Sound.ENTITY_BLAZE_HURT, 2, 2);
 		p.cooldown = GameOption.FIRE_DELAY;
 		
 		for (int i = length; i > 0; i--) {
@@ -163,7 +167,7 @@ public class RailGun {
 		new BukkitRunnable() {
 			public void run() {
 				for (final QuakePlayer qp : Main.players) {
-					final PlayerConnection connection = ((CraftPlayer) qp.player).getHandle().playerConnection;
+					final PlayerConnection connection = ((CraftPlayer) qp.player).getHandle().b;
 
 					for (final int id : headsID)
 						connection.sendPacket(new PacketPlayOutEntityDestroy(id));
@@ -227,9 +231,9 @@ public class RailGun {
 	}
 
 	public void trail() {
-		final float xloc = (float) this.location.getX();
-		final float yloc = (float) this.location.getY();
-		final float zloc = (float) this.location.getZ();
+		final double xloc = this.location.getX();
+		final double yloc = this.location.getY();
+		final double zloc = this.location.getZ();
 		final EntityItem hanndItem = new EntityItem(SkullLoader.world, xloc, yloc-0.5f, zloc, SkullLoader.hanndNMS);
 
 		switch (this.owner.gunProfile.trail) {
@@ -240,23 +244,22 @@ public class RailGun {
 				final float b = (float)(c.getBlue()) / 255.0f;
 
 				for (final QuakePlayer qp : Main.players)
-					((CraftPlayer) qp.player).getHandle().playerConnection.sendPacket(new PacketPlayOutWorldParticles(this.owner.gunProfile.trail, true, xloc, yloc, zloc, r, g, b, 1, 0));
+					qp.getPlayer().getWorld().spawnParticle(this.owner.gunProfile.trail, xloc, yloc, zloc, 1, r, g, b);
 				break;
 			case BARRIER:
 				for (final QuakePlayer qp : Main.players) {
-					final PlayerConnection connection = ((CraftPlayer) qp.player).getHandle().playerConnection;
-					connection.sendPacket(new PacketPlayOutWorldParticles(EnumParticle.FLAME, true, xloc, yloc, zloc, 0, 0, 0, 0, 1));
+					qp.getPlayer().getWorld().spawnParticle(Particle.FLAME, xloc, yloc, zloc, 1);
 					if (circle > 2) {
-						Utils.createCircle(connection, location);
+						Utils.createCircle(location);
 					}
 				}
 				break;
 			case SUSPENDED_DEPTH:
 				for (final QuakePlayer qp : Main.players) {
-					final PlayerConnection connection = ((CraftPlayer) qp.player).getHandle().playerConnection;
-					connection.sendPacket(new PacketPlayOutWorldParticles(EnumParticle.REDSTONE, true, xloc, yloc, zloc, 1.0f, 0.5f, 0, 1, 0));
+					final PlayerConnection connection = ((CraftPlayer) qp.player).getHandle().b;
+					qp.getPlayer().getWorld().spawnParticle(Particle.REDSTONE, xloc, yloc, zloc, 1, 1.0f, 0.5f, 0, 1);
 					if (head > 2) {
-						connection.sendPacket(new PacketPlayOutSpawnEntity(hanndItem, 2, 100));
+						connection.sendPacket(new PacketPlayOutSpawnEntity(hanndItem));
 						connection.sendPacket(new PacketPlayOutEntityMetadata(hanndItem.getId(), hanndItem.getDataWatcher(), true));
 						headsID.add(hanndItem.getId());
 					}
@@ -264,7 +267,7 @@ public class RailGun {
 				break;
 			default:
 				for (final QuakePlayer qp : Main.players)
-					((CraftPlayer) qp.player).getHandle().playerConnection.sendPacket(new PacketPlayOutWorldParticles(this.owner.gunProfile.trail, true, xloc, yloc, zloc, 0, 0, 0, 0, 1));
+					qp.getPlayer().getWorld().spawnParticle(this.owner.gunProfile.trail, xloc, yloc, zloc, 1);
 				break;
 		}
 		if (circle > 2) circle = 0;
@@ -282,19 +285,19 @@ public class RailGun {
 		final float xloc = (float) this.location.getX();
 		final float yloc = (float) this.location.getY();
 		final float zloc = (float) this.location.getZ();
-		final World world = ((CraftWorld) location.getWorld()).getHandle();
+		final WorldServer world = ((CraftWorld) location.getWorld()).getHandle();
 
-		final ItemStack stackFirework = new ItemStack(Material.FIREWORK);
+		final ItemStack stackFirework = new ItemStack(Material.FIREWORK_ROCKET);
 		final FireworkMeta fireworkMeta = (FireworkMeta) stackFirework.getItemMeta();
 		final FireworkEffect effect = FireworkEffect.builder().flicker(false).withColor(this.owner.gunProfile.color).with(this.owner.gunProfile.shape).build();
 		fireworkMeta.addEffect(effect);
 		fireworkMeta.setPower(2);
 		stackFirework.setItemMeta(fireworkMeta);
 		final EntityFireworks firework = new EntityFireworks(world, xloc, yloc, zloc, CraftItemStack.asNMSCopy(stackFirework));
-		firework.expectedLifespan = 0;
+		firework.f = 0;
 
 		for (final QuakePlayer qp : Main.players) {
-			final PlayerConnection connection = ((CraftPlayer) qp.player).getHandle().playerConnection;
+			final PlayerConnection connection = ((CraftPlayer) qp.player).getHandle().b;
 
 			connection.sendPacket(new PacketPlayOutSpawnEntity(firework, 76));
 			connection.sendPacket(new PacketPlayOutEntityMetadata(firework.getId(), firework.getDataWatcher(), true));

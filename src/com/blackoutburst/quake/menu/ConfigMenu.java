@@ -1,8 +1,11 @@
 package com.blackoutburst.quake.menu;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.blackoutburst.quake.commands.*;
+import com.blackoutburst.quake.core.GameOption;
+import com.blackoutburst.quake.core.Utils;
+import com.blackoutburst.quake.main.Main;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -10,20 +13,8 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import com.blackoutburst.quake.commands.CommandResetConfig;
-import com.blackoutburst.quake.commands.CommandToggleBlindness;
-import com.blackoutburst.quake.commands.CommandToggleDash;
-import com.blackoutburst.quake.commands.CommandToggleInvisibility;
-import com.blackoutburst.quake.commands.CommandToggleJump;
-import com.blackoutburst.quake.commands.CommandToggleNametag;
-import com.blackoutburst.quake.commands.CommandToggleVerticalDash;
-import com.blackoutburst.quake.commands.CommandToggleWalk;
-import com.blackoutburst.quake.core.GameOption;
-import com.blackoutburst.quake.core.Utils;
-import com.blackoutburst.quake.main.Main;
-
-import net.md_5.bungee.api.chat.ClickEvent;
-import net.md_5.bungee.api.chat.TextComponent;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ConfigMenu {
 	
@@ -171,7 +162,7 @@ public class ConfigMenu {
 		item.setItemMeta(meta);
 		inv.setItem(23, item);	
 		
-		item = new ItemStack(Material.REDSTONE_TORCH_ON, 1);
+		item = new ItemStack(Material.LEGACY_REDSTONE_TORCH_ON, 1);
 		meta = item.getItemMeta();
 		meta.setDisplayName("§bShatter length");
 		lore = new ArrayList<>();
@@ -187,7 +178,7 @@ public class ConfigMenu {
 		///////// 3rd row ///////////
 		/////////////////////////////
 		
-		item = new ItemStack(Material.WOOL, 1, (byte) 15);
+		item = new ItemStack(Material.LEGACY_WOOL, 1, (byte) 15);
 		meta = item.getItemMeta();
 		meta.setDisplayName("§bBlindness");
 		lore = new ArrayList<>();
@@ -268,7 +259,7 @@ public class ConfigMenu {
 		///////// 4th row ///////////
 		/////////////////////////////
 		
-		item = new ItemStack(Material.INK_SACK, 1, (byte) (GameOption.BLINDNESS ? 10 : 8));
+		item = new ItemStack(Material.LEGACY_INK_SACK, 1, (byte) (GameOption.BLINDNESS ? 10 : 8));
 		meta = item.getItemMeta();
 		meta.setDisplayName("§bBlindness");
 		lore = new ArrayList<>();
@@ -279,7 +270,7 @@ public class ConfigMenu {
 		item.setItemMeta(meta);
 		inv.setItem(37, item);	
 		
-		item = new ItemStack(Material.INK_SACK, 1, (byte) (GameOption.INVISIBILITY ? 10 : 8));
+		item = new ItemStack(Material.LEGACY_INK_SACK, 1, (byte) (GameOption.INVISIBILITY ? 10 : 8));
 		meta = item.getItemMeta();
 		meta.setDisplayName("§bInvisibility");
 		lore = new ArrayList<>();
@@ -290,7 +281,7 @@ public class ConfigMenu {
 		item.setItemMeta(meta);
 		inv.setItem(38, item);	
 		
-		item = new ItemStack(Material.INK_SACK, 1, (byte) (GameOption.NAMETAG ? 10 : 8));
+		item = new ItemStack(Material.LEGACY_INK_SACK, 1, (byte) (GameOption.NAMETAG ? 10 : 8));
 		meta = item.getItemMeta();
 		meta.setDisplayName("§bNametag");
 		lore = new ArrayList<>();
@@ -301,7 +292,7 @@ public class ConfigMenu {
 		item.setItemMeta(meta);
 		inv.setItem(39, item);	
 		
-		item = new ItemStack(Material.INK_SACK, 1, (byte) (GameOption.VERTICAL_DASH ? 10 : 8));
+		item = new ItemStack(Material.LEGACY_INK_SACK, 1, (byte) (GameOption.VERTICAL_DASH ? 10 : 8));
 		meta = item.getItemMeta();
 		meta.setDisplayName("§bVertical dash");
 		lore = new ArrayList<>();
@@ -312,7 +303,7 @@ public class ConfigMenu {
 		item.setItemMeta(meta);
 		inv.setItem(40, item);	
 		
-		item = new ItemStack(Material.INK_SACK, 1, (byte) (GameOption.DASH ? 10 : 8));
+		item = new ItemStack(Material.LEGACY_INK_SACK, 1, (byte) (GameOption.DASH ? 10 : 8));
 		meta = item.getItemMeta();
 		meta.setDisplayName("§bDash");
 		lore = new ArrayList<>();
@@ -323,7 +314,7 @@ public class ConfigMenu {
 		item.setItemMeta(meta);
 		inv.setItem(41, item);	
 		
-		item = new ItemStack(Material.INK_SACK, 1, (byte) (GameOption.WALK ? 10 : 8));
+		item = new ItemStack(Material.LEGACY_INK_SACK, 1, (byte) (GameOption.WALK ? 10 : 8));
 		meta = item.getItemMeta();
 		meta.setDisplayName("§bWalk");
 		lore = new ArrayList<>();
@@ -334,7 +325,7 @@ public class ConfigMenu {
 		item.setItemMeta(meta);
 		inv.setItem(42, item);	
 		
-		item = new ItemStack(Material.INK_SACK, 1, (byte) (GameOption.JUMP ? 10 : 8));
+		item = new ItemStack(Material.LEGACY_INK_SACK, 1, (byte) (GameOption.JUMP ? 10 : 8));
 		meta = item.getItemMeta();
 		meta.setDisplayName("§bJump");
 		lore = new ArrayList<>();
@@ -400,7 +391,7 @@ public class ConfigMenu {
 	}
 	
 	private static void toggle(boolean isEnabled, Inventory inv, List<String> lore, String name, int slot) {
-		ItemStack item = new ItemStack(Material.INK_SACK, 1, (byte) (isEnabled ? 10 : 8));
+		ItemStack item = new ItemStack(Material.LEGACY_INK_SACK, 1, (byte) (isEnabled ? 10 : 8));
 		ItemMeta meta = item.getItemMeta();
 		meta.setDisplayName(name);
         meta.setLore(lore);

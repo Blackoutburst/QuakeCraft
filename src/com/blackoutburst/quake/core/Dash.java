@@ -32,7 +32,7 @@ public class Dash {
 			}
 		}.runTaskLater(Main.getPlugin(Main.class), 1L);
 		
-		player.getWorld().playSound(player.getLocation(), Sound.BAT_TAKEOFF, 3, 0.5f);
+		player.getWorld().playSound(player.getLocation(), Sound.ENTITY_BAT_TAKEOFF, 3, 0.5f);
 	}
 	
 	public static void dash(QuakePlayer qp, PlayerInteractEvent event) {

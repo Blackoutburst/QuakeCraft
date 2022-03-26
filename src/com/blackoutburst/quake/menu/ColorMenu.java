@@ -36,7 +36,7 @@ public class ColorMenu {
 	}
 	
 	private static void setItem(Inventory inv, int slot, byte data, String name) {
-		ItemStack item = new ItemStack(Material.INK_SACK, 1, data);
+		ItemStack item = new ItemStack(Material.LEGACY_INK_SACK, 1, data);
 		ItemMeta meta = item.getItemMeta();
 		meta.setDisplayName(name);
         item.setItemMeta(meta);

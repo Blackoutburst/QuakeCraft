@@ -1,8 +1,8 @@
 package com.blackoutburst.quake.core;
 
 import com.blackoutburst.quake.main.Main;
-import net.minecraft.server.v1_8_R3.EnumParticle;
 import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
@@ -52,7 +52,7 @@ public class SpawnWand {
 
         Main.respawns.add(s);
         Utils.saveSpawns(p.getWorld().getName());
-        Utils.spawnParticleCubeCustom(b, p, EnumParticle.VILLAGER_HAPPY);
+        Utils.spawnParticleCubeCustom(b, p, Particle.VILLAGER_HAPPY);
         p.sendMessage("§aNew spawn created at location §b("+b.getX()+", "+b.getY()+", "+b.getZ()+")");
     }
 
@@ -60,7 +60,7 @@ public class SpawnWand {
         Location s = Utils.getSpawn(b.getLocation());
         Main.respawns.remove(s);
         Utils.saveSpawns(p.getWorld().getName());
-        Utils.spawnParticleCubeCustom(b, p, EnumParticle.FLAME);
+        Utils.spawnParticleCubeCustom(b, p, Particle.FLAME);
         p.sendMessage("§cSpawn removed at location §b("+b.getX()+", "+b.getY()+", "+b.getZ()+")");
     }
 
