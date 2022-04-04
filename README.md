@@ -1,6 +1,6 @@
 # Maps
 This branch include 10 random quake maps\
-You can find world maps in [maps](maps) and optionally spawnpoint in [map spawnpoints](map spawnpoints)
+You can find world [maps](maps) and optionally [spawnpoints](map spawnpoints)
 
 ## DISCLAIMER
 I do not own any right over Hypixel maps, if there is any issue with them contact me and I'll remove them as soon as possible
