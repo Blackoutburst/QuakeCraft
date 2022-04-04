@@ -1,0 +1,85 @@
+loc:
+  '0':
+    world: Demonic
+    x: -2445
+    y: 8
+    z: 738
+    yaw: 270.0
+    pitch: 0.0
+  '1':
+    world: Demonic
+    x: -2445
+    y: 14
+    z: 755
+    yaw: 180.0
+    pitch: 0.0
+  '2':
+    world: Demonic
+    x: -2437
+    y: 14
+    z: 759
+    yaw: 180.0
+    pitch: 0.0
+  '3':
+    world: Demonic
+    x: -2427
+    y: 8
+    z: 715
+    yaw: 0.0
+    pitch: 0.0
+  '4':
+    world: Demonic
+    x: -2427
+    y: 18
+    z: 714
+    yaw: 0.0
+    pitch: 0.0
+  '5':
+    world: Demonic
+    x: -2418
+    y: 14
+    z: 753
+    yaw: 180.0
+    pitch: 0.0
+  '6':
+    world: Demonic
+    x: -2416
+    y: 8
+    z: 757
+    yaw: 180.0
+    pitch: 0.0
+  '7':
+    world: Demonic
+    x: -2408
+    y: 18
+    z: 714
+    yaw: 0.0
+    pitch: 0.0
+  '8':
+    world: Demonic
+    x: -2388
+    y: 15
+    z: 708
+    yaw: 0.0
+    pitch: 0.0
+  '9':
+    world: Demonic
+    x: -2383
+    y: 19
+    z: 760
+    yaw: 135.0
+    pitch: 0.0
+  '10':
+    world: Demonic
+    x: -2372
+    y: 19
+    z: 723
+    yaw: 90.0
+    pitch: 0.0
+  '11':
+    world: Demonic
+    x: -2391
+    y: 8
+    z: 725
+    yaw: 315.0
+    pitch: 0.0

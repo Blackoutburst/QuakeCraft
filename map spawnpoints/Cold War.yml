@@ -1,0 +1,71 @@
+loc:
+  '0':
+    world: Cold War
+    x: -2245
+    y: 26
+    z: 867
+    yaw: 0.0
+    pitch: 0.0
+  '1':
+    world: Cold War
+    x: -2245
+    y: 31
+    z: 860
+    yaw: 0.0
+    pitch: 0.0
+  '2':
+    world: Cold War
+    x: -2238
+    y: 27
+    z: 867
+    yaw: 270.0
+    pitch: 0.0
+  '3':
+    world: Cold War
+    x: -2235
+    y: 23
+    z: 853
+    yaw: 0.0
+    pitch: 0.0
+  '4':
+    world: Cold War
+    x: -2235
+    y: 30
+    z: 898
+    yaw: 180.0
+    pitch: 0.0
+  '5':
+    world: Cold War
+    x: -2231
+    y: 23
+    z: 889
+    yaw: 225.0
+    pitch: 0.0
+  '6':
+    world: Cold War
+    x: -2229
+    y: 31
+    z: 854
+    yaw: 315.0
+    pitch: 0.0
+  '7':
+    world: Cold War
+    x: -2220
+    y: 31
+    z: 830
+    yaw: 0.0
+    pitch: 0.0
+  '8':
+    world: Cold War
+    x: -2210
+    y: 33
+    z: 877
+    yaw: 180.0
+    pitch: 0.0
+  '9':
+    world: Cold War
+    x: -2199
+    y: 26
+    z: 860
+    yaw: 45.0
+    pitch: 0.0

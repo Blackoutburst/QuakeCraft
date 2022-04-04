@@ -1,0 +1,113 @@
+loc:
+  '0':
+    world: Blackwood
+    x: -279
+    y: 41
+    z: 186
+    yaw: 270.0
+    pitch: 0.0
+  '1':
+    world: Blackwood
+    x: -253
+    y: 41
+    z: 160
+    yaw: 0.0
+    pitch: 0.0
+  '2':
+    world: Blackwood
+    x: -253
+    y: 41
+    z: 212
+    yaw: 180.0
+    pitch: 0.0
+  '3':
+    world: Blackwood
+    x: -227
+    y: 41
+    z: 186
+    yaw: 90.0
+    pitch: 0.0
+  '4':
+    world: Blackwood
+    x: -267
+    y: 31
+    z: 148
+    yaw: 270.0
+    pitch: 0.0
+  '5':
+    world: Blackwood
+    x: -239
+    y: 31
+    z: 148
+    yaw: 90.0
+    pitch: 0.0
+  '6':
+    world: Blackwood
+    x: -280
+    y: 48
+    z: 163
+    yaw: 315.0
+    pitch: 0.0
+  '7':
+    world: Blackwood
+    x: -276
+    y: 48
+    z: 213
+    yaw: 225.0
+    pitch: 0.0
+  '8':
+    world: Blackwood
+    x: -226
+    y: 48
+    z: 209
+    yaw: 135.0
+    pitch: 0.0
+  '9':
+    world: Blackwood
+    x: -230
+    y: 48
+    z: 159
+    yaw: 45.0
+    pitch: 0.0
+  '10':
+    world: Blackwood
+    x: -291
+    y: 31
+    z: 172
+    yaw: 0.0
+    pitch: 0.0
+  '11':
+    world: Blackwood
+    x: -291
+    y: 31
+    z: 200
+    yaw: 180.0
+    pitch: 0.0
+  '12':
+    world: Blackwood
+    x: -239
+    y: 31
+    z: 224
+    yaw: 90.0
+    pitch: 0.0
+  '13':
+    world: Blackwood
+    x: -267
+    y: 31
+    z: 224
+    yaw: 270.0
+    pitch: 0.0
+  '14':
+    world: Blackwood
+    x: -215
+    y: 31
+    z: 172
+    yaw: 0.0
+    pitch: 0.0
+  '15':
+    world: Blackwood
+    x: -215
+    y: 31
+    z: 200
+    yaw: 180.0
+    pitch: 0.0

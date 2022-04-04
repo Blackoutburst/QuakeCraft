@@ -1,0 +1,78 @@
+loc:
+  '0':
+    world: Haikyo
+    x: -148
+    y: 35
+    z: 50
+    yaw: 270.0
+    pitch: 0.0
+  '1':
+    world: Haikyo
+    x: -145
+    y: 27
+    z: 68
+    yaw: 270.0
+    pitch: 0.0
+  '2':
+    world: Haikyo
+    x: -142
+    y: 35
+    z: 96
+    yaw: 270.0
+    pitch: 0.0
+  '3':
+    world: Haikyo
+    x: -134
+    y: 30
+    z: 81
+    yaw: 225.0
+    pitch: 0.0
+  '4':
+    world: Haikyo
+    x: -133
+    y: 24
+    z: 81
+    yaw: 225.0
+    pitch: 0.0
+  '5':
+    world: Haikyo
+    x: -123
+    y: 24
+    z: 44
+    yaw: 270.0
+    pitch: 0.0
+  '6':
+    world: Haikyo
+    x: -108
+    y: 26
+    z: 25
+    yaw: 0.0
+    pitch: 0.0
+  '7':
+    world: Haikyo
+    x: -102
+    y: 30
+    z: 56
+    yaw: 0.0
+    pitch: 0.0
+  '8':
+    world: Haikyo
+    x: -95
+    y: 29
+    z: 97
+    yaw: 135.0
+    pitch: 0.0
+  '9':
+    world: Haikyo
+    x: -95
+    y: 35
+    z: 57
+    yaw: 45.0
+    pitch: 0.0
+  '10':
+    world: Haikyo
+    x: -129
+    y: 30
+    z: 40
+    yaw: 0.0
+    pitch: 0.0

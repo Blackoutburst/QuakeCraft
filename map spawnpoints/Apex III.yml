@@ -1,0 +1,85 @@
+loc:
+  '0':
+    world: Apex III
+    x: -17
+    y: 73
+    z: 17
+    yaw: 45.0
+    pitch: 0.0
+  '1':
+    world: Apex III
+    x: -12
+    y: 71
+    z: -13
+    yaw: 135.0
+    pitch: 0.0
+  '2':
+    world: Apex III
+    x: -12
+    y: 76
+    z: -5
+    yaw: 270.0
+    pitch: 0.0
+  '3':
+    world: Apex III
+    x: -7
+    y: 71
+    z: -25
+    yaw: 90.0
+    pitch: 0.0
+  '4':
+    world: Apex III
+    x: -3
+    y: 76
+    z: -25
+    yaw: 90.0
+    pitch: 0.0
+  '5':
+    world: Apex III
+    x: -1
+    y: 71
+    z: 22
+    yaw: 135.0
+    pitch: 0.0
+  '6':
+    world: Apex III
+    x: 20
+    y: 71
+    z: -28
+    yaw: 45.0
+    pitch: 0.0
+  '7':
+    world: Apex III
+    x: 20
+    y: 77
+    z: -32
+    yaw: 45.0
+    pitch: 0.0
+  '8':
+    world: Apex III
+    x: 24
+    y: 73
+    z: 4
+    yaw: 90.0
+    pitch: 0.0
+  '9':
+    world: Apex III
+    x: 25
+    y: 80
+    z: 22
+    yaw: 135.0
+    pitch: 0.0
+  '10':
+    world: Apex III
+    x: 30
+    y: 71
+    z: -22
+    yaw: 90.0
+    pitch: 0.0
+  '11':
+    world: Apex III
+    x: 31
+    y: 78
+    z: -8
+    yaw: 90.0
+    pitch: 0.0

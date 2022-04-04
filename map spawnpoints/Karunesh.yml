@@ -1,0 +1,85 @@
+loc:
+  '0':
+    world: Karunesh
+    x: -35
+    y: 74
+    z: -19
+    yaw: 270.0
+    pitch: 0.0
+  '1':
+    world: Karunesh
+    x: -31
+    y: 80
+    z: 24
+    yaw: 270.0
+    pitch: 0.0
+  '2':
+    world: Karunesh
+    x: -21
+    y: 69
+    z: 19
+    yaw: 225.0
+    pitch: 0.0
+  '3':
+    world: Karunesh
+    x: -13
+    y: 73
+    z: -43
+    yaw: 315.0
+    pitch: 0.0
+  '4':
+    world: Karunesh
+    x: 16
+    y: 77
+    z: -36
+    yaw: 0.0
+    pitch: 0.0
+  '5':
+    world: Karunesh
+    x: 21
+    y: 74
+    z: 22
+    yaw: 135.0
+    pitch: 0.0
+  '6':
+    world: Karunesh
+    x: 23
+    y: 69
+    z: -18
+    yaw: 90.0
+    pitch: 0.0
+  '7':
+    world: Karunesh
+    x: 34
+    y: 74
+    z: 9
+    yaw: 90.0
+    pitch: 0.0
+  '8':
+    world: Karunesh
+    x: 34
+    y: 80
+    z: 22
+    yaw: 135.0
+    pitch: 0.0
+  '9':
+    world: Karunesh
+    x: 37
+    y: 74
+    z: -25
+    yaw: 90.0
+    pitch: 0.0
+  '10':
+    world: Karunesh
+    x: -26
+    y: 69
+    z: -29
+    yaw: 270.0
+    pitch: 0.0
+  '11':
+    world: Karunesh
+    x: 7
+    y: 74
+    z: 34
+    yaw: 90.0
+    pitch: 0.0

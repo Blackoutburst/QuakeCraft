@@ -1,0 +1,12 @@
+{
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "ice_flats": "2021-05-20 10:51:31 -0700",
+      "frozen_river": "2021-05-20 10:51:47 -0700",
+      "birch_forest": "2021-05-20 10:51:39 -0700",
+      "ice_mountains": "2021-05-20 10:51:30 -0700",
+      "jungle": "2021-05-20 10:51:41 -0700"
+    },
+    "done": false
+  }
+}

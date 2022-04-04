@@ -1,0 +1,71 @@
+loc:
+  '0':
+    world: Apex II
+    x: -2442
+    y: 11
+    z: 765
+    yaw: 270.0
+    pitch: 0.0
+  '1':
+    world: Apex II
+    x: -2442
+    y: 16
+    z: 738
+    yaw: 270.0
+    pitch: 0.0
+  '2':
+    world: Apex II
+    x: -2436
+    y: 19
+    z: 721
+    yaw: 270.0
+    pitch: 0.0
+  '3':
+    world: Apex II
+    x: -2422
+    y: 22
+    z: 765
+    yaw: 135.0
+    pitch: 0.0
+  '4':
+    world: Apex II
+    x: -2416
+    y: 8
+    z: 712
+    yaw: 0.0
+    pitch: 0.0
+  '5':
+    world: Apex II
+    x: -2413
+    y: 15
+    z: 718
+    yaw: 270.0
+    pitch: 0.0
+  '6':
+    world: Apex II
+    x: -2401
+    y: 18
+    z: 745
+    yaw: 135.0
+    pitch: 0.0
+  '7':
+    world: Apex II
+    x: -2395
+    y: 18
+    z: 762
+    yaw: 90.0
+    pitch: 0.0
+  '8':
+    world: Apex II
+    x: -2392
+    y: 26
+    z: 752
+    yaw: 90.0
+    pitch: 0.0
+  '9':
+    world: Apex II
+    x: -2383
+    y: 18
+    z: 704
+    yaw: 90.0
+    pitch: 0.0

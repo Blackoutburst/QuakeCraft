@@ -1,0 +1,99 @@
+loc:
+  '0':
+    world: Bowel
+    x: 341
+    y: 13
+    z: -213
+    yaw: 270.0
+    pitch: 0.0
+  '1':
+    world: Bowel
+    x: 350
+    y: 21
+    z: -229
+    yaw: 270.0
+    pitch: 0.0
+  '2':
+    world: Bowel
+    x: 350
+    y: 21
+    z: -197
+    yaw: 270.0
+    pitch: 0.0
+  '3':
+    world: Bowel
+    x: 357
+    y: 25
+    z: -213
+    yaw: 270.0
+    pitch: 0.0
+  '4':
+    world: Bowel
+    x: 361
+    y: 11
+    z: -198
+    yaw: 225.0
+    pitch: 0.0
+  '5':
+    world: Bowel
+    x: 371
+    y: 5
+    z: -238
+    yaw: 315.0
+    pitch: 0.0
+  '6':
+    world: Bowel
+    x: 387
+    y: 8
+    z: -225
+    yaw: 90.0
+    pitch: 0.0
+  '7':
+    world: Bowel
+    x: 391
+    y: 11
+    z: -198
+    yaw: 135.0
+    pitch: 0.0
+  '8':
+    world: Bowel
+    x: 394
+    y: 23
+    z: -240
+    yaw: 45.0
+    pitch: 0.0
+  '9':
+    world: Bowel
+    x: 397
+    y: 8
+    z: -201
+    yaw: 180.0
+    pitch: 0.0
+  '10':
+    world: Bowel
+    x: 404
+    y: 16
+    z: -236
+    yaw: 45.0
+    pitch: 0.0
+  '11':
+    world: Bowel
+    x: 400
+    y: 25
+    z: -232
+    yaw: 45.0
+    pitch: 0.0
+  '12':
+    world: Bowel
+    x: 403
+    y: 25
+    z: -213
+    yaw: 90.0
+    pitch: 0.0
+  '13':
+    world: Bowel
+    x: 362
+    y: 11
+    z: -233
+    yaw: 315.0
+    pitch: 0.0

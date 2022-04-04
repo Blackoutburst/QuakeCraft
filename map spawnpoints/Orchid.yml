@@ -1,0 +1,134 @@
+loc:
+  '0':
+    world: Orchid
+    x: -1706
+    y: 10
+    z: -421
+    yaw: 315.0
+    pitch: 0.0
+  '1':
+    world: Orchid
+    x: -1700
+    y: 14
+    z: -387
+    yaw: 270.0
+    pitch: 0.0
+  '2':
+    world: Orchid
+    x: -1693
+    y: 6
+    z: -380
+    yaw: 270.0
+    pitch: 0.0
+  '3':
+    world: Orchid
+    x: -1691
+    y: 11
+    z: -396
+    yaw: 270.0
+    pitch: 0.0
+  '4':
+    world: Orchid
+    x: -1687
+    y: 14
+    z: -369
+    yaw: 225.0
+    pitch: 0.0
+  '5':
+    world: Orchid
+    x: -1683
+    y: 13
+    z: -426
+    yaw: 270.0
+    pitch: 0.0
+  '6':
+    world: Orchid
+    x: -1678
+    y: 14
+    z: -417
+    yaw: 315.0
+    pitch: 0.0
+  '7':
+    world: Orchid
+    x: -1673
+    y: 13
+    z: -381
+    yaw: 315.0
+    pitch: 0.0
+  '8':
+    world: Orchid
+    x: -1671
+    y: 6
+    z: -371
+    yaw: 180.0
+    pitch: 0.0
+  '9':
+    world: Orchid
+    x: -1658
+    y: 6
+    z: -421
+    yaw: 0.0
+    pitch: 0.0
+  '10':
+    world: Orchid
+    x: -1652
+    y: 14
+    z: -376
+    yaw: 135.0
+    pitch: 0.0
+  '11':
+    world: Orchid
+    x: -1644
+    y: 14
+    z: -424
+    yaw: 45.0
+    pitch: 0.0
+  '12':
+    world: Orchid
+    x: -1643
+    y: 13
+    z: -367
+    yaw: 90.0
+    pitch: 0.0
+  '13':
+    world: Orchid
+    x: -1639
+    y: 11
+    z: -397
+    yaw: 90.0
+    pitch: 0.0
+  '14':
+    world: Orchid
+    x: -1635
+    y: 6
+    z: -412
+    yaw: 90.0
+    pitch: 0.0
+  '15':
+    world: Orchid
+    x: -1629
+    y: 14
+    z: -406
+    yaw: 90.0
+    pitch: 0.0
+  '16':
+    world: Orchid
+    x: -1624
+    y: 10
+    z: -371
+    yaw: 135.0
+    pitch: 0.0
+  '17':
+    world: Orchid
+    x: -1623
+    y: 10
+    z: -391
+    yaw: 135.0
+    pitch: 0.0
+  '18':
+    world: Orchid
+    x: -1657
+    y: 13
+    z: -412
+    yaw: 135.0
+    pitch: 0.0

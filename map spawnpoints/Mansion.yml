@@ -1,0 +1,92 @@
+loc:
+  '0':
+    world: Mansion
+    x: -5
+    y: 30
+    z: -17
+    yaw: 0.0
+    pitch: 0.0
+  '1':
+    world: Mansion
+    x: 4
+    y: 21
+    z: 10
+    yaw: 270.0
+    pitch: 0.0
+  '2':
+    world: Mansion
+    x: 11
+    y: 20
+    z: -35
+    yaw: 315.0
+    pitch: 0.0
+  '3':
+    world: Mansion
+    x: 11
+    y: 20
+    z: 39
+    yaw: 225.0
+    pitch: 0.0
+  '4':
+    world: Mansion
+    x: 25
+    y: 23
+    z: 17
+    yaw: 180.0
+    pitch: 0.0
+  '5':
+    world: Mansion
+    x: 29
+    y: 30
+    z: -17
+    yaw: 135.0
+    pitch: 0.0
+  '6':
+    world: Mansion
+    x: 36
+    y: 30
+    z: -51
+    yaw: 45.0
+    pitch: 0.0
+  '7':
+    world: Mansion
+    x: 36
+    y: 30
+    z: 55
+    yaw: 135.0
+    pitch: 0.0
+  '8':
+    world: Mansion
+    x: 37
+    y: 18
+    z: -25
+    yaw: 0.0
+    pitch: 0.0
+  '9':
+    world: Mansion
+    x: 39
+    y: 30
+    z: -9
+    yaw: 45.0
+    pitch: 0.0
+  '10':
+    world: Mansion
+    x: -10
+    y: 30
+    z: 14
+    yaw: 225.0
+    pitch: 0.0
+  '11':
+    world: Mansion
+    x: 37
+    y: 18
+    z: 29
+    yaw: 180.0
+    pitch: 0.0
+  '12':
+    world: Mansion
+    x: 29
+    y: 30
+    z: 21
+    yaw: 45.0
+    pitch: 0.0
