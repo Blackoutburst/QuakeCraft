@@ -46,6 +46,7 @@ public class CommandManager {
             case "quakecraft:setquakespawn": new CommandSetQuakeSpawn().execute(sender); break;
             case "quakecraft:reload": new CommandReload().execute(sender); break;
             case "quakecraft:l": new CommandSpawn().execute(sender); break;
+            case "quakecraft:deletemap": new CommandDeleteMap().execute(sender, args); break;
             default: break;
         }
     }

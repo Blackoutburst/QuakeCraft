@@ -152,6 +152,10 @@ commands:
     permission: quake.admin
     description: Clean spawn point
     usage: /showspawn
+  deleteMap:
+    permission: quake.admin
+    description: Delete a map configuration
+    usage: /deleteMap <world name>
     
   permissions:
     quake.admin:

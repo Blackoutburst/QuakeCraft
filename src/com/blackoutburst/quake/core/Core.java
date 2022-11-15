@@ -2,6 +2,7 @@ package com.blackoutburst.quake.core;
 
 import com.blackoutburst.quake.main.Main;
 import com.blackoutburst.quake.menu.CustomMenu;
+import com.blackoutburst.quake.nms.NMSTitle;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -35,13 +36,13 @@ public class Core {
 
 	private static void countdown() {
 		for (QuakePlayer p : Main.players) {
-			NMSTitle.sendTitle(p.getPlayer(), "§e3", "", 0, 30, 0);
+			NMSTitle.send(p.getPlayer(), "§e3", "", 0, 30, 0);
 		}
 		new BukkitRunnable() {
 			@Override
 			public void run() {
 				for (QuakePlayer p : Main.players) {
-					NMSTitle.sendTitle(p.getPlayer(), "§62", "", 0, 30, 0);
+					NMSTitle.send(p.getPlayer(), "§62", "", 0, 30, 0);
 				}
 			}
 		}.runTaskLater(Main.getPlugin(Main.class), 20L);
@@ -50,7 +51,7 @@ public class Core {
 			@Override
 			public void run() {
 				for (QuakePlayer p : Main.players) {
-					NMSTitle.sendTitle(p.getPlayer(), "§c1", "", 0, 20, 0);
+					NMSTitle.send(p.getPlayer(), "§c1", "", 0, 20, 0);
 				}
 			}
 		}.runTaskLater(Main.getPlugin(Main.class), 40L);
