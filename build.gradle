@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
+}
+
+group 'com.blackoutburst'
+version '1.6-SNAPSHOT'
+
+compileJava {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
+
+repositories {
+    maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'}
+    maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
+    mavenCentral()
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/'
+        }
+    }
+}
+
+shadowJar {
+    baseName = project.name
+    version = project.version
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives sourcesJar
+    archives shadowJar
+}
+
+configurations {
+    priority
+    sourceSets.main.compileClasspath = configurations.priority + sourceSets.main.compileClasspath
+}
+
+dependencies {
+    priority 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
+    implementation files('lib/craftbukkit-1.8.8-R0.1-SNAPSHOT.jar')
+
+}
